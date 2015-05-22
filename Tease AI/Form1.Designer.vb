@@ -98,9 +98,21 @@ Partial Class Form1
         Me.ContactTimer = New System.Windows.Forms.Timer(Me.components)
         Me.BTNShowHideApps = New System.Windows.Forms.Button()
         Me.AudibleMetronome = New System.Windows.Forms.Timer(Me.components)
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
+        Me.BTNCompact = New System.Windows.Forms.Button()
+        Me.BTN1080 = New System.Windows.Forms.Button()
+        Me.BTN768 = New System.Windows.Forms.Button()
+        Me.StatusUpdates = New System.Windows.Forms.WebBrowser()
+        Me.PNLGlitter = New System.Windows.Forms.Panel()
+        Me.SP10 = New System.Windows.Forms.Panel()
+        Me.SP9 = New System.Windows.Forms.Panel()
+        Me.SP8 = New System.Windows.Forms.Panel()
+        Me.SP7 = New System.Windows.Forms.Panel()
+        Me.SP6 = New System.Windows.Forms.Panel()
+        Me.SP5 = New System.Windows.Forms.Panel()
+        Me.SP4 = New System.Windows.Forms.Panel()
+        Me.SP3 = New System.Windows.Forms.Panel()
+        Me.SP2 = New System.Windows.Forms.Panel()
+        Me.SP1 = New System.Windows.Forms.Panel()
         CType(Me.mainPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.domAvatar, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -116,6 +128,7 @@ Partial Class Form1
         Me.PNLTerms.SuspendLayout()
         CType(Me.subAvatar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PictureStrip.SuspendLayout()
+        Me.PNLGlitter.SuspendLayout()
         Me.SuspendLayout()
         '
         'domName
@@ -644,7 +657,7 @@ Partial Class Form1
         Me.subAvatar.BackColor = System.Drawing.Color.Black
         Me.subAvatar.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.subAvatar.Image = CType(resources.GetObject("subAvatar.Image"), System.Drawing.Image)
-        Me.subAvatar.Location = New System.Drawing.Point(10, 791)
+        Me.subAvatar.Location = New System.Drawing.Point(10, 790)
         Me.subAvatar.Name = "subAvatar"
         Me.subAvatar.Size = New System.Drawing.Size(250, 180)
         Me.subAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -703,43 +716,146 @@ Partial Class Form1
         '
         Me.AudibleMetronome.Interval = 30
         '
-        'Button1
+        'BTNCompact
         '
-        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(170, Byte), Integer))
-        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(93, 263)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(84, 25)
-        Me.Button1.TabIndex = 164
-        Me.Button1.Text = "Compact"
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.BTNCompact.BackColor = System.Drawing.Color.White
+        Me.BTNCompact.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BTNCompact.ForeColor = System.Drawing.Color.SteelBlue
+        Me.BTNCompact.Location = New System.Drawing.Point(93, 263)
+        Me.BTNCompact.Name = "BTNCompact"
+        Me.BTNCompact.Size = New System.Drawing.Size(84, 25)
+        Me.BTNCompact.TabIndex = 164
+        Me.BTNCompact.Text = "Compact"
+        Me.BTNCompact.UseVisualStyleBackColor = False
         '
-        'Button2
+        'BTN1080
         '
-        Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(170, Byte), Integer))
-        Me.Button2.FlatAppearance.BorderSize = 2
-        Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(176, 263)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(84, 25)
-        Me.Button2.TabIndex = 165
-        Me.Button2.Text = "1080"
-        Me.Button2.UseVisualStyleBackColor = False
+        Me.BTN1080.BackColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(170, Byte), Integer))
+        Me.BTN1080.FlatAppearance.BorderSize = 2
+        Me.BTN1080.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BTN1080.ForeColor = System.Drawing.Color.White
+        Me.BTN1080.Location = New System.Drawing.Point(176, 263)
+        Me.BTN1080.Name = "BTN1080"
+        Me.BTN1080.Size = New System.Drawing.Size(84, 25)
+        Me.BTN1080.TabIndex = 165
+        Me.BTN1080.Text = "1080"
+        Me.BTN1080.UseVisualStyleBackColor = False
         '
-        'Button3
+        'BTN768
         '
-        Me.Button3.BackColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(170, Byte), Integer))
-        Me.Button3.FlatAppearance.BorderSize = 2
-        Me.Button3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button3.ForeColor = System.Drawing.Color.White
-        Me.Button3.Location = New System.Drawing.Point(10, 263)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(84, 25)
-        Me.Button3.TabIndex = 768
-        Me.Button3.Text = "768"
-        Me.Button3.UseVisualStyleBackColor = False
+        Me.BTN768.BackColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(170, Byte), Integer))
+        Me.BTN768.FlatAppearance.BorderSize = 2
+        Me.BTN768.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BTN768.ForeColor = System.Drawing.Color.White
+        Me.BTN768.Location = New System.Drawing.Point(10, 263)
+        Me.BTN768.Name = "BTN768"
+        Me.BTN768.Size = New System.Drawing.Size(84, 25)
+        Me.BTN768.TabIndex = 768
+        Me.BTN768.Text = "768"
+        Me.BTN768.UseVisualStyleBackColor = False
+        '
+        'StatusUpdates
+        '
+        Me.StatusUpdates.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
+        Me.StatusUpdates.Location = New System.Drawing.Point(0, 0)
+        Me.StatusUpdates.MinimumSize = New System.Drawing.Size(20, 20)
+        Me.StatusUpdates.Name = "StatusUpdates"
+        Me.StatusUpdates.Size = New System.Drawing.Size(250, 167)
+        Me.StatusUpdates.TabIndex = 770
+        '
+        'PNLGlitter
+        '
+        Me.PNLGlitter.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.PNLGlitter.Controls.Add(Me.StatusUpdates)
+        Me.PNLGlitter.Location = New System.Drawing.Point(10, 296)
+        Me.PNLGlitter.Name = "PNLGlitter"
+        Me.PNLGlitter.Size = New System.Drawing.Size(250, 172)
+        Me.PNLGlitter.TabIndex = 770
+        '
+        'SP10
+        '
+        Me.SP10.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.SP10.Location = New System.Drawing.Point(238, 752)
+        Me.SP10.Name = "SP10"
+        Me.SP10.Size = New System.Drawing.Size(20, 31)
+        Me.SP10.TabIndex = 780
+        '
+        'SP9
+        '
+        Me.SP9.BackColor = System.Drawing.Color.SteelBlue
+        Me.SP9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.SP9.Location = New System.Drawing.Point(213, 752)
+        Me.SP9.Name = "SP9"
+        Me.SP9.Size = New System.Drawing.Size(20, 31)
+        Me.SP9.TabIndex = 779
+        '
+        'SP8
+        '
+        Me.SP8.BackColor = System.Drawing.Color.SteelBlue
+        Me.SP8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.SP8.Location = New System.Drawing.Point(188, 752)
+        Me.SP8.Name = "SP8"
+        Me.SP8.Size = New System.Drawing.Size(20, 31)
+        Me.SP8.TabIndex = 773
+        '
+        'SP7
+        '
+        Me.SP7.BackColor = System.Drawing.Color.SteelBlue
+        Me.SP7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.SP7.Location = New System.Drawing.Point(163, 752)
+        Me.SP7.Name = "SP7"
+        Me.SP7.Size = New System.Drawing.Size(20, 31)
+        Me.SP7.TabIndex = 772
+        '
+        'SP6
+        '
+        Me.SP6.BackColor = System.Drawing.Color.SteelBlue
+        Me.SP6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.SP6.Location = New System.Drawing.Point(138, 752)
+        Me.SP6.Name = "SP6"
+        Me.SP6.Size = New System.Drawing.Size(20, 31)
+        Me.SP6.TabIndex = 778
+        '
+        'SP5
+        '
+        Me.SP5.BackColor = System.Drawing.Color.SteelBlue
+        Me.SP5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.SP5.Location = New System.Drawing.Point(113, 752)
+        Me.SP5.Name = "SP5"
+        Me.SP5.Size = New System.Drawing.Size(20, 31)
+        Me.SP5.TabIndex = 777
+        '
+        'SP4
+        '
+        Me.SP4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.SP4.Location = New System.Drawing.Point(88, 752)
+        Me.SP4.Name = "SP4"
+        Me.SP4.Size = New System.Drawing.Size(20, 31)
+        Me.SP4.TabIndex = 776
+        '
+        'SP3
+        '
+        Me.SP3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.SP3.Location = New System.Drawing.Point(63, 752)
+        Me.SP3.Name = "SP3"
+        Me.SP3.Size = New System.Drawing.Size(20, 31)
+        Me.SP3.TabIndex = 775
+        '
+        'SP2
+        '
+        Me.SP2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.SP2.Location = New System.Drawing.Point(38, 752)
+        Me.SP2.Name = "SP2"
+        Me.SP2.Size = New System.Drawing.Size(20, 31)
+        Me.SP2.TabIndex = 774
+        '
+        'SP1
+        '
+        Me.SP1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.SP1.Location = New System.Drawing.Point(13, 752)
+        Me.SP1.Name = "SP1"
+        Me.SP1.Size = New System.Drawing.Size(20, 31)
+        Me.SP1.TabIndex = 771
         '
         'Form1
         '
@@ -749,9 +865,20 @@ Partial Class Form1
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.ClientSize = New System.Drawing.Size(1374, 1012)
         Me.Controls.Add(Me.PNLTerms)
-        Me.Controls.Add(Me.Button3)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.SP10)
+        Me.Controls.Add(Me.SP9)
+        Me.Controls.Add(Me.SP8)
+        Me.Controls.Add(Me.SP7)
+        Me.Controls.Add(Me.SP6)
+        Me.Controls.Add(Me.SP5)
+        Me.Controls.Add(Me.SP4)
+        Me.Controls.Add(Me.SP3)
+        Me.Controls.Add(Me.SP2)
+        Me.Controls.Add(Me.SP1)
+        Me.Controls.Add(Me.PNLGlitter)
+        Me.Controls.Add(Me.BTN768)
+        Me.Controls.Add(Me.BTN1080)
+        Me.Controls.Add(Me.BTNCompact)
         Me.Controls.Add(Me.PNLFileTransfer)
         Me.Controls.Add(Me.domName)
         Me.Controls.Add(Me.subAvatar)
@@ -786,6 +913,7 @@ Partial Class Form1
         Me.PNLTerms.PerformLayout()
         CType(Me.subAvatar, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PictureStrip.ResumeLayout(False)
+        Me.PNLGlitter.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -864,8 +992,20 @@ Partial Class Form1
     Friend WithEvents ContactTimer As System.Windows.Forms.Timer
     Friend WithEvents BTNShowHideApps As System.Windows.Forms.Button
     Friend WithEvents AudibleMetronome As System.Windows.Forms.Timer
-    Friend WithEvents Button1 As System.Windows.Forms.Button
-    Friend WithEvents Button2 As System.Windows.Forms.Button
-    Friend WithEvents Button3 As System.Windows.Forms.Button
+    Friend WithEvents BTNCompact As System.Windows.Forms.Button
+    Friend WithEvents BTN1080 As System.Windows.Forms.Button
+    Friend WithEvents BTN768 As System.Windows.Forms.Button
+    Friend WithEvents StatusUpdates As System.Windows.Forms.WebBrowser
+    Friend WithEvents PNLGlitter As System.Windows.Forms.Panel
+    Friend WithEvents SP10 As System.Windows.Forms.Panel
+    Friend WithEvents SP9 As System.Windows.Forms.Panel
+    Friend WithEvents SP8 As System.Windows.Forms.Panel
+    Friend WithEvents SP7 As System.Windows.Forms.Panel
+    Friend WithEvents SP6 As System.Windows.Forms.Panel
+    Friend WithEvents SP5 As System.Windows.Forms.Panel
+    Friend WithEvents SP4 As System.Windows.Forms.Panel
+    Friend WithEvents SP3 As System.Windows.Forms.Panel
+    Friend WithEvents SP2 As System.Windows.Forms.Panel
+    Friend WithEvents SP1 As System.Windows.Forms.Panel
 
 End Class

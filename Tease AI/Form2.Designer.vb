@@ -844,6 +844,10 @@ Partial Class FrmSettings
         Me.Label50 = New System.Windows.Forms.Label()
         Me.TabPage25 = New System.Windows.Forms.TabPage()
         Me.Panel11 = New System.Windows.Forms.Panel()
+        Me.GroupBox20 = New System.Windows.Forms.GroupBox()
+        Me.PBMaintenance = New System.Windows.Forms.ProgressBar()
+        Me.LBLMaintenance = New System.Windows.Forms.Label()
+        Me.BTNMaintenance = New System.Windows.Forms.Button()
         Me.WebToy = New System.Windows.Forms.WebBrowser()
         Me.GroupBox15 = New System.Windows.Forms.GroupBox()
         Me.Label115 = New System.Windows.Forms.Label()
@@ -870,6 +874,8 @@ Partial Class FrmSettings
         Me.OpenScriptDialog = New System.Windows.Forms.OpenFileDialog()
         Me.OpenSettingsDialog = New System.Windows.Forms.OpenFileDialog()
         Me.SaveSettingsDialog = New System.Windows.Forms.SaveFileDialog()
+        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.SettingsPanel.SuspendLayout
         Me.SettingsTabs.SuspendLayout
         Me.TabPage1.SuspendLayout
@@ -1077,6 +1083,7 @@ Partial Class FrmSettings
         Me.GroupBox34.SuspendLayout
         Me.TabPage25.SuspendLayout
         Me.Panel11.SuspendLayout
+        Me.GroupBox20.SuspendLayout
         Me.GroupBox15.SuspendLayout
         CType(Me.PictureBox9,System.ComponentModel.ISupportInitialize).BeginInit
         Me.TabPage5.SuspendLayout
@@ -11057,6 +11064,7 @@ Partial Class FrmSettings
         '
         Me.Panel11.BackColor = System.Drawing.Color.LightGray
         Me.Panel11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel11.Controls.Add(Me.GroupBox20)
         Me.Panel11.Controls.Add(Me.WebToy)
         Me.Panel11.Controls.Add(Me.GroupBox15)
         Me.Panel11.Controls.Add(Me.PictureBox9)
@@ -11065,6 +11073,44 @@ Partial Class FrmSettings
         Me.Panel11.Name = "Panel11"
         Me.Panel11.Size = New System.Drawing.Size(708, 437)
         Me.Panel11.TabIndex = 92
+        '
+        'GroupBox20
+        '
+        Me.GroupBox20.Controls.Add(Me.Button1)
+        Me.GroupBox20.Controls.Add(Me.PBMaintenance)
+        Me.GroupBox20.Controls.Add(Me.LBLMaintenance)
+        Me.GroupBox20.Controls.Add(Me.BTNMaintenance)
+        Me.GroupBox20.Location = New System.Drawing.Point(6, 32)
+        Me.GroupBox20.Name = "GroupBox20"
+        Me.GroupBox20.Size = New System.Drawing.Size(278, 294)
+        Me.GroupBox20.TabIndex = 174
+        Me.GroupBox20.TabStop = false
+        Me.GroupBox20.Text = "Maintenance"
+        '
+        'PBMaintenance
+        '
+        Me.PBMaintenance.Location = New System.Drawing.Point(15, 246)
+        Me.PBMaintenance.Name = "PBMaintenance"
+        Me.PBMaintenance.Size = New System.Drawing.Size(249, 23)
+        Me.PBMaintenance.TabIndex = 2
+        '
+        'LBLMaintenance
+        '
+        Me.LBLMaintenance.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.LBLMaintenance.Location = New System.Drawing.Point(20, 178)
+        Me.LBLMaintenance.Name = "LBLMaintenance"
+        Me.LBLMaintenance.Size = New System.Drawing.Size(244, 61)
+        Me.LBLMaintenance.TabIndex = 1
+        Me.LBLMaintenance.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'BTNMaintenance
+        '
+        Me.BTNMaintenance.Location = New System.Drawing.Point(20, 148)
+        Me.BTNMaintenance.Name = "BTNMaintenance"
+        Me.BTNMaintenance.Size = New System.Drawing.Size(159, 23)
+        Me.BTNMaintenance.TabIndex = 0
+        Me.BTNMaintenance.Text = "Perform Maintenance"
+        Me.BTNMaintenance.UseVisualStyleBackColor = True
         '
         'WebToy
         '
@@ -11090,7 +11136,7 @@ Partial Class FrmSettings
         '
         'Label115
         '
-        Me.Label115.AutoSize = true
+        Me.Label115.AutoSize = True
         Me.Label115.Location = New System.Drawing.Point(354, 24)
         Me.Label115.Name = "Label115"
         Me.Label115.Size = New System.Drawing.Size(29, 13)
@@ -11113,7 +11159,7 @@ Partial Class FrmSettings
         '
         'Label114
         '
-        Me.Label114.AutoSize = true
+        Me.Label114.AutoSize = True
         Me.Label114.Location = New System.Drawing.Point(313, 24)
         Me.Label114.Name = "Label114"
         Me.Label114.Size = New System.Drawing.Size(29, 13)
@@ -11123,18 +11169,18 @@ Partial Class FrmSettings
         'PictureBox9
         '
         Me.PictureBox9.BackColor = System.Drawing.Color.LightGray
-        Me.PictureBox9.Image = CType(resources.GetObject("PictureBox9.Image"),System.Drawing.Image)
+        Me.PictureBox9.Image = CType(resources.GetObject("PictureBox9.Image"), System.Drawing.Image)
         Me.PictureBox9.Location = New System.Drawing.Point(9, 6)
         Me.PictureBox9.Name = "PictureBox9"
         Me.PictureBox9.Size = New System.Drawing.Size(160, 19)
         Me.PictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
         Me.PictureBox9.TabIndex = 166
-        Me.PictureBox9.TabStop = false
+        Me.PictureBox9.TabStop = False
         '
         'Label148
         '
         Me.Label148.BackColor = System.Drawing.Color.Transparent
-        Me.Label148.Font = New System.Drawing.Font("Microsoft Sans Serif", 12!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.Label148.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label148.ForeColor = System.Drawing.Color.Black
         Me.Label148.Location = New System.Drawing.Point(7, 6)
         Me.Label148.Name = "Label148"
@@ -11172,17 +11218,17 @@ Partial Class FrmSettings
         '
         'Label113
         '
-        Me.Label113.AutoSize = true
+        Me.Label113.AutoSize = True
         Me.Label113.Location = New System.Drawing.Point(4, 417)
         Me.Label113.Name = "Label113"
         Me.Label113.Size = New System.Drawing.Size(452, 13)
         Me.Label113.TabIndex = 173
-        Me.Label113.Text = "All content contained in or viewed through this program are property of their res"& _ 
+        Me.Label113.Text = "All content contained in or viewed through this program are property of their res" & _
     "pective owners."
         '
         'Label40
         '
-        Me.Label40.Font = New System.Drawing.Font("Microsoft Sans Serif", 12!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.Label40.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label40.Location = New System.Drawing.Point(35, 273)
         Me.Label40.Name = "Label40"
         Me.Label40.Size = New System.Drawing.Size(638, 24)
@@ -11192,19 +11238,19 @@ Partial Class FrmSettings
         '
         'Label35
         '
-        Me.Label35.Font = New System.Drawing.Font("Microsoft Sans Serif", 10!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.Label35.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label35.Location = New System.Drawing.Point(32, 107)
         Me.Label35.Name = "Label35"
         Me.Label35.Size = New System.Drawing.Size(641, 77)
         Me.Label35.TabIndex = 170
-        Me.Label35.Text = "This program is freeware. It may be freely distributed."&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"Do not package or dist"& _ 
-    "ribute this program with any scripts or additional content."&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"Please distribute a"& _ 
+        Me.Label35.Text = "This program is freeware. It may be freely distributed." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Do not package or dist" & _
+    "ribute this program with any scripts or additional content." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Please distribute a" & _
     "dditional files separately."
         Me.Label35.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'Label33
         '
-        Me.Label33.Font = New System.Drawing.Font("Microsoft Sans Serif", 10!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.Label33.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label33.Location = New System.Drawing.Point(32, 191)
         Me.Label33.Name = "Label33"
         Me.Label33.Size = New System.Drawing.Size(641, 77)
@@ -11214,7 +11260,7 @@ Partial Class FrmSettings
         '
         'Label17
         '
-        Me.Label17.AutoSize = true
+        Me.Label17.AutoSize = True
         Me.Label17.Location = New System.Drawing.Point(522, 78)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(93, 13)
@@ -11223,7 +11269,7 @@ Partial Class FrmSettings
         '
         'Label3
         '
-        Me.Label3.AutoSize = true
+        Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(489, 417)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(215, 13)
@@ -11233,17 +11279,17 @@ Partial Class FrmSettings
         'PictureBox3
         '
         Me.PictureBox3.BackColor = System.Drawing.Color.LightGray
-        Me.PictureBox3.Image = CType(resources.GetObject("PictureBox3.Image"),System.Drawing.Image)
+        Me.PictureBox3.Image = CType(resources.GetObject("PictureBox3.Image"), System.Drawing.Image)
         Me.PictureBox3.Location = New System.Drawing.Point(84, 17)
         Me.PictureBox3.Name = "PictureBox3"
         Me.PictureBox3.Size = New System.Drawing.Size(531, 58)
         Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox3.TabIndex = 166
-        Me.PictureBox3.TabStop = false
+        Me.PictureBox3.TabStop = False
         '
         'Label41
         '
-        Me.Label41.Font = New System.Drawing.Font("Microsoft Sans Serif", 9!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
+        Me.Label41.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label41.Location = New System.Drawing.Point(35, 297)
         Me.Label41.Name = "Label41"
         Me.Label41.Size = New System.Drawing.Size(638, 84)
@@ -11254,7 +11300,7 @@ Partial Class FrmSettings
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        Me.OpenFileDialog1.Filter = "JPEG Files (*.jpg)|*.jpg|PNG Files (*.png)|*.png|BMP Files (*.bmp)|*.bmp|All file"& _ 
+        Me.OpenFileDialog1.Filter = "JPEG Files (*.jpg)|*.jpg|PNG Files (*.png)|*.png|BMP Files (*.bmp)|*.bmp|All file" & _
     "s (*.*)|*.*"
         Me.OpenFileDialog1.Title = "Select an image file"
         '
@@ -11281,6 +11327,20 @@ Partial Class FrmSettings
         '
         Me.SaveSettingsDialog.Filter = "TXT Files (*.txt)|*.txt"
         Me.SaveSettingsDialog.Title = "Select a location to save current Domme settings"
+        '
+        'BackgroundWorker1
+        '
+        Me.BackgroundWorker1.WorkerReportsProgress = True
+        Me.BackgroundWorker1.WorkerSupportsCancellation = True
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(185, 148)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(79, 23)
+        Me.Button1.TabIndex = 3
+        Me.Button1.Text = "Cancel"
+        Me.Button1.UseVisualStyleBackColor = true
         '
         'FrmSettings
         '
@@ -11558,6 +11618,7 @@ Partial Class FrmSettings
         Me.GroupBox34.ResumeLayout(false)
         Me.TabPage25.ResumeLayout(false)
         Me.Panel11.ResumeLayout(false)
+        Me.GroupBox20.ResumeLayout(false)
         Me.GroupBox15.ResumeLayout(false)
         Me.GroupBox15.PerformLayout
         CType(Me.PictureBox9,System.ComponentModel.ISupportInitialize).EndInit
@@ -12415,4 +12476,10 @@ End Sub
     Friend WithEvents LBLRefreshURL As System.Windows.Forms.Label
     Friend WithEvents GroupBox15 As System.Windows.Forms.GroupBox
     Friend WithEvents WebToy As System.Windows.Forms.WebBrowser
+    Friend WithEvents GroupBox20 As System.Windows.Forms.GroupBox
+    Friend WithEvents PBMaintenance As System.Windows.Forms.ProgressBar
+    Friend WithEvents LBLMaintenance As System.Windows.Forms.Label
+    Friend WithEvents BTNMaintenance As System.Windows.Forms.Button
+    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents Button1 As System.Windows.Forms.Button
 End Class

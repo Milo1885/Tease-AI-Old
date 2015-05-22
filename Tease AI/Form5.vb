@@ -415,8 +415,13 @@ Public Class frmApps
 
 
     Private Sub Button23_Click_1(sender As System.Object, e As System.EventArgs) Handles Button23.Click
-        PNLAppHome.Visible = False
-        AppPanelGlitter.Visible = True
+        If Form1.PNLGlitter.Visible = True Then
+            Form1.PNLGlitter.Visible = False
+            LBLGlitter.Text = "Show Glitter"
+        Else
+            Form1.PNLGlitter.Visible = True
+            LBLGlitter.Text = "Hide Glitter"
+        End If
     End Sub
 
     Private Sub Button5_Click_1(sender As System.Object, e As System.EventArgs) Handles Button5.Click
@@ -975,7 +980,6 @@ Public Class frmApps
     End Sub
 
     Private Sub Button17_Click(sender As System.Object, e As System.EventArgs) Handles Button17.Click
-        FrmSettings.CombineURLFiles()
-
+        Form1.CreateTaskLetter()
     End Sub
 End Class

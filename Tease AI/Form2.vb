@@ -10610,4 +10610,454 @@ WhyUMakeMeDoDis:
     Private Sub Button3_Click_1(sender As System.Object, e As System.EventArgs) Handles Button3.Click
         CombineURLFiles()
     End Sub
+
+    Private Sub BTNMaintenance_Click(sender As System.Object, e As System.EventArgs) Handles BTNMaintenance.Click
+
+        Dim NewURLCount As Integer
+        Dim TotalURLCount As Integer
+
+
+        For Each foundFile As String In My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Images\System\URL Files\", FileIO.SearchOption.SearchTopLevelOnly, "*.txt")
+
+            Debug.Print("FoundFile = " & foundFile)
+
+            Dim FirstPass As Boolean = False
+            Dim ExactPostsCount As Integer
+            Dim PostsInt As Integer = 0
+            Dim ImageAdded As Boolean
+            Dim BlogCycle As Integer
+            BlogCycle = -50
+
+            NewURLCount = 0
+
+            Dim BlogListOld As New List(Of String)
+            Dim BlogListNew As New List(Of String)
+
+            Dim ImageBlogUrl As String = foundFile.Replace(Application.StartupPath & "\Images\System\URL Files\", "")
+            Dim BlogUrlInfo As String = ImageBlogUrl
+
+            ImageBlogUrl = ImageBlogUrl.Replace(".txt", "")
+            ImageBlogUrl = "http://" & ImageBlogUrl
+
+            LBLRefreshURL.Text = "Checking " & BlogUrlInfo & "..."
+
+            Dim req As System.Net.WebRequest
+            Dim res As System.Net.WebResponse
+
+            req = System.Net.WebRequest.Create(ImageBlogUrl)
+
+            Try
+                res = req.GetResponse()
+            Catch w As WebException
+                GoTo NextURL
+            End Try
+
+            Dim ModifiedUrl As String
+            ModifiedUrl = ImageBlogUrl
+            ModifiedUrl = ModifiedUrl.Replace("http://", "")
+            ModifiedUrl = ModifiedUrl.Replace("/", "")
+
+            Dim ImageURLPath As String = Application.StartupPath & "\Images\System\URL Files\" & ModifiedUrl & ".txt"
+
+            If File.Exists(ImageURLPath) Then My.Computer.FileSystem.DeleteFile(foundFile)
+
+            Dim DislikeList As New List(Of String)
+            DislikeList.Clear()
+
+
+
+            If File.Exists(Application.StartupPath & "\Images\System\DislikedImageURLs.txt") Then
+                Dim DislikeCheck As New StreamReader(Application.StartupPath & "\Images\System\DislikedImageURLs.txt")
+
+                While DislikeCheck.Peek <> -1
+                    DislikeList.Add(DislikeCheck.ReadLine())
+                End While
+
+                DislikeCheck.Close()
+                DislikeCheck.Dispose()
+
+            End If
+
+
+
+Scrape:
+
+
+
+
+
+            ImageAdded = False
+
+            BlogCycle += 50
+
+
+
+            If Form1.WIExit = True Then GoTo ExitScrape
+
+            Dim doc As XmlDocument = New XmlDocument()
+
+            Try
+                ImageBlogUrl = ImageBlogUrl.Replace("/", "")
+                ImageBlogUrl = ImageBlogUrl.Replace("http:", "http://")
+                Debug.Print("ImageBlogURL = " & ImageBlogUrl)
+                doc.Load(ImageBlogUrl & "/api/read?start=" & BlogCycle & "&num=50")
+            Catch ex As Exception
+            End Try
+
+            If FirstPass = False Then
+                Try
+                    For Each node As XmlNode In doc.DocumentElement.SelectNodes("//posts")
+                        Dim PostsCount As Integer = node.Attributes.ItemOf("total").InnerText
+                        ExactPostsCount = PostsCount
+                        PostsCount = RoundUpToNearest(PostsCount, 50)
+                        Debug.Print("PostsCount = " & PostsCount)
+                    Next
+                    FirstPass = True
+                Catch
+                    FirstPass = False
+                    GoTo NextURL
+                End Try
+            End If
+
+
+
+
+            For Each node As XmlNode In doc.DocumentElement.SelectNodes("//photo-url")
+                Application.DoEvents()
+                If Form1.WIExit = True Then GoTo ExitScrape
+                If node.Attributes.ItemOf("max-width").InnerText = 1280 Then
+                    PostsInt += 1
+                    ImageAdded = True
+
+
+                    NewURLCount += 1
+
+                    LBLMaintenance.Text = "Validating URL Files" & Environment.NewLine & Path.GetFileName(foundFile) & Environment.NewLine & NewURLCount & " of " & ExactPostsCount
+
+                    Try
+                        BlogListNew.Add(node.InnerXml)
+
+                        LBLRefreshURL.Text = BlogUrlInfo & ": " & NewURLCount & " new files"
+
+                    Catch
+                        GoTo ExitScrape
+                    End Try
+
+
+
+
+                    Form1.ApproveImage = 0
+
+                End If
+
+            Next
+
+
+
+            If ImageAdded = True Then GoTo Scrape
+
+ExitScrape:
+
+
+            Form1.WIExit = False
+
+
+
+            If File.Exists(ImageURLPath) Then My.Computer.FileSystem.DeleteFile(ImageURLPath)
+
+            Dim BlogCombine As New List(Of String)
+
+            For i As Integer = 0 To BlogListNew.Count - 1
+                BlogCombine.Add(BlogListNew(i))
+                'Debug.Print("BLN " & i & ": " & BlogListNew(i))
+            Next
+
+
+
+
+            Dim objWriter As New System.IO.StreamWriter(ImageURLPath)
+
+            For i As Integer = 0 To BlogCombine.Count - 1
+                objWriter.WriteLine(BlogCombine(i))
+            Next
+
+
+
+
+            ' For i As Integer = 0 To BlogCombine.Count - 1
+            'If Not i = BlogCombine.Count - 1 Then
+            'My.Computer.FileSystem.WriteAllText(ImageURLPath, BlogCombine(i) & Environment.NewLine, True)
+            ';Else
+            'My.Computer.FileSystem.WriteAllText(ImageURLPath, BlogCombine(i), True)
+            'End If
+            ' Debug.Print(BlogCombine(i))
+            'Next
+
+            If Not URLFileList.Items.Contains(ModifiedUrl) Then
+                URLFileList.Items.Add(ModifiedUrl)
+                For i As Integer = 0 To URLFileList.Items.Count - 1
+                    If URLFileList.Items(i) = ModifiedUrl Then URLFileList.SetItemChecked(i, True)
+                Next
+            End If
+
+            Dim FileStream As New System.IO.FileStream(Application.StartupPath & "\Images\System\URLFileCheckList.cld", IO.FileMode.Create)
+            Dim BinaryWriter As New System.IO.BinaryWriter(FileStream)
+            For i = 0 To URLFileList.Items.Count - 1
+                BinaryWriter.Write(CStr(URLFileList.Items(i)))
+                BinaryWriter.Write(CBool(URLFileList.GetItemChecked(i)))
+            Next
+            BinaryWriter.Close()
+            FileStream.Dispose()
+
+
+            FirstPass = False
+
+NextURL:
+        Next
+
+
+        MessageBox.Show(Me, "All URL Files have been refreshed!" & Environment.NewLine & Environment.NewLine & TotalURLCount & " new URLs have been added.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+
+
+
+    End Sub
+
+    Private Sub BackgroundWorker1_DoWork(sender As System.Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
+
+
+        Control.CheckForIllegalCrossThreadCalls = False
+
+        Dim NewURLCount As Integer
+        Dim TotalURLCount As Integer
+
+
+        For Each foundFile As String In My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Images\System\URL Files\", FileIO.SearchOption.SearchTopLevelOnly, "*.txt")
+
+            Debug.Print("FoundFile = " & foundFile)
+
+            Dim FirstPass As Boolean = False
+            Dim ExactPostsCount As Integer
+            Dim PostsInt As Integer = 0
+            Dim ImageAdded As Boolean
+            Dim BlogCycle As Integer
+            BlogCycle = -50
+
+            NewURLCount = 0
+
+            Dim BlogListOld As New List(Of String)
+            Dim BlogListNew As New List(Of String)
+
+            Dim ImageBlogUrl As String = foundFile.Replace(Application.StartupPath & "\Images\System\URL Files\", "")
+            Dim BlogUrlInfo As String = ImageBlogUrl
+
+            ImageBlogUrl = ImageBlogUrl.Replace(".txt", "")
+            ImageBlogUrl = "http://" & ImageBlogUrl
+
+            LBLRefreshURL.Text = "Checking " & BlogUrlInfo & "..."
+
+            Dim req As System.Net.WebRequest
+            Dim res As System.Net.WebResponse
+
+            req = System.Net.WebRequest.Create(ImageBlogUrl)
+
+            Try
+                res = req.GetResponse()
+            Catch w As WebException
+                GoTo NextURL
+            End Try
+
+            Dim ModifiedUrl As String
+            ModifiedUrl = ImageBlogUrl
+            ModifiedUrl = ModifiedUrl.Replace("http://", "")
+            ModifiedUrl = ModifiedUrl.Replace("/", "")
+
+            Dim ImageURLPath As String = Application.StartupPath & "\Images\System\URL Files\" & ModifiedUrl & ".txt"
+
+            If File.Exists(ImageURLPath) Then My.Computer.FileSystem.DeleteFile(foundFile)
+
+            Dim DislikeList As New List(Of String)
+            DislikeList.Clear()
+
+       
+
+            If File.Exists(Application.StartupPath & "\Images\System\DislikedImageURLs.txt") Then
+                Dim DislikeCheck As New StreamReader(Application.StartupPath & "\Images\System\DislikedImageURLs.txt")
+
+                While DislikeCheck.Peek <> -1
+                    DislikeList.Add(DislikeCheck.ReadLine())
+                End While
+
+                DislikeCheck.Close()
+                DislikeCheck.Dispose()
+
+            End If
+
+
+
+Scrape:
+
+
+
+
+
+            ImageAdded = False
+
+            BlogCycle += 50
+
+
+
+            If Form1.WIExit = True Then GoTo ExitScrape
+
+            Dim doc As XmlDocument = New XmlDocument()
+
+            Try
+                ImageBlogUrl = ImageBlogUrl.Replace("/", "")
+                ImageBlogUrl = ImageBlogUrl.Replace("http:", "http://")
+                Debug.Print("ImageBlogURL = " & ImageBlogUrl)
+                doc.Load(ImageBlogUrl & "/api/read?start=" & BlogCycle & "&num=50")
+            Catch ex As Exception
+            End Try
+
+            If FirstPass = False Then
+                Try
+                    For Each node As XmlNode In doc.DocumentElement.SelectNodes("//posts")
+                        Dim PostsCount As Integer = node.Attributes.ItemOf("total").InnerText
+                        ExactPostsCount = PostsCount
+                        PostsCount = RoundUpToNearest(PostsCount, 50)
+                        Debug.Print("PostsCount = " & PostsCount)
+                    Next
+                    FirstPass = True
+                Catch
+                    FirstPass = False
+                    GoTo NextURL
+                End Try
+            End If
+
+
+
+
+            For Each node As XmlNode In doc.DocumentElement.SelectNodes("//photo-url")
+                Application.DoEvents()
+                If Form1.WIExit = True Then GoTo ExitScrape
+                If node.Attributes.ItemOf("max-width").InnerText = 1280 Then
+                    PostsInt += 1
+                    ImageAdded = True
+
+                  
+                    NewURLCount += 1
+
+                    LBLMaintenance.Text = "Validating URL Files" & Environment.NewLine & Path.GetFileName(foundFile)
+
+                    Try
+                        BlogListNew.Add(node.InnerXml)
+
+                        LBLRefreshURL.Text = BlogUrlInfo & ": " & NewURLCount & " new files"
+
+                    Catch
+                        GoTo ExitScrape
+                    End Try
+
+
+
+
+                    Form1.ApproveImage = 0
+
+                End If
+
+            Next
+
+
+
+            If ImageAdded = True Then GoTo Scrape
+
+ExitScrape:
+
+
+            Form1.WIExit = False
+
+
+
+            If File.Exists(ImageURLPath) Then My.Computer.FileSystem.DeleteFile(ImageURLPath)
+
+            Dim BlogCombine As New List(Of String)
+
+            For i As Integer = 0 To BlogListNew.Count - 1
+                BlogCombine.Add(BlogListNew(i))
+                'Debug.Print("BLN " & i & ": " & BlogListNew(i))
+            Next
+
+         
+
+
+            Dim objWriter As New System.IO.StreamWriter(ImageURLPath)
+
+            For i As Integer = 0 To BlogCombine.Count - 1
+                objWriter.WriteLine(BlogCombine(i))
+            Next
+
+
+
+
+            ' For i As Integer = 0 To BlogCombine.Count - 1
+            'If Not i = BlogCombine.Count - 1 Then
+            'My.Computer.FileSystem.WriteAllText(ImageURLPath, BlogCombine(i) & Environment.NewLine, True)
+            ';Else
+            'My.Computer.FileSystem.WriteAllText(ImageURLPath, BlogCombine(i), True)
+            'End If
+            ' Debug.Print(BlogCombine(i))
+            'Next
+
+            If Not URLFileList.Items.Contains(ModifiedUrl) Then
+                URLFileList.Items.Add(ModifiedUrl)
+                For i As Integer = 0 To URLFileList.Items.Count - 1
+                    If URLFileList.Items(i) = ModifiedUrl Then URLFileList.SetItemChecked(i, True)
+                Next
+            End If
+
+            Dim FileStream As New System.IO.FileStream(Application.StartupPath & "\Images\System\URLFileCheckList.cld", IO.FileMode.Create)
+            Dim BinaryWriter As New System.IO.BinaryWriter(FileStream)
+            For i = 0 To URLFileList.Items.Count - 1
+                BinaryWriter.Write(CStr(URLFileList.Items(i)))
+                BinaryWriter.Write(CBool(URLFileList.GetItemChecked(i)))
+            Next
+            BinaryWriter.Close()
+            FileStream.Dispose()
+
+
+            FirstPass = False
+
+NextURL:
+        Next
+
+
+        MessageBox.Show(Me, "All URL Files have been refreshed!" & Environment.NewLine & Environment.NewLine & TotalURLCount & " new URLs have been added.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+
+
+
+
+    End Sub
+
+    Private Sub BackgroundWorker1_ProgressChanged(ByVal sender As Object, ByVal e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker1.ProgressChanged
+        PBMaintenance.Value = e.ProgressPercentage
+    End Sub
+
+    Private Sub BackgroundWorker1_RunWorkerCompleted(ByVal sender As Object, _
+     ByVal e As System.ComponentModel.RunWorkerCompletedEventArgs) _
+     Handles BackgroundWorker1.RunWorkerCompleted
+        MsgBox("Done")
+    End Sub
+
+
+ 
+
+
+
+
+    Private Sub Button1_Click_1(sender As System.Object, e As System.EventArgs) Handles Button1.Click
+        BackgroundWorker1.CancelAsync()
+        BackgroundWorker1.Dispose()
+
+    End Sub
 End Class

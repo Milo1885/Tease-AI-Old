@@ -6665,16 +6665,16 @@ CensorConstant:
         Debug.Print(DPic)
 
         Dim StatusName As String
-        StatusName = frmApps.StatusUpdates.DocumentText & "<img class=""floatright"" style="" float: left; width: 48; height: 48; border: 0;"" src=""" & DPic & """> <font face=""Cambria"" size=""3"" color=""" & GlitterNCDomme & """><b>" & domName.Text & "</b></font> <br><font face=""Cambria"" size=""2"" color=""DarkGray"">" & Date.Today & "</font><br><br>"
-        frmApps.StatusUpdates.DocumentText = StatusName & "<font face=""Cambria"" size=""2"" color=""Black"">" & StatusText & "</font><br><br>"
+        StatusName = StatusUpdates.DocumentText & "<img class=""floatright"" style="" float: left; width: 48; height: 48; border: 0;"" src=""" & DPic & """> <font face=""Cambria"" size=""3"" color=""" & GlitterNCDomme & """><b>" & domName.Text & "</b></font> <br><font face=""Cambria"" size=""2"" color=""DarkGray"">" & Date.Today & "</font><br><br>"
+        StatusUpdates.DocumentText = StatusName & "<font face=""Cambria"" size=""2"" color=""Black"">" & StatusText & "</font><br><br>"
 
         'Debug.Print(GlitterImageAV)
         Debug.Print("Clear Stage 2")
 
-        While frmApps.StatusUpdates.ReadyState <> WebBrowserReadyState.Complete
+        While StatusUpdates.ReadyState <> WebBrowserReadyState.Complete
             Application.DoEvents()
         End While
-        frmApps.StatusUpdates.Document.Window.ScrollTo(Int16.MaxValue, Int16.MaxValue)
+        StatusUpdates.Document.Window.ScrollTo(Int16.MaxValue, Int16.MaxValue)
 
         Dim StatusLines1 As New List(Of String)
         For i As Integer = 1 To lines.Count - 1
@@ -6870,12 +6870,12 @@ StatusUpdate1:
         Debug.Print(S1Pic)
 
         If StatusChance1 < FrmSettings.GlitterSlider1.Value * 10 And FrmSettings.CBGlitter1.Checked = True Then
-            StatusName = frmApps.StatusUpdates.DocumentText & "<img class=""floatright"" style="" float: left; width: 32; height: 32; border: 0;"" src=""" & S1Pic & """> <font face=""Cambria"" size=""3"" color=""" & GlitterNC1 & """><b>" & FrmSettings.TBGlitter1.Text & "</b></font><br> <font face=""Cambria"" size=""2"" color=""DarkGray"">" & Date.Today & "</font><br>" ' & "<font face=""Cambria"" size=""2"" color=""DarkGray"">" & TimeOfDay & "</font><br>"
-            frmApps.StatusUpdates.DocumentText = StatusName & "<font face=""Cambria"" size=""2"" color=""Black"">" & StatusText1 & "</font><br><br>"
-            While frmApps.StatusUpdates.ReadyState <> WebBrowserReadyState.Complete
+            StatusName = StatusUpdates.DocumentText & "<img class=""floatright"" style="" float: left; width: 32; height: 32; border: 0;"" src=""" & S1Pic & """> <font face=""Cambria"" size=""3"" color=""" & GlitterNC1 & """><b>" & FrmSettings.TBGlitter1.Text & "</b></font><br> <font face=""Cambria"" size=""2"" color=""DarkGray"">" & Date.Today & "</font><br>" ' & "<font face=""Cambria"" size=""2"" color=""DarkGray"">" & TimeOfDay & "</font><br>"
+            StatusUpdates.DocumentText = StatusName & "<font face=""Cambria"" size=""2"" color=""Black"">" & StatusText1 & "</font><br><br>"
+            While StatusUpdates.ReadyState <> WebBrowserReadyState.Complete
                 Application.DoEvents()
             End While
-            frmApps.StatusUpdates.Document.Window.ScrollTo(Int16.MaxValue, Int16.MaxValue)
+            StatusUpdates.Document.Window.ScrollTo(Int16.MaxValue, Int16.MaxValue)
         End If
 
         Update1 = True
@@ -6889,13 +6889,13 @@ StatusUpdate2:
         Debug.Print(S2Pic)
 
         If StatusChance2 < FrmSettings.GlitterSlider2.Value * 10 And FrmSettings.CBGlitter2.Checked = True Then
-            StatusName = frmApps.StatusUpdates.DocumentText & "<img class=""floatright"" style="" float: left; width: 32; height: 32; border: 0;"" src=""" & S2Pic & """> <font face=""Cambria"" size=""3"" color=""" & GlitterNC2 & """><b>" & FrmSettings.TBGlitter2.Text & "</b></font><br> <font face=""Cambria"" size=""2"" color=""DarkGray"">" & Date.Today & "</font><br>" ' & "<font face=""Cambria"" size=""2"" color=""DarkGray"">" & TimeOfDay & "</font><br>"
-            frmApps.StatusUpdates.DocumentText = StatusName & "<font face=""Cambria"" size=""2"" color=""Black"">" & StatusText2 & "</font><br><br>"
+            StatusName = StatusUpdates.DocumentText & "<img class=""floatright"" style="" float: left; width: 32; height: 32; border: 0;"" src=""" & S2Pic & """> <font face=""Cambria"" size=""3"" color=""" & GlitterNC2 & """><b>" & FrmSettings.TBGlitter2.Text & "</b></font><br> <font face=""Cambria"" size=""2"" color=""DarkGray"">" & Date.Today & "</font><br>" ' & "<font face=""Cambria"" size=""2"" color=""DarkGray"">" & TimeOfDay & "</font><br>"
+            StatusUpdates.DocumentText = StatusName & "<font face=""Cambria"" size=""2"" color=""Black"">" & StatusText2 & "</font><br><br>"
 
-            While frmApps.StatusUpdates.ReadyState <> WebBrowserReadyState.Complete
+            While StatusUpdates.ReadyState <> WebBrowserReadyState.Complete
                 Application.DoEvents()
             End While
-            frmApps.StatusUpdates.Document.Window.ScrollTo(Int16.MaxValue, Int16.MaxValue)
+            StatusUpdates.Document.Window.ScrollTo(Int16.MaxValue, Int16.MaxValue)
         End If
 
         Update2 = True
@@ -6909,13 +6909,13 @@ StatusUpdate3:
         Debug.Print(S3Pic)
 
         If StatusChance3 < FrmSettings.GlitterSlider3.Value * 10 And FrmSettings.CBGlitter3.Checked = True Then
-            StatusName = frmApps.StatusUpdates.DocumentText & "<img class=""floatright"" style="" float: left; width: 32; height: 32; border: 0;"" src=""" & S3Pic & """> <font face=""Cambria"" size=""3"" color=""" & GlitterNC3 & """><b>" & FrmSettings.TBGlitter3.Text & "</b></font><br> <font face=""Cambria"" size=""2"" color=""DarkGray"">" & Date.Today & "</font><br>" ' & "<font face=""Cambria"" size=""2"" color=""DarkGray"">" & TimeOfDay & "</font><br>"
-            frmApps.StatusUpdates.DocumentText = StatusName & "<font face=""Cambria"" size=""2"" color=""Black"">" & StatusText3 & "</font><br><br>"
+            StatusName = StatusUpdates.DocumentText & "<img class=""floatright"" style="" float: left; width: 32; height: 32; border: 0;"" src=""" & S3Pic & """> <font face=""Cambria"" size=""3"" color=""" & GlitterNC3 & """><b>" & FrmSettings.TBGlitter3.Text & "</b></font><br> <font face=""Cambria"" size=""2"" color=""DarkGray"">" & Date.Today & "</font><br>" ' & "<font face=""Cambria"" size=""2"" color=""DarkGray"">" & TimeOfDay & "</font><br>"
+            StatusUpdates.DocumentText = StatusName & "<font face=""Cambria"" size=""2"" color=""Black"">" & StatusText3 & "</font><br><br>"
 
-            While frmApps.StatusUpdates.ReadyState <> WebBrowserReadyState.Complete
+            While StatusUpdates.ReadyState <> WebBrowserReadyState.Complete
                 Application.DoEvents()
             End While
-            frmApps.StatusUpdates.Document.Window.ScrollTo(Int16.MaxValue, Int16.MaxValue)
+            StatusUpdates.Document.Window.ScrollTo(Int16.MaxValue, Int16.MaxValue)
         End If
 
         Update3 = True
@@ -13745,6 +13745,7 @@ NoRepeatOFiles:
 
         Dim TaskRead As New StreamReader(TaskFile)
         Dim TaskLines As New List(Of String)
+        Dim TaskEntry As String
 
         While TaskRead.Peek <> -1
             TaskLines.Add(TaskRead.ReadLine())
@@ -13755,7 +13756,10 @@ NoRepeatOFiles:
 
         TaskLines = FilterList(TaskLines)
 
-        TaskText = TaskText & TaskLines(randomizer.Next(0, TaskLines.Count)) & " " & Environment.NewLine & Environment.NewLine
+        TaskEntry = TaskLines(randomizer.Next(0, TaskLines.Count))
+        PoundClean(TaskEntry)
+
+        TaskText = TaskText & TaskEntry & " " & Environment.NewLine & Environment.NewLine
         CleanTaskText()
         TaskLines.Clear()
 
@@ -13773,7 +13777,10 @@ NoRepeatOFiles:
 
         TaskLines = FilterList(TaskLines)
 
-        TaskText = TaskText & TaskLines(randomizer.Next(0, TaskLines.Count)) & " " & Environment.NewLine & Environment.NewLine
+        TaskEntry = TaskLines(randomizer.Next(0, TaskLines.Count))
+        PoundClean(TaskEntry)
+
+        TaskText = TaskText & TaskEntry & " " & Environment.NewLine & Environment.NewLine
         CleanTaskText()
         TaskLines.Clear()
 
@@ -13792,7 +13799,10 @@ NoRepeatOFiles:
 
         TaskLines = FilterList(TaskLines)
 
-        TaskText = TaskText & TaskLines(randomizer.Next(0, TaskLines.Count)) & " " & Environment.NewLine & Environment.NewLine
+        TaskEntry = TaskLines(randomizer.Next(0, TaskLines.Count))
+        PoundClean(TaskEntry)
+
+        TaskText = TaskText & TaskEntry & " " & Environment.NewLine & Environment.NewLine
         CleanTaskText()
         TaskLines.Clear()
 
@@ -13812,7 +13822,10 @@ NoRepeatOFiles:
 
         TaskLines = FilterList(TaskLines)
 
-        TaskText = TaskText & TaskLines(randomizer.Next(0, TaskLines.Count)) & " " & Environment.NewLine & Environment.NewLine
+        TaskEntry = TaskLines(randomizer.Next(0, TaskLines.Count))
+        PoundClean(TaskEntry)
+
+        TaskText = TaskText & TaskEntry & " " & Environment.NewLine & Environment.NewLine
         CleanTaskText()
         TaskLines.Clear()
 
@@ -13832,7 +13845,10 @@ NoRepeatOFiles:
 
         TaskLines = FilterList(TaskLines)
 
-        TaskText = TaskText & TaskLines(randomizer.Next(0, TaskLines.Count)) & " " & Environment.NewLine & Environment.NewLine
+        TaskEntry = TaskLines(randomizer.Next(0, TaskLines.Count))
+        PoundClean(TaskEntry)
+
+        TaskText = TaskText & TaskEntry & " " & Environment.NewLine & Environment.NewLine
         CleanTaskText()
         TaskLines.Clear()
 
@@ -13852,7 +13868,10 @@ NoRepeatOFiles:
 
         TaskLines = FilterList(TaskLines)
 
-        TaskText = TaskText & TaskLines(randomizer.Next(0, TaskLines.Count)) & " " & Environment.NewLine & Environment.NewLine
+        TaskEntry = TaskLines(randomizer.Next(0, TaskLines.Count))
+        PoundClean(TaskEntry)
+
+        TaskText = TaskText & TaskEntry & " " & Environment.NewLine & Environment.NewLine
         CleanTaskText()
         TaskLines.Clear()
 
@@ -13871,7 +13890,10 @@ NoRepeatOFiles:
 
         TaskLines = FilterList(TaskLines)
 
-        TaskText = TaskText & TaskLines(randomizer.Next(0, TaskLines.Count)) & " " & Environment.NewLine & Environment.NewLine
+        TaskEntry = TaskLines(randomizer.Next(0, TaskLines.Count))
+        PoundClean(TaskEntry)
+
+        TaskText = TaskText & TaskEntry & " " & Environment.NewLine & Environment.NewLine
         CleanTaskText()
         TaskLines.Clear()
 
@@ -13889,7 +13911,10 @@ NoRepeatOFiles:
 
         TaskLines = FilterList(TaskLines)
 
-        TaskText = TaskText & TaskLines(randomizer.Next(0, TaskLines.Count)) & " " & Environment.NewLine & Environment.NewLine
+        TaskEntry = TaskLines(randomizer.Next(0, TaskLines.Count))
+        PoundClean(TaskEntry)
+
+        TaskText = TaskText & TaskEntry & " " & Environment.NewLine & Environment.NewLine
         CleanTaskText()
         TaskLines.Clear()
 
@@ -13907,7 +13932,10 @@ NoRepeatOFiles:
 
         TaskLines = FilterList(TaskLines)
 
-        TaskText = TaskText & TaskLines(randomizer.Next(0, TaskLines.Count)) & " " & Environment.NewLine & Environment.NewLine
+        TaskEntry = TaskLines(randomizer.Next(0, TaskLines.Count))
+        PoundClean(TaskEntry)
+
+        TaskText = TaskText & TaskEntry & " " & Environment.NewLine & Environment.NewLine
         CleanTaskText()
         TaskLines.Clear()
 
@@ -13918,7 +13946,7 @@ NoRepeatOFiles:
         End If
 
 
-        TaskText = PoundClean(TaskText)
+        'TaskText = PoundClean(TaskText)
 
 
         Dim TextLines() As String = TaskText.Split(Environment.NewLine)
@@ -13940,6 +13968,22 @@ NoRepeatOFiles:
         Next
 
         TaskText = TextTemp
+
+
+
+        Dim AtArray2() As String = Split(TaskText)
+        For i As Integer = 0 To AtArray2.Length - 1
+            'If AtArray(i) = "" Then GoTo AtBreak
+            If AtArray2(i) = "" Then GoTo AtNext
+            If AtArray2(i).Contains("#") Then
+                AtArray2(i) = PoundClean(AtArray2(i))
+            End If
+AtNext:
+
+        Next
+
+        TaskText = Join(AtArray2)
+
 
         Dim TempDate As String
         Dim TempDateNow As DateTime = DateTime.Now
@@ -15208,6 +15252,9 @@ TryNext:
                 CensorshipBar.Visible = False
                 CensorshipGame = False
                 VideoTease = False
+                mainPictureBox.Visible = True
+                DomWMP.Visible = False
+
                 'SkipGotoLine = True
                 'If CensorshipTimerTick < 1 Then
                 'FileGoto = "(Censorship Sucks Video Stop)"
@@ -15235,7 +15282,7 @@ TryNext:
                 AvoidTheEdgeTaunts.Stop()
                 VideoTease = False
                 SubStroking = False
-
+            
 
                 Debug.Print("TempStrokeTauntVal = " & TempStrokeTauntVal)
                 Debug.Print("TempFileText = " & TempFileText)
@@ -15807,6 +15854,31 @@ TryNext:
 
     Public Sub LargeUI()
 
+        BTN768.BackColor = Color.SteelBlue
+        BTNCompact.BackColor = Color.SteelBlue
+        BTN1080.BackColor = Color.White
+
+        BTN768.ForeColor = Color.White
+        BTNCompact.ForeColor = Color.White
+        BTN1080.ForeColor = Color.SteelBlue
+
+        BTN768.Font = New Font(BTN768.Font.FontFamily, BTN768.Font.Size, FontStyle.Regular)
+        BTNCompact.Font = New Font(BTNCompact.Font.FontFamily, BTNCompact.Font.Size, FontStyle.Regular)
+        BTN1080.Font = New Font(BTN1080.Font.FontFamily, BTN1080.Font.Size, FontStyle.Bold)
+
+        PNLGlitter.Height = 449
+        StatusUpdates.Height = 444
+
+        SP1.Visible = True
+        SP2.Visible = True
+        SP3.Visible = True
+        SP4.Visible = True
+        SP5.Visible = True
+        SP6.Visible = True
+        SP7.Visible = True
+        SP8.Visible = True
+        SP9.Visible = True
+        SP10.Visible = True
 
         subName.Location = New Point(10, 977)
         SplitContainer1.Height = 988
@@ -15865,10 +15937,45 @@ TryNext:
         SaveBlogImage.Location = New Point(896, -1)
         SettingsButton.Location = New Point(972, -1)
 
+      
 
     End Sub
 
     Public Sub SmallUI()
+
+        BTN768.BackColor = Color.SteelBlue
+        BTNCompact.BackColor = Color.White
+        BTN1080.BackColor = Color.SteelBlue
+
+        BTN768.ForeColor = Color.White
+        BTNCompact.ForeColor = Color.SteelBlue
+        BTN1080.ForeColor = Color.White
+
+        BTN768.Font = New Font(BTN768.Font.FontFamily, BTN768.Font.Size, FontStyle.Regular)
+        BTNCompact.Font = New Font(BTNCompact.Font.FontFamily, BTNCompact.Font.Size, FontStyle.Bold)
+        BTN1080.Font = New Font(BTN1080.Font.FontFamily, BTN1080.Font.Size, FontStyle.Regular)
+
+
+        PNLGlitter.Height = 297
+        StatusUpdates.Height = 292
+
+
+
+
+
+
+
+        SP1.Visible = False
+        SP2.Visible = False
+        SP3.Visible = False
+        SP4.Visible = False
+        SP5.Visible = False
+        SP6.Visible = False
+        SP7.Visible = False
+        SP8.Visible = False
+        SP9.Visible = False
+        SP10.Visible = False
+
 
 
         subName.Location = New Point(10, 791)
@@ -15935,10 +16042,39 @@ TryNext:
         SaveBlogImage.Location = New Point(644, -1)
         SettingsButton.Location = New Point(720, -1)
 
+    
+
+
 
     End Sub
 
     Public Sub UI768()
+
+        BTN768.BackColor = Color.White
+        BTNCompact.BackColor = Color.SteelBlue
+        BTN1080.BackColor = Color.SteelBlue
+
+        BTN768.ForeColor = Color.SteelBlue
+        BTNCompact.ForeColor = Color.White
+        BTN1080.ForeColor = Color.White
+
+        BTN768.Font = New Font(BTN768.Font.FontFamily, BTN768.Font.Size, FontStyle.Bold)
+        BTNCompact.Font = New Font(BTNCompact.Font.FontFamily, BTNCompact.Font.Size, FontStyle.Regular)
+        BTN1080.Font = New Font(BTN1080.Font.FontFamily, BTN1080.Font.Size, FontStyle.Regular)
+
+        PNLGlitter.Height = 171
+        StatusUpdates.Height = 166
+
+        SP1.Visible = False
+        SP2.Visible = False
+        SP3.Visible = False
+        SP4.Visible = False
+        SP5.Visible = False
+        SP6.Visible = False
+        SP7.Visible = False
+        SP8.Visible = False
+        SP9.Visible = False
+        SP10.Visible = False
 
         subName.Location = New Point(10, 665)
         subAvatar.Location = New Point(10, 477)
@@ -15996,6 +16132,8 @@ TryNext:
         MediaButton.Location = New Point(370, -1)
         SaveBlogImage.Location = New Point(484, -1)
         SettingsButton.Location = New Point(560, -1)
+
+    
 
     End Sub
 
@@ -16158,7 +16296,7 @@ TryNext:
 
 
 
-    Private Sub Button2_Click_1(sender As System.Object, e As System.EventArgs) Handles Button2.Click
+    Private Sub Button2_Click_1(sender As System.Object, e As System.EventArgs) Handles BTN1080.Click
 
         If My.Settings.LargeUI = True Then Return
 
@@ -16169,10 +16307,10 @@ TryNext:
         My.Settings.UI768 = False
         My.Settings.Save()
 
-       ScrollChatDown()
+        ScrollChatDown()
     End Sub
 
-    Private Sub Button1_Click_2(sender As System.Object, e As System.EventArgs) Handles Button1.Click
+    Private Sub Button1_Click_2(sender As System.Object, e As System.EventArgs) Handles BTNCompact.Click
 
         If My.Settings.SmallUI = True Then Return
 
@@ -16183,11 +16321,11 @@ TryNext:
         My.Settings.UI768 = False
         My.Settings.Save()
 
-       ScrollChatDown()
+        ScrollChatDown()
 
     End Sub
 
-    Private Sub Button3_Click(sender As System.Object, e As System.EventArgs) Handles Button3.Click
+    Private Sub Button3_Click(sender As System.Object, e As System.EventArgs) Handles BTN768.Click
 
         If My.Settings.UI768 = True Then Return
 
@@ -16198,7 +16336,7 @@ TryNext:
         My.Settings.UI768 = True
         My.Settings.Save()
 
-       ScrollChatDown()
+        ScrollChatDown()
     End Sub
 
     Public Sub LoadDommeImageFolder()

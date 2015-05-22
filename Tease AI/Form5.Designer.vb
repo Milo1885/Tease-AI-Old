@@ -29,7 +29,6 @@ Partial Class frmApps
         Me.Button18 = New System.Windows.Forms.Button()
         Me.Label22 = New System.Windows.Forms.Label()
         Me.Button19 = New System.Windows.Forms.Button()
-        Me.Button17 = New System.Windows.Forms.Button()
         Me.Button35 = New System.Windows.Forms.Button()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.Button4 = New System.Windows.Forms.Button()
@@ -48,7 +47,7 @@ Partial Class frmApps
         Me.Button6 = New System.Windows.Forms.Button()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.LBLGlitter = New System.Windows.Forms.Label()
         Me.Button42 = New System.Windows.Forms.Button()
         Me.BTNHomeVitalSub = New System.Windows.Forms.Button()
         Me.Button23 = New System.Windows.Forms.Button()
@@ -137,6 +136,7 @@ Partial Class frmApps
         Me.Panel5 = New System.Windows.Forms.Panel()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label27 = New System.Windows.Forms.Label()
+        Me.Button17 = New System.Windows.Forms.Button()
         Me.PNLAppHome.SuspendLayout()
         Me.AppPanelGlitter.SuspendLayout()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -164,12 +164,12 @@ Partial Class frmApps
         '
         Me.PNLAppHome.BackColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(170, Byte), Integer))
         Me.PNLAppHome.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.PNLAppHome.Controls.Add(Me.Button17)
         Me.PNLAppHome.Controls.Add(Me.Label15)
         Me.PNLAppHome.Controls.Add(Me.Button28)
         Me.PNLAppHome.Controls.Add(Me.Button18)
         Me.PNLAppHome.Controls.Add(Me.Label22)
         Me.PNLAppHome.Controls.Add(Me.Button19)
-        Me.PNLAppHome.Controls.Add(Me.Button17)
         Me.PNLAppHome.Controls.Add(Me.Button35)
         Me.PNLAppHome.Controls.Add(Me.Label16)
         Me.PNLAppHome.Controls.Add(Me.Button4)
@@ -188,7 +188,7 @@ Partial Class frmApps
         Me.PNLAppHome.Controls.Add(Me.Button6)
         Me.PNLAppHome.Controls.Add(Me.Label11)
         Me.PNLAppHome.Controls.Add(Me.Label10)
-        Me.PNLAppHome.Controls.Add(Me.Label2)
+        Me.PNLAppHome.Controls.Add(Me.LBLGlitter)
         Me.PNLAppHome.Controls.Add(Me.Button42)
         Me.PNLAppHome.Controls.Add(Me.BTNHomeVitalSub)
         Me.PNLAppHome.Controls.Add(Me.Button23)
@@ -256,19 +256,6 @@ Partial Class frmApps
         Me.Button19.Size = New System.Drawing.Size(48, 48)
         Me.Button19.TabIndex = 182
         Me.Button19.UseVisualStyleBackColor = False
-        '
-        'Button17
-        '
-        Me.Button17.BackColor = System.Drawing.Color.SteelBlue
-        Me.Button17.Font = New System.Drawing.Font("Wingdings", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
-        Me.Button17.ForeColor = System.Drawing.Color.White
-        Me.Button17.Location = New System.Drawing.Point(196, 334)
-        Me.Button17.Name = "Button17"
-        Me.Button17.Size = New System.Drawing.Size(46, 31)
-        Me.Button17.TabIndex = 181
-        Me.Button17.TabStop = False
-        Me.Button17.Text = "1"
-        Me.Button17.UseVisualStyleBackColor = False
         '
         'Button35
         '
@@ -497,17 +484,17 @@ Partial Class frmApps
         Me.Label10.Text = "VitalSub"
         Me.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'Label2
+        'LBLGlitter
         '
-        Me.Label2.BackColor = System.Drawing.Color.Transparent
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.White
-        Me.Label2.Location = New System.Drawing.Point(15, 74)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(48, 18)
-        Me.Label2.TabIndex = 137
-        Me.Label2.Text = "Glitter"
-        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.LBLGlitter.BackColor = System.Drawing.Color.Transparent
+        Me.LBLGlitter.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLGlitter.ForeColor = System.Drawing.Color.White
+        Me.LBLGlitter.Location = New System.Drawing.Point(15, 74)
+        Me.LBLGlitter.Name = "LBLGlitter"
+        Me.LBLGlitter.Size = New System.Drawing.Size(48, 30)
+        Me.LBLGlitter.TabIndex = 137
+        Me.LBLGlitter.Text = "Hide Glitter"
+        Me.LBLGlitter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Button42
         '
@@ -1527,6 +1514,15 @@ Partial Class frmApps
         Me.Label27.Text = "LaZy SuB"
         Me.Label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'Button17
+        '
+        Me.Button17.Location = New System.Drawing.Point(165, 234)
+        Me.Button17.Name = "Button17"
+        Me.Button17.Size = New System.Drawing.Size(75, 23)
+        Me.Button17.TabIndex = 186
+        Me.Button17.Text = "Button17"
+        Me.Button17.UseVisualStyleBackColor = True
+        '
         'frmApps
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1592,7 +1588,7 @@ Partial Class frmApps
     Friend WithEvents Button6 As System.Windows.Forms.Button
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents Label10 As System.Windows.Forms.Label
-    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents LBLGlitter As System.Windows.Forms.Label
     Friend WithEvents Button42 As System.Windows.Forms.Button
     Friend WithEvents BTNHomeVitalSub As System.Windows.Forms.Button
     Friend WithEvents Button23 As System.Windows.Forms.Button
@@ -1671,7 +1667,6 @@ Partial Class frmApps
     Friend WithEvents Button18 As System.Windows.Forms.Button
     Friend WithEvents Label22 As System.Windows.Forms.Label
     Friend WithEvents Button19 As System.Windows.Forms.Button
-    Friend WithEvents Button17 As System.Windows.Forms.Button
     Friend WithEvents PNLLazySub As System.Windows.Forms.Panel
     Friend WithEvents Panel5 As System.Windows.Forms.Panel
     Friend WithEvents Label9 As System.Windows.Forms.Label
@@ -1688,4 +1683,5 @@ Partial Class frmApps
     Friend WithEvents Button22 As System.Windows.Forms.Button
     Friend WithEvents Label15 As System.Windows.Forms.Label
     Friend WithEvents Button28 As System.Windows.Forms.Button
+    Friend WithEvents Button17 As System.Windows.Forms.Button
 End Class
