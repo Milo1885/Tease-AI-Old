@@ -236,6 +236,7 @@ Partial Class FrmCardList
         Me.SlotTimer3 = New System.Windows.Forms.Timer(Me.components)
         Me.ShuffleTimer = New System.Windows.Forms.Timer(Me.components)
         Me.BoosterTimer = New System.Windows.Forms.Timer(Me.components)
+        Me.CardRevealTimer = New System.Windows.Forms.Timer(Me.components)
         Me.TCGames.SuspendLayout()
         Me.TabPage3.SuspendLayout()
         CType(Me.GameWMP, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -818,7 +819,7 @@ Partial Class FrmCardList
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(120, 16)
         Me.Label22.TabIndex = 243
-        Me.Label22.Text = "Payout: 100"
+        Me.Label22.Text = "Payout: 25"
         Me.Label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label21
@@ -827,7 +828,7 @@ Partial Class FrmCardList
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(120, 16)
         Me.Label21.TabIndex = 242
-        Me.Label21.Text = "Payout: 25"
+        Me.Label21.Text = "Payout: 10"
         Me.Label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label20
@@ -836,7 +837,7 @@ Partial Class FrmCardList
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(120, 16)
         Me.Label20.TabIndex = 241
-        Me.Label20.Text = "Payout: 5"
+        Me.Label20.Text = "Payout: 3"
         Me.Label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'PictureBox2
@@ -2724,6 +2725,10 @@ Partial Class FrmCardList
         '
         Me.BoosterTimer.Interval = 1000
         '
+        'CardRevealTimer
+        '
+        Me.CardRevealTimer.Interval = 1000
+        '
         'FrmCardList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3056,4 +3061,5 @@ Partial Class FrmCardList
     Friend WithEvents Label22 As System.Windows.Forms.Label
     Friend WithEvents Label21 As System.Windows.Forms.Label
     Friend WithEvents Label20 As System.Windows.Forms.Label
+    Friend WithEvents CardRevealTimer As System.Windows.Forms.Timer
 End Class

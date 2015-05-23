@@ -7,6 +7,8 @@ Imports System.Drawing.FontConverter
 Imports System.Speech.Synthesis
 Imports System.Net
 Imports System.Text
+Imports System.Threading
+
 
 
 
@@ -26,8 +28,11 @@ Public Class FrmSettings
 
     Dim Fringe As New SpeechSynthesizer
 
+    Private Thr As Threading.Thread
 
+    Dim URLCancel As Boolean
 
+    Dim CancelRebuild As Boolean
 
     ' Protected Overrides ReadOnly Property CreateParams() As CreateParams
     '    Get
@@ -1087,9 +1092,6 @@ Public Class FrmSettings
         My.Settings.Save()
     End Sub
 
-    Private Sub Button19_Click(sender As System.Object, e As System.EventArgs) Handles Button19.Click
-        Form1.StatusUpdatePost()
-    End Sub
 
     Private Sub NBCensorShowMin_Leave(sender As System.Object, e As System.EventArgs) Handles NBCensorShowMin.Leave
         My.Settings.NBCensorShowMin = NBCensorShowMin.Value
@@ -2287,6 +2289,14 @@ trypreviousimage:
 
     Private Sub Button38_Click(sender As System.Object, e As System.EventArgs) Handles BTNWICreateURL.Click
 
+
+        BWCreateURLFiles.RunWorkerAsync()
+
+    End Sub
+
+
+    Public Sub CreateURLFiles()
+
         Dim FirstPass As Boolean = False
         Dim ExactPostsCount As Integer
         Dim PostsInt As Integer = 0
@@ -2392,7 +2402,7 @@ Scrape:
 
 
 
-        If Form1.WIExit = True Then GoTo ExitScrape
+        If URLCancel = True Then GoTo ExitScrape
 
         Dim doc As XmlDocument = New XmlDocument()
 
@@ -2428,7 +2438,7 @@ Scrape:
 
         For Each node As XmlNode In doc.DocumentElement.SelectNodes("//photo-url")
             Application.DoEvents()
-            If Form1.WIExit = True Then GoTo ExitScrape
+            If URLCancel = True Then GoTo ExitScrape
             If node.Attributes.ItemOf("max-width").InnerText = 1280 Then
                 PostsInt += 1
                 LBLWebImageCount.Text = PostsInt & "/" & ExactPostsCount
@@ -2453,9 +2463,9 @@ Scrape:
 
                     Do
                         Application.DoEvents()
-                    Loop Until Form1.ApproveImage <> 0 Or Form1.WIExit = True
+                    Loop Until Form1.ApproveImage <> 0 Or URLCancel = True
 
-                    If Form1.WIExit = True Then GoTo ExitScrape
+                    If URLCancel = True Then GoTo ExitScrape
 
                     If Form1.ApproveImage = 2 Then
 
@@ -2518,7 +2528,7 @@ AlreadyHas:
 
 ExitScrape:
 
-        Form1.WIExit = False
+        URLCancel = False
 
         BTNWIContinue.Enabled = False
         BTNWIAddandContinue.Enabled = False
@@ -2580,7 +2590,6 @@ ExitScrape:
         BTNWIOpenURL.Enabled = True
         FirstPass = False
 
-
     End Sub
 
 
@@ -2589,8 +2598,26 @@ ExitScrape:
         Dim NewURLCount As Integer
         Dim TotalURLCount As Integer
 
+        Dim MaintString As System.Collections.ObjectModel.ReadOnlyCollection(Of String)
+        MaintString = My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Images\System\URL Files")
+
+        Dim MaintCount As Integer = CStr(MaintString.Count)
+        PBMaintenance.Maximum = MaintCount
+        PBMaintenance.Value = 0
 
         For Each foundFile As String In My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Images\System\URL Files\", FileIO.SearchOption.SearchTopLevelOnly, "*.txt")
+
+            If CancelRebuild = True Then
+                PBMaintenance.Value = 0
+                PBCurrent.Value = 0
+                LBLMaintenance.Text = ""
+                CancelRebuild = False
+                BTNMaintenanceRebuild.Enabled = True
+                BTNMaintenanceCancel.Enabled = False
+                BTNMaintenanceRefresh.Enabled = True
+                BTNMaintenanceValidate.Enabled = True
+                Return
+            End If
 
             Debug.Print("FoundFile = " & foundFile)
 
@@ -2612,7 +2639,7 @@ ExitScrape:
             ImageBlogUrl = ImageBlogUrl.Replace(".txt", "")
             ImageBlogUrl = "http://" & ImageBlogUrl
 
-            LBLRefreshURL.Text = "Checking " & BlogUrlInfo & "..."
+            LBLMaintenance.Text = "Checking " & BlogUrlInfo & "..."
 
             Dim req As System.Net.WebRequest
             Dim res As System.Net.WebResponse
@@ -2735,13 +2762,23 @@ Scrape:
                     Try
                         BlogListNew.Add(node.InnerXml)
                         NewURLCount += 1
-                        LBLRefreshURL.Text = BlogUrlInfo & ": " & NewURLCount & " new files"
+                        LBLMaintenance.Text = BlogUrlInfo & Environment.NewLine & NewURLCount & " new files"
 
                     Catch
                         GoTo ExitScrape
                     End Try
 
-
+                    If CancelRebuild = True Then
+                        PBMaintenance.Value = 0
+                        PBCurrent.Value = 0
+                        LBLMaintenance.Text = ""
+                        CancelRebuild = False
+                        BTNMaintenanceRebuild.Enabled = True
+                        BTNMaintenanceCancel.Enabled = False
+                        BTNMaintenanceRefresh.Enabled = True
+                        BTNMaintenanceValidate.Enabled = True
+                        Return
+                    End If
 
 
                     Form1.ApproveImage = 0
@@ -2786,7 +2823,7 @@ ExitScrape:
                 objWriter.WriteLine(BlogCombine(i))
             Next
 
-            
+
 
 
             ' For i As Integer = 0 To BlogCombine.Count - 1
@@ -2817,17 +2854,23 @@ ExitScrape:
 
             FirstPass = False
 
+            PBMaintenance.Value += 1
+
 NextURL:
         Next
 
+        PBMaintenance.Value = PBMaintenance.Maximum
 
         MessageBox.Show(Me, "All URL Files have been refreshed!" & Environment.NewLine & Environment.NewLine & TotalURLCount & " new URLs have been added.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-        LBLRefreshURL.Text = ""
+        LBLMaintenance.Text = ""
 
+        BTNMaintenanceRebuild.Enabled = True
+        BTNMaintenanceRefresh.Enabled = True
+        BTNMaintenanceCancel.Enabled = False
+        BTNMaintenanceValidate.Enabled = True
 
-
-
+        PBMaintenance.Value = 0
 
 
 
@@ -5186,7 +5229,7 @@ NextURL:
     End Sub
 
     Private Sub BTNCancel_Click(sender As System.Object, e As System.EventArgs) Handles BTNWICancel.Click
-        Form1.WIExit = True
+        URLCancel = True
     End Sub
 
     Private Sub BTNWIRemove_Click(sender As System.Object, e As System.EventArgs) Handles BTNWIRemove.Click
@@ -5567,16 +5610,7 @@ NextURL:
         TBWIDirectory.SelectionLength = Len(TBWIDirectory.Text)
     End Sub
 
-    Private Sub Button46_Click(sender As System.Object, e As System.EventArgs) Handles Button46.Click
-
-
-        Debug.Print(URLFileList.Items.Count)
-
-
-        RefreshURLList()
-        VerifyLocalImagePaths()
-
-    End Sub
+ 
 
 
     Public Sub VerifyLocalImagePaths()
@@ -5584,7 +5618,11 @@ NextURL:
         Dim ImageList As New List(Of String)
         ImageList.Clear()
 
+        PBMaintenance.Value = 0
+        PBMaintenance.Maximum = 11
+
         If CBIHardcore.Checked = True Then
+            LBLMaintenance.Text = "Checking Hardcore image path..."
             If Not Directory.Exists(LBLIHardcore.Text) Then
                 If LBLIHardcore.Text <> "" Or LBLIHardcore.Text <> "No path selected" Then
                     MessageBox.Show(Me, "The directory for local Hardcore images was not found!" & Environment.NewLine & Environment.NewLine & _
@@ -5632,7 +5670,10 @@ HardcoreGood:
             ImageList.Clear()
         End If
 
+        PBMaintenance.Value += 1
+
         If CBISoftcore.Checked = True Then
+            LBLMaintenance.Text = "Checking Softcore image path..."
             If Not Directory.Exists(LBLISoftcore.Text) Then
                 If LBLISoftcore.Text <> "" Or LBLISoftcore.Text <> "No path selected" Then
                     MessageBox.Show(Me, "The directory for local Softcore images was not found!" & Environment.NewLine & Environment.NewLine & _
@@ -5682,7 +5723,10 @@ SoftcoreGood:
             ImageList.Clear()
         End If
 
+        PBMaintenance.Value += 1
+
         If CBILesbian.Checked = True Then
+            LBLMaintenance.Text = "Checking Lesbian image path..."
             If Not Directory.Exists(LBLILesbian.Text) Then
                 If LBLILesbian.Text <> "" Or LBLILesbian.Text <> "No path selected" Then
                     MessageBox.Show(Me, "The directory for local Lesbian images was not found!" & Environment.NewLine & Environment.NewLine & _
@@ -5732,7 +5776,10 @@ LesbianGood:
             ImageList.Clear()
         End If
 
+        PBMaintenance.Value += 1
+
         If CBIBlowjob.Checked = True Then
+            LBLMaintenance.Text = "Checking Blowjob image path..."
             If Not Directory.Exists(LBLIBlowjob.Text) Then
                 If LBLIBlowjob.Text <> "" Or LBLIBlowjob.Text <> "No path selected" Then
                     MessageBox.Show(Me, "The directory for local Blowjob images was not found!" & Environment.NewLine & Environment.NewLine & _
@@ -5782,7 +5829,10 @@ BlowjobGood:
             ImageList.Clear()
         End If
 
+        PBMaintenance.Value += 1
+
         If CBIFemdom.Checked = True Then
+            LBLMaintenance.Text = "Checking Femdom image path..."
             If Not Directory.Exists(LBLIFemdom.Text) Then
                 If LBLIFemdom.Text <> "" Or LBLIFemdom.Text <> "No path selected" Then
                     MessageBox.Show(Me, "The directory for local Femdom images was not found!" & Environment.NewLine & Environment.NewLine & _
@@ -5833,7 +5883,10 @@ FemdomGood:
             ImageList.Clear()
         End If
 
+        PBMaintenance.Value += 1
+
         If CBILezdom.Checked = True Then
+            LBLMaintenance.Text = "Checking Lezdom image path..."
             If Not Directory.Exists(LBLILezdom.Text) Then
                 If LBLILezdom.Text <> "" Or LBLILezdom.Text <> "No path selected" Then
                     MessageBox.Show(Me, "The directory for local Lezdom images was not found!" & Environment.NewLine & Environment.NewLine & _
@@ -5883,7 +5936,10 @@ LezdomGood:
             ImageList.Clear()
         End If
 
+        PBMaintenance.Value += 1
+
         If CBIHentai.Checked = True Then
+            LBLMaintenance.Text = "Checking Hentai image path..."
             If Not Directory.Exists(LBLIHentai.Text) Then
                 If LBLIHentai.Text <> "" Or LBLIHentai.Text <> "No path selected" Then
                     MessageBox.Show(Me, "The directory for local Hentai images was not found!" & Environment.NewLine & Environment.NewLine & _
@@ -5939,7 +5995,10 @@ HentaiGood:
             ImageList.Clear()
         End If
 
+        PBMaintenance.Value += 1
+
         If CBIGay.Checked = True Then
+            LBLMaintenance.Text = "Checking Gay image path..."
             If Not Directory.Exists(LBLIGay.Text) Then
                 If LBLIGay.Text <> "" Or LBLIGay.Text <> "No path selected" Then
                     MessageBox.Show(Me, "The directory for local Gay images was not found!" & Environment.NewLine & Environment.NewLine & _
@@ -5989,7 +6048,10 @@ GayGood:
             ImageList.Clear()
         End If
 
+        PBMaintenance.Value += 1
+
         If CBIMaledom.Checked = True Then
+            LBLMaintenance.Text = "Checking Maledom image path..."
             If Not Directory.Exists(LBLIMaledom.Text) Then
                 If LBLIMaledom.Text <> "" Or LBLIMaledom.Text <> "No path selected" Then
                     MessageBox.Show(Me, "The directory for local Maledom images was not found!" & Environment.NewLine & Environment.NewLine & _
@@ -6040,7 +6102,10 @@ MaledomGood:
             ImageList.Clear()
         End If
 
+        PBMaintenance.Value += 1
+
         If CBICaptions.Checked = True Then
+            LBLMaintenance.Text = "Checking Captions image path..."
             If Not Directory.Exists(LBLICaptions.Text) Then
                 If LBLICaptions.Text <> "" Or LBLICaptions.Text <> "No path selected" Then
                     MessageBox.Show(Me, "The directory for local Captions images was not found!" & Environment.NewLine & Environment.NewLine & _
@@ -6090,7 +6155,10 @@ CaptionsGood:
             ImageList.Clear()
         End If
 
+        PBMaintenance.Value += 1
+
         If CBIGeneral.Checked = True Then
+            LBLMaintenance.Text = "Checking General image path..."
             If Not Directory.Exists(LBLIGeneral.Text) Then
                 If LBLIGeneral.Text <> "" Or LBLIGeneral.Text <> "No path selected" Then
                     MessageBox.Show(Me, "The directory for local General images was not found!" & Environment.NewLine & Environment.NewLine & _
@@ -6140,15 +6208,22 @@ GeneralGood:
             ImageList.Clear()
         End If
 
-
+        PBMaintenance.Value = PBMaintenance.Maximum
 
 
         My.Settings.Save()
 
 
+        MessageBox.Show(Me, "All Local Image paths have been validated.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
+        LBLMaintenance.Text = ""
 
+        BTNMaintenanceRebuild.Enabled = True
+        BTNMaintenanceRefresh.Enabled = True
+        BTNMaintenanceCancel.Enabled = False
+        BTNMaintenanceValidate.Enabled = True
 
+        PBMaintenance.Value = 0
 
     End Sub
 
@@ -8877,16 +8952,6 @@ WhyUMakeMeDoDis:
         My.Settings.Save()
     End Sub
 
-    Private Sub CBLongEdgeInterrupts_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles CBLongEdgeInterrupts.CheckedChanged
-        If FrmSettingsLoading = False Then
-            If CBLongEdgeInterrupts.Checked = True Then
-                My.Settings.CBLongEdgeInterrupt = True
-            Else
-                My.Settings.CBLongEdgeInterrupt = False
-            End If
-            My.Settings.Save()
-        End If
-    End Sub
 
     Private Sub NBHoldTheEdgeMax_LostFocus(sender As Object, e As System.EventArgs) Handles NBHoldTheEdgeMax.LostFocus
         'If NBHoldTheEdgeMax.Value > 0 And NBHoldTheEdgeMax.Value < 10 Then NBHoldTheEdgeMax.Value = 10
@@ -10607,232 +10672,124 @@ WhyUMakeMeDoDis:
     End Sub
 
 
-    Private Sub Button3_Click_1(sender As System.Object, e As System.EventArgs) Handles Button3.Click
-        CombineURLFiles()
-    End Sub
+   
 
-    Private Sub BTNMaintenance_Click(sender As System.Object, e As System.EventArgs) Handles BTNMaintenance.Click
+    Private Sub BTNMaintenance_Click(sender As System.Object, e As System.EventArgs) Handles BTNMaintenanceRebuild.Click
 
-        Dim NewURLCount As Integer
-        Dim TotalURLCount As Integer
+        CancelRebuild = False
+        BTNMaintenanceRebuild.Enabled = False
+        BTNMaintenanceRefresh.Enabled = False
+        BTNMaintenanceValidate.Enabled = False
+        BTNMaintenanceCancel.Enabled = True
 
-
-        For Each foundFile As String In My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Images\System\URL Files\", FileIO.SearchOption.SearchTopLevelOnly, "*.txt")
-
-            Debug.Print("FoundFile = " & foundFile)
-
-            Dim FirstPass As Boolean = False
-            Dim ExactPostsCount As Integer
-            Dim PostsInt As Integer = 0
-            Dim ImageAdded As Boolean
-            Dim BlogCycle As Integer
-            BlogCycle = -50
-
-            NewURLCount = 0
-
-            Dim BlogListOld As New List(Of String)
-            Dim BlogListNew As New List(Of String)
-
-            Dim ImageBlogUrl As String = foundFile.Replace(Application.StartupPath & "\Images\System\URL Files\", "")
-            Dim BlogUrlInfo As String = ImageBlogUrl
-
-            ImageBlogUrl = ImageBlogUrl.Replace(".txt", "")
-            ImageBlogUrl = "http://" & ImageBlogUrl
-
-            LBLRefreshURL.Text = "Checking " & BlogUrlInfo & "..."
-
-            Dim req As System.Net.WebRequest
-            Dim res As System.Net.WebResponse
-
-            req = System.Net.WebRequest.Create(ImageBlogUrl)
-
-            Try
-                res = req.GetResponse()
-            Catch w As WebException
-                GoTo NextURL
-            End Try
-
-            Dim ModifiedUrl As String
-            ModifiedUrl = ImageBlogUrl
-            ModifiedUrl = ModifiedUrl.Replace("http://", "")
-            ModifiedUrl = ModifiedUrl.Replace("/", "")
-
-            Dim ImageURLPath As String = Application.StartupPath & "\Images\System\URL Files\" & ModifiedUrl & ".txt"
-
-            If File.Exists(ImageURLPath) Then My.Computer.FileSystem.DeleteFile(foundFile)
-
-            Dim DislikeList As New List(Of String)
-            DislikeList.Clear()
-
-
-
-            If File.Exists(Application.StartupPath & "\Images\System\DislikedImageURLs.txt") Then
-                Dim DislikeCheck As New StreamReader(Application.StartupPath & "\Images\System\DislikedImageURLs.txt")
-
-                While DislikeCheck.Peek <> -1
-                    DislikeList.Add(DislikeCheck.ReadLine())
-                End While
-
-                DislikeCheck.Close()
-                DislikeCheck.Dispose()
-
-            End If
-
-
-
-Scrape:
-
-
-
-
-
-            ImageAdded = False
-
-            BlogCycle += 50
-
-
-
-            If Form1.WIExit = True Then GoTo ExitScrape
-
-            Dim doc As XmlDocument = New XmlDocument()
-
-            Try
-                ImageBlogUrl = ImageBlogUrl.Replace("/", "")
-                ImageBlogUrl = ImageBlogUrl.Replace("http:", "http://")
-                Debug.Print("ImageBlogURL = " & ImageBlogUrl)
-                doc.Load(ImageBlogUrl & "/api/read?start=" & BlogCycle & "&num=50")
-            Catch ex As Exception
-            End Try
-
-            If FirstPass = False Then
-                Try
-                    For Each node As XmlNode In doc.DocumentElement.SelectNodes("//posts")
-                        Dim PostsCount As Integer = node.Attributes.ItemOf("total").InnerText
-                        ExactPostsCount = PostsCount
-                        PostsCount = RoundUpToNearest(PostsCount, 50)
-                        Debug.Print("PostsCount = " & PostsCount)
-                    Next
-                    FirstPass = True
-                Catch
-                    FirstPass = False
-                    GoTo NextURL
-                End Try
-            End If
-
-
-
-
-            For Each node As XmlNode In doc.DocumentElement.SelectNodes("//photo-url")
-                Application.DoEvents()
-                If Form1.WIExit = True Then GoTo ExitScrape
-                If node.Attributes.ItemOf("max-width").InnerText = 1280 Then
-                    PostsInt += 1
-                    ImageAdded = True
-
-
-                    NewURLCount += 1
-
-                    LBLMaintenance.Text = "Validating URL Files" & Environment.NewLine & Path.GetFileName(foundFile) & Environment.NewLine & NewURLCount & " of " & ExactPostsCount
-
-                    Try
-                        BlogListNew.Add(node.InnerXml)
-
-                        LBLRefreshURL.Text = BlogUrlInfo & ": " & NewURLCount & " new files"
-
-                    Catch
-                        GoTo ExitScrape
-                    End Try
-
-
-
-
-                    Form1.ApproveImage = 0
-
-                End If
-
-            Next
-
-
-
-            If ImageAdded = True Then GoTo Scrape
-
-ExitScrape:
-
-
-            Form1.WIExit = False
-
-
-
-            If File.Exists(ImageURLPath) Then My.Computer.FileSystem.DeleteFile(ImageURLPath)
-
-            Dim BlogCombine As New List(Of String)
-
-            For i As Integer = 0 To BlogListNew.Count - 1
-                BlogCombine.Add(BlogListNew(i))
-                'Debug.Print("BLN " & i & ": " & BlogListNew(i))
-            Next
-
-
-
-
-            Dim objWriter As New System.IO.StreamWriter(ImageURLPath)
-
-            For i As Integer = 0 To BlogCombine.Count - 1
-                objWriter.WriteLine(BlogCombine(i))
-            Next
-
-
-
-
-            ' For i As Integer = 0 To BlogCombine.Count - 1
-            'If Not i = BlogCombine.Count - 1 Then
-            'My.Computer.FileSystem.WriteAllText(ImageURLPath, BlogCombine(i) & Environment.NewLine, True)
-            ';Else
-            'My.Computer.FileSystem.WriteAllText(ImageURLPath, BlogCombine(i), True)
-            'End If
-            ' Debug.Print(BlogCombine(i))
-            'Next
-
-            If Not URLFileList.Items.Contains(ModifiedUrl) Then
-                URLFileList.Items.Add(ModifiedUrl)
-                For i As Integer = 0 To URLFileList.Items.Count - 1
-                    If URLFileList.Items(i) = ModifiedUrl Then URLFileList.SetItemChecked(i, True)
-                Next
-            End If
-
-            Dim FileStream As New System.IO.FileStream(Application.StartupPath & "\Images\System\URLFileCheckList.cld", IO.FileMode.Create)
-            Dim BinaryWriter As New System.IO.BinaryWriter(FileStream)
-            For i = 0 To URLFileList.Items.Count - 1
-                BinaryWriter.Write(CStr(URLFileList.Items(i)))
-                BinaryWriter.Write(CBool(URLFileList.GetItemChecked(i)))
-            Next
-            BinaryWriter.Close()
-            FileStream.Dispose()
-
-
-            FirstPass = False
-
-NextURL:
-        Next
-
-
-        MessageBox.Show(Me, "All URL Files have been refreshed!" & Environment.NewLine & Environment.NewLine & TotalURLCount & " new URLs have been added.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
+        BWRebuildURLFiles.RunWorkerAsync()
 
 
 
     End Sub
 
-    Private Sub BackgroundWorker1_DoWork(sender As System.Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
+    Private Sub BTNMaintenanceRefresh_Click(sender As System.Object, e As System.EventArgs) Handles BTNMaintenanceRefresh.Click
+
+        CancelRebuild = False
+        BTNMaintenanceRebuild.Enabled = False
+        BTNMaintenanceRefresh.Enabled = False
+        BTNMaintenanceValidate.Enabled = False
+        BTNMaintenanceCancel.Enabled = True
+
+        BWRefreshURLFiles.RunWorkerAsync()
+
+    End Sub
+
+    Private Sub BTNMaintenanceValidate_Click(sender As System.Object, e As System.EventArgs) Handles BTNMaintenanceValidate.Click
+        CancelRebuild = False
+        BTNMaintenanceRebuild.Enabled = False
+        BTNMaintenanceRefresh.Enabled = False
+        BTNMaintenanceValidate.Enabled = False
+        BTNMaintenanceCancel.Enabled = True
+
+        BWValidateLocalFiles.RunWorkerAsync()
+    End Sub
+
+    Private Sub BWCreateFiles_DoWork(sender As System.Object, e As System.ComponentModel.DoWorkEventArgs) Handles BWCreateURLFiles.DoWork
 
 
         Control.CheckForIllegalCrossThreadCalls = False
 
+        Thr = New Threading.Thread(New Threading.ThreadStart(AddressOf CreateURLFiles))
+        Thr.SetApartmentState(ApartmentState.STA)
+        Thr.Start()
+
+    End Sub
+
+    Private Sub BWRefreshURLFiles_DoWork(sender As System.Object, e As System.ComponentModel.DoWorkEventArgs) Handles BWRefreshURLFiles.DoWork
+
+
+        Control.CheckForIllegalCrossThreadCalls = False
+
+        Thr = New Threading.Thread(New Threading.ThreadStart(AddressOf CombineURLFiles))
+        Thr.SetApartmentState(ApartmentState.STA)
+        Thr.Start()
+
+    End Sub
+
+
+
+    Private Sub BWRebuildURLFiles_DoWork(sender As System.Object, e As System.ComponentModel.DoWorkEventArgs) Handles BWRebuildURLFiles.DoWork
+
+
+        Control.CheckForIllegalCrossThreadCalls = False
+
+        Thr = New Threading.Thread(New Threading.ThreadStart(AddressOf RebuildURLs))
+        Thr.SetApartmentState(ApartmentState.STA)
+        Thr.Start()
+
+    End Sub
+
+
+    Private Sub BWValidateLocalFiles_DoWork(sender As System.Object, e As System.ComponentModel.DoWorkEventArgs) Handles BWValidateLocalFiles.DoWork
+
+
+        Control.CheckForIllegalCrossThreadCalls = False
+
+        Thr = New Threading.Thread(New Threading.ThreadStart(AddressOf VerifyLocalImagePaths))
+        Thr.SetApartmentState(ApartmentState.STA)
+        Thr.Start()
+
+    End Sub
+
+    Public Sub RebuildURLs()
+
         Dim NewURLCount As Integer
         Dim TotalURLCount As Integer
 
 
+        Dim MaintString As System.Collections.ObjectModel.ReadOnlyCollection(Of String)
+        MaintString = My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Images\System\URL Files")
+
+        Dim MaintCount As Integer = CStr(MaintString.Count)
+        PBMaintenance.Maximum = MaintCount
+        PBMaintenance.Value = 0
+
+
+
+
+
         For Each foundFile As String In My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Images\System\URL Files\", FileIO.SearchOption.SearchTopLevelOnly, "*.txt")
+
+            If CancelRebuild = True Then
+                PBMaintenance.Value = 0
+                PBCurrent.Value = 0
+                LBLMaintenance.Text = ""
+                CancelRebuild = False
+                BTNMaintenanceRebuild.Enabled = True
+                BTNMaintenanceCancel.Enabled = False
+                BTNMaintenanceRefresh.Enabled = True
+                BTNMaintenanceValidate.Enabled = True
+                Return
+            End If
+
+            PBCurrent.Value = 0
+
 
             Debug.Print("FoundFile = " & foundFile)
 
@@ -10854,7 +10811,6 @@ NextURL:
             ImageBlogUrl = ImageBlogUrl.Replace(".txt", "")
             ImageBlogUrl = "http://" & ImageBlogUrl
 
-            LBLRefreshURL.Text = "Checking " & BlogUrlInfo & "..."
 
             Dim req As System.Net.WebRequest
             Dim res As System.Net.WebResponse
@@ -10874,12 +10830,33 @@ NextURL:
 
             Dim ImageURLPath As String = Application.StartupPath & "\Images\System\URL Files\" & ModifiedUrl & ".txt"
 
-            If File.Exists(ImageURLPath) Then My.Computer.FileSystem.DeleteFile(foundFile)
+
+
+            Dim DupeList As New List(Of String)
+            DupeList.Clear()
 
             Dim DislikeList As New List(Of String)
             DislikeList.Clear()
 
-       
+            If File.Exists(foundFile) Then
+
+                My.Computer.FileSystem.CopyFile(foundFile, foundFile & ".bak", Microsoft.VisualBasic.FileIO.UIOption.AllDialogs, Microsoft.VisualBasic.FileIO.UICancelOption.DoNothing)
+
+
+                Dim DupeCheck As New StreamReader(foundFile)
+
+                While DupeCheck.Peek <> -1
+                    DupeList.Add(DupeCheck.ReadLine())
+                End While
+
+                DupeCheck.Close()
+                DupeCheck.Dispose()
+                My.Computer.FileSystem.DeleteFile(foundFile)
+            End If
+
+
+
+
 
             If File.Exists(Application.StartupPath & "\Images\System\DislikedImageURLs.txt") Then
                 Dim DislikeCheck As New StreamReader(Application.StartupPath & "\Images\System\DislikedImageURLs.txt")
@@ -10924,9 +10901,11 @@ Scrape:
                     For Each node As XmlNode In doc.DocumentElement.SelectNodes("//posts")
                         Dim PostsCount As Integer = node.Attributes.ItemOf("total").InnerText
                         ExactPostsCount = PostsCount
+                        PBCurrent.Maximum = ExactPostsCount
                         PostsCount = RoundUpToNearest(PostsCount, 50)
                         Debug.Print("PostsCount = " & PostsCount)
                     Next
+                    LBLMaintenance.Text = "Validating URL Files" & Environment.NewLine & Path.GetFileName(foundFile)
                     FirstPass = True
                 Catch
                     FirstPass = False
@@ -10944,25 +10923,50 @@ Scrape:
                     PostsInt += 1
                     ImageAdded = True
 
-                  
+                    If PBCurrent.Value < PBCurrent.Maximum Then PBCurrent.Value += 1
+
+
+
+                    If BlogListNew.Contains(node.InnerXml) Then
+                        'MsgBox(node.InnerXml & " ALREADY HAS!")
+                        GoTo AlreadyHas
+                    End If
+
                     NewURLCount += 1
 
-                    LBLMaintenance.Text = "Validating URL Files" & Environment.NewLine & Path.GetFileName(foundFile)
+
 
                     Try
                         BlogListNew.Add(node.InnerXml)
 
-                        LBLRefreshURL.Text = BlogUrlInfo & ": " & NewURLCount & " new files"
-
                     Catch
                         GoTo ExitScrape
                     End Try
+                    If PBCurrent.Value >= PBCurrent.Maximum Then GoTo exitscrape
 
-
-
+AlreadyHas:
 
                     Form1.ApproveImage = 0
 
+                End If
+
+                If CancelRebuild = True Then
+                    PBMaintenance.Value = 0
+                    PBCurrent.Value = 0
+                    LBLMaintenance.Text = ""
+                    CancelRebuild = False
+
+                    If File.Exists(foundFile & ".bak") Then
+                        My.Computer.FileSystem.CopyFile(foundFile & ".bak", foundFile, Microsoft.VisualBasic.FileIO.UIOption.AllDialogs, Microsoft.VisualBasic.FileIO.UICancelOption.DoNothing)
+                        My.Computer.FileSystem.DeleteFile(foundFile & ".bak")
+                    End If
+
+                    BTNMaintenanceRebuild.Enabled = True
+                    BTNMaintenanceCancel.Enabled = False
+                    BTNMaintenanceRefresh.Enabled = True
+                    BTNMaintenanceValidate.Enabled = True
+
+                    Return
                 End If
 
             Next
@@ -10987,7 +10991,7 @@ ExitScrape:
                 'Debug.Print("BLN " & i & ": " & BlogListNew(i))
             Next
 
-         
+
 
 
             Dim objWriter As New System.IO.StreamWriter(ImageURLPath)
@@ -11027,37 +11031,30 @@ ExitScrape:
 
             FirstPass = False
 
+            PBMaintenance.Value += 1
+
+            If File.Exists(foundFile & ".bak") Then My.Computer.FileSystem.DeleteFile(foundFile & ".bak")
+
 NextURL:
         Next
 
+        PBMaintenance.Value = PBMaintenance.Maximum
 
-        MessageBox.Show(Me, "All URL Files have been refreshed!" & Environment.NewLine & Environment.NewLine & TotalURLCount & " new URLs have been added.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        MessageBox.Show(Me, "All URL Files have been rebuilt!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-
-
+        PBMaintenance.Value = 0
+        PBCurrent.Value = 0
 
 
     End Sub
 
-    Private Sub BackgroundWorker1_ProgressChanged(ByVal sender As Object, ByVal e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker1.ProgressChanged
-        PBMaintenance.Value = e.ProgressPercentage
+    Private Sub Button1_Click_1(sender As System.Object, e As System.EventArgs) Handles BTNMaintenanceCancel.Click
+
+        CancelRebuild = True
+
+
     End Sub
 
-    Private Sub BackgroundWorker1_RunWorkerCompleted(ByVal sender As Object, _
-     ByVal e As System.ComponentModel.RunWorkerCompletedEventArgs) _
-     Handles BackgroundWorker1.RunWorkerCompleted
-        MsgBox("Done")
-    End Sub
-
-
- 
-
-
-
-
-    Private Sub Button1_Click_1(sender As System.Object, e As System.EventArgs) Handles Button1.Click
-        BackgroundWorker1.CancelAsync()
-        BackgroundWorker1.Dispose()
-
-    End Sub
+    
+    
 End Class

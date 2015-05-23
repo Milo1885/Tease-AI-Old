@@ -136,7 +136,6 @@ Partial Class frmApps
         Me.Panel5 = New System.Windows.Forms.Panel()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label27 = New System.Windows.Forms.Label()
-        Me.Button17 = New System.Windows.Forms.Button()
         Me.PNLAppHome.SuspendLayout()
         Me.AppPanelGlitter.SuspendLayout()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -164,7 +163,6 @@ Partial Class frmApps
         '
         Me.PNLAppHome.BackColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(170, Byte), Integer))
         Me.PNLAppHome.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.PNLAppHome.Controls.Add(Me.Button17)
         Me.PNLAppHome.Controls.Add(Me.Label15)
         Me.PNLAppHome.Controls.Add(Me.Button28)
         Me.PNLAppHome.Controls.Add(Me.Button18)
@@ -1514,15 +1512,6 @@ Partial Class frmApps
         Me.Label27.Text = "LaZy SuB"
         Me.Label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'Button17
-        '
-        Me.Button17.Location = New System.Drawing.Point(165, 234)
-        Me.Button17.Name = "Button17"
-        Me.Button17.Size = New System.Drawing.Size(75, 23)
-        Me.Button17.TabIndex = 186
-        Me.Button17.Text = "Button17"
-        Me.Button17.UseVisualStyleBackColor = True
-        '
         'frmApps
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1683,5 +1672,4 @@ Partial Class frmApps
     Friend WithEvents Button22 As System.Windows.Forms.Button
     Friend WithEvents Label15 As System.Windows.Forms.Label
     Friend WithEvents Button28 As System.Windows.Forms.Button
-    Friend WithEvents Button17 As System.Windows.Forms.Button
 End Class

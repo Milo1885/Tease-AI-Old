@@ -113,6 +113,7 @@ Partial Class Form1
         Me.SP3 = New System.Windows.Forms.Panel()
         Me.SP2 = New System.Windows.Forms.Panel()
         Me.SP1 = New System.Windows.Forms.Panel()
+        Me.BWGlitter = New System.ComponentModel.BackgroundWorker()
         CType(Me.mainPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.domAvatar, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -857,6 +858,9 @@ Partial Class Form1
         Me.SP1.Size = New System.Drawing.Size(20, 31)
         Me.SP1.TabIndex = 771
         '
+        'BWGlitter
+        '
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1007,5 +1011,6 @@ Partial Class Form1
     Friend WithEvents SP3 As System.Windows.Forms.Panel
     Friend WithEvents SP2 As System.Windows.Forms.Panel
     Friend WithEvents SP1 As System.Windows.Forms.Panel
+    Friend WithEvents BWGlitter As System.ComponentModel.BackgroundWorker
 
 End Class

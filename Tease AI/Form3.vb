@@ -1,6 +1,7 @@
 ﻿Imports System.IO
 Imports System
 Imports System.Globalization
+Imports System.Net
 
 
 
@@ -60,6 +61,11 @@ Public Class FrmCardList
     Dim CardTick As Integer
     Dim CardBackImage As String
 
+    Dim RevealCards As Boolean
+    Dim RevealTick As Integer
+
+    Dim CardSetup As Boolean
+
     Dim SlotTick1 As Integer
     Dim SlotTick2 As Integer
     Dim SlotTick3 As Integer
@@ -99,7 +105,7 @@ Public Class FrmCardList
     Public G5 As Integer
     Public G6 As Integer
 
-
+    Dim CardVal As Integer
 
     Dim fileName1 As String
 
@@ -107,31 +113,7 @@ Public Class FrmCardList
   (ByVal lpstrCommand As String, ByVal lpstrReturnString As String, _
   ByVal uReturnLength As Integer, ByVal hwndCallback As Integer) As Integer
 
-
-
-    Public Sub InitializeCards()
-
-
-        M1A.Enabled = True
-        M2A.Enabled = True
-        M3A.Enabled = True
-        M4A.Enabled = True
-        M5A.Enabled = True
-        M6A.Enabled = True
-
-        M1B.Enabled = True
-        M2B.Enabled = True
-        M3B.Enabled = True
-        M4B.Enabled = True
-        M5B.Enabled = True
-        M6B.Enabled = True
-
-        M1C.Enabled = True
-        M2C.Enabled = True
-        M3C.Enabled = True
-        M4C.Enabled = True
-        M5C.Enabled = True
-        M6C.Enabled = True
+    Public Sub DealMatchCards()
 
         If File.Exists(My.Settings.CardBack) Then
             CardBackImage = My.Settings.CardBack
@@ -161,6 +143,263 @@ Public Class FrmCardList
         M4C.Load(CardBackImage)
         M5C.Load(CardBackImage)
         M6C.Load(CardBackImage)
+
+    End Sub
+
+    Public Sub InitializeCards()
+
+
+        'M1A.Enabled = True
+        'M2A.Enabled = True
+        'M3A.Enabled = True
+        'M4A.Enabled = True
+        'M5A.Enabled = True
+        'M6A.Enabled = True
+
+        'M1B.Enabled = True
+        'M2B.Enabled = True
+        'M3B.Enabled = True
+        'M4B.Enabled = True
+        'M5B.Enabled = True
+        'M6B.Enabled = True
+
+        'M1C.Enabled = True
+        'M2C.Enabled = True
+        'M3C.Enabled = True
+        'M4C.Enabled = True
+        'M5C.Enabled = True
+        'M6C.Enabled = True
+
+      DealMatchCards()
+
+        MatchList.Clear()
+
+
+        For i As Integer = 0 To FrmSettings.URLFileList.Items.Count - 1
+
+
+            If File.Exists(Application.StartupPath & "\Images\System\URL Files\" & FrmSettings.URLFileList.Items(i) & ".txt") Then
+
+                If FrmSettings.URLFileList.GetItemCheckState(i) = CheckState.Checked Then
+
+                    Dim URLString As String = Application.StartupPath & "\Images\System\URL Files\" & FrmSettings.URLFileList.Items(i) & ".txt"
+                    Dim CardReader As New System.IO.StreamReader(URLString)
+
+                    While CardReader.Peek <> -1
+                        MatchList.Add(CardReader.ReadLine())
+                    End While
+
+
+                    CardReader.Close()
+                    CardReader.Dispose()
+
+                End If
+
+            End If
+        Next
+
+        If FrmSettings.CBIncludeGifs.Checked = False Then
+            For i As Integer = MatchList.Count - 1 To 0 Step -1
+                If MatchList(i).Contains(".gif") Then MatchList.Remove(MatchList(i))
+            Next
+        End If
+
+
+        Dim supportedExtensions As String
+
+        If FrmSettings.CBIncludeGifs.Checked = True Then
+            supportedExtensions = "*.png,*.jpg,*.gif,*.bmp,*.jpeg"
+        Else
+            supportedExtensions = "*.png,*.jpg,*.bmp,*.jpeg"
+        End If
+
+        Dim files As String()
+
+
+        If FrmSettings.CBIHardcore.Checked = True And Directory.Exists(FrmSettings.LBLIHardcore.Text) Then
+            If FrmSettings.CBIHardcoreSD.Checked = True Then
+                files = Directory.GetFiles(FrmSettings.LBLIHardcore.Text, "*.*", SearchOption.AllDirectories)
+            Else
+                files = Directory.GetFiles(FrmSettings.LBLIHardcore.Text, "*.*")
+            End If
+            Array.Sort(files)
+            For Each fi As String In files
+                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                    MatchList.Add(fi)
+                End If
+            Next
+        End If
+
+        If FrmSettings.CBISoftcore.Checked = True And Directory.Exists(FrmSettings.LBLISoftcore.Text) Then
+            If FrmSettings.CBISoftcoreSD.Checked = True Then
+                files = Directory.GetFiles(FrmSettings.LBLISoftcore.Text, "*.*", SearchOption.AllDirectories)
+            Else
+                files = Directory.GetFiles(FrmSettings.LBLISoftcore.Text, "*.*")
+            End If
+            Array.Sort(files)
+            For Each fi As String In files
+                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                    MatchList.Add(fi)
+                End If
+            Next
+        End If
+
+        If FrmSettings.CBILesbian.Checked = True And Directory.Exists(FrmSettings.LBLILesbian.Text) Then
+            If FrmSettings.CBILesbianSD.Checked = True Then
+                files = Directory.GetFiles(FrmSettings.LBLILesbian.Text, "*.*", SearchOption.AllDirectories)
+            Else
+                files = Directory.GetFiles(FrmSettings.LBLILesbian.Text, "*.*")
+            End If
+            Array.Sort(files)
+            For Each fi As String In files
+                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                    MatchList.Add(fi)
+                End If
+            Next
+        End If
+
+        If FrmSettings.CBIBlowjob.Checked = True And Directory.Exists(FrmSettings.LBLIBlowjob.Text) Then
+            If FrmSettings.CBIBlowjobSD.Checked = True Then
+                files = Directory.GetFiles(FrmSettings.LBLIBlowjob.Text, "*.*", SearchOption.AllDirectories)
+            Else
+                files = Directory.GetFiles(FrmSettings.LBLIBlowjob.Text, "*.*")
+            End If
+            Array.Sort(files)
+            For Each fi As String In files
+                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                    MatchList.Add(fi)
+                End If
+            Next
+        End If
+
+        If FrmSettings.CBIFemdom.Checked = True And Directory.Exists(FrmSettings.LBLIFemdom.Text) Then
+            If FrmSettings.CBIFemdomSD.Checked = True Then
+                files = Directory.GetFiles(FrmSettings.LBLIFemdom.Text, "*.*", SearchOption.AllDirectories)
+            Else
+                files = Directory.GetFiles(FrmSettings.LBLIFemdom.Text, "*.*")
+            End If
+            Array.Sort(files)
+            For Each fi As String In files
+                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                    MatchList.Add(fi)
+                End If
+            Next
+        End If
+
+        If FrmSettings.CBILezdom.Checked = True And Directory.Exists(FrmSettings.LBLILezdom.Text) Then
+            If FrmSettings.CBILezdomSD.Checked = True Then
+                files = Directory.GetFiles(FrmSettings.LBLILezdom.Text, "*.*", SearchOption.AllDirectories)
+            Else
+                files = Directory.GetFiles(FrmSettings.LBLILezdom.Text, "*.*")
+            End If
+            Array.Sort(files)
+            For Each fi As String In files
+                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                    MatchList.Add(fi)
+                End If
+            Next
+        End If
+
+        If FrmSettings.CBIHentai.Checked = True And Directory.Exists(FrmSettings.LBLIHentai.Text) Then
+            If FrmSettings.CBIHentaiSD.Checked = True Then
+                files = Directory.GetFiles(FrmSettings.LBLIHentai.Text, "*.*", SearchOption.AllDirectories)
+            Else
+                files = Directory.GetFiles(FrmSettings.LBLIHentai.Text, "*.*")
+            End If
+            Array.Sort(files)
+            For Each fi As String In files
+                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                    MatchList.Add(fi)
+                End If
+            Next
+        End If
+
+        If FrmSettings.CBIGay.Checked = True And Directory.Exists(FrmSettings.LBLIGay.Text) Then
+            If FrmSettings.CBIGaySD.Checked = True Then
+                files = Directory.GetFiles(FrmSettings.LBLIGay.Text, "*.*", SearchOption.AllDirectories)
+            Else
+                files = Directory.GetFiles(FrmSettings.LBLIGay.Text, "*.*")
+            End If
+            Array.Sort(files)
+            For Each fi As String In files
+                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                    MatchList.Add(fi)
+                End If
+            Next
+        End If
+
+        If FrmSettings.CBIMaledom.Checked = True And Directory.Exists(FrmSettings.LBLIMaledom.Text) Then
+            If FrmSettings.CBIMaledomSD.Checked = True Then
+                files = Directory.GetFiles(FrmSettings.LBLIMaledom.Text, "*.*", SearchOption.AllDirectories)
+            Else
+                files = Directory.GetFiles(FrmSettings.LBLIMaledom.Text, "*.*")
+            End If
+            Array.Sort(files)
+            For Each fi As String In files
+                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                    MatchList.Add(fi)
+                End If
+            Next
+        End If
+
+        If FrmSettings.CBICaptions.Checked = True And Directory.Exists(FrmSettings.LBLICaptions.Text) Then
+            If FrmSettings.CBICaptionsSD.Checked = True Then
+                files = Directory.GetFiles(FrmSettings.LBLICaptions.Text, "*.*", SearchOption.AllDirectories)
+            Else
+                files = Directory.GetFiles(FrmSettings.LBLICaptions.Text, "*.*")
+            End If
+            Array.Sort(files)
+            For Each fi As String In files
+                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                    MatchList.Add(fi)
+                End If
+            Next
+        End If
+
+        If FrmSettings.CBIGeneral.Checked = True And Directory.Exists(FrmSettings.LBLIGeneral.Text) Then
+            If FrmSettings.CBIGeneralSD.Checked = True Then
+                files = Directory.GetFiles(FrmSettings.LBLIGeneral.Text, "*.*", SearchOption.AllDirectories)
+            Else
+                files = Directory.GetFiles(FrmSettings.LBLIGeneral.Text, "*.*")
+            End If
+            Array.Sort(files)
+            For Each fi As String In files
+                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                    MatchList.Add(fi)
+                End If
+            Next
+        End If
+
+
+     
+
+
+    End Sub
+
+    Public Sub MatchGameStart()
+
+        'M1A.Enabled = True
+        'M2A.Enabled = True
+        'M3A.Enabled = True
+        'M4A.Enabled = True
+        'M5A.Enabled = True
+        'M6A.Enabled = True
+
+        'M1B.Enabled = True
+        'M2B.Enabled = True
+        'M3B.Enabled = True
+        'M4B.Enabled = True
+        'M5B.Enabled = True
+        'M6B.Enabled = True
+
+        'M1C.Enabled = True
+        'M2C.Enabled = True
+        'M3C.Enabled = True
+        'M4C.Enabled = True
+        'M5C.Enabled = True
+        'M6C.Enabled = True
+
+     
 
 
         MatchList.Clear()
@@ -367,119 +606,419 @@ Public Class FrmCardList
         If MatchList.Count < 1 Then Return
 
 
+        Debug.Print("Prepare Card1")
 
-        Dim CardVal As Integer
+        ShowCard1()
 
 
+    End Sub
+
+    Public Sub ShowCard1()
+        Debug.Print("ShowCard1 Called")
+Card1:
         CardVal = Form1.randomizer.Next(0, MatchList.Count)
         Pair1 = MatchList(CardVal)
         MatchList.Remove(MatchList(CardVal))
+        Try
+            M1A.Load(Pair1)
+            If M1A.Image Is Nothing Then GoTo Card1
+            M2A.LoadAsync(Pair1)
+        Catch ex As Exception
+            GoTo Card1
+        End Try
+    End Sub
 
+    Private Sub M2A_LoadCompleted(sender As Object, e As System.ComponentModel.AsyncCompletedEventArgs) Handles M2A.LoadCompleted
+        Debug.Print("M2A Loaded")
+        Debug.Print(CardSetup)
+        If CardSetup = True Then
+            M1A.Visible = True
+            M2A.Visible = True
+            ShowCard2()
+        End If
+    End Sub
+
+    Public Sub ShowCard2()
+        Debug.Print("ShowCard 2")
+Card2:
         CardVal = Form1.randomizer.Next(0, MatchList.Count)
         Pair2 = MatchList(CardVal)
         MatchList.Remove(MatchList(CardVal))
+        Try
+            M3A.Load(Pair2)
+            M4A.LoadAsync(Pair2)
+        Catch ex As Exception
+            GoTo Card2
+        End Try
 
+    End Sub
+
+    Private Sub M4A_LoadCompleted(sender As Object, e As System.ComponentModel.AsyncCompletedEventArgs) Handles M4A.LoadCompleted
+        If CardSetup = True Then
+            RevealTick = 1
+            RevealCards = False
+            CardRevealTimer.Start()
+            Do
+                Application.DoEvents()
+
+            Loop Until RevealCards = True
+            RevealCards = False
+            M3A.Visible = True
+            M4A.Visible = True
+            ShowCard3()
+        End If
+    End Sub
+
+    Public Sub ShowCard3()
+Card3:
         CardVal = Form1.randomizer.Next(0, MatchList.Count)
         Pair3 = MatchList(CardVal)
         MatchList.Remove(MatchList(CardVal))
+        Try
+            M5A.Load(Pair3)
+            M6A.LoadAsync(Pair3)
+        Catch ex As Exception
+            GoTo Card3
+        End Try
 
+    End Sub
+
+    Private Sub M6A_LoadCompleted(sender As Object, e As System.ComponentModel.AsyncCompletedEventArgs) Handles M6A.LoadCompleted
+        If CardSetup = True Then
+            RevealTick = 1
+            RevealCards = False
+            CardRevealTimer.Start()
+            Do
+                Application.DoEvents()
+
+            Loop Until RevealCards = True
+            RevealCards = False
+            M5A.Visible = True
+            M6A.Visible = True
+            ShowCard4()
+        End If
+    End Sub
+
+
+    Public Sub ShowCard4()
+
+Card4:
         CardVal = Form1.randomizer.Next(0, MatchList.Count)
         Pair4 = MatchList(CardVal)
         MatchList.Remove(MatchList(CardVal))
-
-        CardVal = Form1.randomizer.Next(0, MatchList.Count)
-        Pair5 = MatchList(CardVal)
-        MatchList.Remove(MatchList(CardVal))
-
-        CardVal = Form1.randomizer.Next(0, MatchList.Count)
-        Pair6 = MatchList(CardVal)
-        MatchList.Remove(MatchList(CardVal))
-
-        CardVal = Form1.randomizer.Next(0, MatchList.Count)
-        Pair7 = MatchList(CardVal)
-        MatchList.Remove(MatchList(CardVal))
-
-        CardVal = Form1.randomizer.Next(0, MatchList.Count)
-        Pair8 = MatchList(CardVal)
-        MatchList.Remove(MatchList(CardVal))
-
-        CardVal = Form1.randomizer.Next(0, MatchList.Count)
-        Pair9 = MatchList(CardVal)
-        'MatchList.Remove(MatchList(CardVal))
-
-        MatchList.Clear()
-
-        MatchList.Add(Pair1)
-        MatchList.Add(Pair1)
-        MatchList.Add(Pair2)
-        MatchList.Add(Pair2)
-        MatchList.Add(Pair3)
-        MatchList.Add(Pair3)
-        MatchList.Add(Pair4)
-        MatchList.Add(Pair4)
-        MatchList.Add(Pair5)
-        MatchList.Add(Pair5)
-        MatchList.Add(Pair6)
-        MatchList.Add(Pair6)
-        MatchList.Add(Pair7)
-        MatchList.Add(Pair7)
-        MatchList.Add(Pair8)
-        MatchList.Add(Pair8)
-        MatchList.Add(Pair9)
-        MatchList.Add(Pair9)
-
-        For I As Integer = 0 To MatchList.Count - 1
-            Debug.Print(MatchList(I))
-        Next
-
-        Match1A = MatchList(Form1.randomizer.Next(0, MatchList.Count))
-        MatchList.Remove(Match1A)
-        Match2A = MatchList(Form1.randomizer.Next(0, MatchList.Count))
-        MatchList.Remove(Match2A)
-        Match3A = MatchList(Form1.randomizer.Next(0, MatchList.Count))
-        MatchList.Remove(Match3A)
-        Match4A = MatchList(Form1.randomizer.Next(0, MatchList.Count))
-        MatchList.Remove(Match4A)
-        Match5A = MatchList(Form1.randomizer.Next(0, MatchList.Count))
-        MatchList.Remove(Match5A)
-        Match6A = MatchList(Form1.randomizer.Next(0, MatchList.Count))
-        MatchList.Remove(Match6A)
-
-        Match1B = MatchList(Form1.randomizer.Next(0, MatchList.Count))
-        MatchList.Remove(Match1B)
-        Match2B = MatchList(Form1.randomizer.Next(0, MatchList.Count))
-        MatchList.Remove(Match2B)
-        Match3B = MatchList(Form1.randomizer.Next(0, MatchList.Count))
-        MatchList.Remove(Match3B)
-        Match4B = MatchList(Form1.randomizer.Next(0, MatchList.Count))
-        MatchList.Remove(Match4B)
-        Match5B = MatchList(Form1.randomizer.Next(0, MatchList.Count))
-        MatchList.Remove(Match5B)
-        Match6B = MatchList(Form1.randomizer.Next(0, MatchList.Count))
-        MatchList.Remove(Match6B)
-
-        Match1C = MatchList(Form1.randomizer.Next(0, MatchList.Count))
-        MatchList.Remove(Match1C)
-        Match2C = MatchList(Form1.randomizer.Next(0, MatchList.Count))
-        MatchList.Remove(Match2C)
-        Match3C = MatchList(Form1.randomizer.Next(0, MatchList.Count))
-        MatchList.Remove(Match3C)
-        Match4C = MatchList(Form1.randomizer.Next(0, MatchList.Count))
-        MatchList.Remove(Match4C)
-        Match5C = MatchList(Form1.randomizer.Next(0, MatchList.Count))
-        MatchList.Remove(Match5C)
-        Match6C = MatchList(Form1.randomizer.Next(0, MatchList.Count))
-        'MatchList.Remove(Match6C)
-
-
-        Debug.Print(Match4A)
+        Try
+            M1B.Load(Pair4)
+            M2B.LoadAsync(Pair4)
+        Catch ex As Exception
+            GoTo Card4
+        End Try
 
 
     End Sub
 
 
+    Private Sub M2B_LoadCompleted(sender As Object, e As System.ComponentModel.AsyncCompletedEventArgs) Handles M2B.LoadCompleted
+        If CardSetup = True Then
+            RevealTick = 1
+            RevealCards = False
+            CardRevealTimer.Start()
+            Do
+                Application.DoEvents()
 
- 
+            Loop Until RevealCards = True
+            RevealCards = False
+            M1B.Visible = True
+            M2B.Visible = True
+            ShowCard5()
+        End If
+    End Sub
+
+
+    Public Sub ShowCard5()
+Card5:
+        CardVal = Form1.randomizer.Next(0, MatchList.Count)
+        Pair5 = MatchList(CardVal)
+        MatchList.Remove(MatchList(CardVal))
+        Try
+            M3B.Load(Pair5)
+            M4B.LoadAsync(Pair5)
+        Catch ex As Exception
+            GoTo Card5
+        End Try
+
+    End Sub
+
+    Private Sub M4B_LoadCompleted(sender As Object, e As System.ComponentModel.AsyncCompletedEventArgs) Handles M4B.LoadCompleted
+        If CardSetup = True Then
+            RevealTick = 1
+            RevealCards = False
+            CardRevealTimer.Start()
+            Do
+                Application.DoEvents()
+
+            Loop Until RevealCards = True
+            RevealCards = False
+            M3B.Visible = True
+            M4B.Visible = True
+            ShowCard6()
+        End If
+    End Sub
+
+
+    Public Sub ShowCard6()
+
+Card6:
+        CardVal = Form1.randomizer.Next(0, MatchList.Count)
+        Pair6 = MatchList(CardVal)
+        MatchList.Remove(MatchList(CardVal))
+        Try
+            M5B.Load(Pair6)
+            M6B.LoadAsync(Pair6)
+        Catch ex As Exception
+            GoTo Card6
+        End Try
+
+    End Sub
+
+
+    Private Sub M6B_LoadCompleted(sender As Object, e As System.ComponentModel.AsyncCompletedEventArgs) Handles M6B.LoadCompleted
+        If CardSetup = True Then
+            RevealTick = 1
+            RevealCards = False
+            CardRevealTimer.Start()
+            Do
+                Application.DoEvents()
+
+            Loop Until RevealCards = True
+            RevealCards = False
+            M5B.Visible = True
+            M6B.Visible = True
+            ShowCard7()
+        End If
+    End Sub
+
+    Public Sub ShowCard7()
+
+Card7:
+        CardVal = Form1.randomizer.Next(0, MatchList.Count)
+        Pair7 = MatchList(CardVal)
+        MatchList.Remove(MatchList(CardVal))
+        Try
+            M1C.Load(Pair7)
+            M2C.LoadAsync(Pair7)
+        Catch ex As Exception
+            GoTo Card7
+        End Try
+
+
+    End Sub
+
+    Private Sub M2C_LoadCompleted(sender As Object, e As System.ComponentModel.AsyncCompletedEventArgs) Handles M2C.LoadCompleted
+        If CardSetup = True Then
+            RevealTick = 1
+            RevealCards = False
+            CardRevealTimer.Start()
+            Do
+                Application.DoEvents()
+
+            Loop Until RevealCards = True
+            RevealCards = False
+            M1C.Visible = True
+            M2C.Visible = True
+            ShowCard8()
+        End If
+    End Sub
+
+    Public Sub ShowCard8()
+Card8:
+        CardVal = Form1.randomizer.Next(0, MatchList.Count)
+        Pair8 = MatchList(CardVal)
+        MatchList.Remove(MatchList(CardVal))
+        Try
+            M3C.Load(Pair8)
+            M4C.LoadAsync(Pair8)
+        Catch ex As Exception
+            GoTo Card8
+        End Try
+    End Sub
+
+    Private Sub M4C_LoadCompleted(sender As Object, e As System.ComponentModel.AsyncCompletedEventArgs) Handles M4C.LoadCompleted
+        If CardSetup = True Then
+            RevealTick = 1
+            RevealCards = False
+            CardRevealTimer.Start()
+            Do
+                Application.DoEvents()
+
+            Loop Until RevealCards = True
+            RevealCards = False
+            M3C.Visible = True
+            M4C.Visible = True
+            ShowCard9()
+        End If
+    End Sub
+
+    Public Sub ShowCard9()
+
+Card9:
+        CardVal = Form1.randomizer.Next(0, MatchList.Count)
+        Pair9 = MatchList(CardVal)
+        Try
+            M5C.Load(Pair9)
+            M6C.LoadAsync(Pair9)
+        Catch ex As Exception
+            GoTo Card9
+        End Try
+    End Sub
+
+    Private Sub M6C_LoadCompleted(sender As Object, e As System.ComponentModel.AsyncCompletedEventArgs) Handles M6C.LoadCompleted
+
+
+        If CardSetup = True Then
+            RevealTick = 1
+            RevealCards = False
+            CardRevealTimer.Start()
+            Do
+                Application.DoEvents()
+
+            Loop Until RevealCards = True
+            RevealCards = False
+
+            M5C.Visible = True
+            M6C.Visible = True
+
+            CardSetup = False
+
+            'MatchList.Remove(MatchList(CardVal))
+
+
+            'MatchList.Remove(MatchList(CardVal))
+
+            MatchList.Clear()
+
+            MatchList.Add(Pair1)
+            MatchList.Add(Pair1)
+            MatchList.Add(Pair2)
+            MatchList.Add(Pair2)
+            MatchList.Add(Pair3)
+            MatchList.Add(Pair3)
+            MatchList.Add(Pair4)
+            MatchList.Add(Pair4)
+            MatchList.Add(Pair5)
+            MatchList.Add(Pair5)
+            MatchList.Add(Pair6)
+            MatchList.Add(Pair6)
+            MatchList.Add(Pair7)
+            MatchList.Add(Pair7)
+            MatchList.Add(Pair8)
+            MatchList.Add(Pair8)
+            MatchList.Add(Pair9)
+            MatchList.Add(Pair9)
+
+            For I As Integer = 0 To MatchList.Count - 1
+                Debug.Print(MatchList(I))
+            Next
+
+            Match1A = MatchList(Form1.randomizer.Next(0, MatchList.Count))
+            MatchList.Remove(Match1A)
+            Match2A = MatchList(Form1.randomizer.Next(0, MatchList.Count))
+            MatchList.Remove(Match2A)
+            Match3A = MatchList(Form1.randomizer.Next(0, MatchList.Count))
+            MatchList.Remove(Match3A)
+            Match4A = MatchList(Form1.randomizer.Next(0, MatchList.Count))
+            MatchList.Remove(Match4A)
+            Match5A = MatchList(Form1.randomizer.Next(0, MatchList.Count))
+            MatchList.Remove(Match5A)
+            Match6A = MatchList(Form1.randomizer.Next(0, MatchList.Count))
+            MatchList.Remove(Match6A)
+
+            Match1B = MatchList(Form1.randomizer.Next(0, MatchList.Count))
+            MatchList.Remove(Match1B)
+            Match2B = MatchList(Form1.randomizer.Next(0, MatchList.Count))
+            MatchList.Remove(Match2B)
+            Match3B = MatchList(Form1.randomizer.Next(0, MatchList.Count))
+            MatchList.Remove(Match3B)
+            Match4B = MatchList(Form1.randomizer.Next(0, MatchList.Count))
+            MatchList.Remove(Match4B)
+            Match5B = MatchList(Form1.randomizer.Next(0, MatchList.Count))
+            MatchList.Remove(Match5B)
+            Match6B = MatchList(Form1.randomizer.Next(0, MatchList.Count))
+            MatchList.Remove(Match6B)
+
+            Match1C = MatchList(Form1.randomizer.Next(0, MatchList.Count))
+            MatchList.Remove(Match1C)
+            Match2C = MatchList(Form1.randomizer.Next(0, MatchList.Count))
+            MatchList.Remove(Match2C)
+            Match3C = MatchList(Form1.randomizer.Next(0, MatchList.Count))
+            MatchList.Remove(Match3C)
+            Match4C = MatchList(Form1.randomizer.Next(0, MatchList.Count))
+            MatchList.Remove(Match4C)
+            Match5C = MatchList(Form1.randomizer.Next(0, MatchList.Count))
+            MatchList.Remove(Match5C)
+            Match6C = MatchList(Form1.randomizer.Next(0, MatchList.Count))
+            'MatchList.Remove(Match6C)
+
+            RevealTick = 3
+            RevealCards = False
+            CardRevealTimer.Start()
+            Do
+                Application.DoEvents()
+
+            Loop Until RevealCards = True
+            RevealCards = False
+
+            EraseCards()
+
+            ClearMatchCache()
+
+
+
+
+            M1A.Load(CardBackImage)
+            M2A.Load(CardBackImage)
+            M3A.Load(CardBackImage)
+            M4A.Load(CardBackImage)
+            M5A.Load(CardBackImage)
+            M6A.Load(CardBackImage)
+
+            M1B.Load(CardBackImage)
+            M2B.Load(CardBackImage)
+            M3B.Load(CardBackImage)
+            M4B.Load(CardBackImage)
+            M5B.Load(CardBackImage)
+            M6B.Load(CardBackImage)
+
+            M1C.Load(CardBackImage)
+            M2C.Load(CardBackImage)
+            M3C.Load(CardBackImage)
+            M4C.Load(CardBackImage)
+            M5C.Load(CardBackImage)
+            M6C.Load(CardBackImage)
+
+
+            LBLMatchChance.Text = MatchChance & " Chances Left"
+
+            BTNMatchEasy.Enabled = False
+            BTNMatchNormal.Enabled = False
+            BTNMatchHard.Enabled = False
+
+            DealMatchCards()
+
+            If FrmSettings.CBGameSounds.Checked = True And File.Exists(Application.StartupPath & "\Audio\System\CardShuffle.wav") Then
+                GameWMP.settings.setMode("loop", False)
+                GameWMP.settings.volume = 20
+                GameWMP.URL = Application.StartupPath & "\Audio\System\CardShuffle.wav"
+            End If
+            'My.Computer.Audio.Play(Application.StartupPath & "\Audio\System\CardShuffle.wav")
+
+            ShuffleTick = 19
+            ShuffleTimer.Start()
+
+
+        End If
+
+    End Sub
+
 
     Public Sub CheckMatchTemp()
 
@@ -621,7 +1160,7 @@ Public Class FrmCardList
             End Try
             M6B.Load(CardBackImage)
         End If
-       
+
         If M1C.Enabled = True Then
             Try
                 M1C.Image.Dispose()
@@ -670,7 +1209,7 @@ Public Class FrmCardList
             End Try
             M6C.Load(CardBackImage)
         End If
-      
+
         Try
             GC.Collect()
         Catch
@@ -1242,7 +1781,7 @@ Public Class FrmCardList
 
     End Sub
 
-  
+
 
     Private Sub Button2_Click(sender As System.Object, e As System.EventArgs) Handles Button2.Click
 
@@ -1367,8 +1906,8 @@ Public Class FrmCardList
         Slot2Val = randomizer.Next(0, 18)
         Try
             Slot2.Image.Dispose()
-        GC.Collect()
-        catch
+            GC.Collect()
+        Catch
         End Try
         Slot2.Load(SlotList(Slot2Val))
 
@@ -1625,9 +2164,6 @@ Public Class FrmCardList
 
     Private Sub Button8_Click(sender As System.Object, e As System.EventArgs) Handles BTNMatchEasy.Click
 
-
-
-
         If Form1.BronzeTokens < 1 Then Return
 
         InitializeCards()
@@ -1637,44 +2173,26 @@ Public Class FrmCardList
             Return
         End If
 
-
         EraseCards()
+
         Form1.BronzeTokens -= 1
         My.Settings.BronzeTokens = Form1.BronzeTokens
         My.Settings.Save()
         LBLMatchTokens.Text = Form1.BronzeTokens
 
-        InitializeCards()
-
+        CardSetup = True
 
         MatchChance = 15
         MatchesMade = 0
-        MatchPot = 5
+        MatchPot = 3
 
-        LBLMatchChance.Text = MatchChance & " Chances Left"
-
-        BTNMatchEasy.Enabled = False
-        BTNMatchNormal.Enabled = False
-        BTNMatchHard.Enabled = False
-
-
-
-        If FrmSettings.CBGameSounds.Checked = True And File.Exists(Application.StartupPath & "\Audio\System\CardShuffle.wav") Then
-            GameWMP.settings.setMode("loop", False)
-            GameWMP.settings.volume = 20
-            GameWMP.URL = Application.StartupPath & "\Audio\System\CardShuffle.wav"
-        End If
-        'My.Computer.Audio.Play(Application.StartupPath & "\Audio\System\CardShuffle.wav")
-
-        ShuffleTick = 19
-        ShuffleTimer.Start()
-
+        MatchGameStart()
 
     End Sub
 
     Private Sub BTNMatchNormal_Click(sender As System.Object, e As System.EventArgs) Handles BTNMatchNormal.Click
 
-        If Form1.BronzeTokens < 1 Then Return
+          If Form1.BronzeTokens < 1 Then Return
 
         InitializeCards()
 
@@ -1683,42 +2201,26 @@ Public Class FrmCardList
             Return
         End If
 
-
         EraseCards()
+
         Form1.BronzeTokens -= 1
         My.Settings.BronzeTokens = Form1.BronzeTokens
         My.Settings.Save()
         LBLMatchTokens.Text = Form1.BronzeTokens
 
-        InitializeCards()
+        CardSetup = True
 
         MatchChance = 10
         MatchesMade = 0
-        MatchPot = 25
+        MatchPot = 10
 
-        LBLMatchChance.Text = MatchChance & " Chances Left"
-
-        BTNMatchEasy.Enabled = False
-        BTNMatchNormal.Enabled = False
-        BTNMatchHard.Enabled = False
-
-
-
-        If FrmSettings.CBGameSounds.Checked = True And File.Exists(Application.StartupPath & "\Audio\System\CardShuffle.wav") Then
-            GameWMP.settings.setMode("loop", False)
-            GameWMP.settings.volume = 20
-            GameWMP.URL = Application.StartupPath & "\Audio\System\CardShuffle.wav"
-        End If
-        'My.Computer.Audio.Play(Application.StartupPath & "\Audio\System\CardShuffle.wav")
-
-        ShuffleTick = 19
-        ShuffleTimer.Start()
+        MatchGameStart()
 
     End Sub
 
     Private Sub BTNMatchHard_Click(sender As System.Object, e As System.EventArgs) Handles BTNMatchHard.Click
 
-        If Form1.BronzeTokens < 1 Then Return
+           If Form1.BronzeTokens < 1 Then Return
 
         InitializeCards()
 
@@ -1727,36 +2229,20 @@ Public Class FrmCardList
             Return
         End If
 
-
         EraseCards()
+
         Form1.BronzeTokens -= 1
         My.Settings.BronzeTokens = Form1.BronzeTokens
         My.Settings.Save()
         LBLMatchTokens.Text = Form1.BronzeTokens
 
-        InitializeCards()
+        CardSetup = True
 
         MatchChance = 7
         MatchesMade = 0
-        MatchPot = 100
+        MatchPot = 25
 
-        LBLMatchChance.Text = MatchChance & " Chances Left"
-
-        BTNMatchEasy.Enabled = False
-        BTNMatchNormal.Enabled = False
-        BTNMatchHard.Enabled = False
-
-
-
-        If FrmSettings.CBGameSounds.Checked = True And File.Exists(Application.StartupPath & "\Audio\System\CardShuffle.wav") Then
-            GameWMP.settings.setMode("loop", False)
-            GameWMP.settings.volume = 20
-            GameWMP.URL = Application.StartupPath & "\Audio\System\CardShuffle.wav"
-        End If
-        'My.Computer.Audio.Play(Application.StartupPath & "\Audio\System\CardShuffle.wav")
-
-        ShuffleTick = 19
-        ShuffleTimer.Start()
+        MatchGameStart()
 
 
     End Sub
@@ -1907,7 +2393,7 @@ Public Class FrmCardList
 
         If TCGames.SelectedIndex = 3 Then
 
-        
+
 
             BronzeQ1.Text = My.Settings.B1
             BronzeQ2.Text = My.Settings.B2
@@ -2102,7 +2588,7 @@ Public Class FrmCardList
 
         End If
 
-        
+
 
     End Sub
 
@@ -2137,6 +2623,27 @@ Public Class FrmCardList
         If ShuffleTick = 0 Then
             GameOn = True
             ShuffleTimer.Stop()
+
+            M1A.Enabled = True
+            M2A.Enabled = True
+            M3A.Enabled = True
+            M4A.Enabled = True
+            M5A.Enabled = True
+            M6A.Enabled = True
+
+            M1B.Enabled = True
+            M2B.Enabled = True
+            M3B.Enabled = True
+            M4B.Enabled = True
+            M5B.Enabled = True
+            M6B.Enabled = True
+
+            M1C.Enabled = True
+            M2C.Enabled = True
+            M3C.Enabled = True
+            M4C.Enabled = True
+            M5C.Enabled = True
+            M6C.Enabled = True
         End If
 
 
@@ -2188,7 +2695,7 @@ Public Class FrmCardList
         Booster4.Visible = False
         Booster5.Visible = False
 
-   
+
 
         Try
             Booster1.Image.Dispose()
@@ -2858,8 +3365,8 @@ Public Class FrmCardList
 
     End Sub
 
-  
-   
+
+
 
     Public Sub CheckExchange()
 
@@ -2983,7 +3490,7 @@ Public Class FrmCardList
 
         CheckExchange()
 
-       
+
     End Sub
 
     Private Sub BTNExchange2_Click(sender As System.Object, e As System.EventArgs) Handles BTNExchange2.Click
@@ -3225,4 +3732,17 @@ Public Class FrmCardList
         BTNBoosterBuy.Enabled = True
 
     End Sub
+
+    Private Sub CardRevealTimer_Tick(sender As System.Object, e As System.EventArgs) Handles CardRevealTimer.Tick
+
+        RevealTick -= 1
+
+        If RevealTick < 1 Then
+            CardRevealTimer.Stop()
+            RevealCards = True
+        End If
+
+    End Sub
+
+
 End Class

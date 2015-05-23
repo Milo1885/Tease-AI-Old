@@ -979,7 +979,7 @@ Public Class frmApps
         Form1.sendButton.PerformClick()
     End Sub
 
-    Private Sub Button17_Click(sender As System.Object, e As System.EventArgs) Handles Button17.Click
+    Private Sub Button17_Click(sender As System.Object, e As System.EventArgs)
         Form1.CreateTaskLetter()
     End Sub
 End Class

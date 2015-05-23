@@ -363,7 +363,7 @@ Public Class Form1
     Public synth As New SpeechSynthesizer
     Public synth2 As New SpeechSynthesizer
 
-    Public Fringe As New SpeechSynthesizer
+
 
     Dim OrgasmDenied As Boolean
     Dim OrgasmAllowed As Boolean
@@ -385,7 +385,12 @@ Public Class Form1
 
     Public VTFlag As Boolean
 
+    Private GlitterThr As Threading.Thread
 
+    Public Shared DomPersonality As String
+    Public UpdateList As New List(Of String)
+
+    Public GlitterDocument As String
            
 
     Private Const DISABLE_SOUNDS As Integer = 21
@@ -1278,6 +1283,8 @@ ByVal lpstrReturnString As String, ByVal uReturnLength As Integer, ByVal hwndCal
         PictureStrip.Items(2).Enabled = False
         PictureStrip.Items(3).Enabled = False
 
+        DomPersonality = FrmSettings.dompersonalityComboBox.Text
+
         FormLoading = False
 
     End Sub
@@ -1464,7 +1471,11 @@ ByVal lpstrReturnString As String, ByVal uReturnLength As Integer, ByVal hwndCal
 
 
                     If FrmSettings.CBHonorificInclude.Checked = True Then
-                        If Not UCase(ChatString).Contains(UCase(FrmSettings.TBHonorific.Text)) Then
+
+                        If WordExists(UCase(ChatString), UCase(FrmSettings.TBHonorific.Text)) = False Then
+
+                            'If InStr(UCase(ChatString), (UCase(FrmSettings.TBHonorific.Text))) = 0 Then
+                            'If Not UCase(ChatString).Contains(UCase(FrmSettings.TBHonorific.Text)) Then
                             DomChat = SplitParts(i) & " what?"
                             If FrmSettings.LCaseCheckBox.Checked = False Then
                                 Dim DomU As String = UCase(DomChat.Substring(0, 1))
@@ -1474,8 +1485,13 @@ ByVal lpstrReturnString As String, ByVal uReturnLength As Integer, ByVal hwndCal
                             TypingDelay()
                             Return
                         End If
+
+
+
+
                         If FrmSettings.CBHonorificCapitalized.Checked = True Then
-                            If Not ChatString.Contains(FrmSettings.TBHonorific.Text) Then
+                            If WordExists(ChatString, Capitalize(FrmSettings.TBHonorific.Text)) = False Then
+                                'If Not ChatString.Contains(FrmSettings.TBHonorific.Text) Then
                                 DomChat = "#CapitalizeHonorific"
                                 TypingDelay()
                                 Return
@@ -6568,51 +6584,8 @@ CensorConstant:
 
         UpdatingPost = True
 
-        Dim UpdateList As New List(Of String)
-        UpdateList.Clear()
 
-        If FrmSettings.CBTease.Checked = True Then
-            For Each foundFile As String In My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Scripts\" & FrmSettings.dompersonalityComboBox.Text & "\Apps\Glitter\Tease\", FileIO.SearchOption.SearchTopLevelOnly, "*.txt")
-                UpdateList.Add(foundFile)
-            Next
-        End If
-
-        If FrmSettings.CBEgotist.Checked = True Then
-            For Each foundFile As String In My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Scripts\" & FrmSettings.dompersonalityComboBox.Text & "\Apps\Glitter\Egotist\", FileIO.SearchOption.SearchTopLevelOnly, "*.txt")
-                UpdateList.Add(foundFile)
-            Next
-        End If
-
-        If FrmSettings.CBTrivia.Checked = True Then
-            For Each foundFile As String In My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Scripts\" & FrmSettings.dompersonalityComboBox.Text & "\Apps\Glitter\Trivia\", FileIO.SearchOption.SearchTopLevelOnly, "*.txt")
-                UpdateList.Add(foundFile)
-            Next
-        End If
-
-        If FrmSettings.CBDaily.Checked = True Then
-            For Each foundFile As String In My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Scripts\" & FrmSettings.dompersonalityComboBox.Text & "\Apps\Glitter\Daily\", FileIO.SearchOption.SearchTopLevelOnly, "*.txt")
-                UpdateList.Add(foundFile)
-            Next
-        End If
-
-        If FrmSettings.CBCustom1.Checked = True Then
-            For Each foundFile As String In My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Scripts\" & FrmSettings.dompersonalityComboBox.Text & "\Apps\Glitter\Custom 1\", FileIO.SearchOption.SearchTopLevelOnly, "*.txt")
-                UpdateList.Add(foundFile)
-            Next
-        End If
-
-        If FrmSettings.CBCustom2.Checked = True Then
-            For Each foundFile As String In My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Scripts\" & FrmSettings.dompersonalityComboBox.Text & "\Apps\Glitter\Custom 2\", FileIO.SearchOption.SearchTopLevelOnly, "*.txt")
-                UpdateList.Add(foundFile)
-            Next
-        End If
-
-        If UpdateList.Count < 1 Then
-            FrmSettings.CBGlitterFeed.Checked = False
-            MessageBox.Show(Me, "Tease AI attempted to create a Glitter update, but no files were found! Please make sure at least one category containing Glitter txt files has been selected." & Environment.NewLine _
-                                   & Environment.NewLine & "Glitter feed has been automatically disabled.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Hand)
-            Return
-        End If
+       
 
         StatusText = UpdateList(randomizer.Next(0, UpdateList.Count))
 
@@ -6631,6 +6604,9 @@ CensorConstant:
             TempUpdates += 1
             lines.Add(ioFile.ReadLine())
         End While
+
+        ioFile.Close()
+        ioFile.Dispose()
 
 
         For i As Integer = lines.Count - 1 To 0 Step -1
@@ -6665,16 +6641,16 @@ CensorConstant:
         Debug.Print(DPic)
 
         Dim StatusName As String
+
+
         StatusName = StatusUpdates.DocumentText & "<img class=""floatright"" style="" float: left; width: 48; height: 48; border: 0;"" src=""" & DPic & """> <font face=""Cambria"" size=""3"" color=""" & GlitterNCDomme & """><b>" & domName.Text & "</b></font> <br><font face=""Cambria"" size=""2"" color=""DarkGray"">" & Date.Today & "</font><br><br>"
         StatusUpdates.DocumentText = StatusName & "<font face=""Cambria"" size=""2"" color=""Black"">" & StatusText & "</font><br><br>"
 
         'Debug.Print(GlitterImageAV)
         Debug.Print("Clear Stage 2")
 
-        While StatusUpdates.ReadyState <> WebBrowserReadyState.Complete
-            Application.DoEvents()
-        End While
-        StatusUpdates.Document.Window.ScrollTo(Int16.MaxValue, Int16.MaxValue)
+    
+
 
         Dim StatusLines1 As New List(Of String)
         For i As Integer = 1 To lines.Count - 1
@@ -6737,8 +6713,7 @@ CensorConstant:
         ''Debug.Print("StatusLine = " & StatusLine)
 
 
-        ioFile.Close()
-        ioFile.Dispose()
+   
 
         StatusText1 = StatusText1.Replace("#ShortName", FrmSettings.TBGlitterShortName.Text)
         StatusText2 = StatusText2.Replace("#ShortName", FrmSettings.TBGlitterShortName.Text)
@@ -6872,10 +6847,8 @@ StatusUpdate1:
         If StatusChance1 < FrmSettings.GlitterSlider1.Value * 10 And FrmSettings.CBGlitter1.Checked = True Then
             StatusName = StatusUpdates.DocumentText & "<img class=""floatright"" style="" float: left; width: 32; height: 32; border: 0;"" src=""" & S1Pic & """> <font face=""Cambria"" size=""3"" color=""" & GlitterNC1 & """><b>" & FrmSettings.TBGlitter1.Text & "</b></font><br> <font face=""Cambria"" size=""2"" color=""DarkGray"">" & Date.Today & "</font><br>" ' & "<font face=""Cambria"" size=""2"" color=""DarkGray"">" & TimeOfDay & "</font><br>"
             StatusUpdates.DocumentText = StatusName & "<font face=""Cambria"" size=""2"" color=""Black"">" & StatusText1 & "</font><br><br>"
-            While StatusUpdates.ReadyState <> WebBrowserReadyState.Complete
-                Application.DoEvents()
-            End While
-            StatusUpdates.Document.Window.ScrollTo(Int16.MaxValue, Int16.MaxValue)
+       
+
         End If
 
         Update1 = True
@@ -6892,10 +6865,7 @@ StatusUpdate2:
             StatusName = StatusUpdates.DocumentText & "<img class=""floatright"" style="" float: left; width: 32; height: 32; border: 0;"" src=""" & S2Pic & """> <font face=""Cambria"" size=""3"" color=""" & GlitterNC2 & """><b>" & FrmSettings.TBGlitter2.Text & "</b></font><br> <font face=""Cambria"" size=""2"" color=""DarkGray"">" & Date.Today & "</font><br>" ' & "<font face=""Cambria"" size=""2"" color=""DarkGray"">" & TimeOfDay & "</font><br>"
             StatusUpdates.DocumentText = StatusName & "<font face=""Cambria"" size=""2"" color=""Black"">" & StatusText2 & "</font><br><br>"
 
-            While StatusUpdates.ReadyState <> WebBrowserReadyState.Complete
-                Application.DoEvents()
-            End While
-            StatusUpdates.Document.Window.ScrollTo(Int16.MaxValue, Int16.MaxValue)
+       
         End If
 
         Update2 = True
@@ -6912,10 +6882,7 @@ StatusUpdate3:
             StatusName = StatusUpdates.DocumentText & "<img class=""floatright"" style="" float: left; width: 32; height: 32; border: 0;"" src=""" & S3Pic & """> <font face=""Cambria"" size=""3"" color=""" & GlitterNC3 & """><b>" & FrmSettings.TBGlitter3.Text & "</b></font><br> <font face=""Cambria"" size=""2"" color=""DarkGray"">" & Date.Today & "</font><br>" ' & "<font face=""Cambria"" size=""2"" color=""DarkGray"">" & TimeOfDay & "</font><br>"
             StatusUpdates.DocumentText = StatusName & "<font face=""Cambria"" size=""2"" color=""Black"">" & StatusText3 & "</font><br><br>"
 
-            While StatusUpdates.ReadyState <> WebBrowserReadyState.Complete
-                Application.DoEvents()
-            End While
-            StatusUpdates.Document.Window.ScrollTo(Int16.MaxValue, Int16.MaxValue)
+     
         End If
 
         Update3 = True
@@ -6923,8 +6890,7 @@ StatusUpdate3:
 
 StatusUpdateEnd:
 
-        ioFile.Close()
-        ioFile.Dispose()
+     
 
         StatusText = "Null" & Environment.NewLine & "Null" & Environment.NewLine & "Null" & Environment.NewLine & "Null" & Environment.NewLine
 
@@ -7094,7 +7060,7 @@ StatusUpdateEnd:
 
     Private Sub UpdatesTimer_Tick(sender As System.Object, e As System.EventArgs) Handles UpdatesTimer.Tick
 
-        'Debug.Print("updates tick = " & UpdatesTick)
+        Debug.Print("updates tick = " & UpdatesTick)
 
         If FrmSettings.CBSettingsPause.Checked = True And FrmSettings.SettingsPanel.Visible = True Then Return
 
@@ -7102,10 +7068,62 @@ StatusUpdateEnd:
 
             UpdatesTick -= 1
 
-            If UpdatesTick = 0 Then
+            If UpdatesTick < 1 Then
+
+                UpdatesTick = 120
+
+                UpdateList.Clear()
+
+                If FrmSettings.CBTease.Checked = True Then
+                    For Each foundFile As String In My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Scripts\" & FrmSettings.dompersonalityComboBox.Text & "\Apps\Glitter\Tease\", FileIO.SearchOption.SearchTopLevelOnly, "*.txt")
+                        UpdateList.Add(foundFile)
+                    Next
+                End If
+
+                If FrmSettings.CBEgotist.Checked = True Then
+                    For Each foundFile As String In My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Scripts\" & FrmSettings.dompersonalityComboBox.Text & "\Apps\Glitter\Egotist\", FileIO.SearchOption.SearchTopLevelOnly, "*.txt")
+                        UpdateList.Add(foundFile)
+                    Next
+                End If
+
+                If FrmSettings.CBTrivia.Checked = True Then
+                    For Each foundFile As String In My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Scripts\" & FrmSettings.dompersonalityComboBox.Text & "\Apps\Glitter\Trivia\", FileIO.SearchOption.SearchTopLevelOnly, "*.txt")
+                        UpdateList.Add(foundFile)
+                    Next
+                End If
+
+                If FrmSettings.CBDaily.Checked = True Then
+                    For Each foundFile As String In My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Scripts\" & FrmSettings.dompersonalityComboBox.Text & "\Apps\Glitter\Daily\", FileIO.SearchOption.SearchTopLevelOnly, "*.txt")
+                        UpdateList.Add(foundFile)
+                    Next
+                End If
+
+                If FrmSettings.CBCustom1.Checked = True Then
+                    For Each foundFile As String In My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Scripts\" & FrmSettings.dompersonalityComboBox.Text & "\Apps\Glitter\Custom 1\", FileIO.SearchOption.SearchTopLevelOnly, "*.txt")
+                        UpdateList.Add(foundFile)
+                    Next
+                End If
+
+                If FrmSettings.CBCustom2.Checked = True Then
+                    For Each foundFile As String In My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Scripts\" & FrmSettings.dompersonalityComboBox.Text & "\Apps\Glitter\Custom 2\", FileIO.SearchOption.SearchTopLevelOnly, "*.txt")
+                        UpdateList.Add(foundFile)
+                    Next
+                End If
+
+                If UpdateList.Count < 1 Then
+                    FrmSettings.CBGlitterFeed.Checked = False
+                    'MessageBox.Show(Me, "Tease AI attempted to create a Glitter update, but no files were found! Please make sure at least one category containing Glitter txt files has been selected.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Hand)
+                    MessageBox.Show(Me, "Tease AI attempted to create a Glitter update, but no files were found! Please make sure at least one category containing Glitter txt files has been selected." & Environment.NewLine _
+                    & Environment.NewLine & "Glitter feed has been automatically disabled.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Hand)
+                    Return
+                End If
+
+
 
                 StatusUpdatePost()
-                UpdatesTick = 120
+
+
+
             End If
 
         End If
@@ -9839,8 +9857,6 @@ OrgasmDecided:
             AudioClean = Application.StartupPath & "\Audio\" & AudioS(0)
             AudioClean = AudioClean.Replace("\\", "\")
             Try
-                DomWMP.Visible = True
-                mainPictureBox.Visible = False
                 DomWMP.URL = AudioClean
             Catch
                 MessageBox.Show(Me, "\" & AudioS(0) & " was not found in " & Application.StartupPath & "\Audio!" & Environment.NewLine & Environment.NewLine & "Please make sure the file exists and that it is spelled correctly in the script.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Hand)
@@ -13948,6 +13964,19 @@ NoRepeatOFiles:
 
         'TaskText = PoundClean(TaskText)
 
+        Dim AtArray2() As String = Split(TaskText)
+        For i As Integer = 0 To AtArray2.Length - 1
+            'If AtArray(i) = "" Then GoTo AtBreak
+            If AtArray2(i) = "" Then GoTo AtNext
+            If AtArray2(i).Contains("#") Then
+                AtArray2(i) = PoundClean(AtArray2(i))
+            End If
+AtNext:
+
+        Next
+
+        TaskText = Join(AtArray2)
+
 
         Dim TextLines() As String = TaskText.Split(Environment.NewLine)
         Dim TextTemp As String
@@ -13971,18 +14000,7 @@ NoRepeatOFiles:
 
 
 
-        Dim AtArray2() As String = Split(TaskText)
-        For i As Integer = 0 To AtArray2.Length - 1
-            'If AtArray(i) = "" Then GoTo AtBreak
-            If AtArray2(i) = "" Then GoTo AtNext
-            If AtArray2(i).Contains("#") Then
-                AtArray2(i) = PoundClean(AtArray2(i))
-            End If
-AtNext:
-
-        Next
-
-        TaskText = Join(AtArray2)
+        
 
 
         Dim TempDate As String
@@ -16457,5 +16475,34 @@ TryNext:
         End Try
 
     End Sub
+
+   
+
+
+    Private Sub StatusUpdates_DocumentCompleted(sender As Object, e As System.Windows.Forms.WebBrowserDocumentCompletedEventArgs) Handles StatusUpdates.DocumentCompleted
+        Try
+            StatusUpdates.Document.Window.ScrollTo(Int16.MaxValue, Int16.MaxValue)
+        Catch
+        End Try
+    End Sub
+
+    Public Function WordExists(ByVal searchString As String, ByVal findString As String) As Boolean
+
+        Dim returnValue As Boolean = False
+
+        If System.Text.RegularExpressions.Regex.Matches(searchString, "\b" & findString & "\b").Count > 0 Then returnValue = True
+        Return returnValue
+
+    End Function
+
+    Function Capitalize(ByVal val As String) As String
+        If String.IsNullOrEmpty(val) Then
+            Return val
+        End If
+        Dim array() As Char = val.ToCharArray
+        array(0) = Char.ToUpper(array(0))
+        Return New String(array)
+    End Function
+
 
 End Class

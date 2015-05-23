@@ -483,8 +483,6 @@ Partial Class FrmSettings
         Me.Label85 = New System.Windows.Forms.Label()
         Me.TabPage11 = New System.Windows.Forms.TabPage()
         Me.Panel7 = New System.Windows.Forms.Panel()
-        Me.LBLRefreshURL = New System.Windows.Forms.Label()
-        Me.Button3 = New System.Windows.Forms.Button()
         Me.BTNWIContinue = New System.Windows.Forms.Button()
         Me.BTNWIAddandContinue = New System.Windows.Forms.Button()
         Me.BTNWICancel = New System.Windows.Forms.Button()
@@ -845,9 +843,15 @@ Partial Class FrmSettings
         Me.TabPage25 = New System.Windows.Forms.TabPage()
         Me.Panel11 = New System.Windows.Forms.Panel()
         Me.GroupBox20 = New System.Windows.Forms.GroupBox()
+        Me.BTNMaintenanceValidate = New System.Windows.Forms.Button()
+        Me.BTNMaintenanceRefresh = New System.Windows.Forms.Button()
+        Me.Label117 = New System.Windows.Forms.Label()
+        Me.Label116 = New System.Windows.Forms.Label()
+        Me.PBCurrent = New System.Windows.Forms.ProgressBar()
+        Me.BTNMaintenanceCancel = New System.Windows.Forms.Button()
         Me.PBMaintenance = New System.Windows.Forms.ProgressBar()
         Me.LBLMaintenance = New System.Windows.Forms.Label()
-        Me.BTNMaintenance = New System.Windows.Forms.Button()
+        Me.BTNMaintenanceRebuild = New System.Windows.Forms.Button()
         Me.WebToy = New System.Windows.Forms.WebBrowser()
         Me.GroupBox15 = New System.Windows.Forms.GroupBox()
         Me.Label115 = New System.Windows.Forms.Label()
@@ -874,8 +878,27 @@ Partial Class FrmSettings
         Me.OpenScriptDialog = New System.Windows.Forms.OpenFileDialog()
         Me.OpenSettingsDialog = New System.Windows.Forms.OpenFileDialog()
         Me.SaveSettingsDialog = New System.Windows.Forms.SaveFileDialog()
-        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.BWRebuildURLFiles = New System.ComponentModel.BackgroundWorker()
+        Me.BWRefreshURLFiles = New System.ComponentModel.BackgroundWorker()
+        Me.BWValidateLocalFiles = New System.ComponentModel.BackgroundWorker()
+        Me.BWCreateURLFiles = New System.ComponentModel.BackgroundWorker()
+        Me.TabPage26 = New System.Windows.Forms.TabPage()
+        Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.ListBox2 = New System.Windows.Forms.ListBox()
+        Me.ListBox3 = New System.Windows.Forms.ListBox()
+        Me.ListBox4 = New System.Windows.Forms.ListBox()
+        Me.ListBox5 = New System.Windows.Forms.ListBox()
+        Me.Label118 = New System.Windows.Forms.Label()
+        Me.Label120 = New System.Windows.Forms.Label()
+        Me.Label121 = New System.Windows.Forms.Label()
+        Me.Label122 = New System.Windows.Forms.Label()
+        Me.Label123 = New System.Windows.Forms.Label()
+        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.SettingsPanel.SuspendLayout
         Me.SettingsTabs.SuspendLayout
         Me.TabPage1.SuspendLayout
@@ -1089,6 +1112,7 @@ Partial Class FrmSettings
         Me.TabPage5.SuspendLayout
         Me.Panel5.SuspendLayout
         CType(Me.PictureBox3,System.ComponentModel.ISupportInitialize).BeginInit
+        Me.TabPage26.SuspendLayout
         Me.SuspendLayout
         '
         'SettingsPanel
@@ -6799,8 +6823,6 @@ Partial Class FrmSettings
         '
         Me.Panel7.BackColor = System.Drawing.Color.LightGray
         Me.Panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel7.Controls.Add(Me.LBLRefreshURL)
-        Me.Panel7.Controls.Add(Me.Button3)
         Me.Panel7.Controls.Add(Me.BTNWIContinue)
         Me.Panel7.Controls.Add(Me.BTNWIAddandContinue)
         Me.Panel7.Controls.Add(Me.BTNWICancel)
@@ -6825,31 +6847,6 @@ Partial Class FrmSettings
         Me.Panel7.Name = "Panel7"
         Me.Panel7.Size = New System.Drawing.Size(708, 437)
         Me.Panel7.TabIndex = 91
-        '
-        'LBLRefreshURL
-        '
-        Me.LBLRefreshURL.Location = New System.Drawing.Point(400, 7)
-        Me.LBLRefreshURL.Name = "LBLRefreshURL"
-        Me.LBLRefreshURL.Size = New System.Drawing.Size(265, 23)
-        Me.LBLRefreshURL.TabIndex = 170
-        Me.LBLRefreshURL.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'Button3
-        '
-        Me.Button3.BackColor = System.Drawing.Color.LightGray
-        Me.Button3.BackgroundImage = CType(resources.GetObject("Button3.BackgroundImage"),System.Drawing.Image)
-        Me.Button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Button3.FlatAppearance.BorderSize = 0
-        Me.Button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray
-        Me.Button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
-        Me.Button3.ForeColor = System.Drawing.Color.Black
-        Me.Button3.Location = New System.Drawing.Point(671, 6)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(30, 26)
-        Me.Button3.TabIndex = 169
-        Me.Button3.UseVisualStyleBackColor = false
         '
         'BTNWIContinue
         '
@@ -10547,6 +10544,7 @@ Partial Class FrmSettings
         Me.TabControl2.Controls.Add(Me.TabPage24)
         Me.TabControl2.Controls.Add(Me.TabPage8)
         Me.TabControl2.Controls.Add(Me.TabPage15)
+        Me.TabControl2.Controls.Add(Me.TabPage26)
         Me.TabControl2.Location = New System.Drawing.Point(6, 6)
         Me.TabControl2.Name = "TabControl2"
         Me.TabControl2.SelectedIndex = 0
@@ -11076,20 +11074,78 @@ Partial Class FrmSettings
         '
         'GroupBox20
         '
-        Me.GroupBox20.Controls.Add(Me.Button1)
+        Me.GroupBox20.Controls.Add(Me.BTNMaintenanceValidate)
+        Me.GroupBox20.Controls.Add(Me.BTNMaintenanceRefresh)
+        Me.GroupBox20.Controls.Add(Me.Label117)
+        Me.GroupBox20.Controls.Add(Me.Label116)
+        Me.GroupBox20.Controls.Add(Me.PBCurrent)
+        Me.GroupBox20.Controls.Add(Me.BTNMaintenanceCancel)
         Me.GroupBox20.Controls.Add(Me.PBMaintenance)
         Me.GroupBox20.Controls.Add(Me.LBLMaintenance)
-        Me.GroupBox20.Controls.Add(Me.BTNMaintenance)
+        Me.GroupBox20.Controls.Add(Me.BTNMaintenanceRebuild)
         Me.GroupBox20.Location = New System.Drawing.Point(6, 32)
         Me.GroupBox20.Name = "GroupBox20"
-        Me.GroupBox20.Size = New System.Drawing.Size(278, 294)
+        Me.GroupBox20.Size = New System.Drawing.Size(278, 230)
         Me.GroupBox20.TabIndex = 174
         Me.GroupBox20.TabStop = false
         Me.GroupBox20.Text = "Maintenance"
         '
+        'BTNMaintenanceValidate
+        '
+        Me.BTNMaintenanceValidate.Location = New System.Drawing.Point(143, 19)
+        Me.BTNMaintenanceValidate.Name = "BTNMaintenanceValidate"
+        Me.BTNMaintenanceValidate.Size = New System.Drawing.Size(121, 23)
+        Me.BTNMaintenanceValidate.TabIndex = 8
+        Me.BTNMaintenanceValidate.Text = "Validate Local Files"
+        Me.BTNMaintenanceValidate.UseVisualStyleBackColor = true
+        '
+        'BTNMaintenanceRefresh
+        '
+        Me.BTNMaintenanceRefresh.Location = New System.Drawing.Point(15, 19)
+        Me.BTNMaintenanceRefresh.Name = "BTNMaintenanceRefresh"
+        Me.BTNMaintenanceRefresh.Size = New System.Drawing.Size(121, 23)
+        Me.BTNMaintenanceRefresh.TabIndex = 7
+        Me.BTNMaintenanceRefresh.Text = "Refresh URL Files"
+        Me.BTNMaintenanceRefresh.UseVisualStyleBackColor = true
+        '
+        'Label117
+        '
+        Me.Label117.AutoSize = true
+        Me.Label117.Location = New System.Drawing.Point(15, 182)
+        Me.Label117.Name = "Label117"
+        Me.Label117.Size = New System.Drawing.Size(84, 13)
+        Me.Label117.TabIndex = 6
+        Me.Label117.Text = "Overall Progress"
+        '
+        'Label116
+        '
+        Me.Label116.AutoSize = true
+        Me.Label116.Location = New System.Drawing.Point(15, 140)
+        Me.Label116.Name = "Label116"
+        Me.Label116.Size = New System.Drawing.Size(85, 13)
+        Me.Label116.TabIndex = 5
+        Me.Label116.Text = "Current Progress"
+        '
+        'PBCurrent
+        '
+        Me.PBCurrent.Location = New System.Drawing.Point(15, 156)
+        Me.PBCurrent.Name = "PBCurrent"
+        Me.PBCurrent.Size = New System.Drawing.Size(249, 23)
+        Me.PBCurrent.TabIndex = 4
+        '
+        'BTNMaintenanceCancel
+        '
+        Me.BTNMaintenanceCancel.Enabled = false
+        Me.BTNMaintenanceCancel.Location = New System.Drawing.Point(143, 48)
+        Me.BTNMaintenanceCancel.Name = "BTNMaintenanceCancel"
+        Me.BTNMaintenanceCancel.Size = New System.Drawing.Size(121, 23)
+        Me.BTNMaintenanceCancel.TabIndex = 3
+        Me.BTNMaintenanceCancel.Text = "Cancel"
+        Me.BTNMaintenanceCancel.UseVisualStyleBackColor = true
+        '
         'PBMaintenance
         '
-        Me.PBMaintenance.Location = New System.Drawing.Point(15, 246)
+        Me.PBMaintenance.Location = New System.Drawing.Point(15, 197)
         Me.PBMaintenance.Name = "PBMaintenance"
         Me.PBMaintenance.Size = New System.Drawing.Size(249, 23)
         Me.PBMaintenance.TabIndex = 2
@@ -11097,27 +11153,27 @@ Partial Class FrmSettings
         'LBLMaintenance
         '
         Me.LBLMaintenance.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.LBLMaintenance.Location = New System.Drawing.Point(20, 178)
+        Me.LBLMaintenance.Location = New System.Drawing.Point(15, 76)
         Me.LBLMaintenance.Name = "LBLMaintenance"
-        Me.LBLMaintenance.Size = New System.Drawing.Size(244, 61)
+        Me.LBLMaintenance.Size = New System.Drawing.Size(249, 61)
         Me.LBLMaintenance.TabIndex = 1
         Me.LBLMaintenance.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'BTNMaintenance
+        'BTNMaintenanceRebuild
         '
-        Me.BTNMaintenance.Location = New System.Drawing.Point(20, 148)
-        Me.BTNMaintenance.Name = "BTNMaintenance"
-        Me.BTNMaintenance.Size = New System.Drawing.Size(159, 23)
-        Me.BTNMaintenance.TabIndex = 0
-        Me.BTNMaintenance.Text = "Perform Maintenance"
-        Me.BTNMaintenance.UseVisualStyleBackColor = True
+        Me.BTNMaintenanceRebuild.Location = New System.Drawing.Point(15, 48)
+        Me.BTNMaintenanceRebuild.Name = "BTNMaintenanceRebuild"
+        Me.BTNMaintenanceRebuild.Size = New System.Drawing.Size(121, 23)
+        Me.BTNMaintenanceRebuild.TabIndex = 0
+        Me.BTNMaintenanceRebuild.Text = "Rebuild URL Files"
+        Me.BTNMaintenanceRebuild.UseVisualStyleBackColor = true
         '
         'WebToy
         '
-        Me.WebToy.Location = New System.Drawing.Point(16, 385)
+        Me.WebToy.Location = New System.Drawing.Point(16, 379)
         Me.WebToy.MinimumSize = New System.Drawing.Size(20, 20)
         Me.WebToy.Name = "WebToy"
-        Me.WebToy.Size = New System.Drawing.Size(674, 30)
+        Me.WebToy.Size = New System.Drawing.Size(254, 36)
         Me.WebToy.TabIndex = 172
         '
         'GroupBox15
@@ -11126,61 +11182,60 @@ Partial Class FrmSettings
         Me.GroupBox15.Controls.Add(Me.TBWebStop)
         Me.GroupBox15.Controls.Add(Me.TBWebStart)
         Me.GroupBox15.Controls.Add(Me.Label114)
-        Me.GroupBox15.Location = New System.Drawing.Point(6, 332)
+        Me.GroupBox15.Location = New System.Drawing.Point(6, 268)
         Me.GroupBox15.Name = "GroupBox15"
-        Me.GroupBox15.Size = New System.Drawing.Size(694, 95)
+        Me.GroupBox15.Size = New System.Drawing.Size(278, 159)
         Me.GroupBox15.TabIndex = 173
-        Me.GroupBox15.TabStop = False
-        Me.GroupBox15.Text = "If you have a web-controlled sex toy, enter its start/stop URLs here. The domme w" & _
-    "ill activate it when she tells you to start and stop stroking."
+        Me.GroupBox15.TabStop = false
+        Me.GroupBox15.Text = "Web-Controlled Sex Toy"
         '
         'Label115
         '
-        Me.Label115.AutoSize = True
-        Me.Label115.Location = New System.Drawing.Point(354, 24)
+        Me.Label115.AutoSize = true
+        Me.Label115.Location = New System.Drawing.Point(12, 58)
         Me.Label115.Name = "Label115"
-        Me.Label115.Size = New System.Drawing.Size(29, 13)
+        Me.Label115.Size = New System.Drawing.Size(54, 13)
         Me.Label115.TabIndex = 171
-        Me.Label115.Text = "Stop"
+        Me.Label115.Text = "Stop URL"
         '
         'TBWebStop
         '
-        Me.TBWebStop.Location = New System.Drawing.Point(389, 21)
+        Me.TBWebStop.Location = New System.Drawing.Point(10, 72)
         Me.TBWebStop.Name = "TBWebStop"
-        Me.TBWebStop.Size = New System.Drawing.Size(295, 20)
+        Me.TBWebStop.Size = New System.Drawing.Size(254, 20)
         Me.TBWebStop.TabIndex = 170
         '
         'TBWebStart
         '
-        Me.TBWebStart.Location = New System.Drawing.Point(10, 21)
+        Me.TBWebStart.Location = New System.Drawing.Point(10, 33)
         Me.TBWebStart.Name = "TBWebStart"
-        Me.TBWebStart.Size = New System.Drawing.Size(297, 20)
+        Me.TBWebStart.Size = New System.Drawing.Size(254, 20)
         Me.TBWebStart.TabIndex = 167
         '
         'Label114
         '
-        Me.Label114.AutoSize = True
-        Me.Label114.Location = New System.Drawing.Point(313, 24)
+        Me.Label114.AutoSize = true
+        Me.Label114.Location = New System.Drawing.Point(12, 17)
         Me.Label114.Name = "Label114"
-        Me.Label114.Size = New System.Drawing.Size(29, 13)
+        Me.Label114.Size = New System.Drawing.Size(54, 13)
         Me.Label114.TabIndex = 168
-        Me.Label114.Text = "Start"
+        Me.Label114.Text = "Start URL"
         '
         'PictureBox9
         '
         Me.PictureBox9.BackColor = System.Drawing.Color.LightGray
-        Me.PictureBox9.Image = CType(resources.GetObject("PictureBox9.Image"), System.Drawing.Image)
+        Me.PictureBox9.Image = CType(resources.GetObject("PictureBox9.Image"),System.Drawing.Image)
         Me.PictureBox9.Location = New System.Drawing.Point(9, 6)
         Me.PictureBox9.Name = "PictureBox9"
         Me.PictureBox9.Size = New System.Drawing.Size(160, 19)
         Me.PictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
         Me.PictureBox9.TabIndex = 166
-        Me.PictureBox9.TabStop = False
+        Me.PictureBox9.TabStop = false
         '
         'Label148
         '
         Me.Label148.BackColor = System.Drawing.Color.Transparent
-        Me.Label148.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label148.Font = New System.Drawing.Font("Microsoft Sans Serif", 12!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
         Me.Label148.ForeColor = System.Drawing.Color.Black
         Me.Label148.Location = New System.Drawing.Point(7, 6)
         Me.Label148.Name = "Label148"
@@ -11218,17 +11273,17 @@ Partial Class FrmSettings
         '
         'Label113
         '
-        Me.Label113.AutoSize = True
+        Me.Label113.AutoSize = true
         Me.Label113.Location = New System.Drawing.Point(4, 417)
         Me.Label113.Name = "Label113"
         Me.Label113.Size = New System.Drawing.Size(452, 13)
         Me.Label113.TabIndex = 173
-        Me.Label113.Text = "All content contained in or viewed through this program are property of their res" & _
+        Me.Label113.Text = "All content contained in or viewed through this program are property of their res"& _ 
     "pective owners."
         '
         'Label40
         '
-        Me.Label40.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label40.Font = New System.Drawing.Font("Microsoft Sans Serif", 12!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
         Me.Label40.Location = New System.Drawing.Point(35, 273)
         Me.Label40.Name = "Label40"
         Me.Label40.Size = New System.Drawing.Size(638, 24)
@@ -11238,19 +11293,19 @@ Partial Class FrmSettings
         '
         'Label35
         '
-        Me.Label35.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label35.Font = New System.Drawing.Font("Microsoft Sans Serif", 10!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
         Me.Label35.Location = New System.Drawing.Point(32, 107)
         Me.Label35.Name = "Label35"
         Me.Label35.Size = New System.Drawing.Size(641, 77)
         Me.Label35.TabIndex = 170
-        Me.Label35.Text = "This program is freeware. It may be freely distributed." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Do not package or dist" & _
-    "ribute this program with any scripts or additional content." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Please distribute a" & _
+        Me.Label35.Text = "This program is freeware. It may be freely distributed."&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"Do not package or dist"& _ 
+    "ribute this program with any scripts or additional content."&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"Please distribute a"& _ 
     "dditional files separately."
         Me.Label35.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'Label33
         '
-        Me.Label33.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label33.Font = New System.Drawing.Font("Microsoft Sans Serif", 10!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
         Me.Label33.Location = New System.Drawing.Point(32, 191)
         Me.Label33.Name = "Label33"
         Me.Label33.Size = New System.Drawing.Size(641, 77)
@@ -11260,7 +11315,7 @@ Partial Class FrmSettings
         '
         'Label17
         '
-        Me.Label17.AutoSize = True
+        Me.Label17.AutoSize = true
         Me.Label17.Location = New System.Drawing.Point(522, 78)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(93, 13)
@@ -11269,7 +11324,7 @@ Partial Class FrmSettings
         '
         'Label3
         '
-        Me.Label3.AutoSize = True
+        Me.Label3.AutoSize = true
         Me.Label3.Location = New System.Drawing.Point(489, 417)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(215, 13)
@@ -11279,17 +11334,17 @@ Partial Class FrmSettings
         'PictureBox3
         '
         Me.PictureBox3.BackColor = System.Drawing.Color.LightGray
-        Me.PictureBox3.Image = CType(resources.GetObject("PictureBox3.Image"), System.Drawing.Image)
+        Me.PictureBox3.Image = CType(resources.GetObject("PictureBox3.Image"),System.Drawing.Image)
         Me.PictureBox3.Location = New System.Drawing.Point(84, 17)
         Me.PictureBox3.Name = "PictureBox3"
         Me.PictureBox3.Size = New System.Drawing.Size(531, 58)
         Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox3.TabIndex = 166
-        Me.PictureBox3.TabStop = False
+        Me.PictureBox3.TabStop = false
         '
         'Label41
         '
-        Me.Label41.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label41.Font = New System.Drawing.Font("Microsoft Sans Serif", 9!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0,Byte))
         Me.Label41.Location = New System.Drawing.Point(35, 297)
         Me.Label41.Name = "Label41"
         Me.Label41.Size = New System.Drawing.Size(638, 84)
@@ -11300,7 +11355,7 @@ Partial Class FrmSettings
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        Me.OpenFileDialog1.Filter = "JPEG Files (*.jpg)|*.jpg|PNG Files (*.png)|*.png|BMP Files (*.bmp)|*.bmp|All file" & _
+        Me.OpenFileDialog1.Filter = "JPEG Files (*.jpg)|*.jpg|PNG Files (*.png)|*.png|BMP Files (*.bmp)|*.bmp|All file"& _ 
     "s (*.*)|*.*"
         Me.OpenFileDialog1.Title = "Select an image file"
         '
@@ -11328,19 +11383,192 @@ Partial Class FrmSettings
         Me.SaveSettingsDialog.Filter = "TXT Files (*.txt)|*.txt"
         Me.SaveSettingsDialog.Title = "Select a location to save current Domme settings"
         '
-        'BackgroundWorker1
+        'BWRebuildURLFiles
         '
-        Me.BackgroundWorker1.WorkerReportsProgress = True
-        Me.BackgroundWorker1.WorkerSupportsCancellation = True
+        Me.BWRebuildURLFiles.WorkerReportsProgress = true
+        Me.BWRebuildURLFiles.WorkerSupportsCancellation = true
+        '
+        'BWRefreshURLFiles
+        '
+        Me.BWRefreshURLFiles.WorkerReportsProgress = true
+        Me.BWRefreshURLFiles.WorkerSupportsCancellation = true
+        '
+        'BWValidateLocalFiles
+        '
+        '
+        'BWCreateURLFiles
+        '
+        '
+        'TabPage26
+        '
+        Me.TabPage26.BackColor = System.Drawing.Color.LightGray
+        Me.TabPage26.Controls.Add(Me.Button2)
+        Me.TabPage26.Controls.Add(Me.ComboBox1)
+        Me.TabPage26.Controls.Add(Me.TextBox1)
+        Me.TabPage26.Controls.Add(Me.Button1)
+        Me.TabPage26.Controls.Add(Me.RadioButton2)
+        Me.TabPage26.Controls.Add(Me.RadioButton1)
+        Me.TabPage26.Controls.Add(Me.Label123)
+        Me.TabPage26.Controls.Add(Me.Label122)
+        Me.TabPage26.Controls.Add(Me.Label121)
+        Me.TabPage26.Controls.Add(Me.Label120)
+        Me.TabPage26.Controls.Add(Me.Label118)
+        Me.TabPage26.Controls.Add(Me.ListBox5)
+        Me.TabPage26.Controls.Add(Me.ListBox4)
+        Me.TabPage26.Controls.Add(Me.ListBox3)
+        Me.TabPage26.Controls.Add(Me.ListBox2)
+        Me.TabPage26.Controls.Add(Me.ListBox1)
+        Me.TabPage26.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage26.Name = "TabPage26"
+        Me.TabPage26.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage26.Size = New System.Drawing.Size(700, 411)
+        Me.TabPage26.TabIndex = 4
+        Me.TabPage26.Text = "TabPage26"
+        '
+        'ListBox1
+        '
+        Me.ListBox1.FormattingEnabled = true
+        Me.ListBox1.Location = New System.Drawing.Point(24, 64)
+        Me.ListBox1.Name = "ListBox1"
+        Me.ListBox1.Size = New System.Drawing.Size(194, 69)
+        Me.ListBox1.Sorted = true
+        Me.ListBox1.TabIndex = 172
+        '
+        'ListBox2
+        '
+        Me.ListBox2.FormattingEnabled = true
+        Me.ListBox2.Location = New System.Drawing.Point(24, 168)
+        Me.ListBox2.Name = "ListBox2"
+        Me.ListBox2.Size = New System.Drawing.Size(194, 199)
+        Me.ListBox2.Sorted = true
+        Me.ListBox2.TabIndex = 173
+        '
+        'ListBox3
+        '
+        Me.ListBox3.FormattingEnabled = true
+        Me.ListBox3.Location = New System.Drawing.Point(224, 64)
+        Me.ListBox3.Name = "ListBox3"
+        Me.ListBox3.Size = New System.Drawing.Size(194, 69)
+        Me.ListBox3.Sorted = true
+        Me.ListBox3.TabIndex = 174
+        '
+        'ListBox4
+        '
+        Me.ListBox4.FormattingEnabled = true
+        Me.ListBox4.Location = New System.Drawing.Point(224, 168)
+        Me.ListBox4.Name = "ListBox4"
+        Me.ListBox4.Size = New System.Drawing.Size(194, 199)
+        Me.ListBox4.Sorted = true
+        Me.ListBox4.TabIndex = 175
+        '
+        'ListBox5
+        '
+        Me.ListBox5.FormattingEnabled = true
+        Me.ListBox5.Location = New System.Drawing.Point(462, 64)
+        Me.ListBox5.Name = "ListBox5"
+        Me.ListBox5.Size = New System.Drawing.Size(194, 303)
+        Me.ListBox5.Sorted = true
+        Me.ListBox5.TabIndex = 176
+        '
+        'Label118
+        '
+        Me.Label118.AutoSize = true
+        Me.Label118.Location = New System.Drawing.Point(26, 48)
+        Me.Label118.Name = "Label118"
+        Me.Label118.Size = New System.Drawing.Size(29, 13)
+        Me.Label118.TabIndex = 177
+        Me.Label118.Text = "Start"
+        '
+        'Label120
+        '
+        Me.Label120.AutoSize = true
+        Me.Label120.Location = New System.Drawing.Point(226, 48)
+        Me.Label120.Name = "Label120"
+        Me.Label120.Size = New System.Drawing.Size(26, 13)
+        Me.Label120.TabIndex = 178
+        Me.Label120.Text = "End"
+        '
+        'Label121
+        '
+        Me.Label121.AutoSize = true
+        Me.Label121.Location = New System.Drawing.Point(26, 152)
+        Me.Label121.Name = "Label121"
+        Me.Label121.Size = New System.Drawing.Size(42, 13)
+        Me.Label121.TabIndex = 179
+        Me.Label121.Text = "Module"
+        '
+        'Label122
+        '
+        Me.Label122.AutoSize = true
+        Me.Label122.Location = New System.Drawing.Point(226, 152)
+        Me.Label122.Name = "Label122"
+        Me.Label122.Size = New System.Drawing.Size(27, 13)
+        Me.Label122.TabIndex = 180
+        Me.Label122.Text = "Link"
+        '
+        'Label123
+        '
+        Me.Label123.AutoSize = true
+        Me.Label123.Location = New System.Drawing.Point(464, 48)
+        Me.Label123.Name = "Label123"
+        Me.Label123.Size = New System.Drawing.Size(39, 13)
+        Me.Label123.TabIndex = 181
+        Me.Label123.Text = "Playlist"
+        '
+        'RadioButton1
+        '
+        Me.RadioButton1.AutoSize = true
+        Me.RadioButton1.Location = New System.Drawing.Point(29, 381)
+        Me.RadioButton1.Name = "RadioButton1"
+        Me.RadioButton1.Size = New System.Drawing.Size(146, 17)
+        Me.RadioButton1.TabIndex = 182
+        Me.RadioButton1.TabStop = true
+        Me.RadioButton1.Text = "Only Show Playlist Scripts"
+        Me.RadioButton1.UseVisualStyleBackColor = true
+        '
+        'RadioButton2
+        '
+        Me.RadioButton2.AutoSize = true
+        Me.RadioButton2.Location = New System.Drawing.Point(229, 381)
+        Me.RadioButton2.Name = "RadioButton2"
+        Me.RadioButton2.Size = New System.Drawing.Size(147, 17)
+        Me.RadioButton2.TabIndex = 183
+        Me.RadioButton2.TabStop = true
+        Me.RadioButton2.Text = "Show All Available Scripts"
+        Me.RadioButton2.UseVisualStyleBackColor = true
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(185, 148)
+        Me.Button1.Location = New System.Drawing.Point(604, 375)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(79, 23)
-        Me.Button1.TabIndex = 3
-        Me.Button1.Text = "Cancel"
+        Me.Button1.Size = New System.Drawing.Size(52, 23)
+        Me.Button1.TabIndex = 184
+        Me.Button1.Text = "Save"
         Me.Button1.UseVisualStyleBackColor = true
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(462, 377)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(136, 20)
+        Me.TextBox1.TabIndex = 185
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.FormattingEnabled = true
+        Me.ComboBox1.Location = New System.Drawing.Point(462, 17)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(194, 21)
+        Me.ComboBox1.TabIndex = 186
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(366, 15)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(52, 23)
+        Me.Button2.TabIndex = 187
+        Me.Button2.Text = "Clear"
+        Me.Button2.UseVisualStyleBackColor = true
         '
         'FrmSettings
         '
@@ -11619,6 +11847,7 @@ Partial Class FrmSettings
         Me.TabPage25.ResumeLayout(false)
         Me.Panel11.ResumeLayout(false)
         Me.GroupBox20.ResumeLayout(false)
+        Me.GroupBox20.PerformLayout
         Me.GroupBox15.ResumeLayout(false)
         Me.GroupBox15.PerformLayout
         CType(Me.PictureBox9,System.ComponentModel.ISupportInitialize).EndInit
@@ -11626,6 +11855,8 @@ Partial Class FrmSettings
         Me.Panel5.ResumeLayout(false)
         Me.Panel5.PerformLayout
         CType(Me.PictureBox3,System.ComponentModel.ISupportInitialize).EndInit
+        Me.TabPage26.ResumeLayout(false)
+        Me.TabPage26.PerformLayout
         Me.ResumeLayout(false)
 
 End Sub
@@ -12472,14 +12703,37 @@ End Sub
     Friend WithEvents TBWebStart As System.Windows.Forms.TextBox
     Friend WithEvents PictureBox9 As System.Windows.Forms.PictureBox
     Friend WithEvents Label148 As System.Windows.Forms.Label
-    Friend WithEvents Button3 As System.Windows.Forms.Button
-    Friend WithEvents LBLRefreshURL As System.Windows.Forms.Label
     Friend WithEvents GroupBox15 As System.Windows.Forms.GroupBox
     Friend WithEvents WebToy As System.Windows.Forms.WebBrowser
     Friend WithEvents GroupBox20 As System.Windows.Forms.GroupBox
     Friend WithEvents PBMaintenance As System.Windows.Forms.ProgressBar
     Friend WithEvents LBLMaintenance As System.Windows.Forms.Label
-    Friend WithEvents BTNMaintenance As System.Windows.Forms.Button
-    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents BTNMaintenanceRebuild As System.Windows.Forms.Button
+    Friend WithEvents BWRebuildURLFiles As System.ComponentModel.BackgroundWorker
+    Friend WithEvents BTNMaintenanceCancel As System.Windows.Forms.Button
+    Friend WithEvents Label116 As System.Windows.Forms.Label
+    Friend WithEvents PBCurrent As System.Windows.Forms.ProgressBar
+    Friend WithEvents Label117 As System.Windows.Forms.Label
+    Friend WithEvents BWRefreshURLFiles As System.ComponentModel.BackgroundWorker
+    Friend WithEvents BTNMaintenanceRefresh As System.Windows.Forms.Button
+    Friend WithEvents BTNMaintenanceValidate As System.Windows.Forms.Button
+    Friend WithEvents BWValidateLocalFiles As System.ComponentModel.BackgroundWorker
+    Friend WithEvents BWCreateURLFiles As System.ComponentModel.BackgroundWorker
+    Friend WithEvents TabPage26 As System.Windows.Forms.TabPage
+    Friend WithEvents Label123 As System.Windows.Forms.Label
+    Friend WithEvents Label122 As System.Windows.Forms.Label
+    Friend WithEvents Label121 As System.Windows.Forms.Label
+    Friend WithEvents Label120 As System.Windows.Forms.Label
+    Friend WithEvents Label118 As System.Windows.Forms.Label
+    Friend WithEvents ListBox5 As System.Windows.Forms.ListBox
+    Friend WithEvents ListBox4 As System.Windows.Forms.ListBox
+    Friend WithEvents ListBox3 As System.Windows.Forms.ListBox
+    Friend WithEvents ListBox2 As System.Windows.Forms.ListBox
+    Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
+    Friend WithEvents Button2 As System.Windows.Forms.Button
+    Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
+    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
     Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents RadioButton2 As System.Windows.Forms.RadioButton
+    Friend WithEvents RadioButton1 As System.Windows.Forms.RadioButton
 End Class
