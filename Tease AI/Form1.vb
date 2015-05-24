@@ -548,10 +548,10 @@ ByVal lpstrReturnString As String, ByVal uReturnLength As Integer, ByVal hwndCal
 
         CoInternetSetFeatureEnabled(DISABLE_SOUNDS, SET_FEATURE_ON_PROCESS, True)
 
-    
 
-        If File.Exists(My.Settings.DomAvatarSave) Then domAvatar.Load(My.Settings.DomAvatarSave)
-        If File.Exists(My.Settings.SubAvatarSave) Then subAvatar.Load(My.Settings.SubAvatarSave)
+
+        If File.Exists(My.Settings.DomAvatarSave) Then domAvatar.LoadFromUrl(My.Settings.DomAvatarSave)
+        If File.Exists(My.Settings.SubAvatarSave) Then subAvatar.LoadFromUrl(My.Settings.SubAvatarSave)
 
 
         For Each comboitem As String In My.Settings.RecentSlideshows
@@ -614,10 +614,10 @@ ByVal lpstrReturnString As String, ByVal uReturnLength As Integer, ByVal hwndCal
 
         If My.Settings.CBCensorConstant = True Then FrmSettings.CBCensorConstant.Checked = True
 
-        If File.Exists(My.Settings.GlitterAV) Then FrmSettings.GlitterAV.Load(My.Settings.GlitterAV)
-        If File.Exists(My.Settings.GlitterAV1) Then FrmSettings.GlitterAV1.Load(My.Settings.GlitterAV1)
-        If File.Exists(My.Settings.GlitterAV2) Then FrmSettings.GlitterAV2.Load(My.Settings.GlitterAV2)
-        If File.Exists(My.Settings.GlitterAV3) Then FrmSettings.GlitterAV3.Load(My.Settings.GlitterAV3)
+        If File.Exists(My.Settings.GlitterAV) Then FrmSettings.GlitterAV.LoadFromUrl(My.Settings.GlitterAV)
+        If File.Exists(My.Settings.GlitterAV1) Then FrmSettings.GlitterAV1.LoadFromUrl(My.Settings.GlitterAV1)
+        If File.Exists(My.Settings.GlitterAV2) Then FrmSettings.GlitterAV2.LoadFromUrl(My.Settings.GlitterAV2)
+        If File.Exists(My.Settings.GlitterAV3) Then FrmSettings.GlitterAV3.LoadFromUrl(My.Settings.GlitterAV3)
 
 
 
@@ -3746,7 +3746,7 @@ AcceptAnswer:
                 'TempVal = randomizer.Next(0, ImageLine + 1)
                 ''Debug.Print("TempVal = " & TempVal)
 
-                'subAvatar.Load(ImageLines(TempVal))
+                'subAvatar.LoadFromUrl(ImageLines(TempVal))
 
 
                 Dim EmbedImageDoc As New XmlDocument()
@@ -7048,7 +7048,7 @@ StatusUpdateEnd:
             Catch
             End Try
 
-            domAvatar.Load(OpenFileDialog1.FileName)
+            domAvatar.LoadFromUrl(OpenFileDialog1.FileName)
             My.Settings.DomAvatarSave = OpenFileDialog1.FileName
             My.Settings.Save()
         End If
@@ -7062,7 +7062,7 @@ StatusUpdateEnd:
                 GC.Collect()
             Catch
             End Try
-            subAvatar.Load(OpenFileDialog1.FileName)
+            subAvatar.LoadFromUrl(OpenFileDialog1.FileName)
             My.Settings.SubAvatarSave = OpenFileDialog1.FileName
             My.Settings.Save()
         End If
@@ -7738,7 +7738,7 @@ RinseLatherRepeat:
             ImageClean = Application.StartupPath & "\Images\" & ImageS(0)
             ImageClean = ImageClean.Replace("\\", "\")
             Try
-                mainPictureBox.Load(ImageClean)
+                mainPictureBox.LoadFromUrl(ImageClean)
             Catch
                 MessageBox.Show(Me, "\" & ImageS(0) & " was not found in " & Application.StartupPath & "\Images!" & Environment.NewLine & Environment.NewLine & "Please make sure the file exists and that it is spelled correctly in the script.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Hand)
             End Try
@@ -8857,7 +8857,7 @@ OrgasmDecided:
         If StringClean.Contains("@ShowButtImage") Then
             JustShowedBlogImage = True
             GetTnAList()
-            mainPictureBox.Load(AssList(randomizer.Next(0, AssList.Count)))
+            mainPictureBox.LoadFromUrl(AssList(randomizer.Next(0, AssList.Count)))
             ShowImageInfo()
             StringClean = StringClean.Replace("@ShowButtImage", "")
         End If
@@ -8865,7 +8865,7 @@ OrgasmDecided:
         If StringClean.Contains("@ShowBoobsImage") Then
             JustShowedBlogImage = True
             GetTnAList()
-            mainPictureBox.Load(BoobList(randomizer.Next(0, BoobList.Count)))
+            mainPictureBox.LoadFromUrl(BoobList(randomizer.Next(0, BoobList.Count)))
             ShowImageInfo()
             StringClean = StringClean.Replace("@ShowBoobsImage", "")
         End If
@@ -9479,7 +9479,7 @@ OrgasmDecided:
             JustShowedBlogImage = True
 
 
-            mainPictureBox.Load(FoundString)
+            mainPictureBox.LoadFromUrl(FoundString)
             ShowImageInfo()
 
 
@@ -9697,7 +9697,7 @@ OrgasmDecided:
 
             mainPictureBox.BackgroundImage = Nothing
             mainPictureBox.Refresh()
-            mainPictureBox.Load(Application.StartupPath & "\Images\System\Black.jpg")
+            mainPictureBox.LoadFromUrl(Application.StartupPath & "\Images\System\Black.jpg")
 
             If FrmSettings.CBDomDel.Checked = True Then
                 Try
@@ -12697,7 +12697,7 @@ VTSkip:
 
 
 
-        mainPictureBox.Load(FoundString)
+        mainPictureBox.LoadFromUrl(FoundString)
         ShowImageInfo()
         
 
@@ -13134,7 +13134,7 @@ AlreadySeen:
         Try
 
             JustShowedBlogImage = True
-            mainPictureBox.Load(FoundString)
+            mainPictureBox.LoadFromUrl(FoundString)
             ShowImageInfo()
 
             If FrmSettings.CBBlogImageWindow.Checked = True Then
@@ -13236,14 +13236,14 @@ AlreadySeen:
         PictureStrip.Items(3).Enabled = False
 
 
-        mainPictureBox.Load(FoundString)
+        mainPictureBox.LoadFromUrl(FoundString)
         ShowImageInfo()
-      
+
 
 
     End Sub
 
-   
+
 
     Public Sub RunLinkScript()
 
@@ -13309,7 +13309,7 @@ AlreadySeen:
     Public Sub RunLastScript()
 
         'Debug.Print("RunLastScript() Called")
-        
+
         Dim EndList As New List(Of String)
         EndList.Clear()
 
@@ -13553,7 +13553,7 @@ RuinedOrgasm:
                 Dim RepeatChance As Integer = randomizer.Next(0, 101)
 
                 If RepeatChance < 8 * FrmSettings.domlevelNumBox.Value Then
-                  
+
                     EdgeTauntTimer.Stop()
                     HoldEdgeTimer.Stop()
                     HoldEdgeTauntTimer.Stop()
@@ -13755,7 +13755,7 @@ NoRepeatOFiles:
 
 
     Private Sub ChatText_DocumentCompleted(sender As Object, e As System.Windows.Forms.WebBrowserDocumentCompletedEventArgs) Handles ChatText.DocumentCompleted
-       ScrollChatDown()
+        ScrollChatDown()
     End Sub
 
     Private Sub WebBrowser1_Navigating(ByVal sender As Object, ByVal e As System.Windows.Forms.WebBrowserNavigatingEventArgs) Handles ChatText.Navigating
@@ -13794,7 +13794,7 @@ NoRepeatOFiles:
 
         TaskRead = New StreamReader(TaskFile)
         TaskLines.Clear()
-        
+
         While TaskRead.Peek <> -1
             TaskLines.Add(TaskRead.ReadLine())
         End While
@@ -13816,7 +13816,7 @@ NoRepeatOFiles:
 
         TaskRead = New StreamReader(TaskFile)
         TaskLines.Clear()
-      
+
         While TaskRead.Peek <> -1
             TaskLines.Add(TaskRead.ReadLine())
         End While
@@ -13838,7 +13838,7 @@ NoRepeatOFiles:
 
         TaskRead = New StreamReader(TaskFile)
         TaskLines.Clear()
-       
+
 
         While TaskRead.Peek <> -1
             TaskLines.Add(TaskRead.ReadLine())
@@ -13861,7 +13861,7 @@ NoRepeatOFiles:
 
         TaskRead = New StreamReader(TaskFile)
         TaskLines.Clear()
-        
+
 
         While TaskRead.Peek <> -1
             TaskLines.Add(TaskRead.ReadLine())
@@ -13884,7 +13884,7 @@ NoRepeatOFiles:
 
         TaskRead = New StreamReader(TaskFile)
         TaskLines.Clear()
-     
+
 
         While TaskRead.Peek <> -1
             TaskLines.Add(TaskRead.ReadLine())
@@ -13907,7 +13907,7 @@ NoRepeatOFiles:
 
         TaskRead = New StreamReader(TaskFile)
         TaskLines.Clear()
-       
+
         While TaskRead.Peek <> -1
             TaskLines.Add(TaskRead.ReadLine())
         End While
@@ -13928,7 +13928,7 @@ NoRepeatOFiles:
 
         TaskRead = New StreamReader(TaskFile)
         TaskLines.Clear()
-      
+
         While TaskRead.Peek <> -1
             TaskLines.Add(TaskRead.ReadLine())
         End While
@@ -14011,7 +14011,7 @@ AtNext:
 
 
 
-        
+
 
 
         Dim TempDate As String
@@ -14277,7 +14277,7 @@ TryNext:
 
 
 
-       
+
 
 
 
@@ -14384,7 +14384,7 @@ TryNext:
         End If
 
         Dim JOIVideoLine As Integer = randomizer.Next(0, JOIVideos.Count)
-   
+
         DomWMP.Visible = True
         DomWMP.stretchToFit = True
 
@@ -14433,7 +14433,7 @@ TryNext:
     End Sub
 
 
-    
+
 
     Private Sub TnAFastSlides_Tick(sender As System.Object, e As System.EventArgs) Handles TnASlides.Tick
 
@@ -14441,14 +14441,14 @@ TryNext:
 
         If TnARandom < 51 Then
 
-            mainPictureBox.Load(BoobList(randomizer.Next(0, BoobList.Count)))
+            mainPictureBox.LoadFromUrl(BoobList(randomizer.Next(0, BoobList.Count)))
             ShowImageInfo()
             BoobImage = True
             AssImage = False
 
         Else
 
-            mainPictureBox.Load(AssList(randomizer.Next(0, AssList.Count)))
+            mainPictureBox.LoadFromUrl(AssList(randomizer.Next(0, AssList.Count)))
             ShowImageInfo()
             BoobImage = False
             AssImage = True
@@ -14468,447 +14468,447 @@ TryNext:
 
         Dim sVar As String
 
-        sVar = "<head>" & vbCrLf & _
-"  <meta content=""text/html; charset=ISO-8859-1""" & vbCrLf & _
-" http-equiv=""content-type"">" & vbCrLf & _
-"  <title>OKay</title>" & vbCrLf & _
-"</head>" & vbCrLf & _
-"<body>" & vbCrLf & _
-"<span style=""font-weight: bold;""><span" & vbCrLf & _
-" style=""color: red;""><big><span" & vbCrLf & _
-" style=""color: rgb(204, 0, 0);"">@Chance</span></big><span" & vbCrLf & _
-" style=""color: rgb(51, 51, 255);""><big>X</big><span" & vbCrLf & _
-" style=""color: rgb(204, 0, 0);""><big><span" & vbCrLf & _
-" style=""color: rgb(51, 51, 255);"">X</span>( )</big><br>" & vbCrLf & _
-"<span style=""font-weight: bold;""></span></span></span></span></span><span" & vbCrLf & _
-" style=""color: red;""><span style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-" style=""color: rgb(204, 0, 0);""><span style=""color: black;"">Domme" & vbCrLf & _
-"has <span style=""color: rgb(51, 51, 255);"">XX</span>" & vbCrLf & _
-"percent chance of going to the line in parentheses. Similar to the <span" & vbCrLf & _
-" style=""color: rgb(204, 0, 0);"">@Goto( )</span>" & vbCrLf & _
-"&nbsp;Command. For example, <span style=""color: rgb(204, 0, 0);"">@Chance</span></span></span></span></span><span" & vbCrLf & _
-" style=""color: rgb(204, 0, 0);""></span><span" & vbCrLf & _
-" style=""color: red;""><span style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-" style=""color: rgb(204, 0, 0);""><span style=""color: black;""><span" & vbCrLf & _
+        sVar = "<head>" & vbCrLf &
+"  <meta content=""text/html; charset=ISO-8859-1""" & vbCrLf &
+" http-equiv=""content-type"">" & vbCrLf &
+"  <title>OKay</title>" & vbCrLf &
+"</head>" & vbCrLf &
+"<body>" & vbCrLf &
+"<span style=""font-weight: bold;""><span" & vbCrLf &
+" style=""color: red;""><big><span" & vbCrLf &
+" style=""color: rgb(204, 0, 0);"">@Chance</span></big><span" & vbCrLf &
+" style=""color: rgb(51, 51, 255);""><big>X</big><span" & vbCrLf &
+" style=""color: rgb(204, 0, 0);""><big><span" & vbCrLf &
+" style=""color: rgb(51, 51, 255);"">X</span>( )</big><br>" & vbCrLf &
+"<span style=""font-weight: bold;""></span></span></span></span></span><span" & vbCrLf &
+" style=""color: red;""><span style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+" style=""color: rgb(204, 0, 0);""><span style=""color: black;"">Domme" & vbCrLf &
+"has <span style=""color: rgb(51, 51, 255);"">XX</span>" & vbCrLf &
+"percent chance of going to the line in parentheses. Similar to the <span" & vbCrLf &
+" style=""color: rgb(204, 0, 0);"">@Goto( )</span>" & vbCrLf &
+"&nbsp;Command. For example, <span style=""color: rgb(204, 0, 0);"">@Chance</span></span></span></span></span><span" & vbCrLf &
+" style=""color: rgb(204, 0, 0);""></span><span" & vbCrLf &
+" style=""color: red;""><span style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+" style=""color: rgb(204, 0, 0);""><span style=""color: black;""><span" & vbCrLf &
 " style=""color: rgb(204, 0, 0);"">50(Because I Said So)</span>" & vbCrLf
-        sVar = sVar & "would have a 50% chance of going to the next line in the</span></span></span></span><span" & vbCrLf & _
-        " style=""font-weight: bold;""><span style=""color: red;""><span" & vbCrLf & _
-        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""> </span></span></span></span><span" & vbCrLf & _
-        " style=""color: red;""><span style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span" & vbCrLf & _
-        " style=""color: rgb(51, 0, 0);"">script, and 50% chance of" & vbCrLf & _
-        "going to the line (Because I Said So). <span" & vbCrLf & _
-        " style=""color: rgb(51, 51, 255);"">XX</span> must be a" & vbCrLf & _
-        "2-digit number between 01 and 99.</span><br>" & vbCrLf & _
-        "</span></span></span><span" & vbCrLf & _
-        " style=""font-weight: bold;""><span style=""color: red;""><span" & vbCrLf & _
-        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><br>" & vbCrLf & _
-        "</span></span></span></span><span" & vbCrLf & _
-        " style=""font-weight: bold;""><span style=""color: red;""><big><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><br>" & vbCrLf & _
-        "@CheckFlag</span></big><span" & vbCrLf & _
-        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><big><span" & vbCrLf & _
-        " style=""color: rgb(51, 51, 255);""></span>( )</big></span></span></span></span><br>" & vbCrLf & _
-        "<span style=""color: red;""><span" & vbCrLf & _
-        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">The" & vbCrLf & _
+        sVar = sVar & "would have a 50% chance of going to the next line in the</span></span></span></span><span" & vbCrLf &
+        " style=""font-weight: bold;""><span style=""color: red;""><span" & vbCrLf &
+        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""> </span></span></span></span><span" & vbCrLf &
+        " style=""color: red;""><span style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span" & vbCrLf &
+        " style=""color: rgb(51, 0, 0);"">script, and 50% chance of" & vbCrLf &
+        "going to the line (Because I Said So). <span" & vbCrLf &
+        " style=""color: rgb(51, 51, 255);"">XX</span> must be a" & vbCrLf &
+        "2-digit number between 01 and 99.</span><br>" & vbCrLf &
+        "</span></span></span><span" & vbCrLf &
+        " style=""font-weight: bold;""><span style=""color: red;""><span" & vbCrLf &
+        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><br>" & vbCrLf &
+        "</span></span></span></span><span" & vbCrLf &
+        " style=""font-weight: bold;""><span style=""color: red;""><big><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><br>" & vbCrLf &
+        "@CheckFlag</span></big><span" & vbCrLf &
+        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><big><span" & vbCrLf &
+        " style=""color: rgb(51, 51, 255);""></span>( )</big></span></span></span></span><br>" & vbCrLf &
+        "<span style=""color: red;""><span" & vbCrLf &
+        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">The" & vbCrLf &
         "program checks to see if the Flag named in parentheses has been" & vbCrLf
-        sVar = sVar & "created, and will go to that line in the script if it has. Similar to" & vbCrLf & _
-        "the <span style=""color: rgb(204, 0, 0);"">@Goto( )</span>" & vbCrLf & _
-        "Command. For example, <span style=""color: rgb(204, 0, 0);"">@CheckFlag(MyFlag1)</span>" & vbCrLf & _
-        "goes to the next line of the script if the flag MyFlag1 does not exist." & vbCrLf & _
-        "and goes to the line (MyFlag1) if it does. Flags are created with the <span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);"">@SetFlag( )</span>" & vbCrLf & _
-        "Command.</span></span></span></span><br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<span style=""font-weight: bold;""><span" & vbCrLf & _
-        " style=""color: red;""><big><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><br>" & vbCrLf & _
-        "@DislikeBlogImage</span></big></span></span><br>" & vbCrLf & _
-        "<span style=""color: red;""><span" & vbCrLf & _
-        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">The" & vbCrLf & _
-        "program adds the URL address of the most recently displayed blog image" & vbCrLf & _
-        "and adds it to the file ""DislikedImageURLs.txt"" located in" & vbCrLf & _
-        """\Images\System\""<br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "</span></span></span></span><span" & vbCrLf & _
-        " style=""font-weight: bold;""><span style=""color: red;""><big><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);"">@Edge</span></big></span></span><br>" & vbCrLf & _
-        "<span style=""color: red;""><span" & vbCrLf & _
+        sVar = sVar & "created, and will go to that line in the script if it has. Similar to" & vbCrLf &
+        "the <span style=""color: rgb(204, 0, 0);"">@Goto( )</span>" & vbCrLf &
+        "Command. For example, <span style=""color: rgb(204, 0, 0);"">@CheckFlag(MyFlag1)</span>" & vbCrLf &
+        "goes to the next line of the script if the flag MyFlag1 does not exist." & vbCrLf &
+        "and goes to the line (MyFlag1) if it does. Flags are created with the <span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);"">@SetFlag( )</span>" & vbCrLf &
+        "Command.</span></span></span></span><br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<span style=""font-weight: bold;""><span" & vbCrLf &
+        " style=""color: red;""><big><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><br>" & vbCrLf &
+        "@DislikeBlogImage</span></big></span></span><br>" & vbCrLf &
+        "<span style=""color: red;""><span" & vbCrLf &
+        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">The" & vbCrLf &
+        "program adds the URL address of the most recently displayed blog image" & vbCrLf &
+        "and adds it to the file ""DislikedImageURLs.txt"" located in" & vbCrLf &
+        """\Images\System\""<br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "</span></span></span></span><span" & vbCrLf &
+        " style=""font-weight: bold;""><span style=""color: red;""><big><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);"">@Edge</span></big></span></span><br>" & vbCrLf &
+        "<span style=""color: red;""><span" & vbCrLf &
         " style=""color: rgb(51, 51, 255);""><span" & vbCrLf
-        sVar = sVar & " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">This" & vbCrLf & _
-        "Command let's the program now the sub&nbsp;has been told to get to" & vbCrLf & _
-        "the edge of orgasm and begin displaying Edge Taunts. Once the sub lets" & vbCrLf & _
-        "the domme know he has reached the edge, the domme will then decide to" & vbCrLf & _
-        "let him stop stroking or hold it. Modules must contain <span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);"">@StopStroking</span> or" & vbCrLf & _
-        "one of the <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf & _
-        "Commands. <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf & _
-        "Commands can be used in any Linear script.</span></span></span></span><br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<span style=""font-weight: bold;""><span" & vbCrLf & _
-        " style=""color: red;""><big><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);"">@EdgeHold</span></big></span></span><br>" & vbCrLf & _
-        "<span style=""color: red;""><span" & vbCrLf & _
-        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">This" & vbCrLf & _
-        "Command let's the program now the sub&nbsp;has been told to get to" & vbCrLf & _
-        "the edge" & vbCrLf & _
-        "of orgasm and begin displaying Edge Taunts. Once the sub lets the domme" & vbCrLf & _
-        "know he has reached the edge, the domme will make him hold it. Modules" & vbCrLf & _
-        "must contain <span style=""color: rgb(204, 0, 0);"">@StopStroking</span>" & vbCrLf & _
-        "or one of the <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf & _
-        "Commands. <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf & _
+        sVar = sVar & " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">This" & vbCrLf &
+        "Command let's the program now the sub&nbsp;has been told to get to" & vbCrLf &
+        "the edge of orgasm and begin displaying Edge Taunts. Once the sub lets" & vbCrLf &
+        "the domme know he has reached the edge, the domme will then decide to" & vbCrLf &
+        "let him stop stroking or hold it. Modules must contain <span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);"">@StopStroking</span> or" & vbCrLf &
+        "one of the <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf &
+        "Commands. <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf &
+        "Commands can be used in any Linear script.</span></span></span></span><br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<span style=""font-weight: bold;""><span" & vbCrLf &
+        " style=""color: red;""><big><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);"">@EdgeHold</span></big></span></span><br>" & vbCrLf &
+        "<span style=""color: red;""><span" & vbCrLf &
+        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">This" & vbCrLf &
+        "Command let's the program now the sub&nbsp;has been told to get to" & vbCrLf &
+        "the edge" & vbCrLf &
+        "of orgasm and begin displaying Edge Taunts. Once the sub lets the domme" & vbCrLf &
+        "know he has reached the edge, the domme will make him hold it. Modules" & vbCrLf &
+        "must contain <span style=""color: rgb(204, 0, 0);"">@StopStroking</span>" & vbCrLf &
+        "or one of the <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf &
+        "Commands. <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf &
         "Commands can be used in any Linear script.</span></span></span></span><br>" & vbCrLf
-        sVar = sVar & "<br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<span style=""font-weight: bold;""><span" & vbCrLf & _
-        " style=""color: red;""><big><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);"">@EdgeNoHold</span></big></span></span><br>" & vbCrLf & _
-        "<span style=""color: red;""><span" & vbCrLf & _
-        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">This" & vbCrLf & _
-        "Command let's the program now the sub&nbsp;has been told to get to" & vbCrLf & _
-        "the edge" & vbCrLf & _
-        "of orgasm and begin displaying Edge Taunts. Once the sub lets the domme" & vbCrLf & _
-        "know he has reached the edge, the domme will make him stop stroking." & vbCrLf & _
-        "Modules must contain <span style=""color: rgb(204, 0, 0);"">@StopStroking</span>" & vbCrLf & _
-        "or one of the <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf & _
-        "Commands. <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf & _
-        "Commands can be used in any Linear script.</span></span></span></span><br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<span style=""font-weight: bold;""><span" & vbCrLf & _
-        " style=""color: red;""><big><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);"">@EdgeToRuin</span></big></span></span><br>" & vbCrLf & _
-        "<span style=""color: red;""><span" & vbCrLf & _
-        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">This" & vbCrLf & _
+        sVar = sVar & "<br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<span style=""font-weight: bold;""><span" & vbCrLf &
+        " style=""color: red;""><big><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);"">@EdgeNoHold</span></big></span></span><br>" & vbCrLf &
+        "<span style=""color: red;""><span" & vbCrLf &
+        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">This" & vbCrLf &
+        "Command let's the program now the sub&nbsp;has been told to get to" & vbCrLf &
+        "the edge" & vbCrLf &
+        "of orgasm and begin displaying Edge Taunts. Once the sub lets the domme" & vbCrLf &
+        "know he has reached the edge, the domme will make him stop stroking." & vbCrLf &
+        "Modules must contain <span style=""color: rgb(204, 0, 0);"">@StopStroking</span>" & vbCrLf &
+        "or one of the <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf &
+        "Commands. <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf &
+        "Commands can be used in any Linear script.</span></span></span></span><br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<span style=""font-weight: bold;""><span" & vbCrLf &
+        " style=""color: red;""><big><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);"">@EdgeToRuin</span></big></span></span><br>" & vbCrLf &
+        "<span style=""color: red;""><span" & vbCrLf &
+        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">This" & vbCrLf &
         "Command let's the program now the sub&nbsp;has been told to get to" & vbCrLf
-        sVar = sVar & "the edge" & vbCrLf & _
-        "of orgasm and begin displaying Edge Taunts. Once the sub lets the domme" & vbCrLf & _
-        "know he has reached the edge, the domme will then decide to let him" & vbCrLf & _
-        "stop stroking or hold it. In either case, the sub will be instructed to" & vbCrLf & _
-        "ruin his orgasm. Modules must contain <span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);"">@StopStroking</span> or" & vbCrLf & _
-        "one of the <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf & _
-        "Commands. <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf & _
-        "Commands can be used in any Linear script.</span></span></span></span><br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<span style=""font-weight: bold;""><span" & vbCrLf & _
-        " style=""color: red;""><big><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);"">@EdgeToRuinSecret</span></big></span></span><br>" & vbCrLf & _
-        "<span style=""color: red;""><span" & vbCrLf & _
-        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">This" & vbCrLf & _
-        "Command let's the program now the sub&nbsp;has been told to get to" & vbCrLf & _
-        "the edge" & vbCrLf & _
-        "of orgasm and begin displaying Edge Taunts. Once the sub lets the domme" & vbCrLf & _
-        "know he has reached the edge, the domme will then decide to let him" & vbCrLf & _
-        "stop stroking or hold it. In either case, the sub will be instructed to" & vbCrLf & _
-        "ruin his orgasm. This Command will prevent the domme from letting the" & vbCrLf & _
-        "sub know his orgasm will be ruined during Edge and Hold The Edge" & vbCrLf & _
+        sVar = sVar & "the edge" & vbCrLf &
+        "of orgasm and begin displaying Edge Taunts. Once the sub lets the domme" & vbCrLf &
+        "know he has reached the edge, the domme will then decide to let him" & vbCrLf &
+        "stop stroking or hold it. In either case, the sub will be instructed to" & vbCrLf &
+        "ruin his orgasm. Modules must contain <span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);"">@StopStroking</span> or" & vbCrLf &
+        "one of the <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf &
+        "Commands. <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf &
+        "Commands can be used in any Linear script.</span></span></span></span><br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<span style=""font-weight: bold;""><span" & vbCrLf &
+        " style=""color: red;""><big><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);"">@EdgeToRuinSecret</span></big></span></span><br>" & vbCrLf &
+        "<span style=""color: red;""><span" & vbCrLf &
+        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">This" & vbCrLf &
+        "Command let's the program now the sub&nbsp;has been told to get to" & vbCrLf &
+        "the edge" & vbCrLf &
+        "of orgasm and begin displaying Edge Taunts. Once the sub lets the domme" & vbCrLf &
+        "know he has reached the edge, the domme will then decide to let him" & vbCrLf &
+        "stop stroking or hold it. In either case, the sub will be instructed to" & vbCrLf &
+        "ruin his orgasm. This Command will prevent the domme from letting the" & vbCrLf &
+        "sub know his orgasm will be ruined during Edge and Hold The Edge" & vbCrLf &
         "Taunts. Modules must contain <span style=""color: rgb(204, 0, 0);"">@StopStroking</span>" & vbCrLf
-        sVar = sVar & "or one of the <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf & _
-        "Commands. <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf & _
-        "Commands can be used in any Linear script.</span></span></span></span><br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<span style=""font-weight: bold;""><span" & vbCrLf & _
-        " style=""color: red;""><big><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);"">@EdgeToRuinHold</span></big></span></span><br>" & vbCrLf & _
-        "<span style=""color: red;""><span" & vbCrLf & _
-        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">This" & vbCrLf & _
-        "Command let's the program now the sub&nbsp;has been told to get to" & vbCrLf & _
-        "the edge" & vbCrLf & _
-        "of orgasm and begin displaying Edge Taunts. Once the sub lets the domme" & vbCrLf & _
-        "know he has reached the edge, the domme will make him hold it. At some" & vbCrLf & _
-        "point during holding the edge, the sub will be instructed to ruin his" & vbCrLf & _
-        "orgasm. Modules must contain <span style=""color: rgb(204, 0, 0);"">@StopStroking</span>" & vbCrLf & _
-        "or one of the <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf & _
-        "Commands. <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf & _
-        "Commands can be used in any Linear script.</span></span></span></span><br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<span style=""font-weight: bold;""><span" & vbCrLf & _
-        " style=""color: red;""><big><span" & vbCrLf & _
+        sVar = sVar & "or one of the <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf &
+        "Commands. <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf &
+        "Commands can be used in any Linear script.</span></span></span></span><br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<span style=""font-weight: bold;""><span" & vbCrLf &
+        " style=""color: red;""><big><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);"">@EdgeToRuinHold</span></big></span></span><br>" & vbCrLf &
+        "<span style=""color: red;""><span" & vbCrLf &
+        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">This" & vbCrLf &
+        "Command let's the program now the sub&nbsp;has been told to get to" & vbCrLf &
+        "the edge" & vbCrLf &
+        "of orgasm and begin displaying Edge Taunts. Once the sub lets the domme" & vbCrLf &
+        "know he has reached the edge, the domme will make him hold it. At some" & vbCrLf &
+        "point during holding the edge, the sub will be instructed to ruin his" & vbCrLf &
+        "orgasm. Modules must contain <span style=""color: rgb(204, 0, 0);"">@StopStroking</span>" & vbCrLf &
+        "or one of the <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf &
+        "Commands. <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf &
+        "Commands can be used in any Linear script.</span></span></span></span><br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<span style=""font-weight: bold;""><span" & vbCrLf &
+        " style=""color: red;""><big><span" & vbCrLf &
         " style=""color: rgb(204, 0, 0);"">@EdgeToRuinHoldSecret</span></big></span></span><br>" & vbCrLf
-        sVar = sVar & "<span style=""color: red;""><span" & vbCrLf & _
-        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">This" & vbCrLf & _
-        "Command let's the program now the sub&nbsp;has been told to get to" & vbCrLf & _
-        "the edge" & vbCrLf & _
-        "of orgasm and begin displaying Edge Taunts. Once the sub lets the domme" & vbCrLf & _
-        "know he has reached the edge, the domme will make him hold it. At some" & vbCrLf & _
-        "point during holding the edge, the sub will be instructed to ruin his" & vbCrLf & _
-        "orgasm. </span></span></span></span><span" & vbCrLf & _
-        " style=""color: red;""><span style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">This" & vbCrLf & _
-        "Command will prevent the domme from letting the sub know his orgasm" & vbCrLf & _
-        "will be ruined during Edge and Hold The Edge Taunts. </span></span></span></span><span" & vbCrLf & _
-        " style=""color: red;""><span style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">Modules" & vbCrLf & _
-        "must contain <span style=""color: rgb(204, 0, 0);"">@StopStroking</span>" & vbCrLf & _
-        "or one of the <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf & _
-        "Commands. <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf & _
-        "Commands can be used in any Linear script.</span></span></span></span><br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<span style=""font-weight: bold;""><span" & vbCrLf & _
-        " style=""color: red;""><big><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);"">@EdgeToRuinNoHold</span></big></span></span><br>" & vbCrLf & _
+        sVar = sVar & "<span style=""color: red;""><span" & vbCrLf &
+        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">This" & vbCrLf &
+        "Command let's the program now the sub&nbsp;has been told to get to" & vbCrLf &
+        "the edge" & vbCrLf &
+        "of orgasm and begin displaying Edge Taunts. Once the sub lets the domme" & vbCrLf &
+        "know he has reached the edge, the domme will make him hold it. At some" & vbCrLf &
+        "point during holding the edge, the sub will be instructed to ruin his" & vbCrLf &
+        "orgasm. </span></span></span></span><span" & vbCrLf &
+        " style=""color: red;""><span style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">This" & vbCrLf &
+        "Command will prevent the domme from letting the sub know his orgasm" & vbCrLf &
+        "will be ruined during Edge and Hold The Edge Taunts. </span></span></span></span><span" & vbCrLf &
+        " style=""color: red;""><span style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">Modules" & vbCrLf &
+        "must contain <span style=""color: rgb(204, 0, 0);"">@StopStroking</span>" & vbCrLf &
+        "or one of the <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf &
+        "Commands. <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf &
+        "Commands can be used in any Linear script.</span></span></span></span><br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<span style=""font-weight: bold;""><span" & vbCrLf &
+        " style=""color: red;""><big><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);"">@EdgeToRuinNoHold</span></big></span></span><br>" & vbCrLf &
         "<span style=""color: red;""><span" & vbCrLf
-        sVar = sVar & " style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">This" & vbCrLf & _
-        "Command let's the program now the sub&nbsp;has been told to get to" & vbCrLf & _
-        "the edge" & vbCrLf & _
-        "of orgasm and begin displaying Edge Taunts. Once the sub lets the domme" & vbCrLf & _
-        "know he has reached the edge, the domme will make him ruin his" & vbCrLf & _
-        "orgasm.&nbsp;Modules must contain <span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);"">@StopStroking</span> or" & vbCrLf & _
-        "one of the <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf & _
-        "Commands. <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf & _
-        "Commands can be used in any Linear script.</span></span></span></span><br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<span style=""font-weight: bold;""><span" & vbCrLf & _
-        " style=""color: red;""><big><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);"">@EdgeToRuinNoHoldSecret</span></big></span></span><br>" & vbCrLf & _
-        "<span style=""color: red;""><span" & vbCrLf & _
-        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">This" & vbCrLf & _
-        "Command let's the program now the sub&nbsp;has been told to get to" & vbCrLf & _
-        "the edge" & vbCrLf & _
-        "of orgasm and begin displaying Edge Taunts. Once the sub lets the domme" & vbCrLf & _
-        "know he has reached the edge, the domme will make him ruin his" & vbCrLf & _
-        "orgasm.&nbsp;</span></span></span></span><span" & vbCrLf & _
+        sVar = sVar & " style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">This" & vbCrLf &
+        "Command let's the program now the sub&nbsp;has been told to get to" & vbCrLf &
+        "the edge" & vbCrLf &
+        "of orgasm and begin displaying Edge Taunts. Once the sub lets the domme" & vbCrLf &
+        "know he has reached the edge, the domme will make him ruin his" & vbCrLf &
+        "orgasm.&nbsp;Modules must contain <span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);"">@StopStroking</span> or" & vbCrLf &
+        "one of the <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf &
+        "Commands. <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf &
+        "Commands can be used in any Linear script.</span></span></span></span><br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<span style=""font-weight: bold;""><span" & vbCrLf &
+        " style=""color: red;""><big><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);"">@EdgeToRuinNoHoldSecret</span></big></span></span><br>" & vbCrLf &
+        "<span style=""color: red;""><span" & vbCrLf &
+        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">This" & vbCrLf &
+        "Command let's the program now the sub&nbsp;has been told to get to" & vbCrLf &
+        "the edge" & vbCrLf &
+        "of orgasm and begin displaying Edge Taunts. Once the sub lets the domme" & vbCrLf &
+        "know he has reached the edge, the domme will make him ruin his" & vbCrLf &
+        "orgasm.&nbsp;</span></span></span></span><span" & vbCrLf &
         " style=""color: red;""><span style=""color: rgb(51, 51, 255);""><span" & vbCrLf
-        sVar = sVar & " style=""color: rgb(204, 0, 0);""><span style=""color: black;""></span></span></span></span><span" & vbCrLf & _
-        " style=""color: red;""><span style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">This" & vbCrLf & _
-        "Command will prevent the domme from letting the sub know his orgasm" & vbCrLf & _
-        "will be ruined during Edge&nbsp;Taunts.</span></span></span></span><span" & vbCrLf & _
-        " style=""color: red;""><span style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">Modules" & vbCrLf & _
-        "must contain <span style=""color: rgb(204, 0, 0);"">@StopStroking</span>" & vbCrLf & _
-        "or one of the <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf & _
-        "Commands. <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf & _
-        "Commands can be used in any Linear script.</span></span></span></span><br>" & vbCrLf & _
-        "<span style=""color: red;""><span" & vbCrLf & _
-        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span style=""color: black;""><br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "</span></span></span></span><span" & vbCrLf & _
-        " style=""font-weight: bold;""><span style=""color: red;""><big><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);"">@LikeBlogImage</span></big></span></span><br>" & vbCrLf & _
-        "<span style=""color: red;""><span" & vbCrLf & _
-        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">The" & vbCrLf & _
-        "program adds the URL address of the most recently displayed blog image" & vbCrLf & _
-        "and adds it to the file ""LikedImageURLs.txt"" located in" & vbCrLf & _
-        """\Images\System\""</span></span></span></span><br>" & vbCrLf & _
+        sVar = sVar & " style=""color: rgb(204, 0, 0);""><span style=""color: black;""></span></span></span></span><span" & vbCrLf &
+        " style=""color: red;""><span style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">This" & vbCrLf &
+        "Command will prevent the domme from letting the sub know his orgasm" & vbCrLf &
+        "will be ruined during Edge&nbsp;Taunts.</span></span></span></span><span" & vbCrLf &
+        " style=""color: red;""><span style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">Modules" & vbCrLf &
+        "must contain <span style=""color: rgb(204, 0, 0);"">@StopStroking</span>" & vbCrLf &
+        "or one of the <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf &
+        "Commands. <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf &
+        "Commands can be used in any Linear script.</span></span></span></span><br>" & vbCrLf &
+        "<span style=""color: red;""><span" & vbCrLf &
+        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span style=""color: black;""><br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "</span></span></span></span><span" & vbCrLf &
+        " style=""font-weight: bold;""><span style=""color: red;""><big><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);"">@LikeBlogImage</span></big></span></span><br>" & vbCrLf &
+        "<span style=""color: red;""><span" & vbCrLf &
+        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">The" & vbCrLf &
+        "program adds the URL address of the most recently displayed blog image" & vbCrLf &
+        "and adds it to the file ""LikedImageURLs.txt"" located in" & vbCrLf &
+        """\Images\System\""</span></span></span></span><br>" & vbCrLf &
         "<br>" & vbCrLf
-        sVar = sVar & "<span style=""font-weight: bold;""><span" & vbCrLf & _
-        " style=""color: red;""><big><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><br>" & vbCrLf & _
-        "@ShowBlogImage</span></big></span></span><br>" & vbCrLf & _
-        "<span style=""color: red;""><span" & vbCrLf & _
-        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">Displays" & vbCrLf & _
-        "a random online image from one of the user's selected URL Files.</span></span></span></span><br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<span style=""font-weight: bold;""><span" & vbCrLf & _
-        " style=""color: red;""><big><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><br>" & vbCrLf & _
-        "@ShowImage</span></big></span></span><br>" & vbCrLf & _
-        "<span style=""color: red;""><span" & vbCrLf & _
-        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">Has" & vbCrLf & _
-        "a 50% chance of diplaying a random online image from one of the user's" & vbCrLf & _
-        "selected URL Files, or a 50% chance of displaying a </span></span></span></span><span" & vbCrLf & _
-        " style=""color: red;""><span style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">random&nbsp;image" & vbCrLf & _
-        "from one of the user's selected Local Image File paths.</span></span></span></span><br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<span style=""font-weight: bold;""><span" & vbCrLf & _
-        " style=""color: red;""><big><span" & vbCrLf & _
+        sVar = sVar & "<span style=""font-weight: bold;""><span" & vbCrLf &
+        " style=""color: red;""><big><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><br>" & vbCrLf &
+        "@ShowBlogImage</span></big></span></span><br>" & vbCrLf &
+        "<span style=""color: red;""><span" & vbCrLf &
+        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">Displays" & vbCrLf &
+        "a random online image from one of the user's selected URL Files.</span></span></span></span><br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<span style=""font-weight: bold;""><span" & vbCrLf &
+        " style=""color: red;""><big><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><br>" & vbCrLf &
+        "@ShowImage</span></big></span></span><br>" & vbCrLf &
+        "<span style=""color: red;""><span" & vbCrLf &
+        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">Has" & vbCrLf &
+        "a 50% chance of diplaying a random online image from one of the user's" & vbCrLf &
+        "selected URL Files, or a 50% chance of displaying a </span></span></span></span><span" & vbCrLf &
+        " style=""color: red;""><span style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">random&nbsp;image" & vbCrLf &
+        "from one of the user's selected Local Image File paths.</span></span></span></span><br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<span style=""font-weight: bold;""><span" & vbCrLf &
+        " style=""color: red;""><big><span" & vbCrLf &
         " style=""color: rgb(204, 0, 0);""><br>" & vbCrLf
-        sVar = sVar & "@Show</span></big></span></span><span" & vbCrLf & _
-        " style=""font-weight: bold;""><span style=""color: red;""><big><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);"">Image[ ]</span></big></span></span><br>" & vbCrLf & _
-        "<span style=""color: red;""><span" & vbCrLf & _
-        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">Displays" & vbCrLf & _
-        "a specific image noted between the brackets, using ""<span" & vbCrLf & _
-        " style=""font-style: italic;"">Tease AI Root Folder</span>\Images\""" & vbCrLf & _
-        "as the starting path.&nbsp; For example, <span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);"">@ShowImage[1885\secrets05.jpg]</span>" & vbCrLf & _
-        "would display the picture secrets05.jpg located in </span></span></span></span><span" & vbCrLf & _
-        " style=""color: red;""><span style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">""<span" & vbCrLf & _
-        " style=""font-style: italic;"">Tease AI Root Folder</span>\Images\1885\""</span></span></span></span>.<br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<span style=""font-weight: bold;""><span" & vbCrLf & _
-        " style=""color: red;""><big><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><br>" & vbCrLf & _
-        "@ShowLocalImage</span></big></span></span><br>" & vbCrLf & _
-        "<span style=""color: red;""><span" & vbCrLf & _
-        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">Displays" & vbCrLf & _
-        "a random&nbsp;image from one of the user's selected Local Image" & vbCrLf & _
-        "File paths.</span></span></span></span><br>" & vbCrLf & _
+        sVar = sVar & "@Show</span></big></span></span><span" & vbCrLf &
+        " style=""font-weight: bold;""><span style=""color: red;""><big><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);"">Image[ ]</span></big></span></span><br>" & vbCrLf &
+        "<span style=""color: red;""><span" & vbCrLf &
+        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">Displays" & vbCrLf &
+        "a specific image noted between the brackets, using ""<span" & vbCrLf &
+        " style=""font-style: italic;"">Tease AI Root Folder</span>\Images\""" & vbCrLf &
+        "as the starting path.&nbsp; For example, <span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);"">@ShowImage[1885\secrets05.jpg]</span>" & vbCrLf &
+        "would display the picture secrets05.jpg located in </span></span></span></span><span" & vbCrLf &
+        " style=""color: red;""><span style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">""<span" & vbCrLf &
+        " style=""font-style: italic;"">Tease AI Root Folder</span>\Images\1885\""</span></span></span></span>.<br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<span style=""font-weight: bold;""><span" & vbCrLf &
+        " style=""color: red;""><big><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><br>" & vbCrLf &
+        "@ShowLocalImage</span></big></span></span><br>" & vbCrLf &
+        "<span style=""color: red;""><span" & vbCrLf &
+        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">Displays" & vbCrLf &
+        "a random&nbsp;image from one of the user's selected Local Image" & vbCrLf &
+        "File paths.</span></span></span></span><br>" & vbCrLf &
         "<br>" & vbCrLf
-        sVar = sVar & "<br>" & vbCrLf & _
-        "<span style=""font-weight: bold;""><span" & vbCrLf & _
-        " style=""color: red;""><big><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);"">@ShowDislikedImage</span></big></span></span><br>" & vbCrLf & _
-        "<span style=""color: red;""><span" & vbCrLf & _
-        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">Displays" & vbCrLf & _
-        "a random image taken from&nbsp;""DislikedImageURLs.txt"" located in" & vbCrLf & _
-        """\Images\System\""</span></span></span></span><br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<span style=""font-weight: bold;""><span" & vbCrLf & _
-        " style=""color: red;""><big><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);"">@ShowLikedImage</span></big></span></span><br>" & vbCrLf & _
-        "<span style=""color: red;""><span" & vbCrLf & _
-        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">Displays" & vbCrLf & _
-        "a random image taken from&nbsp;""LikedImageURLs.txt"" located in" & vbCrLf & _
-        """\Images\System\""</span></span></span></span><br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<span style=""font-weight: bold;""><span" & vbCrLf & _
-        " style=""color: red;""><big><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);"">@StartStroking</span></big></span></span><br>" & vbCrLf & _
+        sVar = sVar & "<br>" & vbCrLf &
+        "<span style=""font-weight: bold;""><span" & vbCrLf &
+        " style=""color: red;""><big><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);"">@ShowDislikedImage</span></big></span></span><br>" & vbCrLf &
+        "<span style=""color: red;""><span" & vbCrLf &
+        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">Displays" & vbCrLf &
+        "a random image taken from&nbsp;""DislikedImageURLs.txt"" located in" & vbCrLf &
+        """\Images\System\""</span></span></span></span><br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<span style=""font-weight: bold;""><span" & vbCrLf &
+        " style=""color: red;""><big><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);"">@ShowLikedImage</span></big></span></span><br>" & vbCrLf &
+        "<span style=""color: red;""><span" & vbCrLf &
+        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">Displays" & vbCrLf &
+        "a random image taken from&nbsp;""LikedImageURLs.txt"" located in" & vbCrLf &
+        """\Images\System\""</span></span></span></span><br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<span style=""font-weight: bold;""><span" & vbCrLf &
+        " style=""color: red;""><big><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);"">@StartStroking</span></big></span></span><br>" & vbCrLf &
         "<span style=""color: red;""><span" & vbCrLf
-        sVar = sVar & " style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">Begins" & vbCrLf & _
-        "the Taunt cycle. This lets the program know the sub is stroking and" & vbCrLf & _
-        "allows the domme to start using Stroke Taunts. This command MUST be" & vbCrLf & _
-        "used in the line before every <span style=""color: rgb(204, 0, 0);"">@End</span>" & vbCrLf & _
-        "command in each Start and Link script (unless the tease is being ended" & vbCrLf & _
-        "or an Interrupt is called) <span" & vbCrLf & _
-        " style=""font-weight: bold; color: rgb(204, 0, 0);"">Start and" & vbCrLf & _
-        "Link scripts ONLY.</span></span></span></span></span><br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<span style=""font-weight: bold;""><span" & vbCrLf & _
-        " style=""color: red;""><big><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);"">@StartTaunts</span></big></span></span><br>" & vbCrLf & _
-        "<span style=""color: red;""><span" & vbCrLf & _
-        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">Begins" & vbCrLf & _
-        "the Taunt cycle when the sub can't stroke.&nbsp;This lets the" & vbCrLf & _
-        "program know to begin the appropriate Taunt cycle. Currently this is" & vbCrLf & _
-        "only used for for the Chastity state, but may encompass other states in" & vbCrLf & _
-        "the future. This command MUST be" & vbCrLf & _
-        "used in the line before every <span style=""color: rgb(204, 0, 0);"">@End</span>" & vbCrLf & _
-        "command in each Chastity Start and Link script (unless the tease is" & vbCrLf & _
-        "being ended or an Interrupt is called) <span" & vbCrLf & _
+        sVar = sVar & " style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">Begins" & vbCrLf &
+        "the Taunt cycle. This lets the program know the sub is stroking and" & vbCrLf &
+        "allows the domme to start using Stroke Taunts. This command MUST be" & vbCrLf &
+        "used in the line before every <span style=""color: rgb(204, 0, 0);"">@End</span>" & vbCrLf &
+        "command in each Start and Link script (unless the tease is being ended" & vbCrLf &
+        "or an Interrupt is called) <span" & vbCrLf &
+        " style=""font-weight: bold; color: rgb(204, 0, 0);"">Start and" & vbCrLf &
+        "Link scripts ONLY.</span></span></span></span></span><br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<span style=""font-weight: bold;""><span" & vbCrLf &
+        " style=""color: red;""><big><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);"">@StartTaunts</span></big></span></span><br>" & vbCrLf &
+        "<span style=""color: red;""><span" & vbCrLf &
+        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">Begins" & vbCrLf &
+        "the Taunt cycle when the sub can't stroke.&nbsp;This lets the" & vbCrLf &
+        "program know to begin the appropriate Taunt cycle. Currently this is" & vbCrLf &
+        "only used for for the Chastity state, but may encompass other states in" & vbCrLf &
+        "the future. This command MUST be" & vbCrLf &
+        "used in the line before every <span style=""color: rgb(204, 0, 0);"">@End</span>" & vbCrLf &
+        "command in each Chastity Start and Link script (unless the tease is" & vbCrLf &
+        "being ended or an Interrupt is called) <span" & vbCrLf &
         " style=""font-weight: bold; color: rgb(204, 0, 0);"">Chastity" & vbCrLf
-        sVar = sVar & "Start and Link scripts ONLY.</span></span></span></span></span><br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<span style=""font-weight: bold;""><span" & vbCrLf & _
-        " style=""color: red;""><big><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);"">@StopStroking</span></big></span></span><br>" & vbCrLf & _
-        "<span style=""color: red;""><span" & vbCrLf & _
-        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">This" & vbCrLf & _
-        "Command is used in Modules to let the program know that the sub is no" & vbCrLf & _
-        "longer stroking.&nbsp;<span style=""color: rgb(204, 0, 0);""></span>Each" & vbCrLf & _
-        "Module MUST contain this or an <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf & _
-        "Command. <span style=""font-weight: bold; color: rgb(204, 0, 0);"">Module" & vbCrLf & _
-        "scripts ONLY.</span></span></span></span></span><br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<span style=""font-weight: bold;""><span" & vbCrLf & _
-        " style=""color: red;""><big><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);"">@StrokeFaster</span></big></span></span><br>" & vbCrLf & _
-        "<span style=""color: red;""><span" & vbCrLf & _
-        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">Increases" & vbCrLf & _
-        "the speed the user is stroking by one. This lets the domme know the sub" & vbCrLf & _
-        "is stroking faster, and slightly speeds up the silent metronome. <span" & vbCrLf & _
+        sVar = sVar & "Start and Link scripts ONLY.</span></span></span></span></span><br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<span style=""font-weight: bold;""><span" & vbCrLf &
+        " style=""color: red;""><big><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);"">@StopStroking</span></big></span></span><br>" & vbCrLf &
+        "<span style=""color: red;""><span" & vbCrLf &
+        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">This" & vbCrLf &
+        "Command is used in Modules to let the program know that the sub is no" & vbCrLf &
+        "longer stroking.&nbsp;<span style=""color: rgb(204, 0, 0);""></span>Each" & vbCrLf &
+        "Module MUST contain this or an <span style=""color: rgb(204, 0, 0);"">@Edge</span>" & vbCrLf &
+        "Command. <span style=""font-weight: bold; color: rgb(204, 0, 0);"">Module" & vbCrLf &
+        "scripts ONLY.</span></span></span></span></span><br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<span style=""font-weight: bold;""><span" & vbCrLf &
+        " style=""color: red;""><big><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);"">@StrokeFaster</span></big></span></span><br>" & vbCrLf &
+        "<span style=""color: red;""><span" & vbCrLf &
+        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">Increases" & vbCrLf &
+        "the speed the user is stroking by one. This lets the domme know the sub" & vbCrLf &
+        "is stroking faster, and slightly speeds up the silent metronome. <span" & vbCrLf &
         " style=""font-weight: bold; color: rgb(204, 0, 0);"">Stroke" & vbCrLf
-        sVar = sVar & "Taunts&nbsp;</span></span></span></span></span><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span" & vbCrLf & _
-        " style=""font-weight: bold;"">ONLY</span><span" & vbCrLf & _
-        " style=""font-weight: bold;"">.</span></span><br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<span style=""font-weight: bold;""><span" & vbCrLf & _
-        " style=""color: red;""><big><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);"">@StrokeFastest</span></big></span></span><br>" & vbCrLf & _
-        "<span style=""color: red;""><span" & vbCrLf & _
-        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">Increases" & vbCrLf & _
-        "the speed the user is stroking by full value. This lets the domme know" & vbCrLf & _
-        "the sub" & vbCrLf & _
-        "is stroking as fast as possible, and speeds up the silent metronome to" & vbCrLf & _
-        "its highest setting. <span" & vbCrLf & _
-        " style=""font-weight: bold; color: rgb(204, 0, 0);"">Stroke" & vbCrLf & _
-        "Taunts&nbsp;</span></span></span></span></span><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span" & vbCrLf & _
-        " style=""font-weight: bold;"">ONLY</span><span" & vbCrLf & _
-        " style=""font-weight: bold;"">.</span></span><br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<span style=""font-weight: bold;""><span" & vbCrLf & _
+        sVar = sVar & "Taunts&nbsp;</span></span></span></span></span><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span" & vbCrLf &
+        " style=""font-weight: bold;"">ONLY</span><span" & vbCrLf &
+        " style=""font-weight: bold;"">.</span></span><br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<span style=""font-weight: bold;""><span" & vbCrLf &
+        " style=""color: red;""><big><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);"">@StrokeFastest</span></big></span></span><br>" & vbCrLf &
+        "<span style=""color: red;""><span" & vbCrLf &
+        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">Increases" & vbCrLf &
+        "the speed the user is stroking by full value. This lets the domme know" & vbCrLf &
+        "the sub" & vbCrLf &
+        "is stroking as fast as possible, and speeds up the silent metronome to" & vbCrLf &
+        "its highest setting. <span" & vbCrLf &
+        " style=""font-weight: bold; color: rgb(204, 0, 0);"">Stroke" & vbCrLf &
+        "Taunts&nbsp;</span></span></span></span></span><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span" & vbCrLf &
+        " style=""font-weight: bold;"">ONLY</span><span" & vbCrLf &
+        " style=""font-weight: bold;"">.</span></span><br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<span style=""font-weight: bold;""><span" & vbCrLf &
         " style=""color: red;""><big><span" & vbCrLf
-        sVar = sVar & " style=""color: rgb(204, 0, 0);"">@StrokeSlower</span></big></span></span><br>" & vbCrLf & _
-        "<span style=""color: red;""><span" & vbCrLf & _
-        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">Decreases" & vbCrLf & _
-        "the speed the user is stroking by one. This lets the domme know the sub" & vbCrLf & _
-        "is stroking slower, and slightly slows down the silent metronome. <span" & vbCrLf & _
-        " style=""font-weight: bold; color: rgb(204, 0, 0);"">Stroke" & vbCrLf & _
-        "Taunts&nbsp;</span></span></span></span></span><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span" & vbCrLf & _
-        " style=""font-weight: bold;"">ONLY</span><span" & vbCrLf & _
-        " style=""font-weight: bold;"">.</span></span><br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<span style=""font-weight: bold;""><span" & vbCrLf & _
-        " style=""color: red;""><big><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);"">@StrokeSlowest</span></big></span></span><br>" & vbCrLf & _
-        "<span style=""color: red;""><span" & vbCrLf & _
-        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">Decreases" & vbCrLf & _
-        "the speed the user is stroking by full value. This lets the domme know" & vbCrLf & _
-        "the sub" & vbCrLf & _
-        "is stroking as slow as possible, and&nbsp; slows down the silent" & vbCrLf & _
-        "metronome to its lowest setting. <span" & vbCrLf & _
-        " style=""font-weight: bold; color: rgb(204, 0, 0);"">Stroke" & vbCrLf & _
+        sVar = sVar & " style=""color: rgb(204, 0, 0);"">@StrokeSlower</span></big></span></span><br>" & vbCrLf &
+        "<span style=""color: red;""><span" & vbCrLf &
+        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">Decreases" & vbCrLf &
+        "the speed the user is stroking by one. This lets the domme know the sub" & vbCrLf &
+        "is stroking slower, and slightly slows down the silent metronome. <span" & vbCrLf &
+        " style=""font-weight: bold; color: rgb(204, 0, 0);"">Stroke" & vbCrLf &
+        "Taunts&nbsp;</span></span></span></span></span><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span" & vbCrLf &
+        " style=""font-weight: bold;"">ONLY</span><span" & vbCrLf &
+        " style=""font-weight: bold;"">.</span></span><br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<span style=""font-weight: bold;""><span" & vbCrLf &
+        " style=""color: red;""><big><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);"">@StrokeSlowest</span></big></span></span><br>" & vbCrLf &
+        "<span style=""color: red;""><span" & vbCrLf &
+        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span style=""color: black;"">Decreases" & vbCrLf &
+        "the speed the user is stroking by full value. This lets the domme know" & vbCrLf &
+        "the sub" & vbCrLf &
+        "is stroking as slow as possible, and&nbsp; slows down the silent" & vbCrLf &
+        "metronome to its lowest setting. <span" & vbCrLf &
+        " style=""font-weight: bold; color: rgb(204, 0, 0);"">Stroke" & vbCrLf &
         "Taunts&nbsp;</span></span></span></span></span><span" & vbCrLf
-        sVar = sVar & " style=""color: rgb(204, 0, 0);""><span" & vbCrLf & _
-        " style=""font-weight: bold;"">ONLY</span><span" & vbCrLf & _
-        " style=""font-weight: bold;"">.</span></span><br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<span style=""font-weight: bold;""><span" & vbCrLf & _
-        " style=""color: red;""><big><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""></span></big></span></span><br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<br>" & vbCrLf & _
-        "<span style=""font-weight: bold;""><span" & vbCrLf & _
-        " style=""color: red;""><big><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""></span></big></span></span><br>" & vbCrLf & _
-        "<span style=""color: red;""><span" & vbCrLf & _
-        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf & _
-        " style=""color: rgb(204, 0, 0);""><span style=""color: black;""><br>" & vbCrLf & _
-        "</span></span></span></span>" & vbCrLf & _
-        "</body>" & vbCrLf & _
+        sVar = sVar & " style=""color: rgb(204, 0, 0);""><span" & vbCrLf &
+        " style=""font-weight: bold;"">ONLY</span><span" & vbCrLf &
+        " style=""font-weight: bold;"">.</span></span><br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<span style=""font-weight: bold;""><span" & vbCrLf &
+        " style=""color: red;""><big><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""></span></big></span></span><br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<br>" & vbCrLf &
+        "<span style=""font-weight: bold;""><span" & vbCrLf &
+        " style=""color: red;""><big><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""></span></big></span></span><br>" & vbCrLf &
+        "<span style=""color: red;""><span" & vbCrLf &
+        " style=""color: rgb(51, 51, 255);""><span" & vbCrLf &
+        " style=""color: rgb(204, 0, 0);""><span style=""color: black;""><br>" & vbCrLf &
+        "</span></span></span></span>" & vbCrLf &
+        "</body>" & vbCrLf &
         "</html>"
 
 
@@ -14923,7 +14923,7 @@ TryNext:
 
 
 
-  
+
 
 
     Private Sub Button36_Click_1(sender As System.Object, e As System.EventArgs)
@@ -15272,7 +15272,7 @@ TryNext:
         If (DomWMP.playState = WMPLib.WMPPlayState.wmppsStopped) Then
             'Debug.Print("WMP Stopped Called")
 
-            
+
 
 
 
@@ -15311,7 +15311,7 @@ TryNext:
                 AvoidTheEdgeTaunts.Stop()
                 VideoTease = False
                 SubStroking = False
-            
+
 
                 Debug.Print("TempStrokeTauntVal = " & TempStrokeTauntVal)
                 Debug.Print("TempFileText = " & TempFileText)
@@ -15447,7 +15447,7 @@ TryNext:
         ImageClean = Application.StartupPath & "\Images\" & ImageS(0)
         ImageClean = ImageClean.Replace("\\", "\")
         Try
-            mainPictureBox.Load(ImageClean)
+            mainPictureBox.LoadFromUrl(ImageClean)
         Catch
             MessageBox.Show(Me, "\" & ImageS(0) & " was not found in " & Application.StartupPath & "\Images!" & Environment.NewLine & Environment.NewLine & "Please make sure the file exists and that it is spelled correctly in the script.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Hand)
         End Try
@@ -15487,9 +15487,9 @@ TryNext:
 
     End Sub
 
-   
 
-   
+
+
 
     Private Sub AppPanelGlitter_Paint(sender As System.Object, e As System.Windows.Forms.PaintEventArgs)
 
@@ -15503,10 +15503,10 @@ TryNext:
 
 
 
-    
 
 
- 
+
+
 
     Public Sub SaveExercise()
 
@@ -15540,13 +15540,13 @@ TryNext:
 
     End Sub
 
-    
 
 
 
-    
 
-   
+
+
+
 
     Public Sub RefreshCards()
 
@@ -15567,12 +15567,12 @@ TryNext:
         FrmCardList.GoldN5.Text = FrmSettings.GN5.Text
         FrmCardList.GoldN6.Text = FrmSettings.GN6.Text
 
-        FrmCardList.GoldP1.Load(FrmSettings.GP1.ImageLocation)
-        FrmCardList.GoldP2.Load(FrmSettings.GP2.ImageLocation)
-        FrmCardList.GoldP3.Load(FrmSettings.GP3.ImageLocation)
-        FrmCardList.GoldP4.Load(FrmSettings.GP4.ImageLocation)
-        FrmCardList.GoldP5.Load(FrmSettings.GP5.ImageLocation)
-        FrmCardList.GoldP6.Load(FrmSettings.GP6.ImageLocation)
+        FrmCardList.GoldP1.LoadFromUrl(FrmSettings.GP1.ImageLocation)
+        FrmCardList.GoldP2.LoadFromUrl(FrmSettings.GP2.ImageLocation)
+        FrmCardList.GoldP3.LoadFromUrl(FrmSettings.GP3.ImageLocation)
+        FrmCardList.GoldP4.LoadFromUrl(FrmSettings.GP4.ImageLocation)
+        FrmCardList.GoldP5.LoadFromUrl(FrmSettings.GP5.ImageLocation)
+        FrmCardList.GoldP6.LoadFromUrl(FrmSettings.GP6.ImageLocation)
 
         FrmCardList.SilverN1.Text = FrmSettings.SN1.Text
         FrmCardList.SilverN2.Text = FrmSettings.SN2.Text
@@ -15581,12 +15581,12 @@ TryNext:
         FrmCardList.SilverN5.Text = FrmSettings.SN5.Text
         FrmCardList.SilverN6.Text = FrmSettings.SN6.Text
 
-        FrmCardList.SilverP1.Load(FrmSettings.SP1.ImageLocation)
-        FrmCardList.SilverP2.Load(FrmSettings.SP2.ImageLocation)
-        FrmCardList.SilverP3.Load(FrmSettings.SP3.ImageLocation)
-        FrmCardList.SilverP4.Load(FrmSettings.SP4.ImageLocation)
-        FrmCardList.SilverP5.Load(FrmSettings.SP5.ImageLocation)
-        FrmCardList.SilverP6.Load(FrmSettings.SP6.ImageLocation)
+        FrmCardList.SilverP1.LoadFromUrl(FrmSettings.SP1.ImageLocation)
+        FrmCardList.SilverP2.LoadFromUrl(FrmSettings.SP2.ImageLocation)
+        FrmCardList.SilverP3.LoadFromUrl(FrmSettings.SP3.ImageLocation)
+        FrmCardList.SilverP4.LoadFromUrl(FrmSettings.SP4.ImageLocation)
+        FrmCardList.SilverP5.LoadFromUrl(FrmSettings.SP5.ImageLocation)
+        FrmCardList.SilverP6.LoadFromUrl(FrmSettings.SP6.ImageLocation)
 
         FrmCardList.BronzeN1.Text = FrmSettings.BN1.Text
         FrmCardList.BronzeN2.Text = FrmSettings.BN2.Text
@@ -15595,12 +15595,12 @@ TryNext:
         FrmCardList.BronzeN5.Text = FrmSettings.BN5.Text
         FrmCardList.BronzeN6.Text = FrmSettings.BN6.Text
 
-        FrmCardList.BronzeP1.Load(FrmSettings.BP1.ImageLocation)
-        FrmCardList.BronzeP2.Load(FrmSettings.BP2.ImageLocation)
-        FrmCardList.BronzeP3.Load(FrmSettings.BP3.ImageLocation)
-        FrmCardList.BronzeP4.Load(FrmSettings.BP4.ImageLocation)
-        FrmCardList.BronzeP5.Load(FrmSettings.BP5.ImageLocation)
-        FrmCardList.BronzeP6.Load(FrmSettings.BP6.ImageLocation)
+        FrmCardList.BronzeP1.LoadFromUrl(FrmSettings.BP1.ImageLocation)
+        FrmCardList.BronzeP2.LoadFromUrl(FrmSettings.BP2.ImageLocation)
+        FrmCardList.BronzeP3.LoadFromUrl(FrmSettings.BP3.ImageLocation)
+        FrmCardList.BronzeP4.LoadFromUrl(FrmSettings.BP4.ImageLocation)
+        FrmCardList.BronzeP5.LoadFromUrl(FrmSettings.BP5.ImageLocation)
+        FrmCardList.BronzeP6.LoadFromUrl(FrmSettings.BP6.ImageLocation)
 
 
 
