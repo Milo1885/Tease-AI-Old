@@ -11428,52 +11428,52 @@ Partial Class FrmSettings
         'ListBox1
         '
         Me.ListBox1.FormattingEnabled = true
-        Me.ListBox1.Location = New System.Drawing.Point(24, 64)
+        Me.ListBox1.Location = New System.Drawing.Point(24, 28)
         Me.ListBox1.Name = "ListBox1"
         Me.ListBox1.Size = New System.Drawing.Size(194, 69)
-        Me.ListBox1.Sorted = true
+        Me.ListBox1.Sorted = True
         Me.ListBox1.TabIndex = 172
         '
         'ListBox2
         '
-        Me.ListBox2.FormattingEnabled = true
-        Me.ListBox2.Location = New System.Drawing.Point(24, 168)
+        Me.ListBox2.FormattingEnabled = True
+        Me.ListBox2.Location = New System.Drawing.Point(24, 120)
         Me.ListBox2.Name = "ListBox2"
-        Me.ListBox2.Size = New System.Drawing.Size(194, 199)
-        Me.ListBox2.Sorted = true
+        Me.ListBox2.Size = New System.Drawing.Size(194, 251)
+        Me.ListBox2.Sorted = True
         Me.ListBox2.TabIndex = 173
         '
         'ListBox3
         '
-        Me.ListBox3.FormattingEnabled = true
-        Me.ListBox3.Location = New System.Drawing.Point(224, 64)
+        Me.ListBox3.FormattingEnabled = True
+        Me.ListBox3.Location = New System.Drawing.Point(224, 28)
         Me.ListBox3.Name = "ListBox3"
         Me.ListBox3.Size = New System.Drawing.Size(194, 69)
-        Me.ListBox3.Sorted = true
+        Me.ListBox3.Sorted = True
         Me.ListBox3.TabIndex = 174
         '
         'ListBox4
         '
-        Me.ListBox4.FormattingEnabled = true
-        Me.ListBox4.Location = New System.Drawing.Point(224, 168)
+        Me.ListBox4.FormattingEnabled = True
+        Me.ListBox4.Location = New System.Drawing.Point(224, 120)
         Me.ListBox4.Name = "ListBox4"
-        Me.ListBox4.Size = New System.Drawing.Size(194, 199)
-        Me.ListBox4.Sorted = true
+        Me.ListBox4.Size = New System.Drawing.Size(194, 251)
+        Me.ListBox4.Sorted = True
         Me.ListBox4.TabIndex = 175
         '
         'ListBox5
         '
-        Me.ListBox5.FormattingEnabled = true
-        Me.ListBox5.Location = New System.Drawing.Point(462, 64)
+        Me.ListBox5.FormattingEnabled = True
+        Me.ListBox5.Location = New System.Drawing.Point(462, 120)
         Me.ListBox5.Name = "ListBox5"
-        Me.ListBox5.Size = New System.Drawing.Size(194, 303)
-        Me.ListBox5.Sorted = true
+        Me.ListBox5.Size = New System.Drawing.Size(194, 251)
+        Me.ListBox5.Sorted = True
         Me.ListBox5.TabIndex = 176
         '
         'Label118
         '
-        Me.Label118.AutoSize = true
-        Me.Label118.Location = New System.Drawing.Point(26, 48)
+        Me.Label118.AutoSize = True
+        Me.Label118.Location = New System.Drawing.Point(26, 12)
         Me.Label118.Name = "Label118"
         Me.Label118.Size = New System.Drawing.Size(29, 13)
         Me.Label118.TabIndex = 177
@@ -11481,8 +11481,8 @@ Partial Class FrmSettings
         '
         'Label120
         '
-        Me.Label120.AutoSize = true
-        Me.Label120.Location = New System.Drawing.Point(226, 48)
+        Me.Label120.AutoSize = True
+        Me.Label120.Location = New System.Drawing.Point(226, 12)
         Me.Label120.Name = "Label120"
         Me.Label120.Size = New System.Drawing.Size(26, 13)
         Me.Label120.TabIndex = 178
@@ -11490,8 +11490,8 @@ Partial Class FrmSettings
         '
         'Label121
         '
-        Me.Label121.AutoSize = true
-        Me.Label121.Location = New System.Drawing.Point(26, 152)
+        Me.Label121.AutoSize = True
+        Me.Label121.Location = New System.Drawing.Point(26, 104)
         Me.Label121.Name = "Label121"
         Me.Label121.Size = New System.Drawing.Size(42, 13)
         Me.Label121.TabIndex = 179
@@ -11499,8 +11499,8 @@ Partial Class FrmSettings
         '
         'Label122
         '
-        Me.Label122.AutoSize = true
-        Me.Label122.Location = New System.Drawing.Point(226, 152)
+        Me.Label122.AutoSize = True
+        Me.Label122.Location = New System.Drawing.Point(226, 104)
         Me.Label122.Name = "Label122"
         Me.Label122.Size = New System.Drawing.Size(27, 13)
         Me.Label122.TabIndex = 180
@@ -11508,8 +11508,8 @@ Partial Class FrmSettings
         '
         'Label123
         '
-        Me.Label123.AutoSize = true
-        Me.Label123.Location = New System.Drawing.Point(464, 48)
+        Me.Label123.AutoSize = True
+        Me.Label123.Location = New System.Drawing.Point(464, 104)
         Me.Label123.Name = "Label123"
         Me.Label123.Size = New System.Drawing.Size(39, 13)
         Me.Label123.TabIndex = 181
@@ -11517,55 +11517,55 @@ Partial Class FrmSettings
         '
         'RadioButton1
         '
-        Me.RadioButton1.AutoSize = true
-        Me.RadioButton1.Location = New System.Drawing.Point(29, 381)
+        Me.RadioButton1.AutoSize = True
+        Me.RadioButton1.Location = New System.Drawing.Point(29, 382)
         Me.RadioButton1.Name = "RadioButton1"
         Me.RadioButton1.Size = New System.Drawing.Size(146, 17)
         Me.RadioButton1.TabIndex = 182
-        Me.RadioButton1.TabStop = true
+        Me.RadioButton1.TabStop = True
         Me.RadioButton1.Text = "Only Show Playlist Scripts"
-        Me.RadioButton1.UseVisualStyleBackColor = true
+        Me.RadioButton1.UseVisualStyleBackColor = True
         '
         'RadioButton2
         '
-        Me.RadioButton2.AutoSize = true
-        Me.RadioButton2.Location = New System.Drawing.Point(229, 381)
+        Me.RadioButton2.AutoSize = True
+        Me.RadioButton2.Location = New System.Drawing.Point(229, 382)
         Me.RadioButton2.Name = "RadioButton2"
         Me.RadioButton2.Size = New System.Drawing.Size(147, 17)
         Me.RadioButton2.TabIndex = 183
-        Me.RadioButton2.TabStop = true
+        Me.RadioButton2.TabStop = True
         Me.RadioButton2.Text = "Show All Available Scripts"
-        Me.RadioButton2.UseVisualStyleBackColor = true
+        Me.RadioButton2.UseVisualStyleBackColor = True
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(604, 375)
+        Me.Button1.Location = New System.Drawing.Point(604, 378)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(52, 23)
         Me.Button1.TabIndex = 184
         Me.Button1.Text = "Save"
-        Me.Button1.UseVisualStyleBackColor = true
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(462, 377)
+        Me.TextBox1.Location = New System.Drawing.Point(462, 379)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(136, 20)
         Me.TextBox1.TabIndex = 185
         '
         'ComboBox1
         '
-        Me.ComboBox1.FormattingEnabled = true
-        Me.ComboBox1.Location = New System.Drawing.Point(462, 17)
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(462, 28)
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(194, 21)
         Me.ComboBox1.TabIndex = 186
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(366, 15)
+        Me.Button2.Location = New System.Drawing.Point(462, 55)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(52, 23)
+        Me.Button2.Size = New System.Drawing.Size(194, 23)
         Me.Button2.TabIndex = 187
         Me.Button2.Text = "Clear"
         Me.Button2.UseVisualStyleBackColor = true
