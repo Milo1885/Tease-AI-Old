@@ -42,8 +42,8 @@ Partial Class FrmSettings
         Me.Label93 = New System.Windows.Forms.Label()
         Me.TBSafeword = New System.Windows.Forms.TextBox()
         Me.GBGeneralSystem = New System.Windows.Forms.GroupBox()
+        Me.CBAuditStartup = New System.Windows.Forms.CheckBox()
         Me.CBDomDel = New System.Windows.Forms.CheckBox()
-        Me.CBJackInTheBox = New System.Windows.Forms.CheckBox()
         Me.CBSettingsPause = New System.Windows.Forms.CheckBox()
         Me.CBSaveChatlogExit = New System.Windows.Forms.CheckBox()
         Me.CBAutosaveChatlog = New System.Windows.Forms.CheckBox()
@@ -840,9 +840,30 @@ Partial Class FrmSettings
         Me.CBGlitModType = New System.Windows.Forms.ComboBox()
         Me.Label59 = New System.Windows.Forms.Label()
         Me.Label50 = New System.Windows.Forms.Label()
+        Me.TabPage26 = New System.Windows.Forms.TabPage()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
+        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
+        Me.Label123 = New System.Windows.Forms.Label()
+        Me.Label122 = New System.Windows.Forms.Label()
+        Me.Label121 = New System.Windows.Forms.Label()
+        Me.Label120 = New System.Windows.Forms.Label()
+        Me.Label118 = New System.Windows.Forms.Label()
+        Me.ListBox5 = New System.Windows.Forms.ListBox()
+        Me.ListBox4 = New System.Windows.Forms.ListBox()
+        Me.ListBox3 = New System.Windows.Forms.ListBox()
+        Me.ListBox2 = New System.Windows.Forms.ListBox()
+        Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.TabPage27 = New System.Windows.Forms.TabPage()
         Me.TabPage25 = New System.Windows.Forms.TabPage()
         Me.Panel11 = New System.Windows.Forms.Panel()
+        Me.LBLDateTest = New System.Windows.Forms.Label()
+        Me.Label124 = New System.Windows.Forms.Label()
         Me.GroupBox20 = New System.Windows.Forms.GroupBox()
+        Me.BTNMaintenanceScripts = New System.Windows.Forms.Button()
         Me.BTNMaintenanceValidate = New System.Windows.Forms.Button()
         Me.BTNMaintenanceRefresh = New System.Windows.Forms.Button()
         Me.Label117 = New System.Windows.Forms.Label()
@@ -882,23 +903,7 @@ Partial Class FrmSettings
         Me.BWRefreshURLFiles = New System.ComponentModel.BackgroundWorker()
         Me.BWValidateLocalFiles = New System.ComponentModel.BackgroundWorker()
         Me.BWCreateURLFiles = New System.ComponentModel.BackgroundWorker()
-        Me.TabPage26 = New System.Windows.Forms.TabPage()
-        Me.ListBox1 = New System.Windows.Forms.ListBox()
-        Me.ListBox2 = New System.Windows.Forms.ListBox()
-        Me.ListBox3 = New System.Windows.Forms.ListBox()
-        Me.ListBox4 = New System.Windows.Forms.ListBox()
-        Me.ListBox5 = New System.Windows.Forms.ListBox()
-        Me.Label118 = New System.Windows.Forms.Label()
-        Me.Label120 = New System.Windows.Forms.Label()
-        Me.Label121 = New System.Windows.Forms.Label()
-        Me.Label122 = New System.Windows.Forms.Label()
-        Me.Label123 = New System.Windows.Forms.Label()
-        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.MonthCalendar1 = New System.Windows.Forms.MonthCalendar()
         Me.SettingsPanel.SuspendLayout
         Me.SettingsTabs.SuspendLayout
         Me.TabPage1.SuspendLayout
@@ -1104,6 +1109,7 @@ Partial Class FrmSettings
         Me.GroupBox30.SuspendLayout
         Me.TabPage15.SuspendLayout
         Me.GroupBox34.SuspendLayout
+        Me.TabPage26.SuspendLayout
         Me.TabPage25.SuspendLayout
         Me.Panel11.SuspendLayout
         Me.GroupBox20.SuspendLayout
@@ -1112,7 +1118,6 @@ Partial Class FrmSettings
         Me.TabPage5.SuspendLayout
         Me.Panel5.SuspendLayout
         CType(Me.PictureBox3,System.ComponentModel.ISupportInitialize).BeginInit
-        Me.TabPage26.SuspendLayout
         Me.SuspendLayout
         '
         'SettingsPanel
@@ -1351,8 +1356,8 @@ Partial Class FrmSettings
         '
         'GBGeneralSystem
         '
+        Me.GBGeneralSystem.Controls.Add(Me.CBAuditStartup)
         Me.GBGeneralSystem.Controls.Add(Me.CBDomDel)
-        Me.GBGeneralSystem.Controls.Add(Me.CBJackInTheBox)
         Me.GBGeneralSystem.Controls.Add(Me.CBSettingsPause)
         Me.GBGeneralSystem.Controls.Add(Me.CBSaveChatlogExit)
         Me.GBGeneralSystem.Controls.Add(Me.CBAutosaveChatlog)
@@ -1363,11 +1368,23 @@ Partial Class FrmSettings
         Me.GBGeneralSystem.TabStop = false
         Me.GBGeneralSystem.Text = "System"
         '
+        'CBAuditStartup
+        '
+        Me.CBAuditStartup.AutoSize = true
+        Me.CBAuditStartup.ForeColor = System.Drawing.Color.Black
+        Me.CBAuditStartup.Location = New System.Drawing.Point(7, 19)
+        Me.CBAuditStartup.Name = "CBAuditStartup"
+        Me.CBAuditStartup.Size = New System.Drawing.Size(137, 17)
+        Me.CBAuditStartup.TabIndex = 26
+        Me.CBAuditStartup.TabStop = false
+        Me.CBAuditStartup.Text = "Audit Scripts on Startup"
+        Me.CBAuditStartup.UseVisualStyleBackColor = true
+        '
         'CBDomDel
         '
         Me.CBDomDel.AutoSize = true
         Me.CBDomDel.ForeColor = System.Drawing.Color.Black
-        Me.CBDomDel.Location = New System.Drawing.Point(6, 87)
+        Me.CBDomDel.Location = New System.Drawing.Point(7, 110)
         Me.CBDomDel.Name = "CBDomDel"
         Me.CBDomDel.Size = New System.Drawing.Size(197, 17)
         Me.CBDomDel.TabIndex = 27
@@ -1375,23 +1392,11 @@ Partial Class FrmSettings
         Me.CBDomDel.Text = "Allow Domme to Delete Local Media"
         Me.CBDomDel.UseVisualStyleBackColor = true
         '
-        'CBJackInTheBox
-        '
-        Me.CBJackInTheBox.AutoSize = true
-        Me.CBJackInTheBox.ForeColor = System.Drawing.Color.Black
-        Me.CBJackInTheBox.Location = New System.Drawing.Point(6, 110)
-        Me.CBJackInTheBox.Name = "CBJackInTheBox"
-        Me.CBJackInTheBox.Size = New System.Drawing.Size(162, 17)
-        Me.CBJackInTheBox.TabIndex = 26
-        Me.CBJackInTheBox.TabStop = false
-        Me.CBJackInTheBox.Text = "Allow Jack-in-the-Box Scripts"
-        Me.CBJackInTheBox.UseVisualStyleBackColor = true
-        '
         'CBSettingsPause
         '
         Me.CBSettingsPause.AutoSize = true
         Me.CBSettingsPause.ForeColor = System.Drawing.Color.Black
-        Me.CBSettingsPause.Location = New System.Drawing.Point(6, 18)
+        Me.CBSettingsPause.Location = New System.Drawing.Point(7, 41)
         Me.CBSettingsPause.Name = "CBSettingsPause"
         Me.CBSettingsPause.Size = New System.Drawing.Size(244, 17)
         Me.CBSettingsPause.TabIndex = 22
@@ -1405,7 +1410,7 @@ Partial Class FrmSettings
         Me.CBSaveChatlogExit.Checked = true
         Me.CBSaveChatlogExit.CheckState = System.Windows.Forms.CheckState.Checked
         Me.CBSaveChatlogExit.ForeColor = System.Drawing.Color.Black
-        Me.CBSaveChatlogExit.Location = New System.Drawing.Point(6, 64)
+        Me.CBSaveChatlogExit.Location = New System.Drawing.Point(7, 87)
         Me.CBSaveChatlogExit.Name = "CBSaveChatlogExit"
         Me.CBSaveChatlogExit.Size = New System.Drawing.Size(162, 17)
         Me.CBSaveChatlogExit.TabIndex = 25
@@ -1419,7 +1424,7 @@ Partial Class FrmSettings
         Me.CBAutosaveChatlog.Checked = true
         Me.CBAutosaveChatlog.CheckState = System.Windows.Forms.CheckState.Checked
         Me.CBAutosaveChatlog.ForeColor = System.Drawing.Color.Black
-        Me.CBAutosaveChatlog.Location = New System.Drawing.Point(6, 41)
+        Me.CBAutosaveChatlog.Location = New System.Drawing.Point(7, 64)
         Me.CBAutosaveChatlog.Name = "CBAutosaveChatlog"
         Me.CBAutosaveChatlog.Size = New System.Drawing.Size(110, 17)
         Me.CBAutosaveChatlog.TabIndex = 24
@@ -10545,6 +10550,7 @@ Partial Class FrmSettings
         Me.TabControl2.Controls.Add(Me.TabPage8)
         Me.TabControl2.Controls.Add(Me.TabPage15)
         Me.TabControl2.Controls.Add(Me.TabPage26)
+        Me.TabControl2.Controls.Add(Me.TabPage27)
         Me.TabControl2.Location = New System.Drawing.Point(6, 6)
         Me.TabControl2.Name = "TabControl2"
         Me.TabControl2.SelectedIndex = 0
@@ -11047,6 +11053,187 @@ Partial Class FrmSettings
         Me.Label50.Text = "Current Domme Personality:"
         Me.Label50.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'TabPage26
+        '
+        Me.TabPage26.BackColor = System.Drawing.Color.LightGray
+        Me.TabPage26.Controls.Add(Me.Button2)
+        Me.TabPage26.Controls.Add(Me.ComboBox1)
+        Me.TabPage26.Controls.Add(Me.TextBox1)
+        Me.TabPage26.Controls.Add(Me.Button1)
+        Me.TabPage26.Controls.Add(Me.RadioButton2)
+        Me.TabPage26.Controls.Add(Me.RadioButton1)
+        Me.TabPage26.Controls.Add(Me.Label123)
+        Me.TabPage26.Controls.Add(Me.Label122)
+        Me.TabPage26.Controls.Add(Me.Label121)
+        Me.TabPage26.Controls.Add(Me.Label120)
+        Me.TabPage26.Controls.Add(Me.Label118)
+        Me.TabPage26.Controls.Add(Me.ListBox5)
+        Me.TabPage26.Controls.Add(Me.ListBox4)
+        Me.TabPage26.Controls.Add(Me.ListBox3)
+        Me.TabPage26.Controls.Add(Me.ListBox2)
+        Me.TabPage26.Controls.Add(Me.ListBox1)
+        Me.TabPage26.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage26.Name = "TabPage26"
+        Me.TabPage26.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage26.Size = New System.Drawing.Size(700, 411)
+        Me.TabPage26.TabIndex = 4
+        Me.TabPage26.Text = "TabPage26"
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(462, 55)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(194, 23)
+        Me.Button2.TabIndex = 187
+        Me.Button2.Text = "Clear"
+        Me.Button2.UseVisualStyleBackColor = true
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.FormattingEnabled = true
+        Me.ComboBox1.Location = New System.Drawing.Point(462, 28)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(194, 21)
+        Me.ComboBox1.TabIndex = 186
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(462, 379)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(136, 20)
+        Me.TextBox1.TabIndex = 185
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(604, 378)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(52, 23)
+        Me.Button1.TabIndex = 184
+        Me.Button1.Text = "Save"
+        Me.Button1.UseVisualStyleBackColor = true
+        '
+        'RadioButton2
+        '
+        Me.RadioButton2.AutoSize = true
+        Me.RadioButton2.Location = New System.Drawing.Point(229, 382)
+        Me.RadioButton2.Name = "RadioButton2"
+        Me.RadioButton2.Size = New System.Drawing.Size(147, 17)
+        Me.RadioButton2.TabIndex = 183
+        Me.RadioButton2.TabStop = true
+        Me.RadioButton2.Text = "Show All Available Scripts"
+        Me.RadioButton2.UseVisualStyleBackColor = true
+        '
+        'RadioButton1
+        '
+        Me.RadioButton1.AutoSize = true
+        Me.RadioButton1.Location = New System.Drawing.Point(29, 382)
+        Me.RadioButton1.Name = "RadioButton1"
+        Me.RadioButton1.Size = New System.Drawing.Size(146, 17)
+        Me.RadioButton1.TabIndex = 182
+        Me.RadioButton1.TabStop = true
+        Me.RadioButton1.Text = "Only Show Playlist Scripts"
+        Me.RadioButton1.UseVisualStyleBackColor = true
+        '
+        'Label123
+        '
+        Me.Label123.AutoSize = true
+        Me.Label123.Location = New System.Drawing.Point(464, 104)
+        Me.Label123.Name = "Label123"
+        Me.Label123.Size = New System.Drawing.Size(39, 13)
+        Me.Label123.TabIndex = 181
+        Me.Label123.Text = "Playlist"
+        '
+        'Label122
+        '
+        Me.Label122.AutoSize = true
+        Me.Label122.Location = New System.Drawing.Point(226, 104)
+        Me.Label122.Name = "Label122"
+        Me.Label122.Size = New System.Drawing.Size(27, 13)
+        Me.Label122.TabIndex = 180
+        Me.Label122.Text = "Link"
+        '
+        'Label121
+        '
+        Me.Label121.AutoSize = true
+        Me.Label121.Location = New System.Drawing.Point(26, 104)
+        Me.Label121.Name = "Label121"
+        Me.Label121.Size = New System.Drawing.Size(42, 13)
+        Me.Label121.TabIndex = 179
+        Me.Label121.Text = "Module"
+        '
+        'Label120
+        '
+        Me.Label120.AutoSize = true
+        Me.Label120.Location = New System.Drawing.Point(226, 12)
+        Me.Label120.Name = "Label120"
+        Me.Label120.Size = New System.Drawing.Size(26, 13)
+        Me.Label120.TabIndex = 178
+        Me.Label120.Text = "End"
+        '
+        'Label118
+        '
+        Me.Label118.AutoSize = true
+        Me.Label118.Location = New System.Drawing.Point(26, 12)
+        Me.Label118.Name = "Label118"
+        Me.Label118.Size = New System.Drawing.Size(29, 13)
+        Me.Label118.TabIndex = 177
+        Me.Label118.Text = "Start"
+        '
+        'ListBox5
+        '
+        Me.ListBox5.FormattingEnabled = true
+        Me.ListBox5.Location = New System.Drawing.Point(462, 120)
+        Me.ListBox5.Name = "ListBox5"
+        Me.ListBox5.Size = New System.Drawing.Size(194, 251)
+        Me.ListBox5.Sorted = true
+        Me.ListBox5.TabIndex = 176
+        '
+        'ListBox4
+        '
+        Me.ListBox4.FormattingEnabled = true
+        Me.ListBox4.Location = New System.Drawing.Point(224, 120)
+        Me.ListBox4.Name = "ListBox4"
+        Me.ListBox4.Size = New System.Drawing.Size(194, 251)
+        Me.ListBox4.Sorted = true
+        Me.ListBox4.TabIndex = 175
+        '
+        'ListBox3
+        '
+        Me.ListBox3.FormattingEnabled = true
+        Me.ListBox3.Location = New System.Drawing.Point(224, 28)
+        Me.ListBox3.Name = "ListBox3"
+        Me.ListBox3.Size = New System.Drawing.Size(194, 69)
+        Me.ListBox3.Sorted = true
+        Me.ListBox3.TabIndex = 174
+        '
+        'ListBox2
+        '
+        Me.ListBox2.FormattingEnabled = true
+        Me.ListBox2.Location = New System.Drawing.Point(24, 120)
+        Me.ListBox2.Name = "ListBox2"
+        Me.ListBox2.Size = New System.Drawing.Size(194, 251)
+        Me.ListBox2.Sorted = true
+        Me.ListBox2.TabIndex = 173
+        '
+        'ListBox1
+        '
+        Me.ListBox1.FormattingEnabled = true
+        Me.ListBox1.Location = New System.Drawing.Point(24, 28)
+        Me.ListBox1.Name = "ListBox1"
+        Me.ListBox1.Size = New System.Drawing.Size(194, 69)
+        Me.ListBox1.Sorted = true
+        Me.ListBox1.TabIndex = 172
+        '
+        'TabPage27
+        '
+        Me.TabPage27.BackColor = System.Drawing.Color.LightGray
+        Me.TabPage27.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage27.Name = "TabPage27"
+        Me.TabPage27.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage27.Size = New System.Drawing.Size(700, 411)
+        Me.TabPage27.TabIndex = 5
+        Me.TabPage27.Text = "TabPage27"
+        '
         'TabPage25
         '
         Me.TabPage25.BackColor = System.Drawing.Color.Silver
@@ -11062,6 +11249,9 @@ Partial Class FrmSettings
         '
         Me.Panel11.BackColor = System.Drawing.Color.LightGray
         Me.Panel11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel11.Controls.Add(Me.MonthCalendar1)
+        Me.Panel11.Controls.Add(Me.LBLDateTest)
+        Me.Panel11.Controls.Add(Me.Label124)
         Me.Panel11.Controls.Add(Me.GroupBox20)
         Me.Panel11.Controls.Add(Me.WebToy)
         Me.Panel11.Controls.Add(Me.GroupBox15)
@@ -11072,8 +11262,27 @@ Partial Class FrmSettings
         Me.Panel11.Size = New System.Drawing.Size(708, 437)
         Me.Panel11.TabIndex = 92
         '
+        'LBLDateTest
+        '
+        Me.LBLDateTest.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.LBLDateTest.Location = New System.Drawing.Point(447, 268)
+        Me.LBLDateTest.Name = "LBLDateTest"
+        Me.LBLDateTest.Size = New System.Drawing.Size(227, 71)
+        Me.LBLDateTest.TabIndex = 177
+        Me.LBLDateTest.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label124
+        '
+        Me.Label124.Location = New System.Drawing.Point(447, 51)
+        Me.Label124.Name = "Label124"
+        Me.Label124.Size = New System.Drawing.Size(227, 23)
+        Me.Label124.TabIndex = 176
+        Me.Label124.Text = "Test Date Comparison"
+        Me.Label124.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'GroupBox20
         '
+        Me.GroupBox20.Controls.Add(Me.BTNMaintenanceScripts)
         Me.GroupBox20.Controls.Add(Me.BTNMaintenanceValidate)
         Me.GroupBox20.Controls.Add(Me.BTNMaintenanceRefresh)
         Me.GroupBox20.Controls.Add(Me.Label117)
@@ -11085,10 +11294,19 @@ Partial Class FrmSettings
         Me.GroupBox20.Controls.Add(Me.BTNMaintenanceRebuild)
         Me.GroupBox20.Location = New System.Drawing.Point(6, 32)
         Me.GroupBox20.Name = "GroupBox20"
-        Me.GroupBox20.Size = New System.Drawing.Size(278, 230)
+        Me.GroupBox20.Size = New System.Drawing.Size(408, 230)
         Me.GroupBox20.TabIndex = 174
         Me.GroupBox20.TabStop = false
         Me.GroupBox20.Text = "Maintenance"
+        '
+        'BTNMaintenanceScripts
+        '
+        Me.BTNMaintenanceScripts.Location = New System.Drawing.Point(270, 19)
+        Me.BTNMaintenanceScripts.Name = "BTNMaintenanceScripts"
+        Me.BTNMaintenanceScripts.Size = New System.Drawing.Size(121, 23)
+        Me.BTNMaintenanceScripts.TabIndex = 175
+        Me.BTNMaintenanceScripts.Text = "Audit Scripts"
+        Me.BTNMaintenanceScripts.UseVisualStyleBackColor = true
         '
         'BTNMaintenanceValidate
         '
@@ -11130,7 +11348,7 @@ Partial Class FrmSettings
         '
         Me.PBCurrent.Location = New System.Drawing.Point(15, 156)
         Me.PBCurrent.Name = "PBCurrent"
-        Me.PBCurrent.Size = New System.Drawing.Size(249, 23)
+        Me.PBCurrent.Size = New System.Drawing.Size(376, 23)
         Me.PBCurrent.TabIndex = 4
         '
         'BTNMaintenanceCancel
@@ -11147,7 +11365,7 @@ Partial Class FrmSettings
         '
         Me.PBMaintenance.Location = New System.Drawing.Point(15, 197)
         Me.PBMaintenance.Name = "PBMaintenance"
-        Me.PBMaintenance.Size = New System.Drawing.Size(249, 23)
+        Me.PBMaintenance.Size = New System.Drawing.Size(376, 23)
         Me.PBMaintenance.TabIndex = 2
         '
         'LBLMaintenance
@@ -11155,7 +11373,7 @@ Partial Class FrmSettings
         Me.LBLMaintenance.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.LBLMaintenance.Location = New System.Drawing.Point(15, 76)
         Me.LBLMaintenance.Name = "LBLMaintenance"
-        Me.LBLMaintenance.Size = New System.Drawing.Size(249, 61)
+        Me.LBLMaintenance.Size = New System.Drawing.Size(376, 61)
         Me.LBLMaintenance.TabIndex = 1
         Me.LBLMaintenance.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
@@ -11173,7 +11391,7 @@ Partial Class FrmSettings
         Me.WebToy.Location = New System.Drawing.Point(16, 379)
         Me.WebToy.MinimumSize = New System.Drawing.Size(20, 20)
         Me.WebToy.Name = "WebToy"
-        Me.WebToy.Size = New System.Drawing.Size(254, 36)
+        Me.WebToy.Size = New System.Drawing.Size(381, 36)
         Me.WebToy.TabIndex = 172
         '
         'GroupBox15
@@ -11184,7 +11402,7 @@ Partial Class FrmSettings
         Me.GroupBox15.Controls.Add(Me.Label114)
         Me.GroupBox15.Location = New System.Drawing.Point(6, 268)
         Me.GroupBox15.Name = "GroupBox15"
-        Me.GroupBox15.Size = New System.Drawing.Size(278, 159)
+        Me.GroupBox15.Size = New System.Drawing.Size(408, 159)
         Me.GroupBox15.TabIndex = 173
         Me.GroupBox15.TabStop = false
         Me.GroupBox15.Text = "Web-Controlled Sex Toy"
@@ -11202,14 +11420,14 @@ Partial Class FrmSettings
         '
         Me.TBWebStop.Location = New System.Drawing.Point(10, 72)
         Me.TBWebStop.Name = "TBWebStop"
-        Me.TBWebStop.Size = New System.Drawing.Size(254, 20)
+        Me.TBWebStop.Size = New System.Drawing.Size(381, 20)
         Me.TBWebStop.TabIndex = 170
         '
         'TBWebStart
         '
         Me.TBWebStart.Location = New System.Drawing.Point(10, 33)
         Me.TBWebStart.Name = "TBWebStart"
-        Me.TBWebStart.Size = New System.Drawing.Size(254, 20)
+        Me.TBWebStart.Size = New System.Drawing.Size(381, 20)
         Me.TBWebStart.TabIndex = 167
         '
         'Label114
@@ -11399,176 +11617,12 @@ Partial Class FrmSettings
         'BWCreateURLFiles
         '
         '
-        'TabPage26
+        'MonthCalendar1
         '
-        Me.TabPage26.BackColor = System.Drawing.Color.LightGray
-        Me.TabPage26.Controls.Add(Me.Button2)
-        Me.TabPage26.Controls.Add(Me.ComboBox1)
-        Me.TabPage26.Controls.Add(Me.TextBox1)
-        Me.TabPage26.Controls.Add(Me.Button1)
-        Me.TabPage26.Controls.Add(Me.RadioButton2)
-        Me.TabPage26.Controls.Add(Me.RadioButton1)
-        Me.TabPage26.Controls.Add(Me.Label123)
-        Me.TabPage26.Controls.Add(Me.Label122)
-        Me.TabPage26.Controls.Add(Me.Label121)
-        Me.TabPage26.Controls.Add(Me.Label120)
-        Me.TabPage26.Controls.Add(Me.Label118)
-        Me.TabPage26.Controls.Add(Me.ListBox5)
-        Me.TabPage26.Controls.Add(Me.ListBox4)
-        Me.TabPage26.Controls.Add(Me.ListBox3)
-        Me.TabPage26.Controls.Add(Me.ListBox2)
-        Me.TabPage26.Controls.Add(Me.ListBox1)
-        Me.TabPage26.Location = New System.Drawing.Point(4, 22)
-        Me.TabPage26.Name = "TabPage26"
-        Me.TabPage26.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage26.Size = New System.Drawing.Size(700, 411)
-        Me.TabPage26.TabIndex = 4
-        Me.TabPage26.Text = "TabPage26"
-        '
-        'ListBox1
-        '
-        Me.ListBox1.FormattingEnabled = true
-        Me.ListBox1.Location = New System.Drawing.Point(24, 28)
-        Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(194, 69)
-        Me.ListBox1.Sorted = True
-        Me.ListBox1.TabIndex = 172
-        '
-        'ListBox2
-        '
-        Me.ListBox2.FormattingEnabled = True
-        Me.ListBox2.Location = New System.Drawing.Point(24, 120)
-        Me.ListBox2.Name = "ListBox2"
-        Me.ListBox2.Size = New System.Drawing.Size(194, 251)
-        Me.ListBox2.Sorted = True
-        Me.ListBox2.TabIndex = 173
-        '
-        'ListBox3
-        '
-        Me.ListBox3.FormattingEnabled = True
-        Me.ListBox3.Location = New System.Drawing.Point(224, 28)
-        Me.ListBox3.Name = "ListBox3"
-        Me.ListBox3.Size = New System.Drawing.Size(194, 69)
-        Me.ListBox3.Sorted = True
-        Me.ListBox3.TabIndex = 174
-        '
-        'ListBox4
-        '
-        Me.ListBox4.FormattingEnabled = True
-        Me.ListBox4.Location = New System.Drawing.Point(224, 120)
-        Me.ListBox4.Name = "ListBox4"
-        Me.ListBox4.Size = New System.Drawing.Size(194, 251)
-        Me.ListBox4.Sorted = True
-        Me.ListBox4.TabIndex = 175
-        '
-        'ListBox5
-        '
-        Me.ListBox5.FormattingEnabled = True
-        Me.ListBox5.Location = New System.Drawing.Point(462, 120)
-        Me.ListBox5.Name = "ListBox5"
-        Me.ListBox5.Size = New System.Drawing.Size(194, 251)
-        Me.ListBox5.Sorted = True
-        Me.ListBox5.TabIndex = 176
-        '
-        'Label118
-        '
-        Me.Label118.AutoSize = True
-        Me.Label118.Location = New System.Drawing.Point(26, 12)
-        Me.Label118.Name = "Label118"
-        Me.Label118.Size = New System.Drawing.Size(29, 13)
-        Me.Label118.TabIndex = 177
-        Me.Label118.Text = "Start"
-        '
-        'Label120
-        '
-        Me.Label120.AutoSize = True
-        Me.Label120.Location = New System.Drawing.Point(226, 12)
-        Me.Label120.Name = "Label120"
-        Me.Label120.Size = New System.Drawing.Size(26, 13)
-        Me.Label120.TabIndex = 178
-        Me.Label120.Text = "End"
-        '
-        'Label121
-        '
-        Me.Label121.AutoSize = True
-        Me.Label121.Location = New System.Drawing.Point(26, 104)
-        Me.Label121.Name = "Label121"
-        Me.Label121.Size = New System.Drawing.Size(42, 13)
-        Me.Label121.TabIndex = 179
-        Me.Label121.Text = "Module"
-        '
-        'Label122
-        '
-        Me.Label122.AutoSize = True
-        Me.Label122.Location = New System.Drawing.Point(226, 104)
-        Me.Label122.Name = "Label122"
-        Me.Label122.Size = New System.Drawing.Size(27, 13)
-        Me.Label122.TabIndex = 180
-        Me.Label122.Text = "Link"
-        '
-        'Label123
-        '
-        Me.Label123.AutoSize = True
-        Me.Label123.Location = New System.Drawing.Point(464, 104)
-        Me.Label123.Name = "Label123"
-        Me.Label123.Size = New System.Drawing.Size(39, 13)
-        Me.Label123.TabIndex = 181
-        Me.Label123.Text = "Playlist"
-        '
-        'RadioButton1
-        '
-        Me.RadioButton1.AutoSize = True
-        Me.RadioButton1.Location = New System.Drawing.Point(29, 382)
-        Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(146, 17)
-        Me.RadioButton1.TabIndex = 182
-        Me.RadioButton1.TabStop = True
-        Me.RadioButton1.Text = "Only Show Playlist Scripts"
-        Me.RadioButton1.UseVisualStyleBackColor = True
-        '
-        'RadioButton2
-        '
-        Me.RadioButton2.AutoSize = True
-        Me.RadioButton2.Location = New System.Drawing.Point(229, 382)
-        Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(147, 17)
-        Me.RadioButton2.TabIndex = 183
-        Me.RadioButton2.TabStop = True
-        Me.RadioButton2.Text = "Show All Available Scripts"
-        Me.RadioButton2.UseVisualStyleBackColor = True
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(604, 378)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(52, 23)
-        Me.Button1.TabIndex = 184
-        Me.Button1.Text = "Save"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(462, 379)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(136, 20)
-        Me.TextBox1.TabIndex = 185
-        '
-        'ComboBox1
-        '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(462, 28)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(194, 21)
-        Me.ComboBox1.TabIndex = 186
-        '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(462, 55)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(194, 23)
-        Me.Button2.TabIndex = 187
-        Me.Button2.Text = "Clear"
-        Me.Button2.UseVisualStyleBackColor = true
+        Me.MonthCalendar1.Location = New System.Drawing.Point(447, 83)
+        Me.MonthCalendar1.MaxSelectionCount = 1
+        Me.MonthCalendar1.Name = "MonthCalendar1"
+        Me.MonthCalendar1.TabIndex = 178
         '
         'FrmSettings
         '
@@ -11844,6 +11898,8 @@ Partial Class FrmSettings
         Me.TabPage15.ResumeLayout(false)
         Me.TabPage15.PerformLayout
         Me.GroupBox34.ResumeLayout(false)
+        Me.TabPage26.ResumeLayout(false)
+        Me.TabPage26.PerformLayout
         Me.TabPage25.ResumeLayout(false)
         Me.Panel11.ResumeLayout(false)
         Me.GroupBox20.ResumeLayout(false)
@@ -11855,8 +11911,6 @@ Partial Class FrmSettings
         Me.Panel5.ResumeLayout(false)
         Me.Panel5.PerformLayout
         CType(Me.PictureBox3,System.ComponentModel.ISupportInitialize).EndInit
-        Me.TabPage26.ResumeLayout(false)
-        Me.TabPage26.PerformLayout
         Me.ResumeLayout(false)
 
 End Sub
@@ -12552,7 +12606,7 @@ End Sub
     Friend WithEvents Label83 As System.Windows.Forms.Label
     Friend WithEvents BTNSaveDomSet As System.Windows.Forms.Button
     Friend WithEvents BTNLoadDomSet As System.Windows.Forms.Button
-    Friend WithEvents CBJackInTheBox As System.Windows.Forms.CheckBox
+    Friend WithEvents CBAuditStartup As System.Windows.Forms.CheckBox
     Friend WithEvents GroupBox52 As System.Windows.Forms.GroupBox
     Friend WithEvents Label89 As System.Windows.Forms.Label
     Friend WithEvents NBAllowSometimes As System.Windows.Forms.NumericUpDown
@@ -12736,4 +12790,9 @@ End Sub
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents RadioButton2 As System.Windows.Forms.RadioButton
     Friend WithEvents RadioButton1 As System.Windows.Forms.RadioButton
+    Friend WithEvents TabPage27 As System.Windows.Forms.TabPage
+    Friend WithEvents BTNMaintenanceScripts As System.Windows.Forms.Button
+    Friend WithEvents LBLDateTest As System.Windows.Forms.Label
+    Friend WithEvents Label124 As System.Windows.Forms.Label
+    Friend WithEvents MonthCalendar1 As System.Windows.Forms.MonthCalendar
 End Class

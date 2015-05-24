@@ -485,6 +485,10 @@ ByVal lpstrReturnString As String, ByVal uReturnLength As Integer, ByVal hwndCal
 
         FormLoading = True
 
+        If My.Settings.OrgasmLockDate = Nothing Then My.Settings.OrgasmLockDate = FormatDateTime(Now, DateFormat.ShortDate)
+        My.Settings.Save()
+        Debug.Print("OrgasmLockDate = " & My.Settings.OrgasmLockDate)
+
         If File.Exists(Application.StartupPath & "\System\Metronome") Then My.Computer.FileSystem.DeleteFile(Application.StartupPath & "\System\Metronome")
 
         frmApps.Show()
@@ -929,10 +933,10 @@ ByVal lpstrReturnString As String, ByVal uReturnLength As Integer, ByVal hwndCal
             FrmSettings.CBImageInfo.Checked = False
         End If
 
-        If My.Settings.CBJackInTheBox = True Then
-            FrmSettings.CBJackInTheBox.Checked = True
+        If My.Settings.AuditStartup = True Then
+            FrmSettings.CBAuditStartup.Checked = True
         Else
-            FrmSettings.CBJackInTheBox.Checked = False
+            FrmSettings.CBAuditStartup.Checked = False
         End If
 
         FrmSettings.domageNumBox.Value = My.Settings.DomAge
@@ -1286,6 +1290,8 @@ ByVal lpstrReturnString As String, ByVal uReturnLength As Integer, ByVal hwndCal
         DomPersonality = FrmSettings.dompersonalityComboBox.Text
 
         FormLoading = False
+
+        Debug.Print("Form1 Loading Finished")
 
     End Sub
 
@@ -3159,6 +3165,8 @@ AcceptAnswer:
 
     Public Sub ScriptTimer_Tick(sender As System.Object, e As System.EventArgs) Handles ScriptTimer.Tick
         'If DomTyping = True Then Return
+        If ChatText.IsBusy Then Return
+
         If WaitTimer.Enabled = True Or DomTypeCheck = True Then Return
 
         'Debug.Print("ScriptTimer Substroking = " & SubStroking)
@@ -3178,7 +3186,7 @@ AcceptAnswer:
 
 
 
-                ScriptTick = randomizer.Next(4, 7)
+                ScriptTick = randomizer.Next(5, 8)
 
                 RunFileText()
 
@@ -5190,8 +5198,10 @@ TryPrevious:
 
         If FrmSettings.CBSettingsPause.Checked = True And FrmSettings.SettingsPanel.Visible = True Then Return
 
-        If DomTypeCheck = True And StrokeTick < 4 Then Return
-        If chatBox.Text <> "" And StrokeTick < 4 Then Return
+
+        If ChatText.IsBusy Then Return
+        If DomTypeCheck = True And StrokeTick < 5 Then Return
+        If chatBox.Text <> "" And StrokeTick < 5 Then Return
 
 
         StrokeTick -= 1
@@ -5207,9 +5217,10 @@ TryPrevious:
                 FirstRound = False
 
                 StrokeTimer.Stop()
-                StrokeTauntTimer.Stop()
-                DomTask = "@NullResponse"
-                TypingDelayGeneric()
+            StrokeTauntTimer.Stop()
+
+            'DomTask = "@NullResponse"
+            'TypingDelayGeneric()
 
                 If RunningScript = True Then
                     RunFileText()
@@ -7060,7 +7071,7 @@ StatusUpdateEnd:
 
     Private Sub UpdatesTimer_Tick(sender As System.Object, e As System.EventArgs) Handles UpdatesTimer.Tick
 
-        Debug.Print("updates tick = " & UpdatesTick)
+        'Debug.Print("updates tick = " & UpdatesTick)
 
         If FrmSettings.CBSettingsPause.Checked = True And FrmSettings.SettingsPanel.Visible = True Then Return
 
@@ -7229,12 +7240,12 @@ StatusUpdateEnd:
 
         If File.Exists(Application.StartupPath & "\System\SetDate") Then
             Try
-                StringClean = StringClean.Replace("#OrgasmLimitDate", GetSetDateStamp().ToString("MM/dd/yyyy"))
+                StringClean = StringClean.Replace("#OrgasmLockDate", My.Settings.OrgasmLockDate.Date.ToString())
             Catch
-                StringClean = StringClean.Replace("#OrgasmLimitDate", "later")
+                StringClean = StringClean.Replace("#OrgasmLocktDate", "later")
             End Try
         Else
-            StringClean = StringClean.Replace("#OrgasmLimitDate", "later")
+            StringClean = StringClean.Replace("#OrgasmLockDate", "later")
         End If
 
         Dim PetNameVal As Integer = randomizer.Next(1, 5)

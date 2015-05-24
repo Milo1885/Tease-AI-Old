@@ -966,7 +966,7 @@
     <Setting Name="LargeUI" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="CBJackInTheBox" Type="System.Boolean" Scope="User">
+    <Setting Name="CBJackintheBox" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="NextImageChance" Type="System.Int32" Scope="User">
@@ -1040,6 +1040,12 @@
     </Setting>
     <Setting Name="SlideshowMode" Type="System.String" Scope="User">
       <Value Profile="(Default)">Tease</Value>
+    </Setting>
+    <Setting Name="OrgasmLockDate" Type="System.DateTime" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="AuditStartup" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

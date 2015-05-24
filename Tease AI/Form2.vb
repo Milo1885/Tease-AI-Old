@@ -573,7 +573,14 @@ Public Class FrmSettings
 
         If My.Settings.OrgasmsLocked = True Then
 
-            If DateTime.Now.ToString("MM/dd/yyyy") >= Form1.GetSetDateStamp().ToString("MM/dd/yyyy") Then
+            Dim date1 As Date = FormatDateTime(Now, DateFormat.ShortDate)
+            Dim date2 As Date = FormatDateTime(My.Settings.OrgasmLockDate, DateFormat.ShortDate)
+
+            Dim UnlockResult As Integer = DateTime.Compare(date1.Date, date2.Date)
+
+
+
+            If UnlockResult >= 0 Then
                 My.Settings.OrgasmsLocked = False
                 My.Settings.Save()
                 My.Computer.FileSystem.DeleteFile(Application.StartupPath & "\System\SetDate")
@@ -623,9 +630,18 @@ Public Class FrmSettings
         'If My.Settings.SlideshowMode = "Manual" Then offRadio.Checked = True
         'If My.Settings.SlideshowMode = "Timer" Then timedRadio.Checked = True
 
+
+
+        AuditScripts()
+
+
         FrmSettingsLoading = False
 
         Me.Visible = False
+
+
+
+        Debug.Print("Form2 Loading Finished")
 
 
     End Sub
@@ -3237,11 +3253,11 @@ NextURL:
         My.Settings.Save()
     End Sub
 
-    Private Sub CBJackInTheBox_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles CBJackInTheBox.MouseClick
-        If CBJackInTheBox.Checked = True Then
-            My.Settings.CBJackInTheBox = True
+    Private Sub CBJackInTheBox_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles CBAuditStartup.MouseClick
+        If CBAuditStartup.Checked = True Then
+            My.Settings.AuditStartup = True
         Else
-            My.Settings.CBJackInTheBox = False
+            My.Settings.AuditStartup = False
         End If
         My.Settings.Save()
     End Sub
@@ -4578,8 +4594,8 @@ NextURL:
             "the root folder of the program."
     End Sub
 
-    Private Sub CBJackInTheBox_MouseHover(sender As System.Object, e As System.EventArgs) Handles CBJackInTheBox.MouseHover
-        LBLGeneralSettingsDescription.Text = "This feature is not yet implemented."
+    Private Sub CBJackInTheBox_MouseHover(sender As System.Object, e As System.EventArgs) Handles CBAuditStartup.MouseHover
+        LBLGeneralSettingsDescription.Text = "When this is checked, the program will automatically audit all scripts in the current domme's directory and fix common errors."
     End Sub
 
     Private Sub TBSafeword_MouseHover(sender As System.Object, e As System.EventArgs) Handles TBSafeword.MouseHover
@@ -10227,7 +10243,10 @@ WhyUMakeMeDoDis:
 
             Debug.Print(SetDate)
 
-            System.IO.File.WriteAllText(Application.StartupPath & "\System\SetDate", SetDate.ToString("MM-dd-yyyy"))
+            My.Settings.OrgasmLockDate = FormatDateTime(SetDate, DateFormat.ShortDate)
+            Debug.Print(My.Settings.OrgasmLockDate)
+
+            System.IO.File.WriteAllText(Application.StartupPath & "\System\SetDate", "What were you expecting to find in here?")
 
 
             My.Settings.OrgasmsLocked = True
@@ -10344,7 +10363,11 @@ WhyUMakeMeDoDis:
             If orgasmsperComboBox.Text = "25 Years" Then SetDate = DateAdd(DateInterval.Year, 25, SetDate)
             If orgasmsperComboBox.Text = "Lifetime" Then SetDate = DateAdd(DateInterval.Year, 100, SetDate)
 
-            System.IO.File.WriteAllText(Application.StartupPath & "\System\SetDate", SetDate)
+
+            My.Settings.OrgasmLockDate = FormatDateTime(SetDate, DateFormat.ShortDate)
+            Debug.Print(My.Settings.OrgasmLockDate)
+
+            System.IO.File.WriteAllText(Application.StartupPath & "\System\SetDate", "What were you expecting to find in here?")
 
 
             My.Settings.OrgasmsLocked = True
@@ -11057,4 +11080,268 @@ NextURL:
 
     
     
+    Private Sub MonthCalendar1_DateChanged(sender As System.Object, e As System.Windows.Forms.DateRangeEventArgs) Handles MonthCalendar1.DateChanged
+
+
+        ' If FormatDateTime(MonthCalendar1.SelectionEnd, DateFormat.ShortDate) = FormatDateTime(CDate(DateString), DateFormat.ShortDate) Then
+        'MsgBox("This date is equal to today")
+        'End If
+        'If FormatDateTime(MonthCalendar1.SelectionEnd, DateFormat.ShortDate) < FormatDateTime(CDate(DateString), DateFormat.ShortDate) Then
+        'MsgBox("This date is earlier than today")
+        'End If
+        ' If FormatDateTime(MonthCalendar1.SelectionEnd, DateFormat.ShortDate) > FormatDateTime(CDate(DateString), DateFormat.ShortDate) Then
+        'MsgBox("This date is later than today")
+        'End If
+
+
+        Dim date1 As Date = FormatDateTime(MonthCalendar1.SelectionEnd, DateFormat.ShortDate)
+        Dim date2 As Date = FormatDateTime(Now, DateFormat.ShortDate)
+        Debug.Print(date1)
+        Debug.Print(date2)
+        Dim result As Integer = DateTime.Compare(date1.Date, date2.Date)
+        Dim relationship As String
+
+        If result < 0 Then
+            relationship = " is earlier than "
+        ElseIf result = 0 Then
+            relationship = " is the same date as "
+        Else
+            relationship = " is later than "
+        End If
+
+        LBLDateTest.Text = date1.Date & relationship & date2.Date
+
+    End Sub
+
+
+
+
+
+
+
+
+
+
+
+    Private Sub Button3_Click_1(sender As System.Object, e As System.EventArgs) Handles BTNMaintenanceScripts.Click
+
+        PBMaintenance.Maximum = My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Scripts\" & dompersonalityComboBox.Text, FileIO.SearchOption.SearchAllSubDirectories, "*.txt").Count
+        PBMaintenance.Value = 0
+        Dim BlankAudit As Integer = 0
+        Dim ErrorAudit As Integer = 0
+
+        BTNMaintenanceRebuild.Enabled = False
+        BTNMaintenanceRefresh.Enabled = False
+        BTNMaintenanceValidate.Enabled = False
+
+        For Each foundFile As String In My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Scripts\" & dompersonalityComboBox.Text, FileIO.SearchOption.SearchAllSubDirectories, "*.txt")
+
+            LBLMaintenance.Text = "Checking " & Path.GetFileName(foundFile) & "..."
+            PBMaintenance.Value += 1
+            Dim CheckFiles As String() = File.ReadAllLines(foundFile)
+
+            Dim GoodLines As New List(Of String)
+
+            For Each line As String In CheckFiles
+                If Not line = "" Then
+                    GoodLines.Add(line)
+                Else
+                    BlankAudit += 1
+                End If
+            Next
+
+            For i As Integer = 0 To GoodLines.Count - 1
+                If GoodLines(i).Contains(" ]") Then
+                    ErrorAudit += 1
+                    Do
+                        GoodLines(i) = GoodLines(i).Replace(" ]", "]")
+                    Loop Until Not GoodLines(i).Contains(" ]")
+                End If
+                If GoodLines(i).Contains("[ ") Then
+                    ErrorAudit += 1
+                    Do
+                        GoodLines(i) = GoodLines(i).Replace("[ ", "[")
+                    Loop Until Not GoodLines(i).Contains("[ ")
+                End If
+                If GoodLines(i).Contains(",,") Then
+                    ErrorAudit += 1
+                    Do
+
+                        GoodLines(i) = GoodLines(i).Replace(",,", ",")
+                    Loop Until Not GoodLines(i).Contains(",,")
+                End If
+                If GoodLines(i).Contains(",]") Then
+                    ErrorAudit += 1
+                    Do
+
+                        GoodLines(i) = GoodLines(i).Replace(",]", "]")
+                    Loop Until Not GoodLines(i).Contains(",]")
+                End If
+                If GoodLines(i).Contains(" ,") Then
+                    ErrorAudit += 1
+                    Do
+
+                        GoodLines(i) = GoodLines(i).Replace(" ,", ",")
+                    Loop Until Not GoodLines(i).Contains(" ,")
+                End If
+                If foundFile.Contains("Suffering") Then Debug.Print(GoodLines(i))
+
+                If GoodLines(i).Contains("@ShowBoobImage") Then
+                    ErrorAudit += 1
+                    GoodLines(i) = GoodLines(i).Replace("@ShowBoobImage", "@ShowBoobsImage")
+                End If
+
+            Next
+
+
+
+
+            Dim fs As New FileStream(foundFile, FileMode.Create)
+            Dim sw As New StreamWriter(fs)
+
+
+            For i As Integer = 0 To GoodLines.Count - 1
+                If i <> GoodLines.Count - 1 Then
+                    sw.WriteLine(GoodLines(i))
+                Else
+                    sw.Write(GoodLines(i))
+                End If
+            Next
+      
+
+            sw.Close()
+            sw.Dispose()
+
+            fs.Close()
+            fs.Dispose()
+
+        Next
+        Debug.Print("done")
+
+        MessageBox.Show(Me, PBMaintenance.Maximum & " scripts have been audited." & Environment.NewLine & Environment.NewLine & _
+                        "Blank lines cleared: " & BlankAudit & Environment.NewLine & Environment.NewLine & _
+                        "Script errors corrected: " & ErrorAudit, "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        PBMaintenance.Value = 0
+
+        LBLMaintenance.Text = ""
+
+        BTNMaintenanceRebuild.Enabled = True
+        BTNMaintenanceRefresh.Enabled = True
+        BTNMaintenanceValidate.Enabled = True
+
+
+    End Sub
+
+    Public Sub AuditScripts()
+
+        PBMaintenance.Maximum = My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Scripts\" & dompersonalityComboBox.Text, FileIO.SearchOption.SearchAllSubDirectories, "*.txt").Count
+        PBMaintenance.Value = 0
+        Dim BlankAudit As Integer = 0
+        Dim ErrorAudit As Integer = 0
+
+        BTNMaintenanceRebuild.Enabled = False
+        BTNMaintenanceRefresh.Enabled = False
+        BTNMaintenanceValidate.Enabled = False
+
+        For Each foundFile As String In My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Scripts\" & dompersonalityComboBox.Text, FileIO.SearchOption.SearchAllSubDirectories, "*.txt")
+
+            LBLMaintenance.Text = "Checking " & Path.GetFileName(foundFile) & "..."
+            PBMaintenance.Value += 1
+            Dim CheckFiles As String() = File.ReadAllLines(foundFile)
+
+            Dim GoodLines As New List(Of String)
+
+            For Each line As String In CheckFiles
+                If Not line = "" Then
+                    GoodLines.Add(line)
+                Else
+                    BlankAudit += 1
+                End If
+            Next
+
+            For i As Integer = 0 To GoodLines.Count - 1
+                If GoodLines(i).Contains(" ]") Then
+                    ErrorAudit += 1
+                    Do
+                        GoodLines(i) = GoodLines(i).Replace(" ]", "]")
+                    Loop Until Not GoodLines(i).Contains(" ]")
+                End If
+                If GoodLines(i).Contains("[ ") Then
+                    ErrorAudit += 1
+                    Do
+                        GoodLines(i) = GoodLines(i).Replace("[ ", "[")
+                    Loop Until Not GoodLines(i).Contains("[ ")
+                End If
+                If GoodLines(i).Contains(",,") Then
+                    ErrorAudit += 1
+                    Do
+
+                        GoodLines(i) = GoodLines(i).Replace(",,", ",")
+                    Loop Until Not GoodLines(i).Contains(",,")
+                End If
+                If GoodLines(i).Contains(",]") Then
+                    ErrorAudit += 1
+                    Do
+
+                        GoodLines(i) = GoodLines(i).Replace(",]", "]")
+                    Loop Until Not GoodLines(i).Contains(",]")
+                End If
+                If GoodLines(i).Contains(" ,") Then
+                    ErrorAudit += 1
+                    Do
+
+                        GoodLines(i) = GoodLines(i).Replace(" ,", ",")
+                    Loop Until Not GoodLines(i).Contains(" ,")
+                End If
+                If foundFile.Contains("Suffering") Then Debug.Print(GoodLines(i))
+
+                If GoodLines(i).Contains("@ShowBoobImage") Then
+                    ErrorAudit += 1
+                    GoodLines(i) = GoodLines(i).Replace("@ShowBoobImage", "@ShowBoobsImage")
+                End If
+
+            Next
+
+
+
+
+            Dim fs As New FileStream(foundFile, FileMode.Create)
+            Dim sw As New StreamWriter(fs)
+
+
+            For i As Integer = 0 To GoodLines.Count - 1
+                If i <> GoodLines.Count - 1 Then
+                    sw.WriteLine(GoodLines(i))
+                Else
+                    sw.Write(GoodLines(i))
+                End If
+            Next
+
+
+            sw.Close()
+            sw.Dispose()
+
+            fs.Close()
+            fs.Dispose()
+
+        Next
+        Debug.Print("done")
+
+        MessageBox.Show(Me, PBMaintenance.Maximum & " scripts have been audited." & Environment.NewLine & Environment.NewLine & _
+                        "Blank lines cleared: " & BlankAudit & Environment.NewLine & Environment.NewLine & _
+                        "Script errors corrected: " & ErrorAudit, "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        PBMaintenance.Value = 0
+
+        LBLMaintenance.Text = ""
+
+        BTNMaintenanceRebuild.Enabled = True
+        BTNMaintenanceRefresh.Enabled = True
+        BTNMaintenanceValidate.Enabled = True
+
+    End Sub
+
+  
+ 
 End Class

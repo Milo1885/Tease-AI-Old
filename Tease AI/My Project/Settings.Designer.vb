@@ -3906,12 +3906,12 @@ Namespace My
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-        Public Property CBJackInTheBox() As Boolean
+        Public Property CBJackintheBox() As Boolean
             Get
-                Return CType(Me("CBJackInTheBox"),Boolean)
+                Return CType(Me("CBJackintheBox"),Boolean)
             End Get
             Set
-                Me("CBJackInTheBox") = value
+                Me("CBJackintheBox") = value
             End Set
         End Property
         
@@ -4200,6 +4200,29 @@ Namespace My
             End Get
             Set
                 Me("SlideshowMode") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property OrgasmLockDate() As Date
+            Get
+                Return CType(Me("OrgasmLockDate"),Date)
+            End Get
+            Set
+                Me("OrgasmLockDate") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property AuditStartup() As Boolean
+            Get
+                Return CType(Me("AuditStartup"),Boolean)
+            End Get
+            Set
+                Me("AuditStartup") = value
             End Set
         End Property
     End Class
