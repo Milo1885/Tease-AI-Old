@@ -159,7 +159,7 @@ Public Class frmApps
             My.Settings.WishlistName = LBLWishListName.Text
 
 
-            WishlistPreview.Load(WishList(1))
+            WishlistPreview.LoadFromUrl(WishList(1))
             WishlistPreview.Visible = True
             My.Settings.WishlistPreview = WishList(1)
 
@@ -224,9 +224,9 @@ Public Class frmApps
 
             LBLWishListName.Text = My.Settings.WishlistName
             Try
-                WishlistPreview.Load(My.Settings.WishlistPreview)
+                WishlistPreview.LoadFromUrl(My.Settings.WishlistPreview)
             Catch
-                WishlistPreview.Load(Application.StartupPath & "\Images\System\NoPreview.png")
+                WishlistPreview.LoadFromUrl(Application.StartupPath & "\Images\System\NoPreview.png")
             End Try
 
             If My.Settings.WishlistTokenType = "Silver" Then WishlistCostSilver.Visible = True

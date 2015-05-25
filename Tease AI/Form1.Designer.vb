@@ -26,8 +26,8 @@ Partial Class Form1
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.domName = New System.Windows.Forms.TextBox()
         Me.chatBox = New System.Windows.Forms.TextBox()
-        Me.mainPictureBox = New System.Windows.Forms.PictureBox()
-        Me.domAvatar = New System.Windows.Forms.PictureBox()
+        Me.mainPictureBox = New PictureBoxEx()
+        Me.domAvatar = New PictureBoxEx()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.CensorshipBar = New System.Windows.Forms.Panel()
         Me.Label9 = New System.Windows.Forms.Label()
@@ -71,7 +71,7 @@ Partial Class Form1
         Me.HoldEdgeTimer = New System.Windows.Forms.Timer(Me.components)
         Me.HoldEdgeTauntTimer = New System.Windows.Forms.Timer(Me.components)
         Me.PNLFileTransfer = New System.Windows.Forms.Panel()
-        Me.PictureBox11 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox11 = New PictureBoxEx()
         Me.BTNFileTransferOpen = New System.Windows.Forms.Button()
         Me.BTNFIleTransferDismiss = New System.Windows.Forms.Button()
         Me.LBLFileTransfer = New System.Windows.Forms.Label()
@@ -89,7 +89,7 @@ Partial Class Form1
         Me.TeaseTimer = New System.Windows.Forms.Timer(Me.components)
         Me.RLGLTauntTimer = New System.Windows.Forms.Timer(Me.components)
         Me.AvoidTheEdgeTaunts = New System.Windows.Forms.Timer(Me.components)
-        Me.subAvatar = New System.Windows.Forms.PictureBox()
+        Me.subAvatar = New PictureBoxEx()
         Me.PictureStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
@@ -924,8 +924,8 @@ Partial Class Form1
     End Sub
     Friend WithEvents domName As System.Windows.Forms.TextBox
     Friend WithEvents chatBox As System.Windows.Forms.TextBox
-    Friend WithEvents mainPictureBox As System.Windows.Forms.PictureBox
-    Friend WithEvents domAvatar As System.Windows.Forms.PictureBox
+    Friend WithEvents mainPictureBox As PictureBoxEx
+    Friend WithEvents domAvatar As PictureBoxEx
     Friend WithEvents SplitContainer1 As System.Windows.Forms.SplitContainer
     Friend WithEvents nextButton As System.Windows.Forms.Button
     Friend WithEvents browsefolderButton As System.Windows.Forms.Button
@@ -967,7 +967,7 @@ Partial Class Form1
     Friend WithEvents PNLFileTransfer As System.Windows.Forms.Panel
     Friend WithEvents LBLFileTransfer As System.Windows.Forms.Label
     Friend WithEvents PBFileTransfer As System.Windows.Forms.ProgressBar
-    Friend WithEvents PictureBox11 As System.Windows.Forms.PictureBox
+    Friend WithEvents PictureBox11 As PictureBoxEx
     Friend WithEvents BTNFileTransferOpen As System.Windows.Forms.Button
     Friend WithEvents BTNFIleTransferDismiss As System.Windows.Forms.Button
     Friend WithEvents SlideshowTimer As System.Windows.Forms.Timer
@@ -986,7 +986,7 @@ Partial Class Form1
     Friend WithEvents TeaseTimer As System.Windows.Forms.Timer
     Friend WithEvents RLGLTauntTimer As System.Windows.Forms.Timer
     Friend WithEvents AvoidTheEdgeTaunts As System.Windows.Forms.Timer
-    Friend WithEvents subAvatar As System.Windows.Forms.PictureBox
+    Friend WithEvents subAvatar As PictureBoxEx
     Friend WithEvents PNLChatBox As System.Windows.Forms.Panel
     Friend WithEvents PictureStrip As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem

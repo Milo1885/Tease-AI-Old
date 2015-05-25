@@ -29,9 +29,9 @@ Partial Class FrmCardList
         Me.GameWMP = New AxWMPLib.AxWindowsMediaPlayer()
         Me.Panel32 = New System.Windows.Forms.Panel()
         Me.Panel33 = New System.Windows.Forms.Panel()
-        Me.SlotLeft1 = New System.Windows.Forms.PictureBox()
+        Me.SlotLeft1 = New PictureBoxEx()
         Me.Panel44 = New System.Windows.Forms.Panel()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox1 = New PictureBoxEx()
         Me.LBLSlotBet = New System.Windows.Forms.Label()
         Me.Panel58 = New System.Windows.Forms.Panel()
         Me.Panel59 = New System.Windows.Forms.Panel()
@@ -45,85 +45,85 @@ Partial Class FrmCardList
         Me.Label33 = New System.Windows.Forms.Label()
         Me.Panel34 = New System.Windows.Forms.Panel()
         Me.Panel35 = New System.Windows.Forms.Panel()
-        Me.SlotLeft2 = New System.Windows.Forms.PictureBox()
+        Me.SlotLeft2 = New PictureBoxEx()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Panel6 = New System.Windows.Forms.Panel()
         Me.SlotBack3 = New System.Windows.Forms.Panel()
-        Me.Slot3 = New System.Windows.Forms.PictureBox()
+        Me.Slot3 = New PictureBoxEx()
         Me.Panel5 = New System.Windows.Forms.Panel()
         Me.SlotBack2 = New System.Windows.Forms.Panel()
-        Me.Slot2 = New System.Windows.Forms.PictureBox()
+        Me.Slot2 = New PictureBoxEx()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.SlotBack1 = New System.Windows.Forms.Panel()
-        Me.Slot1 = New System.Windows.Forms.PictureBox()
+        Me.Slot1 = New PictureBoxEx()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Panel21 = New System.Windows.Forms.Panel()
         Me.Panel22 = New System.Windows.Forms.Panel()
-        Me.SlotRight2 = New System.Windows.Forms.PictureBox()
+        Me.SlotRight2 = New PictureBoxEx()
         Me.Panel23 = New System.Windows.Forms.Panel()
         Me.Panel24 = New System.Windows.Forms.Panel()
-        Me.SlotRight1 = New System.Windows.Forms.PictureBox()
+        Me.SlotRight1 = New PictureBoxEx()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Label22 = New System.Windows.Forms.Label()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.Label20 = New System.Windows.Forms.Label()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox2 = New PictureBoxEx()
         Me.LBLMatchTokens = New System.Windows.Forms.Label()
         Me.Label44 = New System.Windows.Forms.Label()
         Me.BTNMatchHard = New System.Windows.Forms.Button()
         Me.BTNMatchNormal = New System.Windows.Forms.Button()
         Me.BTNMatchEasy = New System.Windows.Forms.Button()
         Me.LBLMatchChance = New System.Windows.Forms.Label()
-        Me.M6C = New System.Windows.Forms.PictureBox()
-        Me.M5C = New System.Windows.Forms.PictureBox()
-        Me.M4C = New System.Windows.Forms.PictureBox()
-        Me.M3C = New System.Windows.Forms.PictureBox()
-        Me.M2C = New System.Windows.Forms.PictureBox()
-        Me.M1C = New System.Windows.Forms.PictureBox()
-        Me.M6B = New System.Windows.Forms.PictureBox()
-        Me.M5B = New System.Windows.Forms.PictureBox()
-        Me.M4B = New System.Windows.Forms.PictureBox()
-        Me.M3B = New System.Windows.Forms.PictureBox()
-        Me.M2B = New System.Windows.Forms.PictureBox()
-        Me.M1B = New System.Windows.Forms.PictureBox()
-        Me.M6A = New System.Windows.Forms.PictureBox()
-        Me.M5A = New System.Windows.Forms.PictureBox()
-        Me.M4A = New System.Windows.Forms.PictureBox()
-        Me.M3A = New System.Windows.Forms.PictureBox()
-        Me.M2A = New System.Windows.Forms.PictureBox()
-        Me.M1A = New System.Windows.Forms.PictureBox()
+        Me.M6C = New PictureBoxEx()
+        Me.M5C = New PictureBoxEx()
+        Me.M4C = New PictureBoxEx()
+        Me.M3C = New PictureBoxEx()
+        Me.M2C = New PictureBoxEx()
+        Me.M1C = New PictureBoxEx()
+        Me.M6B = New PictureBoxEx()
+        Me.M5B = New PictureBoxEx()
+        Me.M4B = New PictureBoxEx()
+        Me.M3B = New PictureBoxEx()
+        Me.M2B = New PictureBoxEx()
+        Me.M1B = New PictureBoxEx()
+        Me.M6A = New PictureBoxEx()
+        Me.M5A = New PictureBoxEx()
+        Me.M4A = New PictureBoxEx()
+        Me.M3A = New PictureBoxEx()
+        Me.M2A = New PictureBoxEx()
+        Me.M1A = New PictureBoxEx()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.BTNTokenRequest = New System.Windows.Forms.Button()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.Label52 = New System.Windows.Forms.Label()
-        Me.PictureBox10 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox10 = New PictureBoxEx()
         Me.LBLExchangeBronze = New System.Windows.Forms.Label()
-        Me.PictureBox12 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox12 = New PictureBoxEx()
         Me.Label54 = New System.Windows.Forms.Label()
         Me.LBLExchangeGold = New System.Windows.Forms.Label()
         Me.LBLExchangeSilver = New System.Windows.Forms.Label()
         Me.Label56 = New System.Windows.Forms.Label()
-        Me.PictureBox11 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox11 = New PictureBoxEx()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.LBLExchange = New System.Windows.Forms.Label()
         Me.ExchangePlate = New System.Windows.Forms.Panel()
         Me.ExchangeName = New System.Windows.Forms.Label()
-        Me.PictureBox13 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox8 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox13 = New PictureBoxEx()
+        Me.PictureBox8 = New PictureBoxEx()
         Me.BTNExchange6 = New System.Windows.Forms.Button()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.Label19 = New System.Windows.Forms.Label()
-        Me.PictureBox7 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox7 = New PictureBoxEx()
         Me.BTNExchange5 = New System.Windows.Forms.Button()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.Panel17 = New System.Windows.Forms.Panel()
-        Me.PictureBox6 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox6 = New PictureBoxEx()
         Me.BTNExchange4 = New System.Windows.Forms.Button()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
@@ -135,7 +135,7 @@ Partial Class FrmCardList
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Panel16 = New System.Windows.Forms.Panel()
-        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox3 = New PictureBoxEx()
         Me.BTNExchange2 = New System.Windows.Forms.Button()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -143,7 +143,7 @@ Partial Class FrmCardList
         Me.Panel13 = New System.Windows.Forms.Panel()
         Me.BTNExchange1 = New System.Windows.Forms.Button()
         Me.ExchangeFrame = New System.Windows.Forms.Panel()
-        Me.ExchangeCard = New System.Windows.Forms.PictureBox()
+        Me.ExchangeCard = New PictureBoxEx()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Panel10 = New System.Windows.Forms.Panel()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -160,76 +160,76 @@ Partial Class FrmCardList
         Me.Booster2Name = New System.Windows.Forms.Label()
         Me.Booster1Plate = New System.Windows.Forms.Panel()
         Me.Booster1Name = New System.Windows.Forms.Label()
-        Me.PictureBox9 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox9 = New PictureBoxEx()
         Me.Label26 = New System.Windows.Forms.Label()
         Me.Booster5Frame = New System.Windows.Forms.Panel()
-        Me.Booster5 = New System.Windows.Forms.PictureBox()
+        Me.Booster5 = New PictureBoxEx()
         Me.Booster4Frame = New System.Windows.Forms.Panel()
-        Me.Booster4 = New System.Windows.Forms.PictureBox()
+        Me.Booster4 = New PictureBoxEx()
         Me.Booster3Frame = New System.Windows.Forms.Panel()
-        Me.Booster3 = New System.Windows.Forms.PictureBox()
+        Me.Booster3 = New PictureBoxEx()
         Me.Booster2Frame = New System.Windows.Forms.Panel()
-        Me.Booster2 = New System.Windows.Forms.PictureBox()
+        Me.Booster2 = New PictureBoxEx()
         Me.Booster1Frame = New System.Windows.Forms.Panel()
-        Me.Booster1 = New System.Windows.Forms.PictureBox()
-        Me.BoosterBack = New System.Windows.Forms.PictureBox()
+        Me.Booster1 = New PictureBoxEx()
+        Me.BoosterBack = New PictureBoxEx()
         Me.BTNBoosterBuy = New System.Windows.Forms.Button()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.PNLCardList = New System.Windows.Forms.Panel()
         Me.GoldN6 = New System.Windows.Forms.Label()
         Me.GoldQ6 = New System.Windows.Forms.Label()
-        Me.GoldP6 = New System.Windows.Forms.PictureBox()
+        Me.GoldP6 = New PictureBoxEx()
         Me.GoldN5 = New System.Windows.Forms.Label()
         Me.GoldQ5 = New System.Windows.Forms.Label()
-        Me.GoldP5 = New System.Windows.Forms.PictureBox()
+        Me.GoldP5 = New PictureBoxEx()
         Me.GoldN4 = New System.Windows.Forms.Label()
         Me.GoldQ4 = New System.Windows.Forms.Label()
-        Me.GoldP4 = New System.Windows.Forms.PictureBox()
+        Me.GoldP4 = New PictureBoxEx()
         Me.GoldN3 = New System.Windows.Forms.Label()
         Me.GoldQ3 = New System.Windows.Forms.Label()
-        Me.GoldP3 = New System.Windows.Forms.PictureBox()
+        Me.GoldP3 = New PictureBoxEx()
         Me.GoldN2 = New System.Windows.Forms.Label()
         Me.GoldQ2 = New System.Windows.Forms.Label()
-        Me.GoldP2 = New System.Windows.Forms.PictureBox()
+        Me.GoldP2 = New PictureBoxEx()
         Me.GoldN1 = New System.Windows.Forms.Label()
         Me.GoldQ1 = New System.Windows.Forms.Label()
-        Me.GoldP1 = New System.Windows.Forms.PictureBox()
+        Me.GoldP1 = New PictureBoxEx()
         Me.SilverN6 = New System.Windows.Forms.Label()
         Me.SilverQ6 = New System.Windows.Forms.Label()
-        Me.SilverP6 = New System.Windows.Forms.PictureBox()
+        Me.SilverP6 = New PictureBoxEx()
         Me.SilverN5 = New System.Windows.Forms.Label()
         Me.SilverQ5 = New System.Windows.Forms.Label()
-        Me.SilverP5 = New System.Windows.Forms.PictureBox()
+        Me.SilverP5 = New PictureBoxEx()
         Me.SilverN4 = New System.Windows.Forms.Label()
         Me.SilverQ4 = New System.Windows.Forms.Label()
-        Me.SilverP4 = New System.Windows.Forms.PictureBox()
+        Me.SilverP4 = New PictureBoxEx()
         Me.SilverN3 = New System.Windows.Forms.Label()
         Me.SilverQ3 = New System.Windows.Forms.Label()
-        Me.SilverP3 = New System.Windows.Forms.PictureBox()
+        Me.SilverP3 = New PictureBoxEx()
         Me.SilverN2 = New System.Windows.Forms.Label()
         Me.SilverQ2 = New System.Windows.Forms.Label()
-        Me.SilverP2 = New System.Windows.Forms.PictureBox()
+        Me.SilverP2 = New PictureBoxEx()
         Me.SilverN1 = New System.Windows.Forms.Label()
         Me.SilverQ1 = New System.Windows.Forms.Label()
-        Me.SilverP1 = New System.Windows.Forms.PictureBox()
+        Me.SilverP1 = New PictureBoxEx()
         Me.BronzeN6 = New System.Windows.Forms.Label()
         Me.BronzeQ6 = New System.Windows.Forms.Label()
-        Me.BronzeP6 = New System.Windows.Forms.PictureBox()
+        Me.BronzeP6 = New PictureBoxEx()
         Me.BronzeN5 = New System.Windows.Forms.Label()
         Me.BronzeQ5 = New System.Windows.Forms.Label()
-        Me.BronzeP5 = New System.Windows.Forms.PictureBox()
+        Me.BronzeP5 = New PictureBoxEx()
         Me.BronzeN4 = New System.Windows.Forms.Label()
         Me.BronzeQ4 = New System.Windows.Forms.Label()
-        Me.BronzeP4 = New System.Windows.Forms.PictureBox()
+        Me.BronzeP4 = New PictureBoxEx()
         Me.BronzeN3 = New System.Windows.Forms.Label()
         Me.BronzeQ3 = New System.Windows.Forms.Label()
-        Me.BronzeP3 = New System.Windows.Forms.PictureBox()
+        Me.BronzeP3 = New PictureBoxEx()
         Me.BronzeN2 = New System.Windows.Forms.Label()
         Me.BronzeQ2 = New System.Windows.Forms.Label()
-        Me.BronzeP2 = New System.Windows.Forms.PictureBox()
+        Me.BronzeP2 = New PictureBoxEx()
         Me.BronzeN1 = New System.Windows.Forms.Label()
         Me.BronzeQ1 = New System.Windows.Forms.Label()
-        Me.BronzeP1 = New System.Windows.Forms.PictureBox()
+        Me.BronzeP1 = New PictureBoxEx()
         Me.CardTimer = New System.Windows.Forms.Timer(Me.components)
         Me.SlotTimer1 = New System.Windows.Forms.Timer(Me.components)
         Me.SlotTImer2 = New System.Windows.Forms.Timer(Me.components)
@@ -2854,86 +2854,86 @@ Partial Class FrmCardList
     Friend WithEvents PNLCardList As System.Windows.Forms.Panel
     Friend WithEvents GoldN6 As System.Windows.Forms.Label
     Friend WithEvents GoldQ6 As System.Windows.Forms.Label
-    Friend WithEvents GoldP6 As System.Windows.Forms.PictureBox
+    Friend WithEvents GoldP6 As PictureBoxEx
     Friend WithEvents GoldN5 As System.Windows.Forms.Label
     Friend WithEvents GoldQ5 As System.Windows.Forms.Label
-    Friend WithEvents GoldP5 As System.Windows.Forms.PictureBox
+    Friend WithEvents GoldP5 As PictureBoxEx
     Friend WithEvents GoldN4 As System.Windows.Forms.Label
     Friend WithEvents GoldQ4 As System.Windows.Forms.Label
-    Friend WithEvents GoldP4 As System.Windows.Forms.PictureBox
+    Friend WithEvents GoldP4 As PictureBoxEx
     Friend WithEvents GoldN3 As System.Windows.Forms.Label
     Friend WithEvents GoldQ3 As System.Windows.Forms.Label
-    Friend WithEvents GoldP3 As System.Windows.Forms.PictureBox
+    Friend WithEvents GoldP3 As PictureBoxEx
     Friend WithEvents GoldN2 As System.Windows.Forms.Label
     Friend WithEvents GoldQ2 As System.Windows.Forms.Label
-    Friend WithEvents GoldP2 As System.Windows.Forms.PictureBox
+    Friend WithEvents GoldP2 As PictureBoxEx
     Friend WithEvents GoldN1 As System.Windows.Forms.Label
     Friend WithEvents GoldQ1 As System.Windows.Forms.Label
-    Friend WithEvents GoldP1 As System.Windows.Forms.PictureBox
+    Friend WithEvents GoldP1 As PictureBoxEx
     Friend WithEvents SilverN6 As System.Windows.Forms.Label
     Friend WithEvents SilverQ6 As System.Windows.Forms.Label
-    Friend WithEvents SilverP6 As System.Windows.Forms.PictureBox
+    Friend WithEvents SilverP6 As PictureBoxEx
     Friend WithEvents SilverN5 As System.Windows.Forms.Label
     Friend WithEvents SilverQ5 As System.Windows.Forms.Label
-    Friend WithEvents SilverP5 As System.Windows.Forms.PictureBox
+    Friend WithEvents SilverP5 As PictureBoxEx
     Friend WithEvents SilverN4 As System.Windows.Forms.Label
     Friend WithEvents SilverQ4 As System.Windows.Forms.Label
-    Friend WithEvents SilverP4 As System.Windows.Forms.PictureBox
+    Friend WithEvents SilverP4 As PictureBoxEx
     Friend WithEvents SilverN3 As System.Windows.Forms.Label
     Friend WithEvents SilverQ3 As System.Windows.Forms.Label
-    Friend WithEvents SilverP3 As System.Windows.Forms.PictureBox
+    Friend WithEvents SilverP3 As PictureBoxEx
     Friend WithEvents SilverN2 As System.Windows.Forms.Label
     Friend WithEvents SilverQ2 As System.Windows.Forms.Label
-    Friend WithEvents SilverP2 As System.Windows.Forms.PictureBox
+    Friend WithEvents SilverP2 As PictureBoxEx
     Friend WithEvents SilverN1 As System.Windows.Forms.Label
     Friend WithEvents SilverQ1 As System.Windows.Forms.Label
-    Friend WithEvents SilverP1 As System.Windows.Forms.PictureBox
+    Friend WithEvents SilverP1 As PictureBoxEx
     Friend WithEvents BronzeN6 As System.Windows.Forms.Label
     Friend WithEvents BronzeQ6 As System.Windows.Forms.Label
-    Friend WithEvents BronzeP6 As System.Windows.Forms.PictureBox
+    Friend WithEvents BronzeP6 As PictureBoxEx
     Friend WithEvents BronzeN5 As System.Windows.Forms.Label
     Friend WithEvents BronzeQ5 As System.Windows.Forms.Label
-    Friend WithEvents BronzeP5 As System.Windows.Forms.PictureBox
+    Friend WithEvents BronzeP5 As PictureBoxEx
     Friend WithEvents BronzeN4 As System.Windows.Forms.Label
     Friend WithEvents BronzeQ4 As System.Windows.Forms.Label
-    Friend WithEvents BronzeP4 As System.Windows.Forms.PictureBox
+    Friend WithEvents BronzeP4 As PictureBoxEx
     Friend WithEvents BronzeN3 As System.Windows.Forms.Label
     Friend WithEvents BronzeQ3 As System.Windows.Forms.Label
-    Friend WithEvents BronzeP3 As System.Windows.Forms.PictureBox
+    Friend WithEvents BronzeP3 As PictureBoxEx
     Friend WithEvents BronzeN2 As System.Windows.Forms.Label
     Friend WithEvents BronzeQ2 As System.Windows.Forms.Label
-    Friend WithEvents BronzeP2 As System.Windows.Forms.PictureBox
+    Friend WithEvents BronzeP2 As PictureBoxEx
     Friend WithEvents BronzeN1 As System.Windows.Forms.Label
     Friend WithEvents BronzeQ1 As System.Windows.Forms.Label
-    Friend WithEvents BronzeP1 As System.Windows.Forms.PictureBox
+    Friend WithEvents BronzeP1 As PictureBoxEx
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
-    Friend WithEvents M6C As System.Windows.Forms.PictureBox
-    Friend WithEvents M5C As System.Windows.Forms.PictureBox
-    Friend WithEvents M4C As System.Windows.Forms.PictureBox
-    Friend WithEvents M3C As System.Windows.Forms.PictureBox
-    Friend WithEvents M2C As System.Windows.Forms.PictureBox
-    Friend WithEvents M1C As System.Windows.Forms.PictureBox
-    Friend WithEvents M6B As System.Windows.Forms.PictureBox
-    Friend WithEvents M5B As System.Windows.Forms.PictureBox
-    Friend WithEvents M4B As System.Windows.Forms.PictureBox
-    Friend WithEvents M3B As System.Windows.Forms.PictureBox
-    Friend WithEvents M2B As System.Windows.Forms.PictureBox
-    Friend WithEvents M1B As System.Windows.Forms.PictureBox
-    Friend WithEvents M6A As System.Windows.Forms.PictureBox
-    Friend WithEvents M5A As System.Windows.Forms.PictureBox
-    Friend WithEvents M4A As System.Windows.Forms.PictureBox
-    Friend WithEvents M3A As System.Windows.Forms.PictureBox
-    Friend WithEvents M2A As System.Windows.Forms.PictureBox
-    Friend WithEvents M1A As System.Windows.Forms.PictureBox
+    Friend WithEvents M6C As PictureBoxEx
+    Friend WithEvents M5C As PictureBoxEx
+    Friend WithEvents M4C As PictureBoxEx
+    Friend WithEvents M3C As PictureBoxEx
+    Friend WithEvents M2C As PictureBoxEx
+    Friend WithEvents M1C As PictureBoxEx
+    Friend WithEvents M6B As PictureBoxEx
+    Friend WithEvents M5B As PictureBoxEx
+    Friend WithEvents M4B As PictureBoxEx
+    Friend WithEvents M3B As PictureBoxEx
+    Friend WithEvents M2B As PictureBoxEx
+    Friend WithEvents M1B As PictureBoxEx
+    Friend WithEvents M6A As PictureBoxEx
+    Friend WithEvents M5A As PictureBoxEx
+    Friend WithEvents M4A As PictureBoxEx
+    Friend WithEvents M3A As PictureBoxEx
+    Friend WithEvents M2A As PictureBoxEx
+    Friend WithEvents M1A As PictureBoxEx
     Friend WithEvents CardTimer As System.Windows.Forms.Timer
     Friend WithEvents TabPage3 As System.Windows.Forms.TabPage
     Friend WithEvents SlotBack3 As System.Windows.Forms.Panel
-    Friend WithEvents Slot3 As System.Windows.Forms.PictureBox
+    Friend WithEvents Slot3 As PictureBoxEx
     Friend WithEvents SlotBack2 As System.Windows.Forms.Panel
-    Friend WithEvents Slot2 As System.Windows.Forms.PictureBox
+    Friend WithEvents Slot2 As PictureBoxEx
     Friend WithEvents SlotBack1 As System.Windows.Forms.Panel
-    Friend WithEvents Slot1 As System.Windows.Forms.PictureBox
+    Friend WithEvents Slot1 As PictureBoxEx
     Friend WithEvents TabPage4 As System.Windows.Forms.TabPage
     Friend WithEvents SlotTimer1 As System.Windows.Forms.Timer
     Friend WithEvents Button2 As System.Windows.Forms.Button
@@ -2946,16 +2946,16 @@ Partial Class FrmCardList
     Friend WithEvents LBLMatchChance As System.Windows.Forms.Label
     Friend WithEvents Panel32 As System.Windows.Forms.Panel
     Friend WithEvents Panel33 As System.Windows.Forms.Panel
-    Friend WithEvents SlotLeft1 As System.Windows.Forms.PictureBox
+    Friend WithEvents SlotLeft1 As PictureBoxEx
     Friend WithEvents Panel34 As System.Windows.Forms.Panel
     Friend WithEvents Panel35 As System.Windows.Forms.Panel
-    Friend WithEvents SlotLeft2 As System.Windows.Forms.PictureBox
+    Friend WithEvents SlotLeft2 As PictureBoxEx
     Friend WithEvents Panel21 As System.Windows.Forms.Panel
     Friend WithEvents Panel22 As System.Windows.Forms.Panel
-    Friend WithEvents SlotRight2 As System.Windows.Forms.PictureBox
+    Friend WithEvents SlotRight2 As PictureBoxEx
     Friend WithEvents Panel23 As System.Windows.Forms.Panel
     Friend WithEvents Panel24 As System.Windows.Forms.Panel
-    Friend WithEvents SlotRight1 As System.Windows.Forms.PictureBox
+    Friend WithEvents SlotRight1 As PictureBoxEx
     Friend WithEvents Panel44 As System.Windows.Forms.Panel
     Friend WithEvents LBLSlotTokens As System.Windows.Forms.Label
     Friend WithEvents Label33 As System.Windows.Forms.Label
@@ -2968,29 +2968,29 @@ Partial Class FrmCardList
     Friend WithEvents Panel56 As System.Windows.Forms.Panel
     Friend WithEvents Panel57 As System.Windows.Forms.Panel
     Friend WithEvents Button5 As System.Windows.Forms.Button
-    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
+    Friend WithEvents PictureBox1 As PictureBoxEx
     Friend WithEvents BTNMatchHard As System.Windows.Forms.Button
     Friend WithEvents BTNMatchNormal As System.Windows.Forms.Button
     Friend WithEvents BTNMatchEasy As System.Windows.Forms.Button
-    Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
+    Friend WithEvents PictureBox2 As PictureBoxEx
     Friend WithEvents LBLMatchTokens As System.Windows.Forms.Label
     Friend WithEvents Label44 As System.Windows.Forms.Label
     Friend WithEvents ShuffleTimer As System.Windows.Forms.Timer
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents BTNBoosterBuy As System.Windows.Forms.Button
-    Friend WithEvents PictureBox9 As System.Windows.Forms.PictureBox
+    Friend WithEvents PictureBox9 As PictureBoxEx
     Friend WithEvents Label26 As System.Windows.Forms.Label
     Friend WithEvents Booster5Frame As System.Windows.Forms.Panel
-    Friend WithEvents Booster5 As System.Windows.Forms.PictureBox
+    Friend WithEvents Booster5 As PictureBoxEx
     Friend WithEvents Booster4Frame As System.Windows.Forms.Panel
-    Friend WithEvents Booster4 As System.Windows.Forms.PictureBox
+    Friend WithEvents Booster4 As PictureBoxEx
     Friend WithEvents Booster3Frame As System.Windows.Forms.Panel
-    Friend WithEvents Booster3 As System.Windows.Forms.PictureBox
+    Friend WithEvents Booster3 As PictureBoxEx
     Friend WithEvents Booster2Frame As System.Windows.Forms.Panel
-    Friend WithEvents Booster2 As System.Windows.Forms.PictureBox
+    Friend WithEvents Booster2 As PictureBoxEx
     Friend WithEvents Booster1Frame As System.Windows.Forms.Panel
-    Friend WithEvents Booster1 As System.Windows.Forms.PictureBox
-    Friend WithEvents BoosterBack As System.Windows.Forms.PictureBox
+    Friend WithEvents Booster1 As PictureBoxEx
+    Friend WithEvents BoosterBack As PictureBoxEx
     Friend WithEvents Booster5Plate As System.Windows.Forms.Panel
     Friend WithEvents Booster5Name As System.Windows.Forms.Label
     Friend WithEvents Booster4Plate As System.Windows.Forms.Panel
@@ -3001,13 +3001,13 @@ Partial Class FrmCardList
     Friend WithEvents Booster2Name As System.Windows.Forms.Label
     Friend WithEvents Booster1Plate As System.Windows.Forms.Panel
     Friend WithEvents Booster1Name As System.Windows.Forms.Label
-    Friend WithEvents PictureBox12 As System.Windows.Forms.PictureBox
+    Friend WithEvents PictureBox12 As PictureBoxEx
     Friend WithEvents LBLExchangeGold As System.Windows.Forms.Label
     Friend WithEvents Label56 As System.Windows.Forms.Label
-    Friend WithEvents PictureBox11 As System.Windows.Forms.PictureBox
+    Friend WithEvents PictureBox11 As PictureBoxEx
     Friend WithEvents LBLExchangeSilver As System.Windows.Forms.Label
     Friend WithEvents Label54 As System.Windows.Forms.Label
-    Friend WithEvents PictureBox10 As System.Windows.Forms.PictureBox
+    Friend WithEvents PictureBox10 As PictureBoxEx
     Friend WithEvents LBLExchangeBronze As System.Windows.Forms.Label
     Friend WithEvents Label52 As System.Windows.Forms.Label
     Friend WithEvents BoosterTimer As System.Windows.Forms.Timer
@@ -3015,20 +3015,20 @@ Partial Class FrmCardList
     Friend WithEvents GroupBox3 As System.Windows.Forms.GroupBox
     Friend WithEvents GameWMP As AxWMPLib.AxWindowsMediaPlayer
     Friend WithEvents ExchangeFrame As System.Windows.Forms.Panel
-    Friend WithEvents ExchangeCard As System.Windows.Forms.PictureBox
+    Friend WithEvents ExchangeCard As PictureBoxEx
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Panel10 As System.Windows.Forms.Panel
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Panel9 As System.Windows.Forms.Panel
     Friend WithEvents BTNExchange1 As System.Windows.Forms.Button
-    Friend WithEvents PictureBox3 As System.Windows.Forms.PictureBox
+    Friend WithEvents PictureBox3 As PictureBoxEx
     Friend WithEvents BTNExchange2 As System.Windows.Forms.Button
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents Panel13 As System.Windows.Forms.Panel
-    Friend WithEvents PictureBox6 As System.Windows.Forms.PictureBox
+    Friend WithEvents PictureBox6 As PictureBoxEx
     Friend WithEvents BTNExchange4 As System.Windows.Forms.Button
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents Label9 As System.Windows.Forms.Label
@@ -3040,13 +3040,13 @@ Partial Class FrmCardList
     Friend WithEvents Label12 As System.Windows.Forms.Label
     Friend WithEvents Label13 As System.Windows.Forms.Label
     Friend WithEvents Panel16 As System.Windows.Forms.Panel
-    Friend WithEvents PictureBox13 As System.Windows.Forms.PictureBox
-    Friend WithEvents PictureBox8 As System.Windows.Forms.PictureBox
+    Friend WithEvents PictureBox13 As PictureBoxEx
+    Friend WithEvents PictureBox8 As PictureBoxEx
     Friend WithEvents BTNExchange6 As System.Windows.Forms.Button
     Friend WithEvents Label17 As System.Windows.Forms.Label
     Friend WithEvents Label18 As System.Windows.Forms.Label
     Friend WithEvents Label19 As System.Windows.Forms.Label
-    Friend WithEvents PictureBox7 As System.Windows.Forms.PictureBox
+    Friend WithEvents PictureBox7 As PictureBoxEx
     Friend WithEvents BTNExchange5 As System.Windows.Forms.Button
     Friend WithEvents Label14 As System.Windows.Forms.Label
     Friend WithEvents Label15 As System.Windows.Forms.Label
