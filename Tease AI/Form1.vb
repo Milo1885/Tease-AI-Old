@@ -15566,12 +15566,12 @@ TryNext:
         FrmCardList.GoldN5.Text = FrmSettings.GN5.Text
         FrmCardList.GoldN6.Text = FrmSettings.GN6.Text
 
-        FrmCardList.GoldP1.LoadFromUrl(FrmSettings.GP1.ImageLocation)
-        FrmCardList.GoldP2.LoadFromUrl(FrmSettings.GP2.ImageLocation)
-        FrmCardList.GoldP3.LoadFromUrl(FrmSettings.GP3.ImageLocation)
-        FrmCardList.GoldP4.LoadFromUrl(FrmSettings.GP4.ImageLocation)
-        FrmCardList.GoldP5.LoadFromUrl(FrmSettings.GP5.ImageLocation)
-        FrmCardList.GoldP6.LoadFromUrl(FrmSettings.GP6.ImageLocation)
+        FrmCardList.GoldP1.LoadFromUrl(My.Settings.GP1)
+        FrmCardList.GoldP2.LoadFromUrl(My.Settings.GP2)
+        FrmCardList.GoldP3.LoadFromUrl(My.Settings.GP3)
+        FrmCardList.GoldP4.LoadFromUrl(My.Settings.GP4)
+        FrmCardList.GoldP5.LoadFromUrl(My.Settings.GP5)
+        FrmCardList.GoldP6.LoadFromUrl(My.Settings.GP6)
 
         FrmCardList.SilverN1.Text = FrmSettings.SN1.Text
         FrmCardList.SilverN2.Text = FrmSettings.SN2.Text
@@ -15580,12 +15580,12 @@ TryNext:
         FrmCardList.SilverN5.Text = FrmSettings.SN5.Text
         FrmCardList.SilverN6.Text = FrmSettings.SN6.Text
 
-        FrmCardList.SilverP1.LoadFromUrl(FrmSettings.SP1.ImageLocation)
-        FrmCardList.SilverP2.LoadFromUrl(FrmSettings.SP2.ImageLocation)
-        FrmCardList.SilverP3.LoadFromUrl(FrmSettings.SP3.ImageLocation)
-        FrmCardList.SilverP4.LoadFromUrl(FrmSettings.SP4.ImageLocation)
-        FrmCardList.SilverP5.LoadFromUrl(FrmSettings.SP5.ImageLocation)
-        FrmCardList.SilverP6.LoadFromUrl(FrmSettings.SP6.ImageLocation)
+        FrmCardList.SilverP1.LoadFromUrl(My.Settings.SP1)
+        FrmCardList.SilverP2.LoadFromUrl(My.Settings.SP2)
+        FrmCardList.SilverP3.LoadFromUrl(My.Settings.SP3)
+        FrmCardList.SilverP4.LoadFromUrl(My.Settings.SP4)
+        FrmCardList.SilverP5.LoadFromUrl(My.Settings.SP5)
+        FrmCardList.SilverP6.LoadFromUrl(My.Settings.SP6)
 
         FrmCardList.BronzeN1.Text = FrmSettings.BN1.Text
         FrmCardList.BronzeN2.Text = FrmSettings.BN2.Text
@@ -15594,12 +15594,12 @@ TryNext:
         FrmCardList.BronzeN5.Text = FrmSettings.BN5.Text
         FrmCardList.BronzeN6.Text = FrmSettings.BN6.Text
 
-        FrmCardList.BronzeP1.LoadFromUrl(FrmSettings.BP1.ImageLocation)
-        FrmCardList.BronzeP2.LoadFromUrl(FrmSettings.BP2.ImageLocation)
-        FrmCardList.BronzeP3.LoadFromUrl(FrmSettings.BP3.ImageLocation)
-        FrmCardList.BronzeP4.LoadFromUrl(FrmSettings.BP4.ImageLocation)
-        FrmCardList.BronzeP5.LoadFromUrl(FrmSettings.BP5.ImageLocation)
-        FrmCardList.BronzeP6.LoadFromUrl(FrmSettings.BP6.ImageLocation)
+        FrmCardList.BronzeP1.LoadFromUrl(My.Settings.BP1)
+        FrmCardList.BronzeP2.LoadFromUrl(My.Settings.BP2)
+        FrmCardList.BronzeP3.LoadFromUrl(My.Settings.BP3)
+        FrmCardList.BronzeP4.LoadFromUrl(My.Settings.BP4)
+        FrmCardList.BronzeP5.LoadFromUrl(My.Settings.BP5)
+        FrmCardList.BronzeP6.LoadFromUrl(My.Settings.BP6)
 
 
 

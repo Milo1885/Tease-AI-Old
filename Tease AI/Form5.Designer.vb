@@ -22,6 +22,7 @@ Partial Class frmApps
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmApps))
         Me.PNLAppHome = New System.Windows.Forms.Panel()
         Me.Label15 = New System.Windows.Forms.Label()
@@ -53,7 +54,6 @@ Partial Class frmApps
         Me.Button23 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.AppPanelGlitter = New System.Windows.Forms.Panel()
-        Me.PictureBox3 = New PictureBoxEx()
         Me.StatusUpdates = New System.Windows.Forms.WebBrowser()
         Me.AppPanelVitalSub = New System.Windows.Forms.Panel()
         Me.CBVitalSubDomTask = New System.Windows.Forms.CheckBox()
@@ -75,7 +75,7 @@ Partial Class frmApps
         Me.TBExercise = New System.Windows.Forms.TextBox()
         Me.CLBExercise = New System.Windows.Forms.CheckedListBox()
         Me.CBVitalSub = New System.Windows.Forms.CheckBox()
-        Me.PictureBox1 = New PictureBoxEx()
+        Me.PictureBox1 = New Tease_AI.PictureBoxEx()
         Me.PNLHypnoGen = New System.Windows.Forms.Panel()
         Me.ComboBoxHypnoGenTrack = New System.Windows.Forms.ComboBox()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -89,7 +89,7 @@ Partial Class frmApps
         Me.LBHypnoGenInduction = New System.Windows.Forms.ListBox()
         Me.CBHypnoGenInduction = New System.Windows.Forms.CheckBox()
         Me.CBHypnoGenPhase = New System.Windows.Forms.CheckBox()
-        Me.PictureBox2 = New PictureBoxEx()
+        Me.PictureBox2 = New Tease_AI.PictureBoxEx()
         Me.BTNHypnoGenStart = New System.Windows.Forms.Button()
         Me.PNLAppRandomizer = New System.Windows.Forms.Panel()
         Me.Button16 = New System.Windows.Forms.Button()
@@ -105,23 +105,23 @@ Partial Class frmApps
         Me.Label17 = New System.Windows.Forms.Label()
         Me.Button8 = New System.Windows.Forms.Button()
         Me.PNLWishList = New System.Windows.Forms.Panel()
-        Me.WishlistCostSilver = New PictureBoxEx()
+        Me.WishlistCostSilver = New Tease_AI.PictureBoxEx()
         Me.LBLWishlistDate = New System.Windows.Forms.Label()
         Me.BTNWishlist = New System.Windows.Forms.Button()
         Me.LBLWishListText = New System.Windows.Forms.Label()
         Me.LBLWishlistCost = New System.Windows.Forms.Label()
-        Me.WishlistCostGold = New PictureBoxEx()
+        Me.WishlistCostGold = New Tease_AI.PictureBoxEx()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.LBLWishlistSilver = New System.Windows.Forms.Label()
-        Me.PictureBox6 = New PictureBoxEx()
+        Me.PictureBox6 = New Tease_AI.PictureBoxEx()
         Me.LBLWishlistBronze = New System.Windows.Forms.Label()
-        Me.PictureBox5 = New PictureBoxEx()
+        Me.PictureBox5 = New Tease_AI.PictureBoxEx()
         Me.LBLWishlistGold = New System.Windows.Forms.Label()
-        Me.PictureBox4 = New PictureBoxEx()
+        Me.PictureBox4 = New Tease_AI.PictureBoxEx()
         Me.LBLWishListName = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.LBLWishlistDom = New System.Windows.Forms.Label()
-        Me.WishlistPreview = New PictureBoxEx()
+        Me.WishlistPreview = New Tease_AI.PictureBoxEx()
         Me.PNLLazySub = New System.Windows.Forms.Panel()
         Me.Button27 = New System.Windows.Forms.Button()
         Me.Button26 = New System.Windows.Forms.Button()
@@ -136,9 +136,9 @@ Partial Class frmApps
         Me.Panel5 = New System.Windows.Forms.Panel()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label27 = New System.Windows.Forms.Label()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.PNLAppHome.SuspendLayout()
         Me.AppPanelGlitter.SuspendLayout()
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.AppPanelVitalSub.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -551,25 +551,12 @@ Partial Class frmApps
         'AppPanelGlitter
         '
         Me.AppPanelGlitter.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.AppPanelGlitter.Controls.Add(Me.PictureBox3)
         Me.AppPanelGlitter.Controls.Add(Me.StatusUpdates)
         Me.AppPanelGlitter.Location = New System.Drawing.Point(0, 47)
         Me.AppPanelGlitter.Name = "AppPanelGlitter"
         Me.AppPanelGlitter.Size = New System.Drawing.Size(250, 485)
         Me.AppPanelGlitter.TabIndex = 162
         Me.AppPanelGlitter.Visible = False
-        '
-        'PictureBox3
-        '
-        Me.PictureBox3.BackColor = System.Drawing.Color.FromArgb(CType(CType(66, Byte), Integer), CType(CType(124, Byte), Integer), CType(CType(174, Byte), Integer))
-        Me.PictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox3.Image = CType(resources.GetObject("PictureBox3.Image"), System.Drawing.Image)
-        Me.PictureBox3.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(250, 65)
-        Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
-        Me.PictureBox3.TabIndex = 0
-        Me.PictureBox3.TabStop = False
         '
         'StatusUpdates
         '
@@ -1190,7 +1177,7 @@ Partial Class frmApps
         Me.LBLWishListText.Name = "LBLWishListText"
         Me.LBLWishListText.Size = New System.Drawing.Size(220, 109)
         Me.LBLWishListText.TabIndex = 108
-        Me.LBLWishListText.Text = "This is something I really want, let me tell you all about why I want it, you sho" &
+        Me.LBLWishListText.Text = "This is something I really want, let me tell you all about why I want it, you sho" & _
     "uld buy it for me because you know you like buying stuff for me. "
         '
         'LBLWishlistCost
@@ -1512,6 +1499,10 @@ Partial Class frmApps
         Me.Label27.Text = "LaZy SuB"
         Me.Label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
+        'Timer1
+        '
+        Me.Timer1.Interval = 1000
+        '
         'frmApps
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1519,13 +1510,13 @@ Partial Class frmApps
         Me.BackColor = System.Drawing.Color.SteelBlue
         Me.ClientSize = New System.Drawing.Size(246, 530)
         Me.Controls.Add(Me.Button5)
-        Me.Controls.Add(Me.AppPanelVitalSub)
-        Me.Controls.Add(Me.AppPanelGlitter)
         Me.Controls.Add(Me.PNLAppHome)
         Me.Controls.Add(Me.PNLLazySub)
         Me.Controls.Add(Me.PNLWishList)
         Me.Controls.Add(Me.PNLAppRandomizer)
         Me.Controls.Add(Me.PNLHypnoGen)
+        Me.Controls.Add(Me.AppPanelVitalSub)
+        Me.Controls.Add(Me.AppPanelGlitter)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
@@ -1534,7 +1525,6 @@ Partial Class frmApps
         Me.PNLAppHome.ResumeLayout(False)
         Me.PNLAppHome.PerformLayout()
         Me.AppPanelGlitter.ResumeLayout(False)
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.AppPanelVitalSub.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
@@ -1583,7 +1573,6 @@ Partial Class frmApps
     Friend WithEvents Button23 As System.Windows.Forms.Button
     Friend WithEvents Button5 As System.Windows.Forms.Button
     Friend WithEvents AppPanelGlitter As System.Windows.Forms.Panel
-    Friend WithEvents PictureBox3 As PictureBoxEx
     Friend WithEvents StatusUpdates As System.Windows.Forms.WebBrowser
     Friend WithEvents AppPanelVitalSub As System.Windows.Forms.Panel
     Friend WithEvents CBVitalSubDomTask As System.Windows.Forms.CheckBox
@@ -1672,4 +1661,5 @@ Partial Class frmApps
     Friend WithEvents Button22 As System.Windows.Forms.Button
     Friend WithEvents Label15 As System.Windows.Forms.Label
     Friend WithEvents Button28 As System.Windows.Forms.Button
+    Friend WithEvents Timer1 As System.Windows.Forms.Timer
 End Class

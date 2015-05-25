@@ -23,6 +23,7 @@ Public Class PictureBoxEx
     ''' </summary>
     ''' <param name="url"></param>
     Public Sub LoadFromUrl(url As String)
+        Debug.Print("URL = " & url)
         Dim loaderLock As Object = _loaderLock
         SyncLock loaderLock
             Dim flag2 As Boolean = String.IsNullOrEmpty(url)

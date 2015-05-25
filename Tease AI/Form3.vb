@@ -1796,26 +1796,26 @@ Card9:
 
         SlotList.Clear()
 
-        SlotList.Add(FrmSettings.BP1.ImageLocation)
-        SlotList.Add(FrmSettings.BP2.ImageLocation)
-        SlotList.Add(FrmSettings.BP3.ImageLocation)
-        SlotList.Add(FrmSettings.BP4.ImageLocation)
-        SlotList.Add(FrmSettings.BP5.ImageLocation)
-        SlotList.Add(FrmSettings.BP6.ImageLocation)
+        SlotList.Add(My.Settings.BP1)
+        SlotList.Add(My.Settings.BP2)
+        SlotList.Add(My.Settings.BP3)
+        SlotList.Add(My.Settings.BP4)
+        SlotList.Add(My.Settings.BP5)
+        SlotList.Add(My.Settings.BP6)
 
-        SlotList.Add(FrmSettings.SP1.ImageLocation)
-        SlotList.Add(FrmSettings.SP2.ImageLocation)
-        SlotList.Add(FrmSettings.SP3.ImageLocation)
-        SlotList.Add(FrmSettings.SP4.ImageLocation)
-        SlotList.Add(FrmSettings.SP5.ImageLocation)
-        SlotList.Add(FrmSettings.SP6.ImageLocation)
+        SlotList.Add(My.Settings.SP1)
+        SlotList.Add(My.Settings.SP2)
+        SlotList.Add(My.Settings.SP3)
+        SlotList.Add(My.Settings.SP4)
+        SlotList.Add(My.Settings.SP5)
+        SlotList.Add(My.Settings.SP6)
 
-        SlotList.Add(FrmSettings.GP1.ImageLocation)
-        SlotList.Add(FrmSettings.GP2.ImageLocation)
-        SlotList.Add(FrmSettings.GP3.ImageLocation)
-        SlotList.Add(FrmSettings.GP4.ImageLocation)
-        SlotList.Add(FrmSettings.GP5.ImageLocation)
-        SlotList.Add(FrmSettings.GP6.ImageLocation)
+        SlotList.Add(My.Settings.GP1)
+        SlotList.Add(My.Settings.GP2)
+        SlotList.Add(My.Settings.GP3)
+        SlotList.Add(My.Settings.GP4)
+        SlotList.Add(My.Settings.GP5)
+        SlotList.Add(My.Settings.GP6)
 
         SlotBack1.BackColor = Color.Gainsboro
         SlotBack2.BackColor = Color.Gainsboro
@@ -2051,28 +2051,30 @@ Card9:
 
         SlotList.Clear()
 
-        SlotList.Add(FrmSettings.BP1.ImageLocation)
-        SlotList.Add(FrmSettings.BP2.ImageLocation)
-        SlotList.Add(FrmSettings.BP3.ImageLocation)
-        SlotList.Add(FrmSettings.BP4.ImageLocation)
-        SlotList.Add(FrmSettings.BP5.ImageLocation)
-        SlotList.Add(FrmSettings.BP6.ImageLocation)
+        SlotList.Add(My.Settings.BP1)
+        SlotList.Add(My.Settings.BP2)
+        SlotList.Add(My.Settings.BP3)
+        SlotList.Add(My.Settings.BP4)
+        SlotList.Add(My.Settings.BP5)
+        SlotList.Add(My.Settings.BP6)
 
-        SlotList.Add(FrmSettings.SP1.ImageLocation)
-        SlotList.Add(FrmSettings.SP2.ImageLocation)
-        SlotList.Add(FrmSettings.SP3.ImageLocation)
-        SlotList.Add(FrmSettings.SP4.ImageLocation)
-        SlotList.Add(FrmSettings.SP5.ImageLocation)
-        SlotList.Add(FrmSettings.SP6.ImageLocation)
+        SlotList.Add(My.Settings.SP1)
+        SlotList.Add(My.Settings.SP2)
+        SlotList.Add(My.Settings.SP3)
+        SlotList.Add(My.Settings.SP4)
+        SlotList.Add(My.Settings.SP5)
+        SlotList.Add(My.Settings.SP6)
 
-        SlotList.Add(FrmSettings.GP1.ImageLocation)
-        SlotList.Add(FrmSettings.GP2.ImageLocation)
-        SlotList.Add(FrmSettings.GP3.ImageLocation)
-        SlotList.Add(FrmSettings.GP4.ImageLocation)
-        SlotList.Add(FrmSettings.GP5.ImageLocation)
-        SlotList.Add(FrmSettings.GP6.ImageLocation)
+        SlotList.Add(My.Settings.GP1)
+        SlotList.Add(My.Settings.GP2)
+        SlotList.Add(My.Settings.GP3)
+        SlotList.Add(My.Settings.GP4)
+        SlotList.Add(My.Settings.GP5)
+        SlotList.Add(My.Settings.GP6)
 
-
+        For i As Integer = 0 To SlotList.Count - 1
+            Debug.Print("Slotlist" & i & " " & SlotList(i))
+        Next
 
         Slot1.LoadFromUrl(SlotList(randomizer.Next(0, SlotList.Count)))
         Slot2.LoadFromUrl(SlotList(randomizer.Next(0, SlotList.Count)))
@@ -2092,7 +2094,7 @@ Card9:
         SlotLeft1.LoadFromUrl(SlotImage)
         SlotRight1.LoadFromUrl(SlotImage)
         SlotRight2.LoadFromUrl(SlotImage)
-
+        Debug.Print("Say what?")
         LBLSlotTokens.Text = Form1.BronzeTokens
 
     End Sub
@@ -2346,7 +2348,7 @@ Card9:
     Private Sub TCGames_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles TCGames.SelectedIndexChanged
 
         If TCGames.SelectedIndex <> 0 Then
-            ClearSlots()
+            ' ClearSlots()
         End If
 
         If TCGames.SelectedIndex = 0 Then
@@ -2418,7 +2420,7 @@ Card9:
 
             If GoldQ1.Text <> 0 Then
                 GoldN1.Text = FrmSettings.GN1.Text
-                GoldP1.LoadFromUrl(FrmSettings.GP1.ImageLocation)
+                GoldP1.LoadFromUrl(My.Settings.GP1)
                 GoldP1.Visible = True
             Else
                 GoldP1.Visible = False
@@ -2427,7 +2429,7 @@ Card9:
 
             If GoldQ2.Text <> 0 Then
                 GoldN2.Text = FrmSettings.GN2.Text
-                GoldP2.LoadFromUrl(FrmSettings.GP2.ImageLocation)
+                GoldP2.LoadFromUrl(My.Settings.GP2)
                 GoldP2.Visible = True
             Else
                 GoldP2.Visible = False
@@ -2436,7 +2438,7 @@ Card9:
 
             If GoldQ3.Text <> 0 Then
                 GoldN3.Text = FrmSettings.GN3.Text
-                GoldP3.LoadFromUrl(FrmSettings.GP3.ImageLocation)
+                GoldP3.LoadFromUrl(My.Settings.GP3)
                 GoldP3.Visible = True
             Else
                 GoldP3.Visible = False
@@ -2445,7 +2447,7 @@ Card9:
 
             If GoldQ4.Text <> 0 Then
                 GoldN4.Text = FrmSettings.GN4.Text
-                GoldP4.LoadFromUrl(FrmSettings.GP4.ImageLocation)
+                GoldP4.LoadFromUrl(My.Settings.GP4)
                 GoldP4.Visible = True
             Else
                 GoldP4.Visible = False
@@ -2454,7 +2456,7 @@ Card9:
 
             If GoldQ5.Text <> 0 Then
                 GoldN5.Text = FrmSettings.GN5.Text
-                GoldP5.LoadFromUrl(FrmSettings.GP5.ImageLocation)
+                GoldP5.LoadFromUrl(My.Settings.GP5)
                 GoldP5.Visible = True
             Else
                 GoldP5.Visible = False
@@ -2463,7 +2465,7 @@ Card9:
 
             If GoldQ6.Text <> 0 Then
                 GoldN6.Text = FrmSettings.GN6.Text
-                GoldP6.LoadFromUrl(FrmSettings.GP6.ImageLocation)
+                GoldP6.LoadFromUrl(My.Settings.GP6)
                 GoldP6.Visible = True
             Else
                 GoldP6.Visible = False
@@ -2473,7 +2475,7 @@ Card9:
 
             If SilverQ1.Text <> 0 Then
                 SilverN1.Text = FrmSettings.SN1.Text
-                SilverP1.LoadFromUrl(FrmSettings.SP1.ImageLocation)
+                SilverP1.LoadFromUrl(My.Settings.SP1)
                 SilverP1.Visible = True
             Else
                 SilverP1.Visible = False
@@ -2482,7 +2484,7 @@ Card9:
 
             If SilverQ2.Text <> 0 Then
                 SilverN2.Text = FrmSettings.SN2.Text
-                SilverP2.LoadFromUrl(FrmSettings.SP2.ImageLocation)
+                SilverP2.LoadFromUrl(My.Settings.SP2)
                 SilverP2.Visible = True
             Else
                 SilverP2.Visible = False
@@ -2491,7 +2493,7 @@ Card9:
 
             If SilverQ3.Text <> 0 Then
                 SilverN3.Text = FrmSettings.SN3.Text
-                SilverP3.LoadFromUrl(FrmSettings.SP3.ImageLocation)
+                SilverP3.LoadFromUrl(My.Settings.SP3)
                 SilverP3.Visible = True
             Else
                 SilverP3.Visible = False
@@ -2500,7 +2502,7 @@ Card9:
 
             If SilverQ4.Text <> 0 Then
                 SilverN4.Text = FrmSettings.SN4.Text
-                SilverP4.LoadFromUrl(FrmSettings.SP4.ImageLocation)
+                SilverP4.LoadFromUrl(My.Settings.SP4)
                 SilverP4.Visible = True
             Else
                 SilverP4.Visible = False
@@ -2509,7 +2511,7 @@ Card9:
 
             If SilverQ5.Text <> 0 Then
                 SilverN5.Text = FrmSettings.SN5.Text
-                SilverP5.LoadFromUrl(FrmSettings.SP5.ImageLocation)
+                SilverP5.LoadFromUrl(My.Settings.SP5)
                 SilverP5.Visible = True
             Else
                 SilverP5.Visible = False
@@ -2518,7 +2520,7 @@ Card9:
 
             If SilverQ6.Text <> 0 Then
                 SilverN6.Text = FrmSettings.SN6.Text
-                SilverP6.LoadFromUrl(FrmSettings.SP6.ImageLocation)
+                SilverP6.LoadFromUrl(My.Settings.SP6)
                 SilverP6.Visible = True
             Else
                 SilverP6.Visible = False
@@ -2528,7 +2530,7 @@ Card9:
 
             If BronzeQ1.Text <> 0 Then
                 BronzeN1.Text = FrmSettings.BN1.Text
-                BronzeP1.LoadFromUrl(FrmSettings.BP1.ImageLocation)
+                BronzeP1.LoadFromUrl(My.Settings.BP1)
                 BronzeP1.Visible = True
             Else
                 BronzeP1.Visible = False
@@ -2537,7 +2539,7 @@ Card9:
 
             If BronzeQ2.Text <> 0 Then
                 BronzeN2.Text = FrmSettings.BN2.Text
-                BronzeP2.LoadFromUrl(FrmSettings.BP2.ImageLocation)
+                BronzeP2.LoadFromUrl(My.Settings.BP2)
                 BronzeP2.Visible = True
             Else
                 BronzeP2.Visible = False
@@ -2546,7 +2548,7 @@ Card9:
 
             If BronzeQ3.Text <> 0 Then
                 BronzeN3.Text = FrmSettings.BN3.Text
-                BronzeP3.LoadFromUrl(FrmSettings.BP3.ImageLocation)
+                BronzeP3.LoadFromUrl(My.Settings.BP3)
                 BronzeP3.Visible = True
             Else
                 BronzeP3.Visible = False
@@ -2555,7 +2557,7 @@ Card9:
 
             If BronzeQ4.Text <> 0 Then
                 BronzeN4.Text = FrmSettings.BN4.Text
-                BronzeP4.LoadFromUrl(FrmSettings.BP4.ImageLocation)
+                BronzeP4.LoadFromUrl(My.Settings.BP4)
                 BronzeP4.Visible = True
             Else
                 BronzeP4.Visible = False
@@ -2564,7 +2566,7 @@ Card9:
 
             If BronzeQ5.Text <> 0 Then
                 BronzeN5.Text = FrmSettings.BN5.Text
-                BronzeP5.LoadFromUrl(FrmSettings.BP5.ImageLocation)
+                BronzeP5.LoadFromUrl(My.Settings.BP5)
                 BronzeP5.Visible = True
             Else
                 BronzeP5.Visible = False
@@ -2573,7 +2575,7 @@ Card9:
 
             If BronzeQ6.Text <> 0 Then
                 BronzeN6.Text = FrmSettings.BN6.Text
-                BronzeP6.LoadFromUrl(FrmSettings.BP6.ImageLocation)
+                BronzeP6.LoadFromUrl(My.Settings.BP6)
                 BronzeP6.Visible = True
             Else
                 BronzeP6.Visible = False
@@ -2665,26 +2667,26 @@ Card9:
         BoosterListSilver.Clear()
         BoosterListGold.Clear()
 
-        BoosterListBronze.Add(FrmSettings.BP1.ImageLocation)
-        BoosterListBronze.Add(FrmSettings.BP2.ImageLocation)
-        BoosterListBronze.Add(FrmSettings.BP3.ImageLocation)
-        BoosterListBronze.Add(FrmSettings.BP4.ImageLocation)
-        BoosterListBronze.Add(FrmSettings.BP5.ImageLocation)
-        BoosterListBronze.Add(FrmSettings.BP6.ImageLocation)
+        BoosterListBronze.Add(My.Settings.BP1)
+        BoosterListBronze.Add(My.Settings.BP2)
+        BoosterListBronze.Add(My.Settings.BP3)
+        BoosterListBronze.Add(My.Settings.BP4)
+        BoosterListBronze.Add(My.Settings.BP5)
+        BoosterListBronze.Add(My.Settings.BP6)
 
-        BoosterListSilver.Add(FrmSettings.SP1.ImageLocation)
-        BoosterListSilver.Add(FrmSettings.SP2.ImageLocation)
-        BoosterListSilver.Add(FrmSettings.SP3.ImageLocation)
-        BoosterListSilver.Add(FrmSettings.SP4.ImageLocation)
-        BoosterListSilver.Add(FrmSettings.SP5.ImageLocation)
-        BoosterListSilver.Add(FrmSettings.SP6.ImageLocation)
+        BoosterListSilver.Add(My.Settings.SP1)
+        BoosterListSilver.Add(My.Settings.SP2)
+        BoosterListSilver.Add(My.Settings.SP3)
+        BoosterListSilver.Add(My.Settings.SP4)
+        BoosterListSilver.Add(My.Settings.SP5)
+        BoosterListSilver.Add(My.Settings.SP6)
 
-        BoosterListGold.Add(FrmSettings.GP1.ImageLocation)
-        BoosterListGold.Add(FrmSettings.GP2.ImageLocation)
-        BoosterListGold.Add(FrmSettings.GP3.ImageLocation)
-        BoosterListGold.Add(FrmSettings.GP4.ImageLocation)
-        BoosterListGold.Add(FrmSettings.GP5.ImageLocation)
-        BoosterListGold.Add(FrmSettings.GP6.ImageLocation)
+        BoosterListGold.Add(My.Settings.GP1)
+        BoosterListGold.Add(My.Settings.GP2)
+        BoosterListGold.Add(My.Settings.GP3)
+        BoosterListGold.Add(My.Settings.GP4)
+        BoosterListGold.Add(My.Settings.GP5)
+        BoosterListGold.Add(My.Settings.GP6)
 
         BoosterTick = 6
         BTNBoosterBuy.Enabled = False
@@ -3441,12 +3443,12 @@ Card9:
         ExchangePlate.BackColor = Color.Silver
         LBLExchange.Text = "You've received a Silver card!"
 
-        SilverDraw.Add(FrmSettings.SP1.ImageLocation)
-        SilverDraw.Add(FrmSettings.SP2.ImageLocation)
-        SilverDraw.Add(FrmSettings.SP3.ImageLocation)
-        SilverDraw.Add(FrmSettings.SP4.ImageLocation)
-        SilverDraw.Add(FrmSettings.SP5.ImageLocation)
-        SilverDraw.Add(FrmSettings.SP6.ImageLocation)
+        SilverDraw.Add(My.Settings.SP1)
+        SilverDraw.Add(My.Settings.SP2)
+        SilverDraw.Add(My.Settings.SP3)
+        SilverDraw.Add(My.Settings.SP4)
+        SilverDraw.Add(My.Settings.SP5)
+        SilverDraw.Add(My.Settings.SP6)
 
         TempVal = randomizer.Next(1, 7)
 
@@ -3547,12 +3549,12 @@ Card9:
         ExchangePlate.BackColor = Color.Gold
         LBLExchange.Text = "You've received a Gold card!"
 
-        GoldDraw.Add(FrmSettings.GP1.ImageLocation)
-        GoldDraw.Add(FrmSettings.GP2.ImageLocation)
-        GoldDraw.Add(FrmSettings.GP3.ImageLocation)
-        GoldDraw.Add(FrmSettings.GP4.ImageLocation)
-        GoldDraw.Add(FrmSettings.GP5.ImageLocation)
-        GoldDraw.Add(FrmSettings.GP6.ImageLocation)
+        GoldDraw.Add(My.Settings.GP1)
+        GoldDraw.Add(My.Settings.GP2)
+        GoldDraw.Add(My.Settings.GP3)
+        GoldDraw.Add(My.Settings.GP4)
+        GoldDraw.Add(My.Settings.GP5)
+        GoldDraw.Add(My.Settings.GP6)
 
         TempVal = randomizer.Next(1, 7)
 

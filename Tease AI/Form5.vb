@@ -4,7 +4,7 @@ Imports System.IO
 
 Public Class frmApps
 
-
+    Dim TImerTick As Integer
 
     Private Sub CLBExercise_DragLeave(sender As Object, e As System.EventArgs) Handles CLBExercise.DoubleClick
         CLBExercise.Items.Remove(CLBExercise.SelectedItem)
@@ -740,11 +740,17 @@ Public Class frmApps
             MessageBox.Show(Me, "Please set all of the pictures in the Apps\Games tab before launching this app!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Hand)
             Return
         End If
+        TImerTick = 2
+        Timer1.Start()
+
+        'LoopOk:
+
+        'If TImerTick > 0 Then GoTo Loopok
 
 
-        FrmCardList.Show()
-        Form1.RefreshCards()
-        FrmCardList.InitializeCards()
+        'FrmCardList.Show()
+        ' Form1.RefreshCards()
+        ' FrmCardList.InitializeCards()
     End Sub
 
 
@@ -893,6 +899,7 @@ Public Class frmApps
 
     Private Sub frmApps_FormClosed(sender As Object, e As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
         Form1.BTNShowHideApps.Text = "Show Apps"
+        FrmCardList.InitializeSlots()
     End Sub
 
     Private Sub frmApps_Load(sender As Object, e As System.EventArgs) Handles Me.Load
@@ -979,5 +986,16 @@ Public Class frmApps
 
     Private Sub Button17_Click(sender As System.Object, e As System.EventArgs)
         Form1.CreateTaskLetter()
+    End Sub
+
+    Private Sub Timer1_Tick(sender As System.Object, e As System.EventArgs) Handles Timer1.Tick
+        TImerTick -= 1
+        If TImerTick < 1 Then
+            FrmCardList.Show()
+            Form1.RefreshCards()
+            FrmCardList.InitializeCards()
+            Timer1.Stop()
+        End If
+
     End Sub
 End Class
