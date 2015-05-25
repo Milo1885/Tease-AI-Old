@@ -16,6 +16,8 @@ Imports System.Speech.AudioFormat
 
 'Comment added by kinkyswan to test pull request on GitHub (comment can be removed)
 
+' Comment added to the test the effect of pulling a request into code that's been modified since the pull request was made
+
 
 
 Public Class Form1
@@ -488,6 +490,11 @@ ByVal lpstrReturnString As String, ByVal uReturnLength As Integer, ByVal hwndCal
         If My.Settings.OrgasmLockDate = Nothing Then My.Settings.OrgasmLockDate = FormatDateTime(Now, DateFormat.ShortDate)
         My.Settings.Save()
         Debug.Print("OrgasmLockDate = " & My.Settings.OrgasmLockDate)
+
+   
+
+
+
 
         If File.Exists(Application.StartupPath & "\System\Metronome") Then My.Computer.FileSystem.DeleteFile(Application.StartupPath & "\System\Metronome")
 
@@ -1219,46 +1226,34 @@ ByVal lpstrReturnString As String, ByVal uReturnLength As Integer, ByVal hwndCal
 
         DommeMood = randomizer.Next(5, 8)
 
-        If File.Exists(Application.StartupPath & "\System\LastOrgasm") Then
-            FrmSettings.LBLLastOrgasm.Text = GetLastOrgasmStamp().ToString("MM.dd.yyyy")
-        Else
-            FrmSettings.LBLLastOrgasm.Text = GetLastOrgasmStamp().ToString("MM.dd.yyyy")
-            System.IO.File.WriteAllText(Application.StartupPath & "\System\LastOrgasm", DateString)
-        End If
 
-        If File.Exists(Application.StartupPath & "\System\LastRuined") Then
-            FrmSettings.LBLLastRuined.Text = GetLastRuinedStamp().ToString("MM.dd.yyyy")
-        Else
-            FrmSettings.LBLLastRuined.Text = GetLastRuinedStamp().ToString("MM.dd.yyyy")
-            System.IO.File.WriteAllText(Application.StartupPath & "\System\LastRuined", DateString)
-        End If
-
-        If DateTime.Now.ToString("MM/dd/yyyy") <> GetLastTimeStamp().ToString("MM/dd/yyyy") Then
-            MessageBox.Show(Me, "You've received 5 Bronze tokens!", "Daily Login Bonus", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            SaveLastSyncTimeStamp()
-            BronzeTokens += 5
-            SaveTokens()
-        Else
-            Debug.Print("CDate = GetLastTimeStamp")
-        End If
-
-        If Not File.Exists(Application.StartupPath & "\System\Wishlist") Then
-            My.Settings.ClearWishlist = False
+        If My.Settings.LastOrgasm = Nothing Then
+            My.Settings.LastOrgasm = FormatDateTime(Now, DateFormat.ShortDate)
             My.Settings.Save()
         End If
 
+        FrmSettings.LBLLastOrgasm.Text = My.Settings.LastOrgasm.ToString()
 
-        Try
-            If DateTime.Now.ToString("MM/dd/yyyy") <> GetLastWishlistStamp().ToString("MM/dd/yyyy") Then
-                Debug.Print("CDate <> GetLastWishlistStamp")
-                My.Settings.ClearWishlist = False
-                My.Settings.Save()
-            End If
-        Catch
-        End Try
+        If My.Settings.LastRuined = Nothing Then
+            My.Settings.LastRuined = FormatDateTime(Now, DateFormat.ShortDate)
+            My.Settings.Save()
+        End If
+
+        FrmSettings.LBLLastRuined.Text = My.Settings.LastRuined.ToString()
+
+        If CompareDates(My.Settings.DateStamp) <> 0 Then
+            MessageBox.Show(Me, "You've received 5 Bronze tokens!", "Daily Login Bonus", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            My.Settings.DateStamp = FormatDateTime(Now, DateFormat.ShortDate)
+            BronzeTokens += 5
+            SaveTokens()
+        End If
 
 
-
+        If CompareDates(My.Settings.WishlistDate) <> 0 Then
+            My.Settings.ClearWishlist = False
+            My.Settings.Save()
+        End If
+     
 
         AvgEdgeStroking = My.Settings.AvgEdgeStroking
         AvgEdgeNoTouch = My.Settings.AvgEdgeNoTouch
@@ -2002,8 +1997,9 @@ NoRepeatFiles:
 
 RuinedOrgasm:
 
-                System.IO.File.WriteAllText(Application.StartupPath & "\System\LastRuined", DateString)
-                FrmSettings.LBLLastRuined.Text = DateString
+                My.Settings.LastRuined = FormatDateTime(Now, DateFormat.ShortDate)
+                My.Settings.Save()
+                FrmSettings.LBLLastOrgasm.Text = My.Settings.LastRuined
 
                 If FrmSettings.CBDomOrgasmEnds.Checked = False And OrgasmRuined = True Then
 
@@ -2102,8 +2098,9 @@ AllowedOrgasm:
 
 NoNoCumFiles:
 
-                System.IO.File.WriteAllText(Application.StartupPath & "\System\LastOrgasm", DateString)
-                FrmSettings.LBLLastOrgasm.Text = DateString
+                My.Settings.LastOrgasm = FormatDateTime(Now, DateFormat.ShortDate)
+                My.Settings.Save()
+                FrmSettings.LBLLastOrgasm.Text = My.Settings.LastOrgasm
 
                 If FrmSettings.CBDomOrgasmEnds.Checked = False Then
 
@@ -7238,15 +7235,15 @@ StatusUpdateEnd:
 
         Debug.Print("Test")
 
-        If File.Exists(Application.StartupPath & "\System\SetDate") Then
-            Try
-                StringClean = StringClean.Replace("#OrgasmLockDate", My.Settings.OrgasmLockDate.Date.ToString())
-            Catch
-                StringClean = StringClean.Replace("#OrgasmLocktDate", "later")
-            End Try
+        If My.Settings.OrgasmsLocked = True Then
+            StringClean = StringClean.Replace("#OrgasmLockDate", My.Settings.OrgasmLockDate.Date.ToString())
         Else
             StringClean = StringClean.Replace("#OrgasmLockDate", "later")
         End If
+
+      
+
+
 
         Dim PetNameVal As Integer = randomizer.Next(1, 5)
 
@@ -13545,8 +13542,9 @@ NoRepeatFiles:
 
 RuinedOrgasm:
 
-            System.IO.File.WriteAllText(Application.StartupPath & "\System\LastRuined", DateString)
-            FrmSettings.LBLLastRuined.Text = DateString
+            My.Settings.LastRuined = FormatDateTime(Now, DateFormat.ShortDate)
+            My.Settings.Save()
+            FrmSettings.LBLLastOrgasm.Text = My.Settings.LastRuined
 
             If FrmSettings.CBDomOrgasmEnds.Checked = False And OrgasmRuined = True Then
 
@@ -13650,8 +13648,9 @@ AllowedOrgasm:
 NoNoCumFiles:
 
 
-            System.IO.File.WriteAllText(Application.StartupPath & "\System\LastOrgasm", DateString)
-            FrmSettings.LBLLastOrgasm.Text = DateString
+            My.Settings.LastOrgasm = FormatDateTime(Now, DateFormat.ShortDate)
+            My.Settings.Save()
+            FrmSettings.LBLLastOrgasm.Text = My.Settings.LastOrgasm
 
             If FrmSettings.CBDomOrgasmEnds.Checked = False Then
 
@@ -15629,63 +15628,12 @@ TryNext:
     End Sub
 
 
-    Public Function GetLastTimeStamp() As DateTime
-        Try
-            Dim lsts As String = System.IO.File.ReadAllText(Application.StartupPath & "\System\DateStamp")
-            Return Date.ParseExact(lsts.Trim, "MM-dd-yyyy", CultureInfo.InvariantCulture)
-            Debug.Print(lsts.Trim & " Worked")
-        Catch
-            'Return DateTime.Now
-        End Try
-    End Function
 
-    Public Function GetLastWishlistStamp() As DateTime
-        Try
-            Dim lsts As String = System.IO.File.ReadAllText(Application.StartupPath & "\System\Wishlist")
-            Return Date.ParseExact(lsts.Trim, "MM-dd-yyyy", CultureInfo.InvariantCulture)
-            Debug.Print(lsts.Trim & " Worked")
-        Catch
-            'Return DateTime.Now
-        End Try
-    End Function
 
-    Public Sub SaveLastSyncTimeStamp()
-        Try
-            System.IO.File.WriteAllText(Application.StartupPath & "\System\DateStamp", DateString)
-        Catch
 
-        End Try
-    End Sub
+   
 
-    Public Function GetLastOrgasmStamp() As DateTime
-        Try
-            Dim lsts As String = System.IO.File.ReadAllText(Application.StartupPath & "\System\LastOrgasm")
-            Return Date.ParseExact(lsts.Trim, "MM-dd-yyyy", CultureInfo.InvariantCulture)
-            Debug.Print(lsts.Trim & " Worked")
-        Catch
-            Return DateTime.Now
-        End Try
-    End Function
-
-    Public Function GetLastRuinedStamp() As DateTime
-        Try
-            Dim lsts As String = System.IO.File.ReadAllText(Application.StartupPath & "\System\LastRuined")
-            Return Date.ParseExact(lsts.Trim, "MM-dd-yyyy", CultureInfo.InvariantCulture)
-            Debug.Print(lsts.Trim & " Worked")
-        Catch
-            Return DateTime.Now
-        End Try
-    End Function
-
-    Public Function GetSetDateStamp() As DateTime
-        Try
-            Dim lsts As String = System.IO.File.ReadAllText(Application.StartupPath & "\System\SetDate")
-            Return Date.ParseExact(lsts.Trim, "MM-dd-yyyy", CultureInfo.InvariantCulture)
-            Debug.Print(lsts.Trim & " Worked")
-        Catch
-            Return DateTime.Now
-        End Try
-    End Function
+ 
 
 
 
@@ -16514,6 +16462,17 @@ TryNext:
         array(0) = Char.ToUpper(array(0))
         Return New String(array)
     End Function
+
+
+
+    Public Function CompareDates(ByVal CheckDate As Date) As Integer
+
+        Dim result As Integer = DateTime.Compare(FormatDateTime(CheckDate, DateFormat.ShortDate), FormatDateTime(Now, DateFormat.ShortDate))
+        Debug.Print("Compare dates: " & FormatDateTime(CheckDate, DateFormat.ShortDate) & " <-> " & FormatDateTime(Now, DateFormat.ShortDate) & " = " & result)
+        Return result
+
+    End Function
+
 
 
 End Class

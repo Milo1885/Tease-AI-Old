@@ -4225,6 +4225,61 @@ Namespace My
                 Me("AuditStartup") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property WishlistDate() As Date
+            Get
+                Return CType(Me("WishlistDate"),Date)
+            End Get
+            Set
+                Me("WishlistDate") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property LastOrgasm() As Date
+            Get
+                Return CType(Me("LastOrgasm"),Date)
+            End Get
+            Set
+                Me("LastOrgasm") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property LastRuined() As Date
+            Get
+                Return CType(Me("LastRuined"),Date)
+            End Get
+            Set
+                Me("LastRuined") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property DateStamp() As Date
+            Get
+                Return CType(Me("DateStamp"),Date)
+            End Get
+            Set
+                Me("DateStamp") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property TokenTasks() As Date
+            Get
+                Return CType(Me("TokenTasks"),Date)
+            End Get
+            Set
+                Me("TokenTasks") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

@@ -104,17 +104,11 @@ Public Class frmApps
 
 
 
+     
 
 
 
-
-
-        If DateTime.Now.ToString("MM/dd/yyyy") <> Form1.GetLastWishlistStamp().ToString("MM/dd/yyyy") Or Not File.Exists(Application.StartupPath & "\System\Wishlist") Then
-
-            'If CDate(DateString) <> GetLastWishlistStamp() Or Not File.Exists(Application.StartupPath & "\System\Wishlist") Then
-
-            'If CDate(DateString) <> GetLastWishlistStamp() Or Not File.Exists(Application.StartupPath & "\System\Wishlist") Then
-
+        If Form1.CompareDates(My.Settings.WishlistDate) <> 0 Then
 
 
             Dim WishList As New List(Of String)
@@ -132,7 +126,7 @@ Public Class frmApps
             End If
 
             LBLWishlistDom.Text = Form1.domName.Text & "'s Wishlist"
-            LBLWishlistDate.Text = DateTime.Now.ToString("MM/dd/yyyy")
+            LBLWishlistDate.Text = FormatDateTime(Now, DateFormat.ShortDate).ToString()
             WishlistCostGold.Visible = False
             WishlistCostSilver.Visible = False
             LBLWishlistBronze.Text = Form1.BronzeTokens
@@ -140,7 +134,7 @@ Public Class frmApps
             LBLWishlistGold.Text = Form1.GoldTokens
             LBLWishListText.Text = ""
 
-        
+
 
             Dim WishDir As String = WishList(Form1.randomizer.Next(0, WishList.Count))
 
@@ -204,19 +198,23 @@ Public Class frmApps
                 End If
             End If
 
+
+
+            My.Settings.WishlistDate = FormatDateTime(Now, DateFormat.ShortDate)
+
             My.Settings.Save()
 
 
 
-            System.IO.File.WriteAllText(Application.StartupPath & "\System\Wishlist", DateString)
+
 
 
         Else
 
-            'Debug.Print("CDate = GetLastWishlistStamp")
+
 
             LBLWishlistDom.Text = Form1.domName.Text & "'s Wishlist"
-            LBLWishlistDate.Text = DateTime.Now.ToString("MM/dd/yyyy")
+            LBLWishlistDate.Text = FormatDateTime(Now, DateFormat.ShortDate).ToString()
             LBLWishlistBronze.Text = Form1.BronzeTokens
             LBLWishlistSilver.Text = Form1.SilverTokens
             LBLWishlistGold.Text = Form1.GoldTokens

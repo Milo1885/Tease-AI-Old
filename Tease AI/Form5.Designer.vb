@@ -603,7 +603,7 @@ Partial Class frmApps
         Me.CBVitalSubDomTask.Name = "CBVitalSubDomTask"
         Me.CBVitalSubDomTask.Size = New System.Drawing.Size(126, 24)
         Me.CBVitalSubDomTask.TabIndex = 6
-        Me.CBVitalSubDomTask.Text = "Domme Assigmments"
+        Me.CBVitalSubDomTask.Text = "Domme Assignments"
         Me.CBVitalSubDomTask.UseVisualStyleBackColor = True
         '
         'BTNVitalSub
@@ -1519,13 +1519,13 @@ Partial Class frmApps
         Me.BackColor = System.Drawing.Color.SteelBlue
         Me.ClientSize = New System.Drawing.Size(246, 530)
         Me.Controls.Add(Me.Button5)
+        Me.Controls.Add(Me.AppPanelVitalSub)
+        Me.Controls.Add(Me.AppPanelGlitter)
         Me.Controls.Add(Me.PNLAppHome)
         Me.Controls.Add(Me.PNLLazySub)
         Me.Controls.Add(Me.PNLWishList)
         Me.Controls.Add(Me.PNLAppRandomizer)
         Me.Controls.Add(Me.PNLHypnoGen)
-        Me.Controls.Add(Me.AppPanelVitalSub)
-        Me.Controls.Add(Me.AppPanelGlitter)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False

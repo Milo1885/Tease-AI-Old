@@ -2365,7 +2365,7 @@ Card9:
 
         If TCGames.SelectedIndex = 2 Then
 
-            If DateTime.Now.ToString("MM/dd/yyyy") <> GetLastTokenTaskStamp().ToString("MM/dd/yyyy") Then
+            If Form1.CompareDates(My.Settings.TokenTasks) <> 0 Then
                 BTNTokenRequest.Enabled = True
             Else
                 BTNTokenRequest.Enabled = False
@@ -3685,8 +3685,7 @@ Card9:
 
     Private Sub Button1_Click_1(sender As System.Object, e As System.EventArgs) Handles BTNTokenRequest.Click
 
-        If DateTime.Now.ToString("MM/dd/yyyy") <> GetLastTokenTaskStamp().ToString("MM/dd/yyyy") Then
-            System.IO.File.WriteAllText(Application.StartupPath & "\System\TokenTasks", DateString)
+     
 
             Dim TokenList As New List(Of String)
             For Each foundFile As String In My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Scripts\" & FrmSettings.dompersonalityComboBox.Text & "\Apps\Games\Token Tasks\", FileIO.SearchOption.SearchAllSubDirectories, "*.txt")
@@ -3701,25 +3700,19 @@ Card9:
                 Form1.ScriptTick = 2
                 Form1.ScriptTimer.Start()
 
-                BTNTokenRequest.Enabled = False
+            My.Settings.TokenTasks = FormatDateTime(Now, DateFormat.ShortDate)
+            My.Settings.Save()
+            BTNTokenRequest.Enabled = False
             Else
                 MessageBox.Show(Me, "No tasks found in Token Tasks folder!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Hand)
                 Return
             End If
-        End If
+
 
     End Sub
 
 
-    Private Function GetLastTokenTaskStamp() As DateTime
-        Try
-            Dim lsts As String = System.IO.File.ReadAllText(Application.StartupPath & "\System\TokenTasks")
-            Return Date.ParseExact(lsts.Trim, "MM-dd-yyyy", CultureInfo.InvariantCulture)
-            Debug.Print(lsts.Trim & " Worked")
-        Catch
-            'Return DateTime.Now
-        End Try
-    End Function
+   
 
     Private Sub Button1_Click_2(sender As System.Object, e As System.EventArgs)
 

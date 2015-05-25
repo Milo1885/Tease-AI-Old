@@ -566,24 +566,13 @@ Public Class FrmSettings
         CBTauntCycleDD.Checked = My.Settings.CBTauntCycleDD
 
 
-        If Not File.Exists(Application.StartupPath & "\System\SetDate") Then
-            My.Settings.OrgasmsLocked = False
-            My.Settings.Save()
-        End If
+      
 
         If My.Settings.OrgasmsLocked = True Then
-
-            Dim date1 As Date = FormatDateTime(Now, DateFormat.ShortDate)
-            Dim date2 As Date = FormatDateTime(My.Settings.OrgasmLockDate, DateFormat.ShortDate)
-
-            Dim UnlockResult As Integer = DateTime.Compare(date1.Date, date2.Date)
-
-
-
-            If UnlockResult >= 0 Then
+            Debug.Print("Form2 Orgasm Lock Date = " & My.Settings.OrgasmLockDate)
+            If Form1.CompareDates(My.Settings.OrgasmLockDate) <= 0 Then
                 My.Settings.OrgasmsLocked = False
                 My.Settings.Save()
-                My.Computer.FileSystem.DeleteFile(Application.StartupPath & "\System\SetDate")
             Else
                 limitcheckbox.Checked = True
                 limitcheckbox.Enabled = False
@@ -595,53 +584,53 @@ Public Class FrmSettings
 
         End If
 
-        CBOwnChastity.Checked = My.Settings.CBOwnChastity
+            CBOwnChastity.Checked = My.Settings.CBOwnChastity
 
-        CBChastitySpikes.Checked = My.Settings.ChastitySpikes
-        CBChastityPA.Checked = My.Settings.ChastityPA
+            CBChastitySpikes.Checked = My.Settings.ChastitySpikes
+            CBChastityPA.Checked = My.Settings.ChastityPA
 
-        CBChastityPA.Enabled = CBOwnChastity.Checked
-        CBChastitySpikes.Enabled = CBOwnChastity.Checked
+            CBChastityPA.Enabled = CBOwnChastity.Checked
+            CBChastitySpikes.Enabled = CBOwnChastity.Checked
 
-        CBIncludeGifs.Checked = My.Settings.CBIncludeGifs
+            CBIncludeGifs.Checked = My.Settings.CBIncludeGifs
 
-        CBHimHer.Checked = My.Settings.CBHimHer
+            CBHimHer.Checked = My.Settings.CBHimHer
 
-        CBDomDel.Checked = My.Settings.DomDeleteMedia
+            CBDomDel.Checked = My.Settings.DomDeleteMedia
 
-        NBTeaseLengthMin.Value = My.Settings.TeaseLengthMin
-        NBTeaseLengthMax.Value = My.Settings.TeaseLengthMax
+            NBTeaseLengthMin.Value = My.Settings.TeaseLengthMin
+            NBTeaseLengthMax.Value = My.Settings.TeaseLengthMax
 
-        NBTauntCycleMin.Value = My.Settings.TauntCycleMin
-        NBTauntCycleMax.Value = My.Settings.TauntCycleMax
+            NBTauntCycleMin.Value = My.Settings.TauntCycleMin
+            NBTauntCycleMax.Value = My.Settings.TauntCycleMax
 
-        NBRedLightMin.Value = My.Settings.RedLightMin
-        NBRedLightMax.Value = My.Settings.RedLightMax
+            NBRedLightMin.Value = My.Settings.RedLightMin
+            NBRedLightMax.Value = My.Settings.RedLightMax
 
-        NBGreenLightMin.Value = My.Settings.GreenLightMin
-        NBGreenLightMax.Value = My.Settings.GreenLightMax
+            NBGreenLightMin.Value = My.Settings.GreenLightMin
+            NBGreenLightMax.Value = My.Settings.GreenLightMax
 
-        NBTeaseLengthMin.Value = My.Settings.TeaseLengthMin
-        NBTeaseLengthMax.Value = My.Settings.TeaseLengthMax
+            NBTeaseLengthMin.Value = My.Settings.TeaseLengthMin
+            NBTeaseLengthMax.Value = My.Settings.TeaseLengthMax
 
-        ' teaseRadio.Checked = True
+            ' teaseRadio.Checked = True
 
-        ' If My.Settings.SlideshowMode - "Tease" Then teaseRadio.Checked = True
-        'If My.Settings.SlideshowMode = "Manual" Then offRadio.Checked = True
-        'If My.Settings.SlideshowMode = "Timer" Then timedRadio.Checked = True
-
-
-
-        AuditScripts()
-
-
-        FrmSettingsLoading = False
-
-        Me.Visible = False
+            ' If My.Settings.SlideshowMode - "Tease" Then teaseRadio.Checked = True
+            'If My.Settings.SlideshowMode = "Manual" Then offRadio.Checked = True
+            'If My.Settings.SlideshowMode = "Timer" Then timedRadio.Checked = True
 
 
 
-        Debug.Print("Form2 Loading Finished")
+            AuditScripts()
+
+
+            FrmSettingsLoading = False
+
+            Me.Visible = False
+
+
+
+            Debug.Print("Form2 Loading Finished")
 
 
     End Sub
@@ -5293,10 +5282,10 @@ NextURL:
     Private Sub BTNWILiked_Click(sender As System.Object, e As System.EventArgs) Handles BTNWILiked.Click
 
 
-        If File.Exists(Application.StartupPath & "\Scripts\" & dompersonalityComboBox.Text & "\System\LikedImageURLs.txt") Then
-            My.Computer.FileSystem.WriteAllText(Application.StartupPath & "\Scripts\" & dompersonalityComboBox.Text & "\System\LikedImageURLs.txt", Environment.NewLine & Form1.WebImageLines(Form1.WebImageLine), True)
+        If File.Exists(Application.StartupPath & "\Images\System\LikedImageURLs.txt") Then
+            My.Computer.FileSystem.WriteAllText(Application.StartupPath & "\Images\System\LikedImageURLs.txt", Environment.NewLine & Form1.WebImageLines(Form1.WebImageLine), True)
         Else
-            My.Computer.FileSystem.WriteAllText(Application.StartupPath & "\Scripts\" & dompersonalityComboBox.Text & "\System\LikedImageURLs.txt", Form1.WebImageLines(Form1.WebImageLine), True)
+            My.Computer.FileSystem.WriteAllText(Application.StartupPath & "\Images\System\LikedImageURLs.txt", Form1.WebImageLines(Form1.WebImageLine), True)
         End If
 
 
@@ -10162,34 +10151,7 @@ WhyUMakeMeDoDis:
         My.Settings.Save()
     End Sub
 
-    Private Sub Button1_Click(sender As System.Object, e As System.EventArgs)
-
-        Dim SetDate As Date = DateString
-
-        ' SetDate = DateAdd(DateInterval.Month, -3, SetDate)
-
-
-        If DateTime.Now.ToString("MM/dd/yyyy") > Form1.GetSetDateStamp().ToString("MM/dd/yyyy") Then
-            MsgBox(DateTime.Now.ToString("MM/dd/yyyy") & " is later than " & Form1.GetSetDateStamp().ToString("MM/dd/yyyy"))
-        End If
-
-        If DateTime.Now.ToString("MM/dd/yyyy") < Form1.GetSetDateStamp().ToString("MM/dd/yyyy") Then
-            MsgBox(DateTime.Now.ToString("MM/dd/yyyy") & " is earlier than " & Form1.GetSetDateStamp().ToString("MM/dd/yyyy"))
-        End If
-
-        If DateTime.Now.ToString("MM/dd/yyyy") = Form1.GetSetDateStamp().ToString("MM/dd/yyyy") Then
-            MsgBox(DateTime.Now.ToString("MM/dd/yyyy") & " equals " & Form1.GetSetDateStamp().ToString("MM/dd/yyyy"))
-        End If
-
-
-
-
-        ' If DateTime.Now.ToString("MM/dd/yyyy") > Form1.GetSetDateStamp().ToString("MM/dd/yyyy") Then MsgBox("It is later than " & Form1.GetSetDateStamp().ToString("MM/dd/yyyy"))
-        'If DateTime.Now.ToString("MM/dd/yyyy") = Form1.GetSetDateStamp().ToString("MM/dd/yyyy") Then MsgBox("It is currently " & Form1.GetSetDateStamp().ToString("MM/dd/yyyy"))
-        'If DateTime.Now.ToString("MM/dd/yyyy") < Form1.GetSetDateStamp().ToString("MM/dd/yyyy") Then MsgBox("It is earlier than " & Form1.GetSetDateStamp().ToString("MM/dd/yyyy"))
-
-
-    End Sub
+  
 
     Private Sub orgasmsperlockButton_Click(sender As System.Object, e As System.EventArgs) Handles orgasmsperlockButton.Click
 
@@ -10221,7 +10183,7 @@ WhyUMakeMeDoDis:
 
             My.Settings.DomPerMonth = orgasmsperComboBox.Text
 
-            Dim SetDate As Date = DateString
+            Dim SetDate As Date = FormatDateTime(Now, DateFormat.ShortDate)
 
             Debug.Print(SetDate)
 
@@ -10246,7 +10208,7 @@ WhyUMakeMeDoDis:
             My.Settings.OrgasmLockDate = FormatDateTime(SetDate, DateFormat.ShortDate)
             Debug.Print(My.Settings.OrgasmLockDate)
 
-            System.IO.File.WriteAllText(Application.StartupPath & "\System\SetDate", "What were you expecting to find in here?")
+
 
 
             My.Settings.OrgasmsLocked = True
@@ -10346,7 +10308,7 @@ WhyUMakeMeDoDis:
 
             orgasmsperComboBox.Text = My.Settings.DomPerMonth
 
-            Dim SetDate As Date = DateString
+            Dim SetDate As Date = FormatDateTime(Now, DateFormat.ShortDate)
 
             If orgasmsperComboBox.Text = "Week" Then SetDate = DateAdd(DateInterval.Day, 7, SetDate)
             If orgasmsperComboBox.Text = "2 Weeks" Then SetDate = DateAdd(DateInterval.Day, 14, SetDate)
@@ -10366,8 +10328,6 @@ WhyUMakeMeDoDis:
 
             My.Settings.OrgasmLockDate = FormatDateTime(SetDate, DateFormat.ShortDate)
             Debug.Print(My.Settings.OrgasmLockDate)
-
-            System.IO.File.WriteAllText(Application.StartupPath & "\System\SetDate", "What were you expecting to find in here?")
 
 
             My.Settings.OrgasmsLocked = True
@@ -11194,26 +11154,28 @@ NextURL:
             Next
 
 
+            If Not foundFile.Contains("Received Files") Then
+
+                Dim fs As New FileStream(foundFile, FileMode.Create)
+                Dim sw As New StreamWriter(fs)
 
 
-            Dim fs As New FileStream(foundFile, FileMode.Create)
-            Dim sw As New StreamWriter(fs)
+                For i As Integer = 0 To GoodLines.Count - 1
+                    If i <> GoodLines.Count - 1 Then
+                        sw.WriteLine(GoodLines(i))
+                    Else
+                        sw.Write(GoodLines(i))
+                    End If
+                Next
 
 
-            For i As Integer = 0 To GoodLines.Count - 1
-                If i <> GoodLines.Count - 1 Then
-                    sw.WriteLine(GoodLines(i))
-                Else
-                    sw.Write(GoodLines(i))
-                End If
-            Next
-      
+                sw.Close()
+                sw.Dispose()
 
-            sw.Close()
-            sw.Dispose()
+                fs.Close()
+                fs.Dispose()
 
-            fs.Close()
-            fs.Dispose()
+            End If
 
         Next
         Debug.Print("done")
