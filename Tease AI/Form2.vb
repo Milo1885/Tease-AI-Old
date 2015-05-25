@@ -496,64 +496,64 @@ Public Class FrmSettings
 
 
         If File.Exists(My.Settings.BP1) Then
-            BP1.Load(My.Settings.BP1)
+            BP1.LoadFromUrl(My.Settings.BP1)
         End If
         If File.Exists(My.Settings.BP2) Then
-            BP2.Load(My.Settings.BP2)
+            BP2.LoadFromUrl(My.Settings.BP2)
         End If
         If File.Exists(My.Settings.BP3) Then
-            BP3.Load(My.Settings.BP3)
+            BP3.LoadFromUrl(My.Settings.BP3)
         End If
         If File.Exists(My.Settings.BP4) Then
-            BP4.Load(My.Settings.BP4)
+            BP4.LoadFromUrl(My.Settings.BP4)
         End If
         If File.Exists(My.Settings.BP5) Then
-            BP5.Load(My.Settings.BP5)
+            BP5.LoadFromUrl(My.Settings.BP5)
         End If
         If File.Exists(My.Settings.BP6) Then
-            BP6.Load(My.Settings.BP6)
+            BP6.LoadFromUrl(My.Settings.BP6)
         End If
 
         If File.Exists(My.Settings.SP1) Then
-            SP1.Load(My.Settings.SP1)
+            SP1.LoadFromUrl(My.Settings.SP1)
         End If
         If File.Exists(My.Settings.SP2) Then
-            SP2.Load(My.Settings.SP2)
+            SP2.LoadFromUrl(My.Settings.SP2)
         End If
         If File.Exists(My.Settings.SP3) Then
-            SP3.Load(My.Settings.SP3)
+            SP3.LoadFromUrl(My.Settings.SP3)
         End If
         If File.Exists(My.Settings.SP4) Then
-            SP4.Load(My.Settings.SP4)
+            SP4.LoadFromUrl(My.Settings.SP4)
         End If
         If File.Exists(My.Settings.SP5) Then
-            SP5.Load(My.Settings.SP5)
+            SP5.LoadFromUrl(My.Settings.SP5)
         End If
         If File.Exists(My.Settings.SP6) Then
-            SP6.Load(My.Settings.SP6)
+            SP6.LoadFromUrl(My.Settings.SP6)
         End If
 
         If File.Exists(My.Settings.GP1) Then
-            GP1.Load(My.Settings.GP1)
+            GP1.LoadFromUrl(My.Settings.GP1)
         End If
         If File.Exists(My.Settings.GP2) Then
-            GP2.Load(My.Settings.GP2)
+            GP2.LoadFromUrl(My.Settings.GP2)
         End If
         If File.Exists(My.Settings.GP3) Then
-            GP3.Load(My.Settings.GP3)
+            GP3.LoadFromUrl(My.Settings.GP3)
         End If
         If File.Exists(My.Settings.GP4) Then
-            GP4.Load(My.Settings.GP4)
+            GP4.LoadFromUrl(My.Settings.GP4)
         End If
         If File.Exists(My.Settings.GP5) Then
-            GP5.Load(My.Settings.GP5)
+            GP5.LoadFromUrl(My.Settings.GP5)
         End If
         If File.Exists(My.Settings.GP6) Then
-            GP6.Load(My.Settings.GP6)
+            GP6.LoadFromUrl(My.Settings.GP6)
         End If
 
         If File.Exists(My.Settings.CardBack) Then
-            CardBack.Load(My.Settings.CardBack)
+            CardBack.LoadFromUrl(My.Settings.CardBack)
         End If
 
         NBNextImageChance.Value = My.Settings.NextImageChance
@@ -1135,7 +1135,7 @@ Public Class FrmSettings
 #Region "Glitter"
     Private Sub GlitterAV_Click(sender As System.Object, e As System.EventArgs)
         If OpenFileDialog1.ShowDialog() = DialogResult.OK Then
-            GlitterAV.Load(OpenFileDialog1.FileName)
+            GlitterAV.LoadFromUrl(OpenFileDialog1.FileName)
             My.Settings.GlitterAV = OpenFileDialog1.FileName
             My.Settings.Save()
         End If
@@ -1148,7 +1148,7 @@ Public Class FrmSettings
                 GC.Collect()
             Catch
             End Try
-            GlitterAV.Load(OpenFileDialog1.FileName)
+            GlitterAV.LoadFromUrl(OpenFileDialog1.FileName)
             My.Settings.GlitterAV = OpenFileDialog1.FileName
             My.Settings.Save()
         End If
@@ -1161,7 +1161,7 @@ Public Class FrmSettings
                 GC.Collect()
             Catch
             End Try
-            GlitterAV1.Load(OpenFileDialog1.FileName)
+            GlitterAV1.LoadFromUrl(OpenFileDialog1.FileName)
             My.Settings.GlitterAV1 = OpenFileDialog1.FileName
             My.Settings.Save()
         End If
@@ -1174,7 +1174,7 @@ Public Class FrmSettings
                 GC.Collect()
             Catch
             End Try
-            GlitterAV2.Load(OpenFileDialog1.FileName)
+            GlitterAV2.LoadFromUrl(OpenFileDialog1.FileName)
             My.Settings.GlitterAV2 = OpenFileDialog1.FileName
             My.Settings.Save()
         End If
@@ -1187,7 +1187,7 @@ Public Class FrmSettings
                 GC.Collect()
             Catch
             End Try
-            GlitterAV3.Load(OpenFileDialog1.FileName)
+            GlitterAV3.LoadFromUrl(OpenFileDialog1.FileName)
             My.Settings.GlitterAV3 = OpenFileDialog1.FileName
             My.Settings.Save()
         End If
@@ -2170,7 +2170,7 @@ Public Class FrmSettings
             Catch
             End Try
 
-            WebPictureBox.Load(Form1.WebImageLines(0))
+            WebPictureBox.LoadFromUrl(Form1.WebImageLines(0))
 
             Form1.WebImageFile.Close()
             Form1.WebImageFile.Dispose()
@@ -2214,10 +2214,10 @@ TryNextImage:
         End Try
 
         Try
-            WebPictureBox.Load(Form1.WebImageLines(Form1.WebImageLine))
+            WebPictureBox.LoadFromUrl(Form1.WebImageLines(Form1.WebImageLine))
             LBLWebImageCount.Text = Form1.WebImageLine + 1 & "/" & Form1.WebImageLineTotal
         Catch ex As Exception
-            GoTo trynextimage
+            GoTo TryNextImage
         End Try
 
 
@@ -2244,7 +2244,7 @@ trypreviousimage:
         End Try
 
         Try
-            WebPictureBox.Load(Form1.WebImageLines(Form1.WebImageLine))
+            WebPictureBox.LoadFromUrl(Form1.WebImageLines(Form1.WebImageLine))
             LBLWebImageCount.Text = Form1.WebImageLine + 1 & "/" & Form1.WebImageLineTotal
         Catch ex As Exception
             GoTo trypreviousimage
@@ -2464,7 +2464,7 @@ Scrape:
                     Catch
                     End Try
 
-                    WebPictureBox.Load(node.InnerXml)
+                    WebPictureBox.LoadFromUrl(node.InnerXml)
 
                     Do
                         Application.DoEvents()
@@ -2935,7 +2935,7 @@ NextURL:
                 Catch
                 End Try
 
-                WebPictureBox.Load(Form1.WebImageLines(Form1.WebImageLine))
+                WebPictureBox.LoadFromUrl(Form1.WebImageLines(Form1.WebImageLine))
                 LBLWebImageCount.Text = Form1.WebImageLine + 1 & "/" & Form1.WebImageLineTotal
             Case 120 'Scrolling up
                 Form1.WebImageLine -= 1
@@ -2953,7 +2953,7 @@ NextURL:
                 Catch
                 End Try
 
-                WebPictureBox.Load(Form1.WebImageLines(Form1.WebImageLine))
+                WebPictureBox.LoadFromUrl(Form1.WebImageLines(Form1.WebImageLine))
                 LBLWebImageCount.Text = Form1.WebImageLine + 1 & "/" & Form1.WebImageLineTotal
         End Select
 
@@ -3532,7 +3532,7 @@ NextURL:
             Catch
             End Try
 
-            ImageTagPictureBox.Load(Form1.ImageTagDir(0))
+            ImageTagPictureBox.LoadFromUrl(Form1.ImageTagDir(0))
 
             If File.Exists(Application.StartupPath & "\Images\System\ImageTags.txt") Then
                 Dim TagReader As New StreamReader(Application.StartupPath & "\Images\System\ImageTags.txt")
@@ -3735,7 +3735,7 @@ NextURL:
                 Catch
                 End Try
 
-                ImageTagPictureBox.Load(Form1.ImageTagDir(0))
+                ImageTagPictureBox.LoadFromUrl(Form1.ImageTagDir(0))
 
                 If File.Exists(Application.StartupPath & "\Images\System\ImageTags.txt") Then
                     Dim TagReader As New StreamReader(Application.StartupPath & "\Images\System\ImageTags.txt")
@@ -4198,7 +4198,7 @@ NextURL:
         Catch
         End Try
 
-        ImageTagPictureBox.Load(Form1.ImageTagDir(Form1.ImageTagCount))
+        ImageTagPictureBox.LoadFromUrl(Form1.ImageTagDir(Form1.ImageTagCount))
 
         If Form1.ImageTagCount = Form1.ImageTagDir.Count - 1 Then BTNTagNext.Enabled = False
 
@@ -4427,7 +4427,7 @@ NextURL:
         Catch
         End Try
 
-        ImageTagPictureBox.Load(Form1.ImageTagDir(Form1.ImageTagCount))
+        ImageTagPictureBox.LoadFromUrl(Form1.ImageTagDir(Form1.ImageTagCount))
 
         If Form1.ImageTagCount = 0 Then BTNTagPrevious.Enabled = False
 
@@ -4556,7 +4556,7 @@ NextURL:
     End Sub
 
     Private Sub CBSlideshowSubDir_MouseHover(sender As System.Object, e As System.EventArgs) Handles CBSlideshowSubDir.MouseHover
-        LBLGeneralSettingsDescription.Text = "When this is selected, the program will include all subdirectories when you select a folder for slideshow images. When it is unselected, only the images in the top " & _
+        LBLGeneralSettingsDescription.Text = "When this is selected, the program will include all subdirectories when you select a folder for slideshow images. When it is unselected, only the images in the top " &
             "level of the folder will be used."
     End Sub
 
@@ -4574,12 +4574,12 @@ NextURL:
     End Sub
 
     Private Sub CBAutosaveChatlog_MouseHover(sender As System.Object, e As System.EventArgs) Handles CBAutosaveChatlog.MouseHover
-        LBLGeneralSettingsDescription.Text = "When this is selected, the program will save a chatlog called ""Autosave.html"" any time you or the domme post a message. This log is overwritten each time, so it will only display " & _
+        LBLGeneralSettingsDescription.Text = "When this is selected, the program will save a chatlog called ""Autosave.html"" any time you or the domme post a message. This log is overwritten each time, so it will only display " &
             "a record of the current session. This log can be found in the ""Chatlogs"" directory in the root folder of the program."
     End Sub
 
     Private Sub CBSaveChatlogExit_MouseHover(sender As System.Object, e As System.EventArgs) Handles CBSaveChatlogExit.MouseHover
-        LBLGeneralSettingsDescription.Text = "When this is selected, a unique chatlog that includes the date and time will be created whenever you exit the program. This log can be found in the ""Chatlogs"" directory in " & _
+        LBLGeneralSettingsDescription.Text = "When this is selected, a unique chatlog that includes the date and time will be created whenever you exit the program. This log can be found in the ""Chatlogs"" directory in " &
             "the root folder of the program."
     End Sub
 
@@ -4644,7 +4644,7 @@ NextURL:
     End Sub
 
     Private Sub domhairComboBox_MouseHover(sender As System.Object, e As System.EventArgs) Handles TBDomHairColor.MouseHover
-        LblDommeSettingsDescription.Text = "Sets the Domme's hair color." & Environment.NewLine & Environment.NewLine & "The domme may sometimes refer to her hair color over the course of the tease. Set this value to the color " & _
+        LblDommeSettingsDescription.Text = "Sets the Domme's hair color." & Environment.NewLine & Environment.NewLine & "The domme may sometimes refer to her hair color over the course of the tease. Set this value to the color " &
             "of the slideshow model's hair to enhance immersion."
     End Sub
 
@@ -4654,7 +4654,7 @@ NextURL:
     End Sub
 
     Private Sub domhairlengthComboBox_MouseHover(sender As System.Object, e As System.EventArgs) Handles domhairlengthComboBox.MouseEnter
-        LblDommeSettingsDescription.Text = "Sets the Domme's hair length." & Environment.NewLine & Environment.NewLine & "The domme may sometimes refer to her hair length over the course of the tease. Set this value to the length " & _
+        LblDommeSettingsDescription.Text = "Sets the Domme's hair length." & Environment.NewLine & Environment.NewLine & "The domme may sometimes refer to her hair length over the course of the tease. Set this value to the length " &
             "of the slideshow model's hair to enhance immersion."
     End Sub
 
@@ -4664,7 +4664,7 @@ NextURL:
     End Sub
 
     Private Sub domeyesComboBox_MouseHover(sender As System.Object, e As System.EventArgs) Handles TBDomEyeColor.MouseHover
-        LblDommeSettingsDescription.Text = "Sets the Domme's eye color." & Environment.NewLine & Environment.NewLine & "The domme may sometimes refer to her eye color over the course of the tease. Set this value to the color " & _
+        LblDommeSettingsDescription.Text = "Sets the Domme's eye color." & Environment.NewLine & Environment.NewLine & "The domme may sometimes refer to her eye color over the course of the tease. Set this value to the color " &
             "of the slideshow model's eyes to enhance immersion."
     End Sub
 
@@ -4674,7 +4674,7 @@ NextURL:
     End Sub
 
     Private Sub boobComboBox_MouseHover(sender As System.Object, e As System.EventArgs) Handles boobComboBox.MouseEnter
-        LblDommeSettingsDescription.Text = "Sets the Domme's cup size." & Environment.NewLine & Environment.NewLine & "The domme may sometimes refer to the size of her breasts over the course of the tease. Set this value to the " & _
+        LblDommeSettingsDescription.Text = "Sets the Domme's cup size." & Environment.NewLine & Environment.NewLine & "The domme may sometimes refer to the size of her breasts over the course of the tease. Set this value to the " &
             "slideshow model's cup size to enhance immersion."
     End Sub
 
@@ -4684,7 +4684,7 @@ NextURL:
     End Sub
 
     Private Sub dompubichairComboBox_MouseHover(sender As System.Object, e As System.EventArgs) Handles dompubichairComboBox.MouseEnter
-        LblDommeSettingsDescription.Text = "Sets description of the Domme's pubic hair." & Environment.NewLine & Environment.NewLine & "The domme may sometimes refer to her pubic hair over the course of the tease. Set this value to a description " & _
+        LblDommeSettingsDescription.Text = "Sets description of the Domme's pubic hair." & Environment.NewLine & Environment.NewLine & "The domme may sometimes refer to her pubic hair over the course of the tease. Set this value to a description " &
             "of the slideshow model's pubic hair to enhance immersion."
     End Sub
 
@@ -4696,7 +4696,7 @@ NextURL:
     End Sub
 
     Private Sub dompersonalityComboBox_MouseHover(sender As System.Object, e As System.EventArgs) Handles dompersonalityComboBox.MouseEnter
-        LblDommeSettingsDescription.Text = "Sets the Domme's personality to a type you have created or downloaded." & Environment.NewLine & Environment.NewLine & "Different personalities allow for varied experiences while using " & _
+        LblDommeSettingsDescription.Text = "Sets the Domme's personality to a type you have created or downloaded." & Environment.NewLine & Environment.NewLine & "Different personalities allow for varied experiences while using " &
             "this program. For best results, this value should only be changed before greeting the domme."
     End Sub
 
@@ -4710,7 +4710,7 @@ NextURL:
     End Sub
 
     Private Sub crazyCheckBox_MouseHover(sender As System.Object, e As System.EventArgs) Handles crazyCheckBox.MouseEnter
-        LblDommeSettingsDescription.Text = "Gives the Domme the Crazy trait." & Environment.NewLine & Environment.NewLine & "This will open up dialogue options that suggest the domme is a little unhinged. " & _
+        LblDommeSettingsDescription.Text = "Gives the Domme the Crazy trait." & Environment.NewLine & Environment.NewLine & "This will open up dialogue options that suggest the domme is a little unhinged. " &
             "Scripts may also contain keywords and variables that will limit certain paths to this trait."
     End Sub
 
@@ -4724,7 +4724,7 @@ NextURL:
     End Sub
 
     Private Sub CBDomTattoos_MouseHover(sender As System.Object, e As System.EventArgs) Handles CBDomTattoos.MouseEnter
-        LblDommeSettingsDescription.Text = "Sets whether the domme has tattoos." & Environment.NewLine & Environment.NewLine & "This will open up dialogue options that involve the domme being tattooed. " & _
+        LblDommeSettingsDescription.Text = "Sets whether the domme has tattoos." & Environment.NewLine & Environment.NewLine & "This will open up dialogue options that involve the domme being tattooed. " &
             "Scripts may also contain keywords and variables that will limit certain paths to this trait."
     End Sub
 
@@ -4739,7 +4739,7 @@ NextURL:
     End Sub
 
     Private Sub CBDomFreckles_MouseHover(sender As System.Object, e As System.EventArgs) Handles CBDomFreckles.MouseEnter
-        LblDommeSettingsDescription.Text = "Sets whether the domme has freckles." & Environment.NewLine & Environment.NewLine & "This will open up dialogue options that involve the domme having freckles. " & _
+        LblDommeSettingsDescription.Text = "Sets whether the domme has freckles." & Environment.NewLine & Environment.NewLine & "This will open up dialogue options that involve the domme having freckles. " &
             "Scripts may also contain keywords and variables that will limit certain paths to this trait."
     End Sub
 
@@ -4753,7 +4753,7 @@ NextURL:
     End Sub
 
     Private Sub vulgarCheckBox_MouseHover(sender As System.Object, e As System.EventArgs) Handles vulgarCheckBox.MouseEnter
-        LblDommeSettingsDescription.Text = "Gives the Domme the Vulgar trait." & Environment.NewLine & Environment.NewLine & "This will open up vulgar dialogue options for the domme. She will include words like ""titties"" and " & _
+        LblDommeSettingsDescription.Text = "Gives the Domme the Vulgar trait." & Environment.NewLine & Environment.NewLine & "This will open up vulgar dialogue options for the domme. She will include words like ""titties"" and " &
             """gonads"" while a more reserved domme may limit herself to ""tits"" and ""balls"". Scripts may also contain keywords and variables that will limit certain paths to this trait."
     End Sub
 
@@ -4767,7 +4767,7 @@ NextURL:
     End Sub
 
     Private Sub supremacistCheckBox_MouseHover(sender As System.Object, e As System.EventArgs) Handles supremacistCheckBox.MouseEnter
-        LblDommeSettingsDescription.Text = "Gives the Domme the Supremacist trait." & Environment.NewLine & Environment.NewLine & "This will open up dialogue options that suggest the domme considers women inherently superior " & _
+        LblDommeSettingsDescription.Text = "Gives the Domme the Supremacist trait." & Environment.NewLine & Environment.NewLine & "This will open up dialogue options that suggest the domme considers women inherently superior " &
             "to men. Scripts may also contain keywords and variables that will limit certain paths to this trait."
     End Sub
 
@@ -4841,7 +4841,7 @@ NextURL:
     End Sub
 
     Private Sub CBMeMyMine_MouseHover(sender As System.Object, e As System.EventArgs) Handles CBMeMyMine.MouseEnter
-        LblDommeSettingsDescription.Text = "When this is checked, the domme will always capitalize ""Me, My and Mine""." & Environment.NewLine & Environment.NewLine & _
+        LblDommeSettingsDescription.Text = "When this is checked, the domme will always capitalize ""Me, My and Mine""." & Environment.NewLine & Environment.NewLine &
             "If the lowercase typing option is slected, she will also capitalize ""I, I'm, I'd and I'll""."
     End Sub
 
@@ -4864,7 +4864,7 @@ NextURL:
     End Sub
 
     Private Sub CBDomDenialEnds_MouseHover(sender As System.Object, e As System.EventArgs) Handles CBDomDenialEnds.MouseEnter
-        LblDommeSettingsDescription.Text = "Determines whether the domme will keep teasing you after you have been denied." & Environment.NewLine & Environment.NewLine & _
+        LblDommeSettingsDescription.Text = "Determines whether the domme will keep teasing you after you have been denied." & Environment.NewLine & Environment.NewLine &
             "If this box is checked, she will end the tease after she decides to deny your orgasm. If it is unchecked, she may choose to start teasing you all over again."
     End Sub
 
@@ -4878,18 +4878,18 @@ NextURL:
     End Sub
 
     Private Sub CBDomOrgasmEnds_MouseHover(sender As System.Object, e As System.EventArgs) Handles CBDomOrgasmEnds.MouseEnter
-        LblDommeSettingsDescription.Text = "Determines whether the domme will keep teasing you after you have an orgasm." & Environment.NewLine & Environment.NewLine & _
+        LblDommeSettingsDescription.Text = "Determines whether the domme will keep teasing you after you have an orgasm." & Environment.NewLine & Environment.NewLine &
             "If this box is checked, she will end the tease after she allows you to cum. If it is unchecked, she may choose to start teasing you all over again."
     End Sub
 
 
     Private Sub LockOrgasm_MouseHover(sender As System.Object, e As System.EventArgs) Handles limitcheckbox.MouseEnter, orgasmsPerNumBox.MouseEnter, orgasmsperComboBox.MouseEnter, orgasmsperlockButton.MouseEnter
-        LblDommeSettingsDescription.Text = "When this arrangement is selected, the domme will limit the number of orgasms she allows you to have according to the parameters you set." & Environment.NewLine & Environment.NewLine & _
+        LblDommeSettingsDescription.Text = "When this arrangement is selected, the domme will limit the number of orgasms she allows you to have according to the parameters you set." & Environment.NewLine & Environment.NewLine &
             "This will not be finalized until the Limit box is checked and you click ""Lock Selected"". Once an orgasm limit has been finalized, it cannot be undone until the period of time is up!"
     End Sub
 
     Private Sub LockRandomOrgasm_MouseHover(sender As System.Object, e As System.EventArgs) Handles orgasmlockrandombutton.MouseEnter
-        LblDommeSettingsDescription.Text = "When this button is clicked, the domme will randomly limit the number of orgasms she allows you to have for a random period of time." & Environment.NewLine & Environment.NewLine & _
+        LblDommeSettingsDescription.Text = "When this button is clicked, the domme will randomly limit the number of orgasms she allows you to have for a random period of time." & Environment.NewLine & Environment.NewLine &
             "Her choice will be based on her level, so be careful. A higher level domme could limit the amount of orgasms you have for months, years or even forever! Once you confirm this choice, it cannot be undone until the period of time is up!"
     End Sub
 
@@ -4899,7 +4899,7 @@ NextURL:
     End Sub
 
     Private Sub NBDomMoodMin_MouseHover(sender As System.Object, e As System.EventArgs) Handles NBDomMoodMin.MouseEnter
-        LblDommeSettingsDescription.Text = "Determines the low range of the domme's mood index. The domme's mood may affect certain dialogue choices or outcomes." & Environment.NewLine & Environment.NewLine & _
+        LblDommeSettingsDescription.Text = "Determines the low range of the domme's mood index. The domme's mood may affect certain dialogue choices or outcomes." & Environment.NewLine & Environment.NewLine &
             "The higher this number is, the easier it is to put her in a bad mood. Setting this value to ""1"" will prevent the domme from ever being in a bad mood."
     End Sub
 
@@ -4909,7 +4909,7 @@ NextURL:
     End Sub
 
     Private Sub NBDomMoodMax_MouseHover(sender As System.Object, e As System.EventArgs) Handles NBDomMoodMax.MouseEnter
-        LblDommeSettingsDescription.Text = "Determines the high range of the domme's mood index. The domme's mood may affect certain dialogue choices or outcomes." & Environment.NewLine & Environment.NewLine & _
+        LblDommeSettingsDescription.Text = "Determines the high range of the domme's mood index. The domme's mood may affect certain dialogue choices or outcomes." & Environment.NewLine & Environment.NewLine &
             "The lower this number is, the easier it is to put her in an especially great mood. Setting this value to ""10"" will prevent the domme from ever being in an especially great mood."
     End Sub
 
@@ -4927,7 +4927,7 @@ NextURL:
     End Sub
 
     Private Sub NBAvgCockMin_MouseHover(sender As System.Object, e As System.EventArgs) Handles NBAvgCockMin.MouseEnter
-        LblDommeSettingsDescription.Text = "Determines the lowest range of what the domme considers an average cock size." & Environment.NewLine & Environment.NewLine & _
+        LblDommeSettingsDescription.Text = "Determines the lowest range of what the domme considers an average cock size." & Environment.NewLine & Environment.NewLine &
             "If your cock size has been set to a value lower than this number, the domme will consider your cock small. Having a small cock will open up certain dialogue options and outcomes that are likely to include elements of sph, depending on the selected personality type."
     End Sub
 
@@ -4937,7 +4937,7 @@ NextURL:
     End Sub
 
     Private Sub NBAvgCockMax_MouseHover(sender As System.Object, e As System.EventArgs) Handles NBAvgCockMax.MouseEnter
-        LblDommeSettingsDescription.Text = "Determines the highest range of what the domme considers an average cock size." & Environment.NewLine & Environment.NewLine & _
+        LblDommeSettingsDescription.Text = "Determines the highest range of what the domme considers an average cock size." & Environment.NewLine & Environment.NewLine &
             "If your cock size has been set to a value higher than this number, the domme will consider your cock big. Having a big cock will open up certain dialogue options and outcomes, depending on the selected personality type."
     End Sub
 
@@ -4955,7 +4955,7 @@ NextURL:
     End Sub
 
     Private Sub NBSelfAgeMin_Enter(sender As Object, e As System.EventArgs) Handles NBSelfAgeMin.MouseEnter
-        LblDommeSettingsDescription.Text = "This is the age range that the domme considers ""not that young, but not that old""." & Environment.NewLine & Environment.NewLine & _
+        LblDommeSettingsDescription.Text = "This is the age range that the domme considers ""not that young, but not that old""." & Environment.NewLine & Environment.NewLine &
             "If the domme's age is below this number, she will use dialogue options that suggest having the maturity and body of a girl in her early twenties. Scripts may also contain keywords and variables that will limit certain paths to this trait."
     End Sub
 
@@ -4965,7 +4965,7 @@ NextURL:
     End Sub
 
     Private Sub NBSelfAgeMax_Enter(sender As Object, e As System.EventArgs) Handles NBSelfAgeMax.MouseEnter
-        LblDommeSettingsDescription.Text = "This is the age range that the domme considers ""not that young, but not that old""." & Environment.NewLine & Environment.NewLine & _
+        LblDommeSettingsDescription.Text = "This is the age range that the domme considers ""not that young, but not that old""." & Environment.NewLine & Environment.NewLine &
                 "If the domme's age is above this number, she will use dialogue options that suggest an exceptional amount of maturity, or having an aging body. Scripts may also contain keywords and variables that will limit certain paths to this trait."
     End Sub
 
@@ -4983,7 +4983,7 @@ NextURL:
     End Sub
 
     Private Sub NBSubAgeMin_Enter(sender As Object, e As System.EventArgs) Handles NBSubAgeMin.MouseEnter
-        LblDommeSettingsDescription.Text = "This is the age range that the domme considers ""not that young, but not that old""." & Environment.NewLine & Environment.NewLine & _
+        LblDommeSettingsDescription.Text = "This is the age range that the domme considers ""not that young, but not that old""." & Environment.NewLine & Environment.NewLine &
             "If your age is below this number, the domme will use dialogue options that suggest you have the virility and body of a male in his early twenties. Scripts may also contain keywords and variables that will limit certain paths to this trait."
     End Sub
 
@@ -4993,7 +4993,7 @@ NextURL:
     End Sub
 
     Private Sub NBSubAgeMax_Enter(sender As Object, e As System.EventArgs) Handles NBSubAgeMax.MouseEnter
-        LblDommeSettingsDescription.Text = "This is the age range that the domme considers ""not that young, but not that old""." & Environment.NewLine & Environment.NewLine & _
+        LblDommeSettingsDescription.Text = "This is the age range that the domme considers ""not that young, but not that old""." & Environment.NewLine & Environment.NewLine &
                 "If your age is above this number, the domme will use dialogue options that suggest you're over the hill. Scripts may also contain keywords and variables that will limit certain paths to this trait."
     End Sub
 
@@ -5006,52 +5006,52 @@ NextURL:
     End Sub
 
     Private Sub PetNameBox1_Enter(sender As Object, e As System.EventArgs) Handles petnameBox1.MouseEnter
-        LblDommeSettingsDescription.Text = "Enter a pet name that the domme will call you when she's in a great mood." & Environment.NewLine & Environment.NewLine & _
-                "For a fun-loving domme, you could use names like ""darling"" or ""pet"", while a crueller domme might use names such as ""loser"" or ""bitch boy"". The same pet name can be used multiple times to increase " & _
+        LblDommeSettingsDescription.Text = "Enter a pet name that the domme will call you when she's in a great mood." & Environment.NewLine & Environment.NewLine &
+                "For a fun-loving domme, you could use names like ""darling"" or ""pet"", while a crueller domme might use names such as ""loser"" or ""bitch boy"". The same pet name can be used multiple times to increase " &
                 "the chance of bineg used. All pet name boxes must be filled in."
     End Sub
 
     Private Sub PetNameBox2_Enter(sender As Object, e As System.EventArgs) Handles petnameBox2.MouseEnter
-        LblDommeSettingsDescription.Text = "Enter a pet name that the domme will call you when she's in a great mood." & Environment.NewLine & Environment.NewLine & _
-                "For a fun-loving domme, you could use names like ""darling"" or ""pet"", while a crueller domme might use names such as ""loser"" or ""bitch boy"". The same pet name can be used multiple times to increase " & _
+        LblDommeSettingsDescription.Text = "Enter a pet name that the domme will call you when she's in a great mood." & Environment.NewLine & Environment.NewLine &
+                "For a fun-loving domme, you could use names like ""darling"" or ""pet"", while a crueller domme might use names such as ""loser"" or ""bitch boy"". The same pet name can be used multiple times to increase " &
                 "the chance of bineg used. All pet name boxes must be filled in."
     End Sub
 
     Private Sub PetNameBox3_Enter(sender As Object, e As System.EventArgs) Handles petnameBox3.MouseEnter
-        LblDommeSettingsDescription.Text = "Enter a pet name that the domme will call you when she's in a neutral mood." & Environment.NewLine & Environment.NewLine & _
-                "For a fun-loving domme, you could use names like ""darling"" or ""pet"", while a crueller domme might use names such as ""loser"" or ""bitch boy"". The same pet name can be used multiple times to increase " & _
+        LblDommeSettingsDescription.Text = "Enter a pet name that the domme will call you when she's in a neutral mood." & Environment.NewLine & Environment.NewLine &
+                "For a fun-loving domme, you could use names like ""darling"" or ""pet"", while a crueller domme might use names such as ""loser"" or ""bitch boy"". The same pet name can be used multiple times to increase " &
                 "the chance of bineg used. All pet name boxes must be filled in."
     End Sub
 
     Private Sub PetNameBox4_Enter(sender As Object, e As System.EventArgs) Handles petnameBox4.MouseEnter
-        LblDommeSettingsDescription.Text = "Enter a pet name that the domme will call you when she's in a neutral mood." & Environment.NewLine & Environment.NewLine & _
-                "For a fun-loving domme, you could use names like ""darling"" or ""pet"", while a crueller domme might use names such as ""loser"" or ""bitch boy"". The same pet name can be used multiple times to increase " & _
+        LblDommeSettingsDescription.Text = "Enter a pet name that the domme will call you when she's in a neutral mood." & Environment.NewLine & Environment.NewLine &
+                "For a fun-loving domme, you could use names like ""darling"" or ""pet"", while a crueller domme might use names such as ""loser"" or ""bitch boy"". The same pet name can be used multiple times to increase " &
                 "the chance of bineg used. All pet name boxes must be filled in."
     End Sub
 
     Private Sub PetNameBox5_Enter(sender As Object, e As System.EventArgs) Handles petnameBox5.MouseEnter
-        LblDommeSettingsDescription.Text = "Enter a pet name that the domme will call you when she's in a neutral mood." & Environment.NewLine & Environment.NewLine & _
-                "For a fun-loving domme, you could use names like ""darling"" or ""pet"", while a crueller domme might use names such as ""loser"" or ""bitch boy"". The same pet name can be used multiple times to increase " & _
+        LblDommeSettingsDescription.Text = "Enter a pet name that the domme will call you when she's in a neutral mood." & Environment.NewLine & Environment.NewLine &
+                "For a fun-loving domme, you could use names like ""darling"" or ""pet"", while a crueller domme might use names such as ""loser"" or ""bitch boy"". The same pet name can be used multiple times to increase " &
                 "the chance of bineg used. All pet name boxes must be filled in."
     End Sub
 
     Private Sub PetNameBox6_Enter(sender As Object, e As System.EventArgs) Handles petnameBox6.MouseEnter
-        LblDommeSettingsDescription.Text = "Enter a pet name that the domme will call you when she's in a neutral mood." & Environment.NewLine & Environment.NewLine & _
-                "For a fun-loving domme, you could use names like ""darling"" or ""pet"", while a crueller domme might use names such as ""loser"" or ""bitch boy"". The same pet name can be used multiple times to increase " & _
+        LblDommeSettingsDescription.Text = "Enter a pet name that the domme will call you when she's in a neutral mood." & Environment.NewLine & Environment.NewLine &
+                "For a fun-loving domme, you could use names like ""darling"" or ""pet"", while a crueller domme might use names such as ""loser"" or ""bitch boy"". The same pet name can be used multiple times to increase " &
                 "the chance of bineg used. All pet name boxes must be filled in."
     End Sub
 
 
     Private Sub PetNameBox7_Enter(sender As Object, e As System.EventArgs) Handles petnameBox7.MouseEnter
-        LblDommeSettingsDescription.Text = "Enter a pet name that the domme will call you when she's in a bad mood." & Environment.NewLine & Environment.NewLine & _
-                "For a fun-loving domme, you could use names like ""darling"" or ""pet"", while a crueller domme might use names such as ""loser"" or ""bitch boy"". The same pet name can be used multiple times to increase " & _
+        LblDommeSettingsDescription.Text = "Enter a pet name that the domme will call you when she's in a bad mood." & Environment.NewLine & Environment.NewLine &
+                "For a fun-loving domme, you could use names like ""darling"" or ""pet"", while a crueller domme might use names such as ""loser"" or ""bitch boy"". The same pet name can be used multiple times to increase " &
                 "the chance of bineg used. All pet name boxes must be filled in."
     End Sub
 
 
     Private Sub PetNameBox8_Enter(sender As Object, e As System.EventArgs) Handles petnameBox8.MouseEnter
-        LblDommeSettingsDescription.Text = "Enter a pet name that the domme will call you when she's in a bad mood." & Environment.NewLine & Environment.NewLine & _
-                "For a fun-loving domme, you could use names like ""darling"" or ""pet"", while a crueller domme might use names such as ""loser"" or ""bitch boy"". The same pet name can be used multiple times to increase " & _
+        LblDommeSettingsDescription.Text = "Enter a pet name that the domme will call you when she's in a bad mood." & Environment.NewLine & Environment.NewLine &
+                "For a fun-loving domme, you could use names like ""darling"" or ""pet"", while a crueller domme might use names such as ""loser"" or ""bitch boy"". The same pet name can be used multiple times to increase " &
                 "the chance of bineg used. All pet name boxes must be filled in."
     End Sub
 
@@ -5170,7 +5170,7 @@ NextURL:
 
         Try
             If TBKeyWords.Text = "" Or InStr(TBKeyWords.Text, "#") <> 1 Or Not TBKeyWords.Text.Substring(0, 1) = "#" Then
-                MessageBox.Show(Me, "Please enter a correct file name for this Keyword script!" & Environment.NewLine & Environment.NewLine & "Keyword file names must contain one ""#"" sign, " & _
+                MessageBox.Show(Me, "Please enter a correct file name for this Keyword script!" & Environment.NewLine & Environment.NewLine & "Keyword file names must contain one ""#"" sign, " &
                                 "placed at the beginning of the word or phrase.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Hand)
                 Return
             End If
@@ -5256,7 +5256,7 @@ NextURL:
         Catch
         End Try
 
-        WebPictureBox.Load(Form1.WebImageLines(Form1.WebImageLine))
+        WebPictureBox.LoadFromUrl(Form1.WebImageLines(Form1.WebImageLine))
 
         Debug.Print(Form1.WebImageLines(Form1.WebImageLine))
 
@@ -5592,7 +5592,7 @@ NextURL:
 
     End Sub
 
-    Function InstrCount(StringToSearch As String, _
+    Function InstrCount(StringToSearch As String,
            StringToFind As String) As Long
 
         If Len(StringToFind) Then
@@ -5615,7 +5615,7 @@ NextURL:
         TBWIDirectory.SelectionLength = Len(TBWIDirectory.Text)
     End Sub
 
- 
+
 
 
     Public Sub VerifyLocalImagePaths()
@@ -5630,7 +5630,7 @@ NextURL:
             LBLMaintenance.Text = "Checking Hardcore image path..."
             If Not Directory.Exists(LBLIHardcore.Text) Then
                 If LBLIHardcore.Text <> "" Or LBLIHardcore.Text <> "No path selected" Then
-                    MessageBox.Show(Me, "The directory for local Hardcore images was not found!" & Environment.NewLine & Environment.NewLine & _
+                    MessageBox.Show(Me, "The directory for local Hardcore images was not found!" & Environment.NewLine & Environment.NewLine &
                                     "Local Hardcore Image setting has been deselected and cleared.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
                 CBIHardcore.Checked = False
@@ -5643,27 +5643,27 @@ NextURL:
 
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpg")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Hardcoregood
+                    If ImageList.Count > 0 Then GoTo HardcoreGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpeg")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Hardcoregood
+                    If ImageList.Count > 0 Then GoTo HardcoreGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.bmp")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Hardcoregood
+                    If ImageList.Count > 0 Then GoTo HardcoreGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.png")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Hardcoregood
+                    If ImageList.Count > 0 Then GoTo HardcoreGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.gif")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Hardcoregood
+                    If ImageList.Count > 0 Then GoTo HardcoreGood
                 Next
 HardcoreGood:
                 If ImageList.Count < 1 Then
-                    MessageBox.Show(Me, "There are no images in the specified Hardcore folder!" & Environment.NewLine & Environment.NewLine & _
+                    MessageBox.Show(Me, "There are no images in the specified Hardcore folder!" & Environment.NewLine & Environment.NewLine &
                                     "Local Hardcore Image setting has been deselected and cleared.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     CBIHardcore.Checked = False
                     LBLIHardcore.Text = ""
@@ -5681,7 +5681,7 @@ HardcoreGood:
             LBLMaintenance.Text = "Checking Softcore image path..."
             If Not Directory.Exists(LBLISoftcore.Text) Then
                 If LBLISoftcore.Text <> "" Or LBLISoftcore.Text <> "No path selected" Then
-                    MessageBox.Show(Me, "The directory for local Softcore images was not found!" & Environment.NewLine & Environment.NewLine & _
+                    MessageBox.Show(Me, "The directory for local Softcore images was not found!" & Environment.NewLine & Environment.NewLine &
                                     "Local Softcore Image setting has been deselected and cleared.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
                 CBISoftcore.Checked = False
@@ -5694,29 +5694,29 @@ HardcoreGood:
 
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpg")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Softcoregood
+                    If ImageList.Count > 0 Then GoTo SoftcoreGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpeg")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Softcoregood
+                    If ImageList.Count > 0 Then GoTo SoftcoreGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.bmp")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Softcoregood
+                    If ImageList.Count > 0 Then GoTo SoftcoreGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.png")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Softcoregood
+                    If ImageList.Count > 0 Then GoTo SoftcoreGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.gif")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Softcoregood
+                    If ImageList.Count > 0 Then GoTo SoftcoreGood
                 Next
 
 SoftcoreGood:
 
                 If ImageList.Count < 1 Then
-                    MessageBox.Show(Me, "There are no images in the specified Softcore folder!" & Environment.NewLine & Environment.NewLine & _
+                    MessageBox.Show(Me, "There are no images in the specified Softcore folder!" & Environment.NewLine & Environment.NewLine &
                                     "Local Softcore Image setting has been deselected and cleared.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     CBISoftcore.Checked = False
                     LBLISoftcore.Text = ""
@@ -5734,7 +5734,7 @@ SoftcoreGood:
             LBLMaintenance.Text = "Checking Lesbian image path..."
             If Not Directory.Exists(LBLILesbian.Text) Then
                 If LBLILesbian.Text <> "" Or LBLILesbian.Text <> "No path selected" Then
-                    MessageBox.Show(Me, "The directory for local Lesbian images was not found!" & Environment.NewLine & Environment.NewLine & _
+                    MessageBox.Show(Me, "The directory for local Lesbian images was not found!" & Environment.NewLine & Environment.NewLine &
                                     "Local Lesbian Image setting has been deselected and cleared.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
                 CBILesbian.Checked = False
@@ -5747,29 +5747,29 @@ SoftcoreGood:
 
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpg")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Lesbiangood
+                    If ImageList.Count > 0 Then GoTo LesbianGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpeg")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Lesbiangood
+                    If ImageList.Count > 0 Then GoTo LesbianGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.bmp")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Lesbiangood
+                    If ImageList.Count > 0 Then GoTo LesbianGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.png")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Lesbiangood
+                    If ImageList.Count > 0 Then GoTo LesbianGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.gif")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Lesbiangood
+                    If ImageList.Count > 0 Then GoTo LesbianGood
                 Next
 
 LesbianGood:
 
                 If ImageList.Count < 1 Then
-                    MessageBox.Show(Me, "There are no images in the specified Lesbian folder!" & Environment.NewLine & Environment.NewLine & _
+                    MessageBox.Show(Me, "There are no images in the specified Lesbian folder!" & Environment.NewLine & Environment.NewLine &
                                     "Local Lesbian Image setting has been deselected and cleared.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     CBILesbian.Checked = False
                     LBLILesbian.Text = ""
@@ -5787,7 +5787,7 @@ LesbianGood:
             LBLMaintenance.Text = "Checking Blowjob image path..."
             If Not Directory.Exists(LBLIBlowjob.Text) Then
                 If LBLIBlowjob.Text <> "" Or LBLIBlowjob.Text <> "No path selected" Then
-                    MessageBox.Show(Me, "The directory for local Blowjob images was not found!" & Environment.NewLine & Environment.NewLine & _
+                    MessageBox.Show(Me, "The directory for local Blowjob images was not found!" & Environment.NewLine & Environment.NewLine &
                                     "Local Blowjob Image setting has been deselected and cleared.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
                 CBIBlowjob.Checked = False
@@ -5800,29 +5800,29 @@ LesbianGood:
 
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpg")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Blowjobgood
+                    If ImageList.Count > 0 Then GoTo BlowjobGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpeg")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Blowjobgood
+                    If ImageList.Count > 0 Then GoTo BlowjobGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.bmp")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Blowjobgood
+                    If ImageList.Count > 0 Then GoTo BlowjobGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.png")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Blowjobgood
+                    If ImageList.Count > 0 Then GoTo BlowjobGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.gif")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Blowjobgood
+                    If ImageList.Count > 0 Then GoTo BlowjobGood
                 Next
 
 BlowjobGood:
 
                 If ImageList.Count < 1 Then
-                    MessageBox.Show(Me, "There are no images in the specified Blowjob folder!" & Environment.NewLine & Environment.NewLine & _
+                    MessageBox.Show(Me, "There are no images in the specified Blowjob folder!" & Environment.NewLine & Environment.NewLine &
                                     "Local Blowjob Image setting has been deselected and cleared.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     CBIBlowjob.Checked = False
                     LBLIBlowjob.Text = ""
@@ -5840,7 +5840,7 @@ BlowjobGood:
             LBLMaintenance.Text = "Checking Femdom image path..."
             If Not Directory.Exists(LBLIFemdom.Text) Then
                 If LBLIFemdom.Text <> "" Or LBLIFemdom.Text <> "No path selected" Then
-                    MessageBox.Show(Me, "The directory for local Femdom images was not found!" & Environment.NewLine & Environment.NewLine & _
+                    MessageBox.Show(Me, "The directory for local Femdom images was not found!" & Environment.NewLine & Environment.NewLine &
                                     "Local Femdom Image setting has been deselected and cleared.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
                 CBIFemdom.Checked = False
@@ -5853,30 +5853,30 @@ BlowjobGood:
 
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpg")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Femdomgood
+                    If ImageList.Count > 0 Then GoTo FemdomGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpeg")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Femdomgood
+                    If ImageList.Count > 0 Then GoTo FemdomGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.bmp")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Femdomgood
+                    If ImageList.Count > 0 Then GoTo FemdomGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.png")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Femdomgood
+                    If ImageList.Count > 0 Then GoTo FemdomGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.gif")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Femdomgood
+                    If ImageList.Count > 0 Then GoTo FemdomGood
                 Next
 
 FemdomGood:
 
 
                 If ImageList.Count < 1 Then
-                    MessageBox.Show(Me, "There are no images in the specified Femdom folder!" & Environment.NewLine & Environment.NewLine & _
+                    MessageBox.Show(Me, "There are no images in the specified Femdom folder!" & Environment.NewLine & Environment.NewLine &
                                     "Local Femdom Image setting has been deselected and cleared.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     CBIFemdom.Checked = False
                     LBLIFemdom.Text = ""
@@ -5894,7 +5894,7 @@ FemdomGood:
             LBLMaintenance.Text = "Checking Lezdom image path..."
             If Not Directory.Exists(LBLILezdom.Text) Then
                 If LBLILezdom.Text <> "" Or LBLILezdom.Text <> "No path selected" Then
-                    MessageBox.Show(Me, "The directory for local Lezdom images was not found!" & Environment.NewLine & Environment.NewLine & _
+                    MessageBox.Show(Me, "The directory for local Lezdom images was not found!" & Environment.NewLine & Environment.NewLine &
                                     "Local Lezdom Image setting has been deselected and cleared.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
                 CBILezdom.Checked = False
@@ -5907,29 +5907,29 @@ FemdomGood:
 
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpg")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Lezdomgood
+                    If ImageList.Count > 0 Then GoTo LezdomGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpeg")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Lezdomgood
+                    If ImageList.Count > 0 Then GoTo LezdomGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.bmp")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Lezdomgood
+                    If ImageList.Count > 0 Then GoTo LezdomGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.png")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Lezdomgood
+                    If ImageList.Count > 0 Then GoTo LezdomGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.gif")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Lezdomgood
+                    If ImageList.Count > 0 Then GoTo LezdomGood
                 Next
 
 LezdomGood:
 
                 If ImageList.Count < 1 Then
-                    MessageBox.Show(Me, "There are no images in the specified Lezdom folder!" & Environment.NewLine & Environment.NewLine & _
+                    MessageBox.Show(Me, "There are no images in the specified Lezdom folder!" & Environment.NewLine & Environment.NewLine &
                                     "Local Lezdom Image setting has been deselected and cleared.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     CBILezdom.Checked = False
                     LBLILezdom.Text = ""
@@ -5947,7 +5947,7 @@ LezdomGood:
             LBLMaintenance.Text = "Checking Hentai image path..."
             If Not Directory.Exists(LBLIHentai.Text) Then
                 If LBLIHentai.Text <> "" Or LBLIHentai.Text <> "No path selected" Then
-                    MessageBox.Show(Me, "The directory for local Hentai images was not found!" & Environment.NewLine & Environment.NewLine & _
+                    MessageBox.Show(Me, "The directory for local Hentai images was not found!" & Environment.NewLine & Environment.NewLine &
                                     "Local Hentai Image setting has been deselected and cleared.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
                 CBIHentai.Checked = False
@@ -5961,34 +5961,34 @@ LezdomGood:
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpg")
                     ImageList.Add(foundFile)
                     Debug.Print("Checkin' jpg")
-                    If ImageList.Count > 0 Then GoTo Hentaigood
+                    If ImageList.Count > 0 Then GoTo HentaiGood
                 Next
                 Debug.Print("Hentai Check")
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpeg")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Hentaigood
+                    If ImageList.Count > 0 Then GoTo HentaiGood
                 Next
                 Debug.Print("Hentai Check")
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.bmp")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Hentaigood
+                    If ImageList.Count > 0 Then GoTo HentaiGood
                 Next
                 Debug.Print("Hentai Check")
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.png")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Hentaigood
+                    If ImageList.Count > 0 Then GoTo HentaiGood
                 Next
                 Debug.Print("Hentai Check")
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.gif")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Hentaigood
+                    If ImageList.Count > 0 Then GoTo HentaiGood
                 Next
                 Debug.Print("Hentai Check")
 
 HentaiGood:
 
                 If ImageList.Count < 1 Then
-                    MessageBox.Show(Me, "There are no images in the specified Hentai folder!" & Environment.NewLine & Environment.NewLine & _
+                    MessageBox.Show(Me, "There are no images in the specified Hentai folder!" & Environment.NewLine & Environment.NewLine &
                                     "Local Hentai Image setting has been deselected and cleared.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     CBIHentai.Checked = False
                     LBLIHentai.Text = ""
@@ -6006,7 +6006,7 @@ HentaiGood:
             LBLMaintenance.Text = "Checking Gay image path..."
             If Not Directory.Exists(LBLIGay.Text) Then
                 If LBLIGay.Text <> "" Or LBLIGay.Text <> "No path selected" Then
-                    MessageBox.Show(Me, "The directory for local Gay images was not found!" & Environment.NewLine & Environment.NewLine & _
+                    MessageBox.Show(Me, "The directory for local Gay images was not found!" & Environment.NewLine & Environment.NewLine &
                                     "Local Gay Image setting has been deselected and cleared.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
                 CBIGay.Checked = False
@@ -6019,29 +6019,29 @@ HentaiGood:
 
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpg")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Gaygood
+                    If ImageList.Count > 0 Then GoTo GayGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpeg")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Gaygood
+                    If ImageList.Count > 0 Then GoTo GayGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.bmp")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Gaygood
+                    If ImageList.Count > 0 Then GoTo GayGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.png")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Gaygood
+                    If ImageList.Count > 0 Then GoTo GayGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.gif")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Gaygood
+                    If ImageList.Count > 0 Then GoTo GayGood
                 Next
 
 GayGood:
 
                 If ImageList.Count < 1 Then
-                    MessageBox.Show(Me, "There are no images in the specified Gay folder!" & Environment.NewLine & Environment.NewLine & _
+                    MessageBox.Show(Me, "There are no images in the specified Gay folder!" & Environment.NewLine & Environment.NewLine &
                                     "Local Gay Image setting has been deselected and cleared.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     CBIGay.Checked = False
                     LBLIGay.Text = ""
@@ -6059,7 +6059,7 @@ GayGood:
             LBLMaintenance.Text = "Checking Maledom image path..."
             If Not Directory.Exists(LBLIMaledom.Text) Then
                 If LBLIMaledom.Text <> "" Or LBLIMaledom.Text <> "No path selected" Then
-                    MessageBox.Show(Me, "The directory for local Maledom images was not found!" & Environment.NewLine & Environment.NewLine & _
+                    MessageBox.Show(Me, "The directory for local Maledom images was not found!" & Environment.NewLine & Environment.NewLine &
                                     "Local Maledom Image setting has been deselected and cleared.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
                 CBIMaledom.Checked = False
@@ -6072,30 +6072,30 @@ GayGood:
 
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpg")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Maledomgood
+                    If ImageList.Count > 0 Then GoTo MaledomGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpeg")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Maledomgood
+                    If ImageList.Count > 0 Then GoTo MaledomGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.bmp")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Maledomgood
+                    If ImageList.Count > 0 Then GoTo MaledomGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.png")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Maledomgood
+                    If ImageList.Count > 0 Then GoTo MaledomGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.gif")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Maledomgood
+                    If ImageList.Count > 0 Then GoTo MaledomGood
                 Next
 
 MaledomGood:
 
 
                 If ImageList.Count < 1 Then
-                    MessageBox.Show(Me, "There are no images in the specified Maledom folder!" & Environment.NewLine & Environment.NewLine & _
+                    MessageBox.Show(Me, "There are no images in the specified Maledom folder!" & Environment.NewLine & Environment.NewLine &
                                     "Local Maledom Image setting has been deselected and cleared.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     CBIMaledom.Checked = False
                     LBLIMaledom.Text = ""
@@ -6113,7 +6113,7 @@ MaledomGood:
             LBLMaintenance.Text = "Checking Captions image path..."
             If Not Directory.Exists(LBLICaptions.Text) Then
                 If LBLICaptions.Text <> "" Or LBLICaptions.Text <> "No path selected" Then
-                    MessageBox.Show(Me, "The directory for local Captions images was not found!" & Environment.NewLine & Environment.NewLine & _
+                    MessageBox.Show(Me, "The directory for local Captions images was not found!" & Environment.NewLine & Environment.NewLine &
                                     "Local Captions Image setting has been deselected and cleared.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
                 CBICaptions.Checked = False
@@ -6126,29 +6126,29 @@ MaledomGood:
 
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpg")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Captionsgood
+                    If ImageList.Count > 0 Then GoTo CaptionsGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpeg")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Captionsgood
+                    If ImageList.Count > 0 Then GoTo CaptionsGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.bmp")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Captionsgood
+                    If ImageList.Count > 0 Then GoTo CaptionsGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.png")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Captionsgood
+                    If ImageList.Count > 0 Then GoTo CaptionsGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.gif")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Captionsgood
+                    If ImageList.Count > 0 Then GoTo CaptionsGood
                 Next
 
 CaptionsGood:
 
                 If ImageList.Count < 1 Then
-                    MessageBox.Show(Me, "There are no images in the specified Captions folder!" & Environment.NewLine & Environment.NewLine & _
+                    MessageBox.Show(Me, "There are no images in the specified Captions folder!" & Environment.NewLine & Environment.NewLine &
                                     "Local Captions Image setting has been deselected and cleared.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     CBICaptions.Checked = False
                     LBLICaptions.Text = ""
@@ -6166,7 +6166,7 @@ CaptionsGood:
             LBLMaintenance.Text = "Checking General image path..."
             If Not Directory.Exists(LBLIGeneral.Text) Then
                 If LBLIGeneral.Text <> "" Or LBLIGeneral.Text <> "No path selected" Then
-                    MessageBox.Show(Me, "The directory for local General images was not found!" & Environment.NewLine & Environment.NewLine & _
+                    MessageBox.Show(Me, "The directory for local General images was not found!" & Environment.NewLine & Environment.NewLine &
                                     "Local General Image setting has been deselected and cleared.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
                 CBIGeneral.Checked = False
@@ -6179,29 +6179,29 @@ CaptionsGood:
 
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpg")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Generalgood
+                    If ImageList.Count > 0 Then GoTo GeneralGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpeg")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Generalgood
+                    If ImageList.Count > 0 Then GoTo GeneralGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.bmp")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Generalgood
+                    If ImageList.Count > 0 Then GoTo GeneralGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.png")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Generalgood
+                    If ImageList.Count > 0 Then GoTo GeneralGood
                 Next
                 For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.gif")
                     ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo Generalgood
+                    If ImageList.Count > 0 Then GoTo GeneralGood
                 Next
 
 GeneralGood:
 
                 If ImageList.Count < 1 Then
-                    MessageBox.Show(Me, "There are no images in the specified General folder!" & Environment.NewLine & Environment.NewLine & _
+                    MessageBox.Show(Me, "There are no images in the specified General folder!" & Environment.NewLine & Environment.NewLine &
                                     "Local General Image setting has been deselected and cleared.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     CBIGeneral.Checked = False
                     LBLIGeneral.Text = ""
@@ -8160,7 +8160,7 @@ WhyUMakeMeDoDis:
                 Return
             End If
 
-            Form1.mainPictureBox.Load(Form1.LocalImageTagDir(0))
+            Form1.mainPictureBox.LoadFromUrl(Form1.LocalImageTagDir(0))
 
 
             CheckLocalTagList()
@@ -8198,7 +8198,7 @@ WhyUMakeMeDoDis:
         SetLocalImageTags()
 
         Form1.LocalImageTagCount += 1
-        Form1.mainPictureBox.Load(Form1.LocalImageTagDir(Form1.LocalImageTagCount))
+        Form1.mainPictureBox.LoadFromUrl(Form1.LocalImageTagDir(Form1.LocalImageTagCount))
 
         If Form1.LocalImageTagCount = Form1.LocalImageTagDir.Count - 1 Then BTNLocalTagNext.Enabled = False
 
@@ -9315,7 +9315,7 @@ WhyUMakeMeDoDis:
         SetLocalImageTags()
 
         Form1.LocalImageTagCount -= 1
-        Form1.mainPictureBox.Load(Form1.LocalImageTagDir(Form1.LocalImageTagCount))
+        Form1.mainPictureBox.LoadFromUrl(Form1.LocalImageTagDir(Form1.LocalImageTagCount))
 
         If Form1.LocalImageTagCount = 0 Then BTNLocalTagPrevious.Enabled = False
 
@@ -9378,7 +9378,7 @@ WhyUMakeMeDoDis:
                     Return
                 End If
 
-                Form1.mainPictureBox.Load(Form1.LocalImageTagDir(0))
+                Form1.mainPictureBox.LoadFromUrl(Form1.LocalImageTagDir(0))
 
 
                 CheckLocalTagList()
@@ -9577,7 +9577,7 @@ WhyUMakeMeDoDis:
                 GC.Collect()
             Catch
             End Try
-            BP1.Load(OpenFileDialog1.FileName)
+            BP1.LoadFromUrl(OpenFileDialog1.FileName)
             My.Settings.BP1 = OpenFileDialog1.FileName
             My.Settings.Save()
         End If
@@ -9590,7 +9590,7 @@ WhyUMakeMeDoDis:
                 GC.Collect()
             Catch
             End Try
-            BP2.Load(OpenFileDialog1.FileName)
+            BP2.LoadFromUrl(OpenFileDialog1.FileName)
             My.Settings.BP2 = OpenFileDialog1.FileName
             My.Settings.Save()
         End If
@@ -9603,7 +9603,7 @@ WhyUMakeMeDoDis:
                 GC.Collect()
             Catch
             End Try
-            BP3.Load(OpenFileDialog1.FileName)
+            BP3.LoadFromUrl(OpenFileDialog1.FileName)
             My.Settings.BP3 = OpenFileDialog1.FileName
             My.Settings.Save()
         End If
@@ -9616,7 +9616,7 @@ WhyUMakeMeDoDis:
                 GC.Collect()
             Catch
             End Try
-            BP4.Load(OpenFileDialog1.FileName)
+            BP4.LoadFromUrl(OpenFileDialog1.FileName)
             My.Settings.BP4 = OpenFileDialog1.FileName
             My.Settings.Save()
         End If
@@ -9629,7 +9629,7 @@ WhyUMakeMeDoDis:
                 GC.Collect()
             Catch
             End Try
-            BP5.Load(OpenFileDialog1.FileName)
+            BP5.LoadFromUrl(OpenFileDialog1.FileName)
             My.Settings.BP5 = OpenFileDialog1.FileName
             My.Settings.Save()
         End If
@@ -9642,7 +9642,7 @@ WhyUMakeMeDoDis:
                 GC.Collect()
             Catch
             End Try
-            BP6.Load(OpenFileDialog1.FileName)
+            BP6.LoadFromUrl(OpenFileDialog1.FileName)
             My.Settings.BP6 = OpenFileDialog1.FileName
             My.Settings.Save()
         End If
@@ -9656,7 +9656,7 @@ WhyUMakeMeDoDis:
                 GC.Collect()
             Catch
             End Try
-            SP1.Load(OpenFileDialog1.FileName)
+            SP1.LoadFromUrl(OpenFileDialog1.FileName)
             My.Settings.SP1 = OpenFileDialog1.FileName
             My.Settings.Save()
         End If
@@ -9669,7 +9669,7 @@ WhyUMakeMeDoDis:
                 GC.Collect()
             Catch
             End Try
-            SP2.Load(OpenFileDialog1.FileName)
+            SP2.LoadFromUrl(OpenFileDialog1.FileName)
             My.Settings.SP2 = OpenFileDialog1.FileName
             My.Settings.Save()
         End If
@@ -9682,7 +9682,7 @@ WhyUMakeMeDoDis:
                 GC.Collect()
             Catch
             End Try
-            SP3.Load(OpenFileDialog1.FileName)
+            SP3.LoadFromUrl(OpenFileDialog1.FileName)
             My.Settings.SP3 = OpenFileDialog1.FileName
             My.Settings.Save()
         End If
@@ -9695,7 +9695,7 @@ WhyUMakeMeDoDis:
                 GC.Collect()
             Catch
             End Try
-            SP4.Load(OpenFileDialog1.FileName)
+            SP4.LoadFromUrl(OpenFileDialog1.FileName)
             My.Settings.SP4 = OpenFileDialog1.FileName
             My.Settings.Save()
         End If
@@ -9708,7 +9708,7 @@ WhyUMakeMeDoDis:
                 GC.Collect()
             Catch
             End Try
-            SP5.Load(OpenFileDialog1.FileName)
+            SP5.LoadFromUrl(OpenFileDialog1.FileName)
             My.Settings.SP5 = OpenFileDialog1.FileName
             My.Settings.Save()
         End If
@@ -9721,7 +9721,7 @@ WhyUMakeMeDoDis:
                 GC.Collect()
             Catch
             End Try
-            SP6.Load(OpenFileDialog1.FileName)
+            SP6.LoadFromUrl(OpenFileDialog1.FileName)
             My.Settings.SP6 = OpenFileDialog1.FileName
             My.Settings.Save()
         End If
@@ -9735,7 +9735,7 @@ WhyUMakeMeDoDis:
                 GC.Collect()
             Catch
             End Try
-            GP1.Load(OpenFileDialog1.FileName)
+            GP1.LoadFromUrl(OpenFileDialog1.FileName)
             My.Settings.GP1 = OpenFileDialog1.FileName
             My.Settings.Save()
         End If
@@ -9748,7 +9748,7 @@ WhyUMakeMeDoDis:
                 GC.Collect()
             Catch
             End Try
-            GP2.Load(OpenFileDialog1.FileName)
+            GP2.LoadFromUrl(OpenFileDialog1.FileName)
             My.Settings.GP2 = OpenFileDialog1.FileName
             My.Settings.Save()
         End If
@@ -9761,7 +9761,7 @@ WhyUMakeMeDoDis:
                 GC.Collect()
             Catch
             End Try
-            GP3.Load(OpenFileDialog1.FileName)
+            GP3.LoadFromUrl(OpenFileDialog1.FileName)
             My.Settings.GP3 = OpenFileDialog1.FileName
             My.Settings.Save()
         End If
@@ -9774,7 +9774,7 @@ WhyUMakeMeDoDis:
                 GC.Collect()
             Catch
             End Try
-            GP4.Load(OpenFileDialog1.FileName)
+            GP4.LoadFromUrl(OpenFileDialog1.FileName)
             My.Settings.GP4 = OpenFileDialog1.FileName
             My.Settings.Save()
         End If
@@ -9787,7 +9787,7 @@ WhyUMakeMeDoDis:
                 GC.Collect()
             Catch
             End Try
-            GP5.Load(OpenFileDialog1.FileName)
+            GP5.LoadFromUrl(OpenFileDialog1.FileName)
             My.Settings.GP5 = OpenFileDialog1.FileName
             My.Settings.Save()
         End If
@@ -9800,7 +9800,7 @@ WhyUMakeMeDoDis:
                 GC.Collect()
             Catch
             End Try
-            GP6.Load(OpenFileDialog1.FileName)
+            GP6.LoadFromUrl(OpenFileDialog1.FileName)
             My.Settings.GP6 = OpenFileDialog1.FileName
             My.Settings.Save()
         End If
@@ -9814,7 +9814,7 @@ WhyUMakeMeDoDis:
                 GC.Collect()
             Catch
             End Try
-            CardBack.Load(OpenFileDialog1.FileName)
+            CardBack.LoadFromUrl(OpenFileDialog1.FileName)
             My.Settings.CardBack = OpenFileDialog1.FileName
             My.Settings.Save()
         End If
@@ -10164,10 +10164,10 @@ WhyUMakeMeDoDis:
 
 
         If orgasmsPerNumBox.Value = 1 Then
-            result = MessageBox.Show("This will limit you to 1 orgasm for the next " & LCase(orgasmsperComboBox.Text) & "." & Environment.NewLine & Environment.NewLine & _
+            result = MessageBox.Show("This will limit you to 1 orgasm for the next " & LCase(orgasmsperComboBox.Text) & "." & Environment.NewLine & Environment.NewLine &
                                                "Are you absolutely sure you wish to continue?", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
         Else
-            result = MessageBox.Show("This will limit you to " & orgasmsPerNumBox.Value & " orgasms for the next " & LCase(orgasmsperComboBox.Text) & "." & Environment.NewLine & Environment.NewLine & _
+            result = MessageBox.Show("This will limit you to " & orgasmsPerNumBox.Value & " orgasms for the next " & LCase(orgasmsperComboBox.Text) & "." & Environment.NewLine & Environment.NewLine &
                                                            "Are you absolutely sure you wish to continue?", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
         End If
 
@@ -10242,7 +10242,7 @@ WhyUMakeMeDoDis:
 
         Dim result As Integer
 
-        result = MessageBox.Show("This will allow the domme to limit you to a random number of orgasms for a random amount of time. High level dommes could restrict you to a very low amount for up to a year!" & Environment.NewLine & Environment.NewLine & _
+        result = MessageBox.Show("This will allow the domme to limit you to a random number of orgasms for a random amount of time. High level dommes could restrict you to a very low amount for up to a year!" & Environment.NewLine & Environment.NewLine &
                                            "Are you absolutely sure you wish to continue?", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation)
 
         If result = DialogResult.No Then
@@ -10381,14 +10381,14 @@ WhyUMakeMeDoDis:
 
 
     Private Sub NBTeaseLengthMin_MouseHover(sender As Object, e As System.EventArgs) Handles NBTeaseLengthMin.MouseEnter
-        LBLRangeSettingsDescription.Text = "Set the minimum amount of time the program will run before the domme decides if you can have an orgasm." & Environment.NewLine & Environment.NewLine & _
-            "The domme will not move to an End script until the first @End point of a Module that occurs after tease time expires." & Environment.NewLine & Environment.NewLine & _
+        LBLRangeSettingsDescription.Text = "Set the minimum amount of time the program will run before the domme decides if you can have an orgasm." & Environment.NewLine & Environment.NewLine &
+            "The domme will not move to an End script until the first @End point of a Module that occurs after tease time expires." & Environment.NewLine & Environment.NewLine &
             "If the domme decides to tease you again, the tease time will be reset to a new amount based Tease Length settings."
     End Sub
 
     Private Sub NBTeaseLengthMax_MouseHover(sender As Object, e As System.EventArgs) Handles NBTeaseLengthMax.MouseEnter
-        LBLRangeSettingsDescription.Text = "Set the maximum amount of time the program will run before the domme decides if you can have an orgasm." & Environment.NewLine & Environment.NewLine & _
-            "The domme will not move to an End script until the first @End point of a Module that occurs after tease time expires." & Environment.NewLine & Environment.NewLine & _
+        LBLRangeSettingsDescription.Text = "Set the maximum amount of time the program will run before the domme decides if you can have an orgasm." & Environment.NewLine & Environment.NewLine &
+            "The domme will not move to an End script until the first @End point of a Module that occurs after tease time expires." & Environment.NewLine & Environment.NewLine &
             "If the domme decides to tease you again, the tease time will be reset to a new amount based Tease Length settings."
     End Sub
 
@@ -10404,8 +10404,8 @@ WhyUMakeMeDoDis:
     End Sub
 
     Private Sub CBTeaseLengthDD_MouseHover(sender As Object, e As System.EventArgs) Handles CBTeaseLengthDD.MouseEnter
-        LBLRangeSettingsDescription.Text = "This allows the domme to decide the length of the tease based on her level." & Environment.NewLine & Environment.NewLine & _
-            "A level 1 domme may tease you for 15-20 minutes, while a level 5 domme may tease you as long as an hour." & Environment.NewLine & Environment.NewLine & _
+        LBLRangeSettingsDescription.Text = "This allows the domme to decide the length of the tease based on her level." & Environment.NewLine & Environment.NewLine &
+            "A level 1 domme may tease you for 15-20 minutes, while a level 5 domme may tease you as long as an hour." & Environment.NewLine & Environment.NewLine &
             "The domme will not move to an End script until the first @End point of a Module that occurs after tease time expires."
     End Sub
 
@@ -10418,22 +10418,22 @@ WhyUMakeMeDoDis:
     End Sub
 
     Private Sub CBTauntCycleDD_MouseHover(sender As Object, e As System.EventArgs) Handles CBTauntCycleDD.MouseEnter
-        LBLRangeSettingsDescription.Text = "This allows the domme to decide how long she makes you stroke during Taunt cycles based on her level." & Environment.NewLine & Environment.NewLine & _
+        LBLRangeSettingsDescription.Text = "This allows the domme to decide how long she makes you stroke during Taunt cycles based on her level." & Environment.NewLine & Environment.NewLine &
             "A level 1 domme may have you stroke for a couple minutes at a time, while a level 5 domme may have you stroke up to 10 minutes during each Taunt cycle."
     End Sub
 
     Private Sub SliderSTF_MouseHover(sender As Object, e As System.EventArgs) Handles SliderSTF.MouseEnter
-        LBLRangeSettingsDescription.Text = "This allows you to set the frequency of the domme's Stroke Taunts." & Environment.NewLine & Environment.NewLine & _
+        LBLRangeSettingsDescription.Text = "This allows you to set the frequency of the domme's Stroke Taunts." & Environment.NewLine & Environment.NewLine &
             "A middle value tries to emulate an online experience as closely as possible. Use a higher value to increase the frequency of Taunts to something you would expect in a webtease. Use a lower value to simulate the domme being preoccupied or not that interested in engaging you."
     End Sub
 
     Private Sub TauntSlider_MouseHover(sender As Object, e As System.EventArgs) Handles TauntSlider.MouseEnter
-        LBLRangeSettingsDescription.Text = "This allows you to set the frequency of the domme's Taunts during Video Teases." & Environment.NewLine & Environment.NewLine & _
+        LBLRangeSettingsDescription.Text = "This allows you to set the frequency of the domme's Taunts during Video Teases." & Environment.NewLine & Environment.NewLine &
             "A middle value creates a fairly common use of Taunts. Use a higher value to make the domme extremely engaged. Use a lower value to focus on the Video Tease with minimal interaction from the domme."
     End Sub
 
     Private Sub CBRangeOrgasm_MouseHover(sender As Object, e As System.EventArgs) Handles CBRangeOrgasm.MouseEnter
-        LBLRangeSettingsDescription.Text = "This allows the domme to decide what chance she will allow an orgasm based on her settings." & Environment.NewLine & Environment.NewLine & _
+        LBLRangeSettingsDescription.Text = "This allows the domme to decide what chance she will allow an orgasm based on her settings." & Environment.NewLine & Environment.NewLine &
             "Default settings are: Often Allows: 75% - Sometimes Allows: 50% - Rarely Allows: 20%"
     End Sub
 
@@ -10450,7 +10450,7 @@ WhyUMakeMeDoDis:
     End Sub
 
     Private Sub CBRangeRuin_MouseHover(sender As Object, e As System.EventArgs) Handles CBRangeRuin.MouseEnter
-        LBLRangeSettingsDescription.Text = "This allows the domme to decide what chance she will ruin an orgasm based on her settings." & Environment.NewLine & Environment.NewLine & _
+        LBLRangeSettingsDescription.Text = "This allows the domme to decide what chance she will ruin an orgasm based on her settings." & Environment.NewLine & Environment.NewLine &
             "Default settings are: Often Ruins: 75% - Sometimes Ruins: 50% - Rarely Ruins: 20%"
     End Sub
 
@@ -10521,7 +10521,7 @@ WhyUMakeMeDoDis:
         Catch
         End Try
         Try
-            WishlistPreview.Load(TBWishlistURL.Text)
+            WishlistPreview.LoadFromUrl(TBWishlistURL.Text)
         Catch ex As Exception
 
         End Try
@@ -10563,7 +10563,7 @@ WhyUMakeMeDoDis:
         Catch
         End Try
         Try
-            WishlistPreview.Load(TBWishlistURL.Text)
+            WishlistPreview.LoadFromUrl(TBWishlistURL.Text)
         Catch ex As Exception
             MessageBox.Show(Me, "Tease AI cannot locate the image URL provided! Please make sure it is a valid address and you are connected to the internet!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Hand)
             Return
@@ -10655,7 +10655,7 @@ WhyUMakeMeDoDis:
     End Sub
 
 
-   
+
 
     Private Sub BTNMaintenance_Click(sender As System.Object, e As System.EventArgs) Handles BTNMaintenanceRebuild.Click
 

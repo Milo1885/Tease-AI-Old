@@ -53,7 +53,7 @@ Partial Class frmApps
         Me.Button23 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.AppPanelGlitter = New System.Windows.Forms.Panel()
-        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox3 = New PictureBoxEx()
         Me.StatusUpdates = New System.Windows.Forms.WebBrowser()
         Me.AppPanelVitalSub = New System.Windows.Forms.Panel()
         Me.CBVitalSubDomTask = New System.Windows.Forms.CheckBox()
@@ -75,7 +75,7 @@ Partial Class frmApps
         Me.TBExercise = New System.Windows.Forms.TextBox()
         Me.CLBExercise = New System.Windows.Forms.CheckedListBox()
         Me.CBVitalSub = New System.Windows.Forms.CheckBox()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox1 = New PictureBoxEx()
         Me.PNLHypnoGen = New System.Windows.Forms.Panel()
         Me.ComboBoxHypnoGenTrack = New System.Windows.Forms.ComboBox()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -89,7 +89,7 @@ Partial Class frmApps
         Me.LBHypnoGenInduction = New System.Windows.Forms.ListBox()
         Me.CBHypnoGenInduction = New System.Windows.Forms.CheckBox()
         Me.CBHypnoGenPhase = New System.Windows.Forms.CheckBox()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox2 = New PictureBoxEx()
         Me.BTNHypnoGenStart = New System.Windows.Forms.Button()
         Me.PNLAppRandomizer = New System.Windows.Forms.Panel()
         Me.Button16 = New System.Windows.Forms.Button()
@@ -105,23 +105,23 @@ Partial Class frmApps
         Me.Label17 = New System.Windows.Forms.Label()
         Me.Button8 = New System.Windows.Forms.Button()
         Me.PNLWishList = New System.Windows.Forms.Panel()
-        Me.WishlistCostSilver = New System.Windows.Forms.PictureBox()
+        Me.WishlistCostSilver = New PictureBoxEx()
         Me.LBLWishlistDate = New System.Windows.Forms.Label()
         Me.BTNWishlist = New System.Windows.Forms.Button()
         Me.LBLWishListText = New System.Windows.Forms.Label()
         Me.LBLWishlistCost = New System.Windows.Forms.Label()
-        Me.WishlistCostGold = New System.Windows.Forms.PictureBox()
+        Me.WishlistCostGold = New PictureBoxEx()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.LBLWishlistSilver = New System.Windows.Forms.Label()
-        Me.PictureBox6 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox6 = New PictureBoxEx()
         Me.LBLWishlistBronze = New System.Windows.Forms.Label()
-        Me.PictureBox5 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox5 = New PictureBoxEx()
         Me.LBLWishlistGold = New System.Windows.Forms.Label()
-        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox4 = New PictureBoxEx()
         Me.LBLWishListName = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.LBLWishlistDom = New System.Windows.Forms.Label()
-        Me.WishlistPreview = New System.Windows.Forms.PictureBox()
+        Me.WishlistPreview = New PictureBoxEx()
         Me.PNLLazySub = New System.Windows.Forms.Panel()
         Me.Button27 = New System.Windows.Forms.Button()
         Me.Button26 = New System.Windows.Forms.Button()
@@ -1190,7 +1190,7 @@ Partial Class frmApps
         Me.LBLWishListText.Name = "LBLWishListText"
         Me.LBLWishListText.Size = New System.Drawing.Size(220, 109)
         Me.LBLWishListText.TabIndex = 108
-        Me.LBLWishListText.Text = "This is something I really want, let me tell you all about why I want it, you sho" & _
+        Me.LBLWishListText.Text = "This is something I really want, let me tell you all about why I want it, you sho" &
     "uld buy it for me because you know you like buying stuff for me. "
         '
         'LBLWishlistCost
@@ -1583,7 +1583,7 @@ Partial Class frmApps
     Friend WithEvents Button23 As System.Windows.Forms.Button
     Friend WithEvents Button5 As System.Windows.Forms.Button
     Friend WithEvents AppPanelGlitter As System.Windows.Forms.Panel
-    Friend WithEvents PictureBox3 As System.Windows.Forms.PictureBox
+    Friend WithEvents PictureBox3 As PictureBoxEx
     Friend WithEvents StatusUpdates As System.Windows.Forms.WebBrowser
     Friend WithEvents AppPanelVitalSub As System.Windows.Forms.Panel
     Friend WithEvents CBVitalSubDomTask As System.Windows.Forms.CheckBox
@@ -1605,7 +1605,7 @@ Partial Class frmApps
     Friend WithEvents TBExercise As System.Windows.Forms.TextBox
     Friend WithEvents CLBExercise As System.Windows.Forms.CheckedListBox
     Friend WithEvents CBVitalSub As System.Windows.Forms.CheckBox
-    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
+    Friend WithEvents PictureBox1 As PictureBoxEx
     Friend WithEvents PNLHypnoGen As System.Windows.Forms.Panel
     Friend WithEvents ComboBoxHypnoGenTrack As System.Windows.Forms.ComboBox
     Friend WithEvents Label5 As System.Windows.Forms.Label
@@ -1619,7 +1619,7 @@ Partial Class frmApps
     Friend WithEvents LBHypnoGenInduction As System.Windows.Forms.ListBox
     Friend WithEvents CBHypnoGenInduction As System.Windows.Forms.CheckBox
     Friend WithEvents CBHypnoGenPhase As System.Windows.Forms.CheckBox
-    Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
+    Friend WithEvents PictureBox2 As PictureBoxEx
     Friend WithEvents BTNHypnoGenStart As System.Windows.Forms.Button
     Friend WithEvents PNLAppRandomizer As System.Windows.Forms.Panel
     Friend WithEvents Button16 As System.Windows.Forms.Button
@@ -1635,23 +1635,23 @@ Partial Class frmApps
     Friend WithEvents Label17 As System.Windows.Forms.Label
     Friend WithEvents Button8 As System.Windows.Forms.Button
     Friend WithEvents PNLWishList As System.Windows.Forms.Panel
-    Friend WithEvents WishlistCostSilver As System.Windows.Forms.PictureBox
+    Friend WithEvents WishlistCostSilver As PictureBoxEx
     Friend WithEvents LBLWishlistDate As System.Windows.Forms.Label
     Friend WithEvents BTNWishlist As System.Windows.Forms.Button
     Friend WithEvents LBLWishListText As System.Windows.Forms.Label
     Friend WithEvents LBLWishlistCost As System.Windows.Forms.Label
-    Friend WithEvents WishlistCostGold As System.Windows.Forms.PictureBox
+    Friend WithEvents WishlistCostGold As PictureBoxEx
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
     Friend WithEvents LBLWishlistSilver As System.Windows.Forms.Label
-    Friend WithEvents PictureBox6 As System.Windows.Forms.PictureBox
+    Friend WithEvents PictureBox6 As PictureBoxEx
     Friend WithEvents LBLWishlistBronze As System.Windows.Forms.Label
-    Friend WithEvents PictureBox5 As System.Windows.Forms.PictureBox
+    Friend WithEvents PictureBox5 As PictureBoxEx
     Friend WithEvents LBLWishlistGold As System.Windows.Forms.Label
-    Friend WithEvents PictureBox4 As System.Windows.Forms.PictureBox
+    Friend WithEvents PictureBox4 As PictureBoxEx
     Friend WithEvents LBLWishListName As System.Windows.Forms.Label
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents LBLWishlistDom As System.Windows.Forms.Label
-    Friend WithEvents WishlistPreview As System.Windows.Forms.PictureBox
+    Friend WithEvents WishlistPreview As PictureBoxEx
     Friend WithEvents Button35 As System.Windows.Forms.Button
     Friend WithEvents Button18 As System.Windows.Forms.Button
     Friend WithEvents Label22 As System.Windows.Forms.Label
