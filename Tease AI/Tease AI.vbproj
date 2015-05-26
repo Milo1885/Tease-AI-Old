@@ -131,6 +131,12 @@
     <Compile Include="Form5.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Model\ServiceProvider.vb" />
+    <Compile Include="Model\Core.vb" />
+    <Compile Include="Model\Interfaces\IMediaAccess.vb" />
+    <Compile Include="Model\Interfaces\IServiceProvider.vb" />
+    <Compile Include="Model\MediaAccess.vb" />
+    <Compile Include="Model\MediaFolder.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
