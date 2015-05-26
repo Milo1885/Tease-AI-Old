@@ -224,7 +224,7 @@ Public Class FrmCardList
             End If
             Array.Sort(files)
             For Each fi As String In files
-                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                     MatchList.Add(fi)
                 End If
             Next
@@ -238,7 +238,7 @@ Public Class FrmCardList
             End If
             Array.Sort(files)
             For Each fi As String In files
-                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                     MatchList.Add(fi)
                 End If
             Next
@@ -252,7 +252,7 @@ Public Class FrmCardList
             End If
             Array.Sort(files)
             For Each fi As String In files
-                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                     MatchList.Add(fi)
                 End If
             Next
@@ -266,7 +266,7 @@ Public Class FrmCardList
             End If
             Array.Sort(files)
             For Each fi As String In files
-                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                     MatchList.Add(fi)
                 End If
             Next
@@ -280,7 +280,7 @@ Public Class FrmCardList
             End If
             Array.Sort(files)
             For Each fi As String In files
-                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                     MatchList.Add(fi)
                 End If
             Next
@@ -294,7 +294,7 @@ Public Class FrmCardList
             End If
             Array.Sort(files)
             For Each fi As String In files
-                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                     MatchList.Add(fi)
                 End If
             Next
@@ -308,7 +308,7 @@ Public Class FrmCardList
             End If
             Array.Sort(files)
             For Each fi As String In files
-                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                     MatchList.Add(fi)
                 End If
             Next
@@ -322,7 +322,7 @@ Public Class FrmCardList
             End If
             Array.Sort(files)
             For Each fi As String In files
-                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                     MatchList.Add(fi)
                 End If
             Next
@@ -336,7 +336,7 @@ Public Class FrmCardList
             End If
             Array.Sort(files)
             For Each fi As String In files
-                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                     MatchList.Add(fi)
                 End If
             Next
@@ -350,7 +350,7 @@ Public Class FrmCardList
             End If
             Array.Sort(files)
             For Each fi As String In files
-                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                     MatchList.Add(fi)
                 End If
             Next
@@ -364,7 +364,7 @@ Public Class FrmCardList
             End If
             Array.Sort(files)
             For Each fi As String In files
-                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                     MatchList.Add(fi)
                 End If
             Next
@@ -454,7 +454,7 @@ Public Class FrmCardList
             End If
             Array.Sort(files)
             For Each fi As String In files
-                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                     MatchList.Add(fi)
                 End If
             Next
@@ -468,7 +468,7 @@ Public Class FrmCardList
             End If
             Array.Sort(files)
             For Each fi As String In files
-                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                     MatchList.Add(fi)
                 End If
             Next
@@ -482,7 +482,7 @@ Public Class FrmCardList
             End If
             Array.Sort(files)
             For Each fi As String In files
-                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                     MatchList.Add(fi)
                 End If
             Next
@@ -496,7 +496,7 @@ Public Class FrmCardList
             End If
             Array.Sort(files)
             For Each fi As String In files
-                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                     MatchList.Add(fi)
                 End If
             Next
@@ -510,7 +510,7 @@ Public Class FrmCardList
             End If
             Array.Sort(files)
             For Each fi As String In files
-                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                     MatchList.Add(fi)
                 End If
             Next
@@ -524,7 +524,7 @@ Public Class FrmCardList
             End If
             Array.Sort(files)
             For Each fi As String In files
-                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                     MatchList.Add(fi)
                 End If
             Next
@@ -538,7 +538,7 @@ Public Class FrmCardList
             End If
             Array.Sort(files)
             For Each fi As String In files
-                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                     MatchList.Add(fi)
                 End If
             Next
@@ -552,7 +552,7 @@ Public Class FrmCardList
             End If
             Array.Sort(files)
             For Each fi As String In files
-                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                     MatchList.Add(fi)
                 End If
             Next
@@ -566,7 +566,7 @@ Public Class FrmCardList
             End If
             Array.Sort(files)
             For Each fi As String In files
-                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                     MatchList.Add(fi)
                 End If
             Next
@@ -580,7 +580,7 @@ Public Class FrmCardList
             End If
             Array.Sort(files)
             For Each fi As String In files
-                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                     MatchList.Add(fi)
                 End If
             Next
@@ -594,7 +594,7 @@ Public Class FrmCardList
             End If
             Array.Sort(files)
             For Each fi As String In files
-                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                     MatchList.Add(fi)
                 End If
             Next
@@ -1327,13 +1327,13 @@ Card9:
         If MatchPhase = 0 Then
             MatchPhase = 1
             M1A.LoadFromUrl(Match1A)
-            Match1 = M1A.ImageLocation
+            Match1 = Match1A
             M1A.Enabled = False
             MatchTemp = "M1A"
         Else
             MatchPhase = 0
             M1A.LoadFromUrl(Match1A)
-            Match2 = M1A.ImageLocation
+            Match2 = Match1A
             If Match1 = Match2 Then
                 M1A.Enabled = False
             Else
@@ -1352,13 +1352,13 @@ Card9:
         If MatchPhase = 0 Then
             MatchPhase = 1
             M2A.LoadFromUrl(Match2A)
-            Match1 = M2A.ImageLocation
+            Match1 = Match2A
             M2A.Enabled = False
             MatchTemp = "M2A"
         Else
             MatchPhase = 0
             M2A.LoadFromUrl(Match2A)
-            Match2 = M2A.ImageLocation
+            Match2 = Match2A
             If Match1 = Match2 Then
                 M2A.Enabled = False
             Else
@@ -1377,13 +1377,13 @@ Card9:
         If MatchPhase = 0 Then
             MatchPhase = 1
             M3A.LoadFromUrl(Match3A)
-            Match1 = M3A.ImageLocation
+            Match1 = Match3A
             M3A.Enabled = False
             MatchTemp = "M3A"
         Else
             MatchPhase = 0
             M3A.LoadFromUrl(Match3A)
-            Match2 = M3A.ImageLocation
+            Match2 = Match3A
             If Match1 = Match2 Then
                 M3A.Enabled = False
             Else
@@ -1402,13 +1402,13 @@ Card9:
         If MatchPhase = 0 Then
             MatchPhase = 1
             M4A.LoadFromUrl(Match4A)
-            Match1 = M4A.ImageLocation
+            Match1 = Match4A
             M4A.Enabled = False
             MatchTemp = "M4A"
         Else
             MatchPhase = 0
             M4A.LoadFromUrl(Match4A)
-            Match2 = M4A.ImageLocation
+            Match2 = Match4A
             If Match1 = Match2 Then
                 M4A.Enabled = False
             Else
@@ -1427,13 +1427,13 @@ Card9:
         If MatchPhase = 0 Then
             MatchPhase = 1
             M5A.LoadFromUrl(Match5A)
-            Match1 = M5A.ImageLocation
+            Match1 = Match5A
             M5A.Enabled = False
             MatchTemp = "M5A"
         Else
             MatchPhase = 0
             M5A.LoadFromUrl(Match5A)
-            Match2 = M5A.ImageLocation
+            Match2 = Match5A
             If Match1 = Match2 Then
                 M5A.Enabled = False
             Else
@@ -1452,13 +1452,13 @@ Card9:
         If MatchPhase = 0 Then
             MatchPhase = 1
             M6A.LoadFromUrl(Match6A)
-            Match1 = M6A.ImageLocation
+            Match1 = Match6A
             M6A.Enabled = False
             MatchTemp = "M6A"
         Else
             MatchPhase = 0
             M6A.LoadFromUrl(Match6A)
-            Match2 = M6A.ImageLocation
+            Match2 = Match6A
             If Match1 = Match2 Then
                 M6A.Enabled = False
             Else
@@ -1478,13 +1478,13 @@ Card9:
         If MatchPhase = 0 Then
             MatchPhase = 1
             M1B.LoadFromUrl(Match1B)
-            Match1 = M1B.ImageLocation
+            Match1 = Match1B
             M1B.Enabled = False
             MatchTemp = "M1B"
         Else
             MatchPhase = 0
             M1B.LoadFromUrl(Match1B)
-            Match2 = M1B.ImageLocation
+            Match2 = Match1B
             If Match1 = Match2 Then
                 M1B.Enabled = False
             Else
@@ -1503,13 +1503,13 @@ Card9:
         If MatchPhase = 0 Then
             MatchPhase = 1
             M2B.LoadFromUrl(Match2B)
-            Match1 = M2B.ImageLocation
+            Match1 = Match2B
             M2B.Enabled = False
             MatchTemp = "M2B"
         Else
             MatchPhase = 0
             M2B.LoadFromUrl(Match2B)
-            Match2 = M2B.ImageLocation
+            Match2 = Match2B
             If Match1 = Match2 Then
                 M2B.Enabled = False
             Else
@@ -1528,13 +1528,13 @@ Card9:
         If MatchPhase = 0 Then
             MatchPhase = 1
             M3B.LoadFromUrl(Match3B)
-            Match1 = M3B.ImageLocation
+            Match1 = Match3B
             M3B.Enabled = False
             MatchTemp = "M3B"
         Else
             MatchPhase = 0
             M3B.LoadFromUrl(Match3B)
-            Match2 = M3B.ImageLocation
+            Match2 = Match3B
             If Match1 = Match2 Then
                 M3B.Enabled = False
             Else
@@ -1553,13 +1553,13 @@ Card9:
         If MatchPhase = 0 Then
             MatchPhase = 1
             M4B.LoadFromUrl(Match4B)
-            Match1 = M4B.ImageLocation
+            Match1 = Match4B
             M4B.Enabled = False
             MatchTemp = "M4B"
         Else
             MatchPhase = 0
             M4B.LoadFromUrl(Match4B)
-            Match2 = M4B.ImageLocation
+            Match2 = Match4B
             If Match1 = Match2 Then
                 M4B.Enabled = False
             Else
@@ -1578,13 +1578,13 @@ Card9:
         If MatchPhase = 0 Then
             MatchPhase = 1
             M5B.LoadFromUrl(Match5B)
-            Match1 = M5B.ImageLocation
+            Match1 = Match5B
             M5B.Enabled = False
             MatchTemp = "M5B"
         Else
             MatchPhase = 0
             M5B.LoadFromUrl(Match5B)
-            Match2 = M5B.ImageLocation
+            Match2 = Match5B
             If Match1 = Match2 Then
                 M5B.Enabled = False
             Else
@@ -1603,13 +1603,13 @@ Card9:
         If MatchPhase = 0 Then
             MatchPhase = 1
             M6B.LoadFromUrl(Match6B)
-            Match1 = M6B.ImageLocation
+            Match1 = Match6B
             M6B.Enabled = False
             MatchTemp = "M6B"
         Else
             MatchPhase = 0
             M6B.LoadFromUrl(Match6B)
-            Match2 = M6B.ImageLocation
+            Match2 = Match6B
             If Match1 = Match2 Then
                 M6B.Enabled = False
             Else
@@ -1629,13 +1629,13 @@ Card9:
         If MatchPhase = 0 Then
             MatchPhase = 1
             M1C.LoadFromUrl(Match1C)
-            Match1 = M1C.ImageLocation
+            Match1 = Match1C
             M1C.Enabled = False
             MatchTemp = "M1C"
         Else
             MatchPhase = 0
             M1C.LoadFromUrl(Match1C)
-            Match2 = M1C.ImageLocation
+            Match2 = Match1C
             If Match1 = Match2 Then
                 M1C.Enabled = False
             Else
@@ -1654,13 +1654,13 @@ Card9:
         If MatchPhase = 0 Then
             MatchPhase = 1
             M2C.LoadFromUrl(Match2C)
-            Match1 = M2C.ImageLocation
+            Match1 = Match2C
             M2C.Enabled = False
             MatchTemp = "M2C"
         Else
             MatchPhase = 0
             M2C.LoadFromUrl(Match2C)
-            Match2 = M2C.ImageLocation
+            Match2 = Match2C
             If Match1 = Match2 Then
                 M2C.Enabled = False
             Else
@@ -1679,13 +1679,13 @@ Card9:
         If MatchPhase = 0 Then
             MatchPhase = 1
             M3C.LoadFromUrl(Match3C)
-            Match1 = M3C.ImageLocation
+            Match1 = Match3C
             M3C.Enabled = False
             MatchTemp = "M3C"
         Else
             MatchPhase = 0
             M3C.LoadFromUrl(Match3C)
-            Match2 = M3C.ImageLocation
+            Match2 = Match3C
             If Match1 = Match2 Then
                 M3C.Enabled = False
             Else
@@ -1704,13 +1704,13 @@ Card9:
         If MatchPhase = 0 Then
             MatchPhase = 1
             M4C.LoadFromUrl(Match4C)
-            Match1 = M4C.ImageLocation
+            Match1 = Match4C
             M4C.Enabled = False
             MatchTemp = "M4C"
         Else
             MatchPhase = 0
             M4C.LoadFromUrl(Match4C)
-            Match2 = M4C.ImageLocation
+            Match2 = Match4C
             If Match1 = Match2 Then
                 M4C.Enabled = False
             Else
@@ -1729,13 +1729,13 @@ Card9:
         If MatchPhase = 0 Then
             MatchPhase = 1
             M5C.LoadFromUrl(Match5C)
-            Match1 = M5C.ImageLocation
+            Match1 = Match5C
             M5C.Enabled = False
             MatchTemp = "M5C"
         Else
             MatchPhase = 0
             M5C.LoadFromUrl(Match5C)
-            Match2 = M5C.ImageLocation
+            Match2 = Match5C
             If Match1 = Match2 Then
                 M5C.Enabled = False
             Else
@@ -1754,13 +1754,13 @@ Card9:
         If MatchPhase = 0 Then
             MatchPhase = 1
             M6C.LoadFromUrl(Match6C)
-            Match1 = M6C.ImageLocation
+            Match1 = Match6C
             M6C.Enabled = False
             MatchTemp = "M6C"
         Else
             MatchPhase = 0
             M6C.LoadFromUrl(Match6C)
-            Match2 = M6C.ImageLocation
+            Match2 = Match6C
             If Match1 = Match2 Then
                 M6C.Enabled = False
             Else

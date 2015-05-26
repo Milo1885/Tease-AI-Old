@@ -899,7 +899,6 @@ Public Class frmApps
 
     Private Sub frmApps_FormClosed(sender As Object, e As System.Windows.Forms.FormClosedEventArgs) Handles Me.FormClosed
         Form1.BTNShowHideApps.Text = "Show Apps"
-        FrmCardList.InitializeSlots()
     End Sub
 
     Private Sub frmApps_Load(sender As Object, e As System.EventArgs) Handles Me.Load

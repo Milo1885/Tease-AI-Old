@@ -231,10 +231,10 @@ Public Class Form1
 
     Dim LastSuccessfulImage As Integer
     Dim GetFolder As String
-    Dim FileCount As Integer
+    Public FileCount As Integer
     Dim FileCountMax As Integer
-    Private _ImageFileNames As New List(Of String)
-    Private _CurrentImage As Integer = -1
+    Public _ImageFileNames As New List(Of String)
+    Public _CurrentImage As Integer = -1
     Dim WithTeaseImgDir As String
     Public ApproveImage As Integer = 0
     Public WIExit As Boolean
@@ -281,7 +281,7 @@ Public Class Form1
     Dim ReadBlog As String
     Dim ReadBlogRate As String
     Dim SearchImageBlog As Boolean
-    Dim FoundString As String
+    Public FoundString As String
     Public WebImage As String
 
     Public WebImageFile As StreamReader
@@ -303,7 +303,7 @@ Public Class Form1
     Dim LastScriptCountdown As Integer
     Dim LastScript As Boolean
 
-    Dim JustShowedBlogImage As Boolean
+    Public JustShowedBlogImage As Boolean
 
     Public SaidHello As Boolean
 
@@ -339,10 +339,6 @@ Public Class Form1
     Dim AssImage As Boolean
     Dim BoobImage As Boolean
 
-    Public ImageTagDir As New List(Of String)
-    Public LocalImageTagDir As New List(Of String)
-    Public ImageTagCount As Integer
-    Public LocalImageTagCount As Integer
 
     Dim FoundTag As String = "Null"
     Dim TagGarment As String = "NULL"
@@ -4925,7 +4921,7 @@ NullResponseLine2:
 
             Dim TestCOUnt As Integer = 0
             For Each fi As String In files
-                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                     TestCOUnt += 1
                     'Debug.Print("fi = " & fi)
                     _ImageFileNames.Add(fi)
@@ -8896,7 +8892,7 @@ OrgasmDecided:
                 Array.Sort(files)
 
                 For Each fi As String In files
-                    If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                    If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                         PornList.Add(fi)
                     End If
                 Next
@@ -8930,7 +8926,7 @@ OrgasmDecided:
                 Array.Sort(files)
 
                 For Each fi As String In files
-                    If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                    If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                         PornList.Add(fi)
                     End If
                 Next
@@ -8965,7 +8961,7 @@ OrgasmDecided:
                 Array.Sort(files)
 
                 For Each fi As String In files
-                    If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                    If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                         PornList.Add(fi)
                     End If
                 Next
@@ -8999,7 +8995,7 @@ OrgasmDecided:
                 Array.Sort(files)
 
                 For Each fi As String In files
-                    If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                    If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                         PornList.Add(fi)
                     End If
                 Next
@@ -9033,7 +9029,7 @@ OrgasmDecided:
                 Array.Sort(files)
 
                 For Each fi As String In files
-                    If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                    If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                         PornList.Add(fi)
                     End If
                 Next
@@ -9067,7 +9063,7 @@ OrgasmDecided:
                 Array.Sort(files)
 
                 For Each fi As String In files
-                    If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                    If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                         PornList.Add(fi)
                     End If
                 Next
@@ -9102,7 +9098,7 @@ OrgasmDecided:
                 Array.Sort(files)
 
                 For Each fi As String In files
-                    If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                    If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                         PornList.Add(fi)
                     End If
                 Next
@@ -9136,7 +9132,7 @@ OrgasmDecided:
                 Array.Sort(files)
 
                 For Each fi As String In files
-                    If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                    If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                         PornList.Add(fi)
                     End If
                 Next
@@ -9170,7 +9166,7 @@ OrgasmDecided:
                 Array.Sort(files)
 
                 For Each fi As String In files
-                    If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                    If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                         PornList.Add(fi)
                     End If
                 Next
@@ -9205,7 +9201,7 @@ OrgasmDecided:
                 Array.Sort(files)
 
                 For Each fi As String In files
-                    If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                    If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                         PornList.Add(fi)
                     End If
                 Next
@@ -9239,7 +9235,7 @@ OrgasmDecided:
                 Array.Sort(files)
 
                 For Each fi As String In files
-                    If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                    If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                         PornList.Add(fi)
                     End If
                 Next
@@ -9465,9 +9461,9 @@ OrgasmDecided:
             Dim TagSplit As String() = Split(LocalTagImageList(randomizer.Next(0, LocalTagImageList.Count)))
             FoundString = TagSplit(0) & " "
 
-            If Not FoundString.Contains(".jpg ") Or Not FoundString.Contains(".jpeg ") Or Not FoundString.Contains(".png ") Or Not FoundString.Contains(".bmp ") Or Not FoundString.Contains(".gif ") Then
+            If Not LCase(FoundString).Contains(".jpg ") Or Not LCase(FoundString).Contains(".jpeg ") Or Not LCase(FoundString).Contains(".png ") Or Not LCase(FoundString).Contains(".bmp ") Or Not LCase(FoundString).Contains(".gif ") Then
                 Dim FSLoop As Integer = 1
-                Do Until FoundString.Contains(".jpg ") Or FoundString.Contains(".jpeg ") Or FoundString.Contains(".png ") Or FoundString.Contains(".bmp ") Or FoundString.Contains(".gif ")
+                Do Until LCase(FoundString).Contains(".jpg ") Or LCase(FoundString).Contains(".jpeg ") Or LCase(FoundString).Contains(".png ") Or LCase(FoundString).Contains(".bmp ") Or LCase(FoundString).Contains(".gif ")
                     FoundString = FoundString & TagSplit(FSLoop) & " "
                     FSLoop += 1
                 Loop
@@ -10256,7 +10252,7 @@ VTSkip:
         Do
             PoundCount -= 1
             If ListClean(PoundCount).Contains("@ACup") Then
-                If FrmSettings.boobComboBox.Text <> "A" Or Not _ImageFileNames.Contains(mainPictureBox.ImageLocation) Then
+                If FrmSettings.boobComboBox.Text <> "A" Or JustShowedBlogImage = True Then
                     If StrokeFilter = True Then
                         For i As Integer = 0 To StrokeTauntCount - 1
                             ListClean.Remove(ListClean(PoundCount))
@@ -10275,7 +10271,7 @@ VTSkip:
         Do
             PoundCount -= 1
             If ListClean(PoundCount).Contains("@BCup") Then
-                If FrmSettings.boobComboBox.Text <> "B" Or Not _ImageFileNames.Contains(mainPictureBox.ImageLocation) Then
+                If FrmSettings.boobComboBox.Text <> "B" Or JustShowedBlogImage = True Then
                     If StrokeFilter = True Then
                         For i As Integer = 0 To StrokeTauntCount - 1
                             ListClean.Remove(ListClean(PoundCount))
@@ -10294,7 +10290,7 @@ VTSkip:
         Do
             PoundCount -= 1
             If ListClean(PoundCount).Contains("@CCup") Then
-                If FrmSettings.boobComboBox.Text <> "C" Or Not _ImageFileNames.Contains(mainPictureBox.ImageLocation) Then
+                If FrmSettings.boobComboBox.Text <> "C" Or JustShowedBlogImage = True Then
                     If StrokeFilter = True Then
                         For i As Integer = 0 To StrokeTauntCount - 1
                             ListClean.Remove(ListClean(PoundCount))
@@ -10313,7 +10309,7 @@ VTSkip:
         Do
             PoundCount -= 1
             If ListClean(PoundCount).Contains("@DCup") Then
-                If FrmSettings.boobComboBox.Text <> "D" Or Not _ImageFileNames.Contains(mainPictureBox.ImageLocation) Then
+                If FrmSettings.boobComboBox.Text <> "D" Or JustShowedBlogImage = True Then
                     If StrokeFilter = True Then
                         For i As Integer = 0 To StrokeTauntCount - 1
                             ListClean.Remove(ListClean(PoundCount))
@@ -10332,7 +10328,7 @@ VTSkip:
         Do
             PoundCount -= 1
             If ListClean(PoundCount).Contains("@DDCup") Then
-                If FrmSettings.boobComboBox.Text <> "DD" Or Not _ImageFileNames.Contains(mainPictureBox.ImageLocation) Then
+                If FrmSettings.boobComboBox.Text <> "DD" Or JustShowedBlogImage = True Then
                     If StrokeFilter = True Then
                         For i As Integer = 0 To StrokeTauntCount - 1
                             ListClean.Remove(ListClean(PoundCount))
@@ -10351,7 +10347,7 @@ VTSkip:
         Do
             PoundCount -= 1
             If ListClean(PoundCount).Contains("@DDD+Cup") Then
-                If FrmSettings.boobComboBox.Text <> "DDD+" Or Not _ImageFileNames.Contains(mainPictureBox.ImageLocation) Then
+                If FrmSettings.boobComboBox.Text <> "DDD+" Or JustShowedBlogImage = True Then
                     If StrokeFilter = True Then
                         For i As Integer = 0 To StrokeTauntCount - 1
                             ListClean.Remove(ListClean(PoundCount))
@@ -12647,6 +12643,41 @@ VTSkip:
             End If
         Loop Until PoundCount = 0
 
+        PoundCount = PoundLine
+        Do
+            PoundCount -= 1
+            If ListClean(PoundCount).Contains("@CockTorture") Then
+                If FrmSettings.CBCBTCock.Checked = False Then
+                    If StrokeFilter = True Then
+                        For i As Integer = 0 To StrokeTauntCount - 1
+                            ListClean.Remove(ListClean(PoundCount))
+                            PoundLine -= 1
+                        Next
+                    Else
+                        ListClean.Remove(ListClean(PoundCount))
+                        PoundLine -= 1
+                    End If
+                End If
+            End If
+        Loop Until PoundCount = 0
+
+        PoundCount = PoundLine
+        Do
+            PoundCount -= 1
+            If ListClean(PoundCount).Contains("@BallTorture") Then
+                If FrmSettings.CBCBTBalls.Checked = False Then
+                    If StrokeFilter = True Then
+                        For i As Integer = 0 To StrokeTauntCount - 1
+                            ListClean.Remove(ListClean(PoundCount))
+                            PoundLine -= 1
+                        Next
+                    Else
+                        ListClean.Remove(ListClean(PoundCount))
+                        PoundLine -= 1
+                    End If
+                End If
+            End If
+        Loop Until PoundCount = 0
 
         'If File.Exists(Application.StartupPath & "\Images\System\DislikedImageURLs.txt") Then
 
@@ -12740,73 +12771,42 @@ VTSkip:
 
         If FrmSettings.CBBnBLocal.Checked = True Then
             'Debug.Print("CBBnBLocal called")
+           
+            Dim supportedExtensions As String = "*.png,*.jpg,*.gif,*.bmp,*.jpeg"
+            Dim files As String()
+
             If FrmSettings.CBBoobSubDir.Checked = True Then
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(FrmSettings.LBLBoobPath.Text, FileIO.SearchOption.SearchAllSubDirectories, "*.jpg")
-                    BoobList.Add(foundFile)
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(FrmSettings.LBLBoobPath.Text, FileIO.SearchOption.SearchAllSubDirectories, "*.jpeg")
-                    BoobList.Add(foundFile)
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(FrmSettings.LBLBoobPath.Text, FileIO.SearchOption.SearchAllSubDirectories, "*.png")
-                    BoobList.Add(foundFile)
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(FrmSettings.LBLBoobPath.Text, FileIO.SearchOption.SearchAllSubDirectories, "*.bmp")
-                    BoobList.Add(foundFile)
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(FrmSettings.LBLBoobPath.Text, FileIO.SearchOption.SearchAllSubDirectories, "*.gif")
-                    BoobList.Add(foundFile)
-                Next
+                files = Directory.GetFiles(FrmSettings.LBLBoobPath.Text, "*.*", SearchOption.AllDirectories)
             Else
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(FrmSettings.LBLBoobPath.Text, FileIO.SearchOption.SearchTopLevelOnly, "*.jpg")
-                    BoobList.Add(foundFile)
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(FrmSettings.LBLBoobPath.Text, FileIO.SearchOption.SearchTopLevelOnly, "*.jpeg")
-                    BoobList.Add(foundFile)
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(FrmSettings.LBLBoobPath.Text, FileIO.SearchOption.SearchTopLevelOnly, "*.png")
-                    BoobList.Add(foundFile)
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(FrmSettings.LBLBoobPath.Text, FileIO.SearchOption.SearchTopLevelOnly, "*.bmp")
-                    BoobList.Add(foundFile)
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(FrmSettings.LBLBoobPath.Text, FileIO.SearchOption.SearchTopLevelOnly, "*.gif")
-                    BoobList.Add(foundFile)
-                Next
+                files = Directory.GetFiles(FrmSettings.LBLBoobPath.Text, "*.*")
             End If
 
+            Array.Sort(files)
+
+            For Each fi As String In files
+                If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
+                    BoobList.Add(fi)
+                End If
+            Next
+
+
+
+
             If FrmSettings.CBButtSubDir.Checked = True Then
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(FrmSettings.LBLButtPath.Text, FileIO.SearchOption.SearchAllSubDirectories, "*.jpg")
-                    AssList.Add(foundFile)
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(FrmSettings.LBLButtPath.Text, FileIO.SearchOption.SearchAllSubDirectories, "*.jpeg")
-                    AssList.Add(foundFile)
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(FrmSettings.LBLButtPath.Text, FileIO.SearchOption.SearchAllSubDirectories, "*.png")
-                    AssList.Add(foundFile)
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(FrmSettings.LBLButtPath.Text, FileIO.SearchOption.SearchAllSubDirectories, "*.bmp")
-                    AssList.Add(foundFile)
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(FrmSettings.LBLButtPath.Text, FileIO.SearchOption.SearchAllSubDirectories, "*.gif")
-                    AssList.Add(foundFile)
-                Next
+                files = Directory.GetFiles(FrmSettings.LBLButtPath.Text, "*.*", SearchOption.AllDirectories)
             Else
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(FrmSettings.LBLButtPath.Text, FileIO.SearchOption.SearchTopLevelOnly, "*.jpg")
-                    AssList.Add(foundFile)
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(FrmSettings.LBLButtPath.Text, FileIO.SearchOption.SearchTopLevelOnly, "*.jpeg")
-                    AssList.Add(foundFile)
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(FrmSettings.LBLButtPath.Text, FileIO.SearchOption.SearchTopLevelOnly, "*.png")
-                    AssList.Add(foundFile)
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(FrmSettings.LBLButtPath.Text, FileIO.SearchOption.SearchTopLevelOnly, "*.bmp")
-                    AssList.Add(foundFile)
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(FrmSettings.LBLButtPath.Text, FileIO.SearchOption.SearchTopLevelOnly, "*.gif")
-                    AssList.Add(foundFile)
-                Next
+                files = Directory.GetFiles(FrmSettings.LBLButtPath.Text, "*.*")
             End If
+
+            Array.Sort(files)
+
+            For Each fi As String In files
+                If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
+                    AssList.Add(fi)
+                End If
+            Next
+
+
 
         End If
 
@@ -13139,7 +13139,11 @@ AlreadySeen:
                 Do Until Not WebImage.Contains("/")
                     WebImage = WebImage.Remove(0, 1)
                 Loop
-                My.Computer.Network.DownloadFile(FoundString, Application.StartupPath & "\Images\Session Images\" & WebImage)
+                Try
+                    My.Computer.Network.DownloadFile(FoundString, Application.StartupPath & "\Images\Session Images\" & WebImage)
+                Catch
+                    MessageBox.Show(Me, "Failed to save Session Image!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                End Try
             End If
 
             PictureStrip.Items(0).Enabled = True
@@ -13207,7 +13211,7 @@ AlreadySeen:
                 Array.Sort(files)
 
                 For Each fi As String In files
-                    If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                    If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                         LocalList.Add(fi)
                     End If
                 Next
@@ -14995,7 +14999,7 @@ TryNext:
 
             Dim TestCOUnt As Integer = 0
             For Each fi As String In files
-                If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                     TestCOUnt += 1
                     'Debug.Print("fi = " & fi)
                     _ImageFileNames.Add(fi)
@@ -15165,7 +15169,7 @@ TryNext:
 
                 Dim TestCOUnt As Integer = 0
                 For Each fi As String In files
-                    If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+                    If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                         TestCOUnt += 1
                         'Debug.Print("fi = " & fi)
                         _ImageFileNames.Add(fi)
@@ -15248,7 +15252,7 @@ TryNext:
 
     Public Sub ShowImageInfo()
         'Debug.Print("ShowImageCalled")
-        'Debug.Print(mainPictureBox.ImageLocation)
+
         If FrmSettings.CBImageInfo.Checked = True Then
             Try
                 If JustShowedBlogImage = True Then
@@ -16371,7 +16375,7 @@ TryNext:
 
         Dim TestCOUnt As Integer = 0
         For Each fi As String In files
-            If supportedExtensions.Contains(Path.GetExtension(fi)) Then
+            If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
                 TestCOUnt += 1
                 _ImageFileNames.Add(fi)
             End If

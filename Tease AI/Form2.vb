@@ -24,6 +24,16 @@ Public Class FrmSettings
     Dim ScriptFile As String
     Dim LocalImageDir As New List(Of String)
 
+
+
+    Dim ImageTagDir As New List(Of String)
+    Dim LocalImageTagDir As New List(Of String)
+    Dim ImageTagCount As Integer
+    Dim LocalImageTagCount As Integer
+    Dim CurrentImageTagImage As String
+    Dim CurrentLocalImageTagImage As String
+
+
     Dim CheckImgDir As New List(Of String)
 
     Dim Fringe As New SpeechSynthesizer
@@ -621,8 +631,11 @@ Public Class FrmSettings
 
 
 
-            AuditScripts()
+        AuditScripts()
 
+
+        TBWebStart.Text = My.Settings.WebToyStart
+        TBWebStop.Text = My.Settings.WebToyStop
 
             FrmSettingsLoading = False
 
@@ -3372,39 +3385,24 @@ NextURL:
                 Dim BnBFileCheck As New List(Of String)
                 BnBFileCheck.Clear()
 
+                Dim supportedExtensions As String = "*.png,*.jpg,*.gif,*.bmp,*.jpeg"
+                'Dim files As String() = Directory.GetFiles(GetFolder, "*.*", SearchOption.AllDirectories)
+
+                Dim files As String()
+
                 If CBBoobSubDir.Checked = True Then
-                    For Each foundFile As String In My.Computer.FileSystem.GetFiles(LBLBoobPath.Text, FileIO.SearchOption.SearchAllSubDirectories, "*.jpg")
-                        BnBFileCheck.Add(foundFile)
-                    Next
-                    For Each foundFile As String In My.Computer.FileSystem.GetFiles(LBLBoobPath.Text, FileIO.SearchOption.SearchAllSubDirectories, "*.jpeg")
-                        BnBFileCheck.Add(foundFile)
-                    Next
-                    For Each foundFile As String In My.Computer.FileSystem.GetFiles(LBLBoobPath.Text, FileIO.SearchOption.SearchAllSubDirectories, "*.png")
-                        BnBFileCheck.Add(foundFile)
-                    Next
-                    For Each foundFile As String In My.Computer.FileSystem.GetFiles(LBLBoobPath.Text, FileIO.SearchOption.SearchAllSubDirectories, "*.bmp")
-                        BnBFileCheck.Add(foundFile)
-                    Next
-                    For Each foundFile As String In My.Computer.FileSystem.GetFiles(LBLBoobPath.Text, FileIO.SearchOption.SearchAllSubDirectories, "*.gif")
-                        BnBFileCheck.Add(foundFile)
-                    Next
+                    files = Directory.GetFiles(LBLBoobPath.Text, "*.*", SearchOption.AllDirectories)
                 Else
-                    For Each foundFile As String In My.Computer.FileSystem.GetFiles(LBLBoobPath.Text, FileIO.SearchOption.SearchTopLevelOnly, "*.jpg")
-                        BnBFileCheck.Add(foundFile)
-                    Next
-                    For Each foundFile As String In My.Computer.FileSystem.GetFiles(LBLBoobPath.Text, FileIO.SearchOption.SearchTopLevelOnly, "*.jpeg")
-                        BnBFileCheck.Add(foundFile)
-                    Next
-                    For Each foundFile As String In My.Computer.FileSystem.GetFiles(LBLBoobPath.Text, FileIO.SearchOption.SearchTopLevelOnly, "*.png")
-                        BnBFileCheck.Add(foundFile)
-                    Next
-                    For Each foundFile As String In My.Computer.FileSystem.GetFiles(LBLBoobPath.Text, FileIO.SearchOption.SearchTopLevelOnly, "*.bmp")
-                        BnBFileCheck.Add(foundFile)
-                    Next
-                    For Each foundFile As String In My.Computer.FileSystem.GetFiles(LBLBoobPath.Text, FileIO.SearchOption.SearchTopLevelOnly, "*.gif")
-                        BnBFileCheck.Add(foundFile)
-                    Next
+                    files = Directory.GetFiles(LBLBoobPath.Text, "*.*")
                 End If
+
+                Array.Sort(files)
+
+                For Each fi As String In files
+                    If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
+                        BnBFileCheck.Add(fi)
+                    End If
+                Next
 
                 If BnBFileCheck.Count < 1 Then
                     MessageBox.Show(Me, "No images found in " & LBLBoobPath.Text & "!" & Environment.NewLine & "Please double check your selected folder and subdirectory setting.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
@@ -3415,38 +3413,18 @@ NextURL:
                 BnBFileCheck.Clear()
 
                 If CBButtSubDir.Checked = True Then
-                    For Each foundFile As String In My.Computer.FileSystem.GetFiles(LBLButtPath.Text, FileIO.SearchOption.SearchAllSubDirectories, "*.jpg")
-                        BnBFileCheck.Add(foundFile)
-                    Next
-                    For Each foundFile As String In My.Computer.FileSystem.GetFiles(LBLButtPath.Text, FileIO.SearchOption.SearchAllSubDirectories, "*.jpeg")
-                        BnBFileCheck.Add(foundFile)
-                    Next
-                    For Each foundFile As String In My.Computer.FileSystem.GetFiles(LBLButtPath.Text, FileIO.SearchOption.SearchAllSubDirectories, "*.png")
-                        BnBFileCheck.Add(foundFile)
-                    Next
-                    For Each foundFile As String In My.Computer.FileSystem.GetFiles(LBLButtPath.Text, FileIO.SearchOption.SearchAllSubDirectories, "*.bmp")
-                        BnBFileCheck.Add(foundFile)
-                    Next
-                    For Each foundFile As String In My.Computer.FileSystem.GetFiles(LBLButtPath.Text, FileIO.SearchOption.SearchAllSubDirectories, "*.gif")
-                        BnBFileCheck.Add(foundFile)
-                    Next
+                    files = Directory.GetFiles(LBLButtPath.Text, "*.*", SearchOption.AllDirectories)
                 Else
-                    For Each foundFile As String In My.Computer.FileSystem.GetFiles(LBLButtPath.Text, FileIO.SearchOption.SearchTopLevelOnly, "*.jpg")
-                        BnBFileCheck.Add(foundFile)
-                    Next
-                    For Each foundFile As String In My.Computer.FileSystem.GetFiles(LBLButtPath.Text, FileIO.SearchOption.SearchTopLevelOnly, "*.jpeg")
-                        BnBFileCheck.Add(foundFile)
-                    Next
-                    For Each foundFile As String In My.Computer.FileSystem.GetFiles(LBLButtPath.Text, FileIO.SearchOption.SearchTopLevelOnly, "*.png")
-                        BnBFileCheck.Add(foundFile)
-                    Next
-                    For Each foundFile As String In My.Computer.FileSystem.GetFiles(LBLButtPath.Text, FileIO.SearchOption.SearchTopLevelOnly, "*.bmp")
-                        BnBFileCheck.Add(foundFile)
-                    Next
-                    For Each foundFile As String In My.Computer.FileSystem.GetFiles(LBLButtPath.Text, FileIO.SearchOption.SearchTopLevelOnly, "*.gif")
-                        BnBFileCheck.Add(foundFile)
-                    Next
+                    files = Directory.GetFiles(LBLButtPath.Text, "*.*")
                 End If
+
+                Array.Sort(files)
+
+                For Each fi As String In files
+                    If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
+                        BnBFileCheck.Add(fi)
+                    End If
+                Next
 
                 If BnBFileCheck.Count < 1 Then
                     MessageBox.Show(Me, "No images found in " & LBLButtPath.Text & "!" & Environment.NewLine & "Please double check your selected folder and subdirectory setting.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
@@ -3500,27 +3478,25 @@ NextURL:
 
             ' BTNTagSave.Text = "Save and Display Next Image"
 
-            Form1.ImageTagDir.Clear()
+            ImageTagDir.Clear()
 
             Dim TagImageFolder As String = FolderBrowserDialog1.SelectedPath
 
-            For Each foundFile As String In My.Computer.FileSystem.GetFiles(TagImageFolder, FileIO.SearchOption.SearchTopLevelOnly, "*.jpg")
-                Form1.ImageTagDir.Add(foundFile)
-            Next
-            For Each foundFile As String In My.Computer.FileSystem.GetFiles(TagImageFolder, FileIO.SearchOption.SearchTopLevelOnly, "*.jpeg")
-                Form1.ImageTagDir.Add(foundFile)
-            Next
-            For Each foundFile As String In My.Computer.FileSystem.GetFiles(TagImageFolder, FileIO.SearchOption.SearchTopLevelOnly, "*.bmp")
-                Form1.ImageTagDir.Add(foundFile)
-            Next
-            For Each foundFile As String In My.Computer.FileSystem.GetFiles(TagImageFolder, FileIO.SearchOption.SearchTopLevelOnly, "*.png")
-                Form1.ImageTagDir.Add(foundFile)
-            Next
-            For Each foundFile As String In My.Computer.FileSystem.GetFiles(TagImageFolder, FileIO.SearchOption.SearchTopLevelOnly, "*.gif")
-                Form1.ImageTagDir.Add(foundFile)
+            Dim supportedExtensions As String = "*.png,*.jpg,*.gif,*.bmp,*.jpeg"
+            Dim files As String()
+
+            files = Directory.GetFiles(TagImageFolder, "*.*")
+
+            Array.Sort(files)
+
+            For Each fi As String In files
+                If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
+                    ImageTagDir.Add(fi)
+                End If
             Next
 
-            If Form1.ImageTagDir.Count < 1 Then
+
+            If ImageTagDir.Count < 1 Then
                 MessageBox.Show(Me, "There are no images in the specified folder.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 Return
             End If
@@ -3532,7 +3508,8 @@ NextURL:
             Catch
             End Try
 
-            ImageTagPictureBox.LoadFromUrl(Form1.ImageTagDir(0))
+            ImageTagPictureBox.LoadFromUrl(ImageTagDir(0))
+            CurrentImageTagImage = ImageTagDir(0)
 
             If File.Exists(Application.StartupPath & "\Images\System\ImageTags.txt") Then
                 Dim TagReader As New StreamReader(Application.StartupPath & "\Images\System\ImageTags.txt")
@@ -3545,7 +3522,7 @@ NextURL:
                 TagReader.Dispose()
 
                 For i As Integer = 0 To TagCheckList.Count - 1
-                    If TagCheckList(i).Contains(ImageTagPictureBox.ImageLocation) Then
+                    If TagCheckList(i).Contains(ImageTagDir(0)) Then
                         Debug.Print(TagCheckList(i))
                         CBTagFace.Checked = False
                         CBTagBoobs.Checked = False
@@ -3644,11 +3621,11 @@ NextURL:
             End If
 
             Form1.TagCount = 1
-            LBLTagCount.Text = Form1.TagCount & "/" & Form1.ImageTagDir.Count
+            LBLTagCount.Text = Form1.TagCount & "/" & ImageTagDir.Count
 
-            'If Form1.ImageTagDir.Count = 1 Then BTNTagSave.Text = "Save and Finish"
+            'If ImageTagDir.Count = 1 Then BTNTagSave.Text = "Save and Finish"
 
-            Form1.ImageTagCount = 0
+            ImageTagCount = 0
 
             BTNTagSave.Enabled = True
             BTNTagNext.Enabled = True
@@ -3703,27 +3680,24 @@ NextURL:
 
             If My.Computer.FileSystem.DirectoryExists(TBTagDir.Text) Then
 
-                Form1.ImageTagDir.Clear()
+                ImageTagDir.Clear()
 
                 Dim TagImageFolder As String = TBTagDir.Text
 
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(TagImageFolder, FileIO.SearchOption.SearchTopLevelOnly, "*.jpg")
-                    Form1.ImageTagDir.Add(foundFile)
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(TagImageFolder, FileIO.SearchOption.SearchTopLevelOnly, "*.jpeg")
-                    Form1.ImageTagDir.Add(foundFile)
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(TagImageFolder, FileIO.SearchOption.SearchTopLevelOnly, "*.bmp")
-                    Form1.ImageTagDir.Add(foundFile)
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(TagImageFolder, FileIO.SearchOption.SearchTopLevelOnly, "*.png")
-                    Form1.ImageTagDir.Add(foundFile)
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(TagImageFolder, FileIO.SearchOption.SearchTopLevelOnly, "*.gif")
-                    Form1.ImageTagDir.Add(foundFile)
+                 Dim supportedExtensions As String = "*.png,*.jpg,*.gif,*.bmp,*.jpeg"
+                Dim files As String()
+
+                files = Directory.GetFiles(TagImageFolder, "*.*")
+
+                Array.Sort(files)
+
+                For Each fi As String In files
+                    If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
+                        ImageTagDir.Add(fi)
+                    End If
                 Next
 
-                If Form1.ImageTagDir.Count < 1 Then
+                If ImageTagDir.Count < 1 Then
                     MessageBox.Show(Me, "There are no images in the specified folder.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     Return
                 End If
@@ -3735,7 +3709,8 @@ NextURL:
                 Catch
                 End Try
 
-                ImageTagPictureBox.LoadFromUrl(Form1.ImageTagDir(0))
+                ImageTagPictureBox.LoadFromUrl(ImageTagDir(0))
+                CurrentImageTagImage = ImageTagDir(0)
 
                 If File.Exists(Application.StartupPath & "\Images\System\ImageTags.txt") Then
                     Dim TagReader As New StreamReader(Application.StartupPath & "\Images\System\ImageTags.txt")
@@ -3748,7 +3723,7 @@ NextURL:
                     TagReader.Dispose()
 
                     For i As Integer = 0 To TagCheckList.Count - 1
-                        If TagCheckList(i).Contains(ImageTagPictureBox.ImageLocation) Then
+                        If TagCheckList(i).Contains(ImageTagDir(0)) Then
                             Debug.Print(TagCheckList(i))
                             CBTagFace.Checked = False
                             CBTagBoobs.Checked = False
@@ -3847,11 +3822,11 @@ NextURL:
                 End If
 
                 Form1.TagCount = 1
-                LBLTagCount.Text = Form1.TagCount & "/" & Form1.ImageTagDir.Count
+                LBLTagCount.Text = Form1.TagCount & "/" & ImageTagDir.Count
 
-                'If Form1.ImageTagDir.Count = 1 Then BTNTagSave.Text = "Save and Finish"
+                'If ImageTagDir.Count = 1 Then BTNTagSave.Text = "Save and Finish"
 
-                Form1.ImageTagCount = 0
+                ImageTagCount = 0
 
                 BTNTagSave.Enabled = True
                 BTNTagNext.Enabled = True
@@ -3903,7 +3878,7 @@ NextURL:
 
     Private Sub BTNTagSave_Click(sender As System.Object, e As System.EventArgs) Handles BTNTagSave.Click
 
-        Dim TempImageDir As String = ImageTagPictureBox.ImageLocation
+        Dim TempImageDir As String = CurrentImageTagImage
 
 
         If CBTagFace.Checked = True Then TempImageDir = TempImageDir & " " & "TagFace"
@@ -3983,7 +3958,7 @@ NextURL:
             LineExists = False
 
             For i As Integer = 0 To TagCheckList.Count - 1
-                If TagCheckList(i).Contains(ImageTagPictureBox.ImageLocation) Then
+                If TagCheckList(i).Contains(CurrentImageTagImage) Then
                     TagCheckList(i) = TempImageDir
                     LineExists = True
                     System.IO.File.WriteAllLines(Application.StartupPath & "\Images\System\ImageTags.txt", TagCheckList)
@@ -4087,11 +4062,11 @@ NextURL:
     Private Sub BTNTagNext_Click(sender As System.Object, e As System.EventArgs) Handles BTNTagNext.Click
 
         Form1.TagCount += 1
-        LBLTagCount.Text = Form1.TagCount & "/" & Form1.ImageTagDir.Count
+        LBLTagCount.Text = Form1.TagCount & "/" & ImageTagDir.Count
         BTNTagPrevious.Enabled = True
 
 
-        Dim TempImageDir As String = ImageTagPictureBox.ImageLocation
+        Dim TempImageDir As String = CurrentImageTagImage
 
 
         If CBTagFace.Checked = True Then TempImageDir = TempImageDir & " " & "TagFace"
@@ -4171,7 +4146,7 @@ NextURL:
             LineExists = False
 
             For i As Integer = 0 To TagCheckList.Count - 1
-                If TagCheckList(i).Contains(ImageTagPictureBox.ImageLocation) Then
+                If TagCheckList(i).Contains(CurrentImageTagImage) Then
                     TagCheckList(i) = TempImageDir
                     LineExists = True
                     System.IO.File.WriteAllLines(Application.StartupPath & "\Images\System\ImageTags.txt", TagCheckList)
@@ -4189,7 +4164,7 @@ NextURL:
 
 
 
-        Form1.ImageTagCount += 1
+        ImageTagCount += 1
 
         Try
             ImageTagPictureBox.Image.Dispose()
@@ -4198,9 +4173,11 @@ NextURL:
         Catch
         End Try
 
-        ImageTagPictureBox.LoadFromUrl(Form1.ImageTagDir(Form1.ImageTagCount))
+        ImageTagPictureBox.LoadFromUrl(ImageTagDir(ImageTagCount))
 
-        If Form1.ImageTagCount = Form1.ImageTagDir.Count - 1 Then BTNTagNext.Enabled = False
+        CurrentImageTagImage = ImageTagDir(ImageTagCount)
+
+        If ImageTagCount = ImageTagDir.Count - 1 Then BTNTagNext.Enabled = False
 
 
         If File.Exists(Application.StartupPath & "\Images\System\ImageTags.txt") Then
@@ -4214,7 +4191,7 @@ NextURL:
             TagReader.Dispose()
 
             For i As Integer = 0 To TagCheckList.Count - 1
-                If TagCheckList(i).Contains(ImageTagPictureBox.ImageLocation) Then
+                If TagCheckList(i).Contains(CurrentImageTagImage) Then
                     CBTagFace.Checked = False
                     CBTagBoobs.Checked = False
                     CBTagPussy.Checked = False
@@ -4318,11 +4295,11 @@ NextURL:
     Private Sub BTNTagPrevious_Click(sender As System.Object, e As System.EventArgs) Handles BTNTagPrevious.Click
 
         Form1.TagCount -= 1
-        LBLTagCount.Text = Form1.TagCount & "/" & Form1.ImageTagDir.Count
+        LBLTagCount.Text = Form1.TagCount & "/" & ImageTagDir.Count
         BTNTagNext.Enabled = True
 
 
-        Dim TempImageDir As String = ImageTagPictureBox.ImageLocation
+        Dim TempImageDir As String = CurrentImageTagImage
 
 
         If CBTagFace.Checked = True Then TempImageDir = TempImageDir & " " & "TagFace"
@@ -4402,7 +4379,7 @@ NextURL:
             LineExists = False
 
             For i As Integer = 0 To TagCheckList.Count - 1
-                If TagCheckList(i).Contains(ImageTagPictureBox.ImageLocation) Then
+                If TagCheckList(i).Contains(CurrentImageTagImage) Then
                     TagCheckList(i) = TempImageDir
                     LineExists = True
                     System.IO.File.WriteAllLines(Application.StartupPath & "\Images\System\ImageTags.txt", TagCheckList)
@@ -4418,7 +4395,7 @@ NextURL:
             My.Computer.FileSystem.WriteAllText(Application.StartupPath & "\Images\System\ImageTags.txt", TempImageDir, True)
         End If
 
-        Form1.ImageTagCount -= 1
+        ImageTagCount -= 1
 
         Try
             ImageTagPictureBox.Image.Dispose()
@@ -4427,9 +4404,11 @@ NextURL:
         Catch
         End Try
 
-        ImageTagPictureBox.LoadFromUrl(Form1.ImageTagDir(Form1.ImageTagCount))
+        ImageTagPictureBox.LoadFromUrl(ImageTagDir(ImageTagCount))
 
-        If Form1.ImageTagCount = 0 Then BTNTagPrevious.Enabled = False
+        CurrentImageTagImage = ImageTagDir(ImageTagCount)
+
+        If ImageTagCount = 0 Then BTNTagPrevious.Enabled = False
 
 
         If File.Exists(Application.StartupPath & "\Images\System\ImageTags.txt") Then
@@ -4443,7 +4422,7 @@ NextURL:
             TagReader.Dispose()
 
             For i As Integer = 0 To TagCheckList.Count - 1
-                If TagCheckList(i).Contains(ImageTagPictureBox.ImageLocation) Then
+                If TagCheckList(i).Contains(CurrentImageTagImage) Then
                     CBTagFace.Checked = False
                     CBTagBoobs.Checked = False
                     CBTagPussy.Checked = False
@@ -5626,6 +5605,9 @@ NextURL:
         PBMaintenance.Value = 0
         PBMaintenance.Maximum = 11
 
+        Dim supportedExtensions As String = "*.png,*.jpg,*.gif,*.bmp,*.jpeg"
+        Dim files As String()
+
         If CBIHardcore.Checked = True Then
             LBLMaintenance.Text = "Checking Hardcore image path..."
             If Not Directory.Exists(LBLIHardcore.Text) Then
@@ -5639,28 +5621,20 @@ NextURL:
                 My.Settings.CBIHardcore = False
             Else
 
+                
+
                 Dim ImageFolder As String = LBLIHardcore.Text
 
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpg")
-                    ImageList.Add(foundFile)
+                files = Directory.GetFiles(ImageFolder, "*.*")
+                Array.Sort(files)
+
+                For Each fi As String In files
+                    If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
+                        ImageList.Add(fi)
+                    End If
                     If ImageList.Count > 0 Then GoTo HardcoreGood
                 Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpeg")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo HardcoreGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.bmp")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo HardcoreGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.png")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo HardcoreGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.gif")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo HardcoreGood
-                Next
+
 HardcoreGood:
                 If ImageList.Count < 1 Then
                     MessageBox.Show(Me, "There are no images in the specified Hardcore folder!" & Environment.NewLine & Environment.NewLine &
@@ -5692,24 +5666,13 @@ HardcoreGood:
 
                 Dim ImageFolder As String = LBLISoftcore.Text
 
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpg")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo SoftcoreGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpeg")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo SoftcoreGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.bmp")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo SoftcoreGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.png")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo SoftcoreGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.gif")
-                    ImageList.Add(foundFile)
+                files = Directory.GetFiles(ImageFolder, "*.*")
+                Array.Sort(files)
+
+                For Each fi As String In files
+                    If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
+                        ImageList.Add(fi)
+                    End If
                     If ImageList.Count > 0 Then GoTo SoftcoreGood
                 Next
 
@@ -5745,24 +5708,13 @@ SoftcoreGood:
 
                 Dim ImageFolder As String = LBLILesbian.Text
 
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpg")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo LesbianGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpeg")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo LesbianGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.bmp")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo LesbianGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.png")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo LesbianGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.gif")
-                    ImageList.Add(foundFile)
+              files = Directory.GetFiles(ImageFolder, "*.*")
+                Array.Sort(files)
+
+                For Each fi As String In files
+                    If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
+                        ImageList.Add(fi)
+                    End If
                     If ImageList.Count > 0 Then GoTo LesbianGood
                 Next
 
@@ -5798,24 +5750,13 @@ LesbianGood:
 
                 Dim ImageFolder As String = LBLIBlowjob.Text
 
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpg")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo BlowjobGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpeg")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo BlowjobGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.bmp")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo BlowjobGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.png")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo BlowjobGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.gif")
-                    ImageList.Add(foundFile)
+               files = Directory.GetFiles(ImageFolder, "*.*")
+                Array.Sort(files)
+
+                For Each fi As String In files
+                    If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
+                        ImageList.Add(fi)
+                    End If
                     If ImageList.Count > 0 Then GoTo BlowjobGood
                 Next
 
@@ -5851,24 +5792,13 @@ BlowjobGood:
 
                 Dim ImageFolder As String = LBLIFemdom.Text
 
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpg")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo FemdomGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpeg")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo FemdomGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.bmp")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo FemdomGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.png")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo FemdomGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.gif")
-                    ImageList.Add(foundFile)
+               files = Directory.GetFiles(ImageFolder, "*.*")
+                Array.Sort(files)
+
+                For Each fi As String In files
+                    If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
+                        ImageList.Add(fi)
+                    End If
                     If ImageList.Count > 0 Then GoTo FemdomGood
                 Next
 
@@ -5905,24 +5835,13 @@ FemdomGood:
 
                 Dim ImageFolder As String = LBLILezdom.Text
 
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpg")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo LezdomGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpeg")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo LezdomGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.bmp")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo LezdomGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.png")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo LezdomGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.gif")
-                    ImageList.Add(foundFile)
+              files = Directory.GetFiles(ImageFolder, "*.*")
+                Array.Sort(files)
+
+                For Each fi As String In files
+                    If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
+                        ImageList.Add(fi)
+                    End If
                     If ImageList.Count > 0 Then GoTo LezdomGood
                 Next
 
@@ -5957,33 +5876,16 @@ LezdomGood:
             Else
 
                 Dim ImageFolder As String = LBLIHentai.Text
-                Debug.Print("Hentai Check")
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpg")
-                    ImageList.Add(foundFile)
-                    Debug.Print("Checkin' jpg")
+              
+                files = Directory.GetFiles(ImageFolder, "*.*")
+                Array.Sort(files)
+
+                For Each fi As String In files
+                    If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
+                        ImageList.Add(fi)
+                    End If
                     If ImageList.Count > 0 Then GoTo HentaiGood
                 Next
-                Debug.Print("Hentai Check")
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpeg")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo HentaiGood
-                Next
-                Debug.Print("Hentai Check")
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.bmp")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo HentaiGood
-                Next
-                Debug.Print("Hentai Check")
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.png")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo HentaiGood
-                Next
-                Debug.Print("Hentai Check")
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.gif")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo HentaiGood
-                Next
-                Debug.Print("Hentai Check")
 
 HentaiGood:
 
@@ -6017,24 +5919,13 @@ HentaiGood:
 
                 Dim ImageFolder As String = LBLIGay.Text
 
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpg")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo GayGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpeg")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo GayGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.bmp")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo GayGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.png")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo GayGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.gif")
-                    ImageList.Add(foundFile)
+               files = Directory.GetFiles(ImageFolder, "*.*")
+                Array.Sort(files)
+
+                For Each fi As String In files
+                    If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
+                        ImageList.Add(fi)
+                    End If
                     If ImageList.Count > 0 Then GoTo GayGood
                 Next
 
@@ -6070,24 +5961,13 @@ GayGood:
 
                 Dim ImageFolder As String = LBLIMaledom.Text
 
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpg")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo MaledomGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpeg")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo MaledomGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.bmp")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo MaledomGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.png")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo MaledomGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.gif")
-                    ImageList.Add(foundFile)
+               files = Directory.GetFiles(ImageFolder, "*.*")
+                Array.Sort(files)
+
+                For Each fi As String In files
+                    If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
+                        ImageList.Add(fi)
+                    End If
                     If ImageList.Count > 0 Then GoTo MaledomGood
                 Next
 
@@ -6124,24 +6004,13 @@ MaledomGood:
 
                 Dim ImageFolder As String = LBLICaptions.Text
 
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpg")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo CaptionsGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpeg")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo CaptionsGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.bmp")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo CaptionsGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.png")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo CaptionsGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.gif")
-                    ImageList.Add(foundFile)
+                files = Directory.GetFiles(ImageFolder, "*.*")
+                Array.Sort(files)
+
+                For Each fi As String In files
+                    If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
+                        ImageList.Add(fi)
+                    End If
                     If ImageList.Count > 0 Then GoTo CaptionsGood
                 Next
 
@@ -6177,24 +6046,13 @@ CaptionsGood:
 
                 Dim ImageFolder As String = LBLIGeneral.Text
 
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpg")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo GeneralGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.jpeg")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo GeneralGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.bmp")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo GeneralGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.png")
-                    ImageList.Add(foundFile)
-                    If ImageList.Count > 0 Then GoTo GeneralGood
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(ImageFolder, FileIO.SearchOption.SearchAllSubDirectories, "*.gif")
-                    ImageList.Add(foundFile)
+               files = Directory.GetFiles(ImageFolder, "*.*")
+                Array.Sort(files)
+
+                For Each fi As String In files
+                    If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
+                        ImageList.Add(fi)
+                    End If
                     If ImageList.Count > 0 Then GoTo GeneralGood
                 Next
 
@@ -8135,32 +7993,30 @@ WhyUMakeMeDoDis:
 
             ' BTNTagSave.Text = "Save and Display Next Image"
 
-            Form1.LocalImageTagDir.Clear()
+            LocalImageTagDir.Clear()
 
             Dim TagLocalImageFolder As String = FolderBrowserDialog1.SelectedPath
 
-            For Each foundFile As String In My.Computer.FileSystem.GetFiles(TagLocalImageFolder, FileIO.SearchOption.SearchTopLevelOnly, "*.jpg")
-                Form1.LocalImageTagDir.Add(foundFile)
-            Next
-            For Each foundFile As String In My.Computer.FileSystem.GetFiles(TagLocalImageFolder, FileIO.SearchOption.SearchTopLevelOnly, "*.jpeg")
-                Form1.LocalImageTagDir.Add(foundFile)
-            Next
-            For Each foundFile As String In My.Computer.FileSystem.GetFiles(TagLocalImageFolder, FileIO.SearchOption.SearchTopLevelOnly, "*.bmp")
-                Form1.LocalImageTagDir.Add(foundFile)
-            Next
-            For Each foundFile As String In My.Computer.FileSystem.GetFiles(TagLocalImageFolder, FileIO.SearchOption.SearchTopLevelOnly, "*.png")
-                Form1.LocalImageTagDir.Add(foundFile)
-            Next
-            For Each foundFile As String In My.Computer.FileSystem.GetFiles(TagLocalImageFolder, FileIO.SearchOption.SearchTopLevelOnly, "*.gif")
-                Form1.LocalImageTagDir.Add(foundFile)
+             Dim supportedExtensions As String = "*.png,*.jpg,*.gif,*.bmp,*.jpeg"
+            Dim files As String()
+
+            files = Directory.GetFiles(TagLocalImageFolder, "*.*")
+
+            Array.Sort(files)
+
+            For Each fi As String In files
+                If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
+                    LocalImageTagDir.Add(fi)
+                End If
             Next
 
-            If Form1.LocalImageTagDir.Count < 1 Then
+            If LocalImageTagDir.Count < 1 Then
                 MessageBox.Show(Me, "There are no images in the specified folder.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 Return
             End If
 
-            Form1.mainPictureBox.LoadFromUrl(Form1.LocalImageTagDir(0))
+            Form1.mainPictureBox.LoadFromUrl(LocalImageTagDir(0))
+            CurrentLocalImageTagImage = LocalImageTagDir(0)
 
 
             CheckLocalTagList()
@@ -8168,10 +8024,10 @@ WhyUMakeMeDoDis:
 
 
             Form1.LocalTagCount = 1
-            LBLLocalTagCount.Text = Form1.LocalTagCount & "/" & Form1.LocalImageTagDir.Count
+            LBLLocalTagCount.Text = Form1.LocalTagCount & "/" & LocalImageTagDir.Count
 
 
-            Form1.LocalImageTagCount = 0
+            LocalImageTagCount = 0
 
             BTNLocalTagSave.Enabled = True
             BTNLocalTagNext.Enabled = True
@@ -8192,15 +8048,16 @@ WhyUMakeMeDoDis:
     Private Sub BTNLocalTagNext_Click(sender As System.Object, e As System.EventArgs) Handles BTNLocalTagNext.Click
 
         Form1.LocalTagCount += 1
-        LBLLocalTagCount.Text = Form1.LocalTagCount & "/" & Form1.LocalImageTagDir.Count
+        LBLLocalTagCount.Text = Form1.LocalTagCount & "/" & LocalImageTagDir.Count
         BTNLocalTagPrevious.Enabled = True
 
         SetLocalImageTags()
 
-        Form1.LocalImageTagCount += 1
-        Form1.mainPictureBox.LoadFromUrl(Form1.LocalImageTagDir(Form1.LocalImageTagCount))
+        LocalImageTagCount += 1
+        Form1.mainPictureBox.LoadFromUrl(LocalImageTagDir(LocalImageTagCount))
+        CurrentLocalImageTagImage = LocalImageTagDir(LocalImageTagCount)
 
-        If Form1.LocalImageTagCount = Form1.LocalImageTagDir.Count - 1 Then BTNLocalTagNext.Enabled = False
+        If LocalImageTagCount = LocalImageTagDir.Count - 1 Then BTNLocalTagNext.Enabled = False
 
         CheckLocalTagList()
 
@@ -8330,7 +8187,7 @@ WhyUMakeMeDoDis:
             TagReader.Dispose()
 
             For i As Integer = 0 To TagCheckList.Count - 1
-                If TagCheckList(i).Contains(Form1.mainPictureBox.ImageLocation) Then
+                If TagCheckList(i).Contains(CurrentLocalImageTagImage) Then
 
                     ClearLocalTagList()
 
@@ -8785,7 +8642,7 @@ WhyUMakeMeDoDis:
 
     Public Sub SetLocalImageTags()
 
-        Dim TempImageDir As String = Form1.mainPictureBox.ImageLocation
+        Dim TempImageDir As String = CurrentLocalImageTagImage
 
         If CBTagHardcore.Checked = True Then TempImageDir = TempImageDir & " " & "TagHardcore"
         If CBTagLesbian.Checked = True Then TempImageDir = TempImageDir & " " & "TagLesbian"
@@ -8909,7 +8766,7 @@ WhyUMakeMeDoDis:
             LineExists = False
 
             For i As Integer = 0 To TagCheckList.Count - 1
-                If TagCheckList(i).Contains(Form1.mainPictureBox.ImageLocation) Then
+                If TagCheckList(i).Contains(CurrentLocalImageTagImage) Then
                     TagCheckList(i) = TempImageDir
                     LineExists = True
                     System.IO.File.WriteAllLines(Application.StartupPath & "\Images\System\LocalImageTags.txt", TagCheckList)
@@ -9309,15 +9166,17 @@ WhyUMakeMeDoDis:
     Private Sub BTNLocalTagPrevious_Click(sender As System.Object, e As System.EventArgs) Handles BTNLocalTagPrevious.Click
 
         Form1.LocalTagCount -= 1
-        LBLLocalTagCount.Text = Form1.LocalTagCount & "/" & Form1.LocalImageTagDir.Count
+        LBLLocalTagCount.Text = Form1.LocalTagCount & "/" & LocalImageTagDir.Count
         BTNLocalTagNext.Enabled = True
 
         SetLocalImageTags()
 
-        Form1.LocalImageTagCount -= 1
-        Form1.mainPictureBox.LoadFromUrl(Form1.LocalImageTagDir(Form1.LocalImageTagCount))
+        LocalImageTagCount -= 1
+        Form1.mainPictureBox.LoadFromUrl(LocalImageTagDir(LocalImageTagCount))
 
-        If Form1.LocalImageTagCount = 0 Then BTNLocalTagPrevious.Enabled = False
+        CurrentLocalImageTagImage = LocalImageTagDir(LocalImageTagCount)
+
+        If LocalImageTagCount = 0 Then BTNLocalTagPrevious.Enabled = False
 
         CheckLocalTagList()
 
@@ -9353,32 +9212,29 @@ WhyUMakeMeDoDis:
 
             If My.Computer.FileSystem.DirectoryExists(TBLocalTagDir.Text) Then
 
-                Form1.LocalImageTagDir.Clear()
+                LocalImageTagDir.Clear()
 
                 Dim TagLocalImageFolder As String = TBLocalTagDir.Text
 
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(TagLocalImageFolder, FileIO.SearchOption.SearchTopLevelOnly, "*.jpg")
-                    Form1.LocalImageTagDir.Add(foundFile)
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(TagLocalImageFolder, FileIO.SearchOption.SearchTopLevelOnly, "*.jpeg")
-                    Form1.LocalImageTagDir.Add(foundFile)
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(TagLocalImageFolder, FileIO.SearchOption.SearchTopLevelOnly, "*.bmp")
-                    Form1.LocalImageTagDir.Add(foundFile)
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(TagLocalImageFolder, FileIO.SearchOption.SearchTopLevelOnly, "*.png")
-                    Form1.LocalImageTagDir.Add(foundFile)
-                Next
-                For Each foundFile As String In My.Computer.FileSystem.GetFiles(TagLocalImageFolder, FileIO.SearchOption.SearchTopLevelOnly, "*.gif")
-                    Form1.LocalImageTagDir.Add(foundFile)
+                 Dim supportedExtensions As String = "*.png,*.jpg,*.gif,*.bmp,*.jpeg"
+                Dim files As String()
+
+                files = Directory.GetFiles(TagLocalImageFolder, "*.*")
+
+                Array.Sort(files)
+
+                For Each fi As String In files
+                    If supportedExtensions.Contains(Path.GetExtension(LCase(fi))) Then
+                        LocalImageTagDir.Add(fi)
+                    End If
                 Next
 
-                If Form1.LocalImageTagDir.Count < 1 Then
+                If LocalImageTagDir.Count < 1 Then
                     MessageBox.Show(Me, "There are no images in the specified folder.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                     Return
                 End If
 
-                Form1.mainPictureBox.LoadFromUrl(Form1.LocalImageTagDir(0))
+                Form1.mainPictureBox.LoadFromUrl(LocalImageTagDir(0))
 
 
                 CheckLocalTagList()
@@ -9386,10 +9242,10 @@ WhyUMakeMeDoDis:
 
 
                 Form1.LocalTagCount = 1
-                LBLLocalTagCount.Text = Form1.LocalTagCount & "/" & Form1.LocalImageTagDir.Count
+                LBLLocalTagCount.Text = Form1.LocalTagCount & "/" & LocalImageTagDir.Count
 
 
-                Form1.LocalImageTagCount = 0
+                LocalImageTagCount = 0
 
                 BTNLocalTagSave.Enabled = True
                 BTNLocalTagNext.Enabled = True
@@ -11085,7 +10941,8 @@ NextURL:
 
     Private Sub Button3_Click_1(sender As System.Object, e As System.EventArgs) Handles BTNMaintenanceScripts.Click
 
-        PBMaintenance.Maximum = My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Scripts\" & dompersonalityComboBox.Text, FileIO.SearchOption.SearchAllSubDirectories, "*.txt").Count
+        PBMaintenance.Maximum = My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Scripts\" & dompersonalityComboBox.Text, FileIO.SearchOption.SearchAllSubDirectories, "*.txt").Count + _
+            My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Images\System\", FileIO.SearchOption.SearchAllSubDirectories, "*.txt").Count
         PBMaintenance.Value = 0
         Dim BlankAudit As Integer = 0
         Dim ErrorAudit As Integer = 0
@@ -11178,6 +11035,47 @@ NextURL:
             End If
 
         Next
+
+
+
+
+        For Each foundFile As String In My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Images\System\", FileIO.SearchOption.SearchAllSubDirectories, "*.txt")
+
+            LBLMaintenance.Text = "Checking " & Path.GetFileName(foundFile) & "..."
+            PBMaintenance.Value += 1
+            Dim CheckFiles As String() = File.ReadAllLines(foundFile)
+
+            Dim GoodLines As New List(Of String)
+
+            For Each line As String In CheckFiles
+                If Not line = "" Then
+                    GoodLines.Add(line)
+                Else
+                    BlankAudit += 1
+                End If
+            Next
+
+            Dim fs As New FileStream(foundFile, FileMode.Create)
+            Dim sw As New StreamWriter(fs)
+
+
+            For i As Integer = 0 To GoodLines.Count - 1
+                If i <> GoodLines.Count - 1 Then
+                    sw.WriteLine(GoodLines(i))
+                Else
+                    sw.Write(GoodLines(i))
+                End If
+            Next
+
+            sw.Close()
+            sw.Dispose()
+
+            fs.Close()
+            fs.Dispose()
+
+        Next
+
+
         Debug.Print("done")
 
         MessageBox.Show(Me, PBMaintenance.Maximum & " scripts have been audited." & Environment.NewLine & Environment.NewLine & _
@@ -11197,7 +11095,8 @@ NextURL:
 
     Public Sub AuditScripts()
 
-        PBMaintenance.Maximum = My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Scripts\" & dompersonalityComboBox.Text, FileIO.SearchOption.SearchAllSubDirectories, "*.txt").Count
+        PBMaintenance.Maximum = My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Scripts\" & dompersonalityComboBox.Text, FileIO.SearchOption.SearchAllSubDirectories, "*.txt").Count + _
+         My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Images\System\", FileIO.SearchOption.SearchAllSubDirectories, "*.txt").Count
         PBMaintenance.Value = 0
         Dim BlankAudit As Integer = 0
         Dim ErrorAudit As Integer = 0
@@ -11288,6 +11187,45 @@ NextURL:
             fs.Dispose()
 
         Next
+
+
+        For Each foundFile As String In My.Computer.FileSystem.GetFiles(Application.StartupPath & "\Images\System\", FileIO.SearchOption.SearchAllSubDirectories, "*.txt")
+
+            LBLMaintenance.Text = "Checking " & Path.GetFileName(foundFile) & "..."
+            PBMaintenance.Value += 1
+            Dim CheckFiles As String() = File.ReadAllLines(foundFile)
+
+            Dim GoodLines As New List(Of String)
+
+            For Each line As String In CheckFiles
+                If Not line = "" Then
+                    GoodLines.Add(line)
+                Else
+                    BlankAudit += 1
+                End If
+            Next
+
+            Dim fs As New FileStream(foundFile, FileMode.Create)
+            Dim sw As New StreamWriter(fs)
+
+
+            For i As Integer = 0 To GoodLines.Count - 1
+                If i <> GoodLines.Count - 1 Then
+                    sw.WriteLine(GoodLines(i))
+                Else
+                    sw.Write(GoodLines(i))
+                End If
+            Next
+
+            sw.Close()
+            sw.Dispose()
+
+            fs.Close()
+            fs.Dispose()
+
+        Next
+
+
         Debug.Print("done")
 
         MessageBox.Show(Me, PBMaintenance.Maximum & " scripts have been audited." & Environment.NewLine & Environment.NewLine & _
@@ -11304,6 +11242,13 @@ NextURL:
 
     End Sub
 
-  
+    Private Sub TBWebStart_LostFocus(sender As Object, e As System.EventArgs) Handles TBWebStart.LostFocus
+        My.Settings.WebToyStart = TBWebStart.Text
+    End Sub
+
+    Private Sub TBWebStop_LostFocus(sender As Object, e As System.EventArgs) Handles TBWebStop.LostFocus
+        My.Settings.WebToyStop = TBWebStop.Text
+    End Sub
  
+   
 End Class

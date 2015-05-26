@@ -4280,6 +4280,30 @@ Namespace My
                 Me("TokenTasks") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property WebToyStart() As String
+            Get
+                Return CType(Me("WebToyStart"),String)
+            End Get
+            Set
+                Me("WebToyStart") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property WebToyStop() As String
+            Get
+                Return CType(Me("WebToyStop"),String)
+            End Get
+            Set
+                Me("WebToyStop") = value
+            End Set
+        End Property
     End Class
 End Namespace
 
